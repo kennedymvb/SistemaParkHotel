@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFPresentationLayer", "WFPresentationLayer\WFPresentationLayer.csproj", "{28FDE755-BC9E-40D6-A58A-A514BD964EF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{777A4CFF-AFDD-4B53-896D-03627AD9B572}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{28FDE755-BC9E-40D6-A58A-A514BD964EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28FDE755-BC9E-40D6-A58A-A514BD964EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28FDE755-BC9E-40D6-A58A-A514BD964EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{777A4CFF-AFDD-4B53-896D-03627AD9B572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{777A4CFF-AFDD-4B53-896D-03627AD9B572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{777A4CFF-AFDD-4B53-896D-03627AD9B572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{777A4CFF-AFDD-4B53-896D-03627AD9B572}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
