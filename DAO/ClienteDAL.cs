@@ -6,7 +6,31 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class Clientes
+    public class Clientes : IEntityCRUD<Cliente>
     {
+        public string Atualizar(Cliente item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Excluir(Cliente item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Inserir(Cliente item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Cliente LerPorID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Cliente> LerTodos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

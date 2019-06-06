@@ -6,7 +6,31 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class Fornecedor
+    public class Fornecedor : IEntityCRUD<Fornecedor>
     {
+        public string Atualizar(Fornecedor item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Excluir(Fornecedor item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Inserir(Fornecedor item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Fornecedor LerPorID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Fornecedor> LerTodos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

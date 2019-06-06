@@ -54,5 +54,15 @@
     <Compile Include="ReservaDAL.cs" />
     <Compile Include="UsuarioDAL.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{777a4cff-afdd-4b53-896d-03627ad9b572}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Metadata\Metadata.csproj">
+      <Project>{2bd648e5-053d-4043-873b-60e4e695d87c}</Project>
+      <Name>Metadata</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
