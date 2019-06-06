@@ -45,8 +45,8 @@
     <Compile Include="CheckinDAL.cs" />
     <Compile Include="CheckoutDAL.cs" />
     <Compile Include="ClienteDAL.cs" />
-    <Compile Include="ConsumoDAL.cs" />
-    <Compile Include="EstoqueDAL.cs" />
+    <Compile Include="EntradaProdutosDAL.cs" />
+    <Compile Include="EntradaProdutosDetalhesDAL.cs" />
     <Compile Include="FornecedorDAL.cs" />
     <Compile Include="ProdutoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

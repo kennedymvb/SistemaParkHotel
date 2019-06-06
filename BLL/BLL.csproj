@@ -46,6 +46,8 @@
     <Compile Include="CheckoutBLL.cs" />
     <Compile Include="ClienteBLL.cs" />
     <Compile Include="ConsumoBLL.cs" />
+    <Compile Include="EntradaProdutosBLL.cs" />
+    <Compile Include="EntradaProdutosDetalhesBLL.cs" />
     <Compile Include="EstoqueBLL.cs" />
     <Compile Include="FornecedorBLL.cs" />
     <Compile Include="ProdutoBLL.cs" />

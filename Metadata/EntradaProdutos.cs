@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    public class Quarto
+    public class EntradaProdutos
     {
-        public int id { get; set; }
-        public double valorDiaria {get; set;}
         public int usuarioId { get; set; }
+        public DateTime data { get; set; }
+        public double valorTotal { get; set; }
     }
 }

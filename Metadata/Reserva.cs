@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class Reserva
+    public class Reserva
     {
+        public int id { get; set; }
+        public int id_cliente { get; set; }
+        public DateTime data { get; set; }
+
     }
 }

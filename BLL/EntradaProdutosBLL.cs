@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class Estoque
+    class EntradaProdutos
     {
     }
 }

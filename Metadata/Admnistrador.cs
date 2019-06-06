@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class Admnistrador
+    public class Admnistrador:Usuario
     {
+        
     }
 }

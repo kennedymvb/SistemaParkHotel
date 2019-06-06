@@ -8,5 +8,9 @@ namespace Metadata
 {
     class Checkout
     {
+        public int id { get; set; }
+        public int idCheckin { get; set; }
+        public double MyProperty { get; set; }
+
     }
 }

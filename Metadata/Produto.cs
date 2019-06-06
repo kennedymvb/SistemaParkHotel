@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class Produto
+    public class Produto
     {
+        public int id { get; set; }
+        public string nome { get; set; }
+        public string descricao { get; set; }
+        public double preco { get; set; }
+        public int idUsuario { get; set; }
     }
 }
