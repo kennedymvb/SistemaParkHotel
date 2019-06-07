@@ -8,7 +8,7 @@ namespace Metadata
 {
     public class EntradaProdutos
     {
-        public int usuarioId { get; set; }
+        public int usuarioId { get; seffst; }
         public DateTime data { get; set; }
         public double valorTotal { get; set; }
     }
