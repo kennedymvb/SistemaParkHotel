@@ -10,6 +10,7 @@ namespace Metadata
     {
         public int usuarioId { get; set; }
         public DateTime data { get; set; }
+        ssa
         public double valorTotal { get; set; }
     }
 }
