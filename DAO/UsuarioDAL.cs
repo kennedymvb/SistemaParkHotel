@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 using BLL;
 using Metadata;
 
-namespace Metadata
+namespace DAL
 {
-    public class Usuario : IEntityCRUD<Usuario>
+    public class UsuarioDAL : IEntityCRUD<Usuario>
     {
         StringConexao stc = new StringConexao();
-        Usuario usuario = new Usuario();
-
+        
 
 
         public string Atualizar(Usuario item)
@@ -26,20 +25,21 @@ namespace Metadata
             throw new NotImplementedException();
         }
 
-        public string Inserir(Usuario item)
+        public string Inserir(Usuario usuario)
         {
             string stringConexao = stc.getStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "INSERT INTO USUARIOS (ID, NOME, RG, CPF, ENDERECO, TELEFONE, EMAIL, SENHA) VALUES (@ID, @NOME, @RG, @CPF, @ENDERECO, @TELEFONE, @EMAIL, @SENHA)";
-            command.Parameters.AddWithValue("@ID",  );
+            command.Parameters.AddWithValue("@ID", usuario.id );
             command.Parameters.AddWithValue("@NOME", usuario.nome);
-            command.Parameters.AddWithValue("@RG", cidade.Nome);
-            command.Parameters.AddWithValue("@CPF", cidade.Estado.ID);
-            command.Parameters.AddWithValue("@ENDERECO", cidade.Nome);
-            command.Parameters.AddWithValue("@TELEFONE", cidade.Estado.ID);
-            command.Parameters.AddWithValue("@EMAIL", cidade.Nome);
-            command.Parameters.AddWithValue("@SENHAE", cidade.Estado.ID);
+            command.Parameters.AddWithValue("@RG", usuario.rg);
+            command.Parameters.AddWithValue("@CPF", usuario.cpf);
+            command.Parameters.AddWithValue("@ENDERECO", usuario.endereco);
+            command.Parameters.AddWithValue("@TELEFONE", usuario.telefone);
+            command.Parameters.AddWithValue("@EMAIL", usuario.email);
+            command.Parameters.AddWithValue("@SENHA", usuario.senha);
+            return "";
         }
 
         public Usuario LerPorID(int id)

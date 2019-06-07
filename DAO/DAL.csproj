@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{777a4cff-afdd-4b53-896d-03627ad9b572}</Project>
+      <Project>{777A4CFF-AFDD-4B53-896D-03627AD9B572}</Project>
       <Name>BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Metadata\Metadata.csproj">
