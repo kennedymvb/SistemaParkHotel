@@ -16,12 +16,16 @@ namespace DAL
 
         public string Atualizar(Admnistrador item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Excluir(Admnistrador item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Inserir(Admnistrador admnistrador)
@@ -42,12 +46,16 @@ namespace DAL
 
         public Admnistrador LerPorID(int id)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public List<Admnistrador> LerTodos()
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
     }
 }

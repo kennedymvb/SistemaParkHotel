@@ -14,12 +14,16 @@ namespace Metadata
 
         public string Atualizar(EntradaProdutos item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Excluir(EntradaProdutos item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Inserir(EntradaProdutos entradaProdutos)
@@ -38,12 +42,16 @@ namespace Metadata
 
         public EntradaProdutos LerPorID(int id)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public List<EntradaProdutos> LerTodos()
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
     }
 }

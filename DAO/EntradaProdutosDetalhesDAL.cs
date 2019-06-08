@@ -10,14 +10,20 @@ namespace Metadata
 {
     class EntradaProdutosDetalhesDAL : IEntityCRUD<EntradaProdutosDetalhes>
     {
+        StringConexao stc = new StringConexao();
+
         public string Atualizar(EntradaProdutosDetalhes item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Excluir(EntradaProdutosDetalhes item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Inserir(EntradaProdutosDetalhes entradaProdutosDetalhes)
@@ -38,12 +44,16 @@ namespace Metadata
 
         public EntradaProdutosDetalhes LerPorID(int id)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public List<EntradaProdutosDetalhes> LerTodos()
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
     }
 }

@@ -17,12 +17,16 @@ namespace DAL
 
         public string Atualizar(Produto item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Excluir(Produto item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Inserir(Produto produto)
@@ -44,12 +48,16 @@ namespace DAL
 
         public Produto LerPorID(int id)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public List<Produto> LerTodos()
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
     }
 }

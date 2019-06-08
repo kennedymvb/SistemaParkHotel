@@ -15,12 +15,16 @@ namespace Metadata
 
         public string Atualizar(Checkout item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Excluir(Checkout item)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public string Inserir(Checkout checkout)
@@ -40,12 +44,16 @@ namespace Metadata
 
         public Checkout LerPorID(int id)
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
 
         public List<Checkout> LerTodos()
         {
-            throw new NotImplementedException();
+            string stringConexao = stc.getStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
         }
     }
 }
