@@ -45,11 +45,10 @@
     <Compile Include="CheckinBLL.cs" />
     <Compile Include="CheckoutBLL.cs" />
     <Compile Include="ClienteBLL.cs" />
-    <Compile Include="ConsumoBLL.cs" />
     <Compile Include="EntradaProdutosBLL.cs" />
     <Compile Include="EntradaProdutosDetalhesBLL.cs" />
-    <Compile Include="EstoqueBLL.cs" />
     <Compile Include="FornecedorBLL.cs" />
+    <Compile Include="SaidaProdutosDetalhesBLL.cs" />
     <Compile Include="StringConexao.cs" />
     <Compile Include="ProdutoBLL.cs" />
     <Compile Include="QuartoBLL.cs" />

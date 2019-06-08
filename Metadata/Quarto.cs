@@ -12,5 +12,16 @@ namespace Metadata
         public double valorDiaria {get; set;}
         public int usuarioId { get; set; }
         public bool estaOcupado { get; set; }
+
+        public Quarto(int ID, double ValorDiaria, int IDUsuario, bool EstaOcupado)
+        {
+            this.id = ID;
+            this.valorDiaria = ValorDiaria;
+            this.usuarioId = IDUsuario;
+            this.estaOcupado = EstaOcupado;
+        }
+
+
+
     }
 }

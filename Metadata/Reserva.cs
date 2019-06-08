@@ -10,10 +10,27 @@ namespace Metadata
     {
         public int id { get; set; }
         public int idCliente { get; set; }
-        public DateTime data { get; set; }
+        public int idUsuario { get; set; }
         public DateTime dataPrevisaoChegada { get; set; }
         public DateTime dataPrevisaoSaida { get; set; }
         public int idQuarto { get; set; }
+
+        public Reserva(int ID, int IDCliente, int IDUsuario, DateTime DataPrevChegada, DateTime DataPrevSaida, int IDQuarto)
+        {
+
+            this.id = ID;
+            this.idCliente = IDCliente;
+            this.idUsuario = IDUsuario;
+            this.dataPrevisaoChegada = DataPrevChegada;
+            this.dataPrevisaoSaida = DataPrevSaida;
+            this.idQuarto = IDQuarto;
+
+
+        }
+
+
+
+
 
     }
 }

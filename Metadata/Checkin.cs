@@ -15,6 +15,15 @@ namespace Metadata
         public int clienteId { get; set; }
         public int idReserva { get; set; }
 
+        public Checkin(int id, DateTime dataentrada, DateTime dataprevistasaida, int idquarto, int idcliente, int idreserva)
+        {
+            this.id = id;
+            this.dataEntrada = dataentrada;
+            this.dataPrevistaSaida = dataprevistasaida;
+            this.quartoId = idquarto;
+            this.clienteId = idcliente;
+            this.idReserva = idreserva;
 
+        }
     }
 }

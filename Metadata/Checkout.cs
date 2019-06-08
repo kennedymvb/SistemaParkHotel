@@ -13,5 +13,14 @@ namespace Metadata
         public double valorTotal { get; set; }
         public DateTime dataSaida { get; set; }
 
+        public Checkout(int id, int idcheckin, double valortotal, DateTime datasaida)
+        {
+            this.id = id;
+            this.idCheckin = idcheckin;
+            this.valorTotal = valortotal;
+            this.dataSaida = datasaida;
+        }
+
+
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Metadata
+namespace BLL
 {
-    class Consumo
+    class SaidaProdutosDetalhesBLL
     {
     }
 }

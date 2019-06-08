@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Metadata
+namespace DAO
 {
-    class Estoque
+    class SaidaProdutosDetalhesDAL
     {
     }
 }

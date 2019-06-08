@@ -17,5 +17,22 @@ namespace Metadata
         public int usuarioID { get; set; }
         public string nomeContato { get; set; }
 
+        public Fornecedor(int ID, string RazaoSocial, string RG, string CNPJ, string Telefone, string Email, int IDusuario, string Nomecontato)
+        {
+
+            this.id = ID;
+            this.razaoSocial = RazaoSocial;
+            this.rg = RG;
+            this.cnpj = CNPJ;
+            this.telefone = Telefone;
+            this.email = Email;
+            this.usuarioID = IDusuario;
+            this.nomeContato = Nomecontato;
+
+        }
+
+
+
+
     }
 }
