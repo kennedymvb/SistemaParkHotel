@@ -1,4 +1,5 @@
-﻿using Metadata;
+﻿using BLL;
+using Metadata;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class Admnistrador : IEntityCRUD<Admnistrador>
+    public class AdmnistradorDAL : IEntityCRUD<Admnistrador>
     {
+        StringConexao stc = new StringConexao();
+
+
         public string Atualizar(Admnistrador item)
         {
             throw new NotImplementedException();
@@ -26,7 +30,6 @@ namespace DAL
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "INSERT INTO USUARIOS (ID, NOME, RG, CPF, ENDERECO, TELEFONE, EMAIL, SENHA) VALUES (@ID, @NOME, @RG, @CPF, @ENDERECO, @TELEFONE, @EMAIL, @SENHA)";
-            command.Parameters.AddWithValue("@ID", admnistrador.);
             command.Parameters.AddWithValue("@NOME", admnistrador.nome);
             command.Parameters.AddWithValue("@RG", admnistrador.rg);
             command.Parameters.AddWithValue("@CPF", admnistrador.cpf);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class EntradaProdutosDetalhes
+    public class EntradaProdutosDetalhes
     {
         public int idEntradaProduto { get; set; }
         public int idProduto { get; set; }

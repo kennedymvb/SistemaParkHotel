@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class Fornecedor
+    public class Fornecedor
     {
         public int id { get; set; }
         public string razaoSocial { get; set; }
         public string rg { get; set; }
-        public string cpf { get; set; }
+        public string cnpj { get; set; }
         public string telefone { get; set; }
         public string email { get; set; }
         public int usuarioID { get; set; }
+        public string nomeContato { get; set; }
 
     }
 }

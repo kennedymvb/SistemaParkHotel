@@ -13,6 +13,8 @@ namespace Metadata
         public DateTime dataPrevistaSaida { get; set; }
         public int quartoId { get; set; }
         public int clienteId { get; set; }
+        public int idReserva { get; set; }
+
 
     }
 }

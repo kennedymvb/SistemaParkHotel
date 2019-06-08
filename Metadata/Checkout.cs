@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class Checkout
+    public class Checkout
     {
         public int id { get; set; }
         public int idCheckin { get; set; }
-        public double MyProperty { get; set; }
+        public double valorTotal { get; set; }
+        public DateTime dataSaida { get; set; }
 
     }
 }

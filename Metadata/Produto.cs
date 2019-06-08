@@ -12,6 +12,7 @@ namespace Metadata
         public string nome { get; set; }
         public string descricao { get; set; }
         public double preco { get; set; }
-        public int idUsuario { get; set; }
+        public int usuarioId { get; set; }
+        public int qtd_estoque { get; set; }
     }
 }

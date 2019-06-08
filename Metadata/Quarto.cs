@@ -11,5 +11,6 @@ namespace Metadata
         public int id { get; set; }
         public double valorDiaria {get; set;}
         public int usuarioId { get; set; }
+        public bool estaOcupado { get; set; }
     }
 }
