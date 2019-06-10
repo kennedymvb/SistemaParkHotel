@@ -26,7 +26,7 @@ namespace Metadata
             command.Parameters.AddWithValue("@CHECK_IN_ID", checkout.idCheckin);
 
             return "atualizado com sucesso";
-        }
+        }d
 
         public string Excluir(Checkout checkout)
         {
