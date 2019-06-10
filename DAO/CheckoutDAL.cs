@@ -37,7 +37,7 @@ namespace Metadata
 
 
             command.CommandText = "delete from checkout where id = @id";
-            command.Parameters.AddWithValue("@id", checkout.id);
+            command.Parameters.AddWithValue("@id", checkout.id);s
             connection.Close();
             return "conectado com sucesso";
         }
