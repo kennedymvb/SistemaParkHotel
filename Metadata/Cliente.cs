@@ -29,6 +29,10 @@ namespace Metadata
             this.usuarioID = IDusuario;
 
         }
+        public Cliente()
+        {
+
+        }
 
 
 

@@ -64,8 +64,45 @@ namespace Metadata
             string stringConexao = stc.getStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "select * from Checkins where id= @id";
+            command.Parameters.AddWithValue("@id", id);
             command.Connection = connection;
 
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    return instanciarCheckin(reader);
+                }
+                return null;
+
+            }
+            catch ()
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return null;
+
+
+
+        }
+
+        private Checkin instanciarCheckin(SqlDataReader reader)
+        {
+            Checkin checkin = new Checkin();
+            checkin.id = Convert.ToInt32(reader["ID"]);
+            checkin.idReserva = Convert.ToInt32(reader["ID_RESERVA"]);
+            checkin.dataEntrada = Convert.ToDateTime(reader["DATA_ENTRADA"]);
+            checkin.quartoId = Convert.ToInt32(reader["QUARTO_ID"]);
+            checkin.clienteId = Convert.ToInt32(reader["CLIENTE_ID"]);
+            checkin.dataPrevistaSaida = Convert.ToDateTime(reader["DATA_PREVISTA_SAIDA"]);
+            return checkin;
         }
 
         public List<Checkin> LerTodos()
@@ -74,6 +111,30 @@ namespace Metadata
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
+            List<Checkin> list = new List<Checkin>();
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read()) {
+                    while (reader.Read())
+                    {
+                        list.Add(instanciarCheckin(reader));
+                    }
+                    return list;
+                }
+                return null;
+
+            }
+            catch ()
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return null;
 
         }
     }

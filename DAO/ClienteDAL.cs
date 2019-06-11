@@ -110,21 +110,47 @@ namespace Metadata
             string stringConexao = stc.getStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "select * from clientes where id= @id";
+            command.Parameters.AddWithValue("@id", id);
             command.Connection = connection;
 
             try
             {
                 connection.Open();
-                command.ExecuteNonQuery();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    return instanciarcliente(reader);
+                }
+                return null;
+
             }
-            catch (SqlException e)
+            catch ()
             {
-                return "erro de conexão com o banco";
+
             }
             finally
             {
                 connection.Close();
             }
+            return null;
+
+
+
+        }
+
+        private Cliente instanciarcliente(SqlDataReader reader)
+        {
+            Cliente cliente = new Cliente();
+            cliente.id = Convert.ToInt32(reader["ID"]);
+            cliente.nome = Convert.ToString(reader["NOME"]);
+            cliente.cpf = Convert.ToString(reader["CPF"]);
+            cliente.rg = Convert.ToString(reader["RG"]);
+            cliente.telefone1 = Convert.ToString(reader["TELEFONE_1"]);
+            cliente.telefone2 = Convert.ToString(reader["TELEFONE_2"]);
+
+            cliente.email = Convert.ToString(reader["EMAIL"]);
+            return cliente;
         }
 
         public List<Cliente> LerTodos()
@@ -133,17 +159,31 @@ namespace Metadata
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
-
-
+            List<Cliente> list = new List<Cliente>();
             try
             {
                 connection.Open();
-                command.ExecuteNonQuery();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(instanciarcliente(reader));
+                    }
+                    return list;
+                }
+                return null;
+
             }
-            catch (SqlException e)
+            catch ()
             {
-                return "erro de conexão com o banco";
+
             }
+            finally
+            {
+                connection.Close();
+            }
+            return null;
 
         }
     }
