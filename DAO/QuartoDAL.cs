@@ -1,20 +1,21 @@
-﻿using BLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Metadata;
 
-namespace Metadata
+namespace DAL
 {
     public class QuartoDAL : IEntityCRUD<Quarto>
     {
-        StringConexao stc = new StringConexao();
+        
 
-        public string Atualizar(quarto quarto)
+        public string Atualizar(Quarto quarto)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -39,9 +40,9 @@ namespace Metadata
 
         }
 
-        public string Excluir(quarto quarto)
+        public string Excluir(Quarto quarto)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -64,11 +65,12 @@ namespace Metadata
             }
         }
 
-        public string Inserir(quarto quarto)
+        public string Inserir(Quarto quarto)
         {
-            StringConexao stc = new StringConexao();
+            
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -94,10 +96,11 @@ namespace Metadata
             return "inserido com sucesso";
         }
 
-        public quarto LerPorID(int id)
+        public Quarto LerPorID(int id)
         {
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM QUARTOS WHERE ID= @ID";
@@ -127,19 +130,20 @@ namespace Metadata
             return null;
 
         }
-        private quarto instanciarquarto(SqlDataReader reader)
+        private Quarto instanciarquarto(SqlDataReader reader)
         {
-            quarto quarto = new quarto();
+            Quarto quarto = new Quarto();
             quarto.id = Convert.ToInt32(reader["ID"]);
             quarto.valorDiaria = Convert.ToDouble(reader["VALOR_DIARIA"]);
             quarto.usuarioId = Convert.ToInt32(reader["USUARIO_ID"]);
-            quarto.estaOcupado = Convert.ToDateTime(reader["ESTA_OCUPADO"]);
+            quarto.estaOcupado = Convert.ToBoolean(reader["ESTA_OCUPADO"]);
 
             return quarto;
         }
         public List<Quarto> LerTodos()
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;

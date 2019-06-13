@@ -12,11 +12,12 @@ namespace Metadata
 
     {
 
-        StringConexao stc = new StringConexao();
+        
 
         public string Atualizar(Cliente cliente)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -50,7 +51,8 @@ namespace Metadata
 
         public string Excluir(Cliente cliente)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -78,7 +80,8 @@ namespace Metadata
         public string Inserir(Cliente cliente)
         {
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
@@ -107,7 +110,8 @@ namespace Metadata
 
         public Cliente LerPorID(int id)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "select * from clientes where id= @id";
@@ -148,14 +152,15 @@ namespace Metadata
             cliente.rg = Convert.ToString(reader["RG"]);
             cliente.telefone1 = Convert.ToString(reader["TELEFONE_1"]);
             cliente.telefone2 = Convert.ToString(reader["TELEFONE_2"]);
-
+            cliente.nome = (string)reader["Nome"];
             cliente.email = Convert.ToString(reader["EMAIL"]);
             return cliente;
         }
 
         public List<Cliente> LerTodos()
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;

@@ -21,7 +21,8 @@ namespace Metadata
             this.estaOcupado = EstaOcupado;
         }
 
-
-
+        public Quarto()
+        {
+        }
     }
 }

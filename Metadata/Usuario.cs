@@ -34,12 +34,8 @@ namespace Metadata
 
         }
 
-
-
-
-
-
-
-
+        public Usuario()
+        {
+        }
     }
 }

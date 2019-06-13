@@ -11,11 +11,12 @@ namespace DAL
 {
     class EntradaProdutosDAL : IEntityCRUD<EntradaProdutos>
     {
-        StringConexao stc = new StringConexao();
+        
 
         public string Atualizar(EntradaProdutos entradaProdutos)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -39,7 +40,8 @@ namespace DAL
 
         public string Excluir(EntradaProdutos entradaProdutos)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -64,7 +66,8 @@ namespace DAL
 
         public string Inserir(EntradaProdutos entradaProdutos)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -78,7 +81,8 @@ namespace DAL
 
         public EntradaProdutos entradaProdutos(int id)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "select * from entradaProdutoss where id= @id";
@@ -124,7 +128,7 @@ namespace DAL
 
         public List<EntradaProdutos> LerTodos()
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    class Checkin
+    public interface ICheckInProcess<T>
     {
-
+        string Inserir(T checkin);
+        List<T> LerTodos();
+        T LerPorID(int id);
     }
 }

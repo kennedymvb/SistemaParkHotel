@@ -11,11 +11,12 @@ namespace DAL
 {
     public class FornecedorDAL : IEntityCRUD<Fornecedor>
     {
-        StringConexao stc = new StringConexao();
+        
 
         public string Atualizar(Fornecedor fornecedor)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -26,7 +27,7 @@ namespace DAL
             command.Parameters.AddWithValue("@NOME_CONTATO", fornecedor.nomeContato);
             command.Parameters.AddWithValue("@TELEFONE", fornecedor.telefone);
             command.Parameters.AddWithValue("@EMAIL", fornecedor.email);
-            command.Parameters.AddWithValue("@USUARIO_ID", fornecedor.usuarioId);
+            command.Parameters.AddWithValue("@USUARIO_ID", fornecedor.usuarioID);
 
             try
             {
@@ -45,7 +46,8 @@ namespace DAL
 
         public string Excluir(Fornecedor fornecedor)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -72,7 +74,8 @@ namespace DAL
         {
             StringConexao stc = new StringConexao();
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -82,7 +85,7 @@ namespace DAL
             command.Parameters.AddWithValue("@NOME_CONTATO", fornecedor.nomeContato);
             command.Parameters.AddWithValue("@TELEFONE", fornecedor.telefone);
             command.Parameters.AddWithValue("@EMAIL", fornecedor.email);
-            command.Parameters.AddWithValue("@USUARIO_ID", fornecedor.usuarioId);
+            command.Parameters.AddWithValue("@USUARIO_ID", fornecedor.usuarioID);
 
             try
             {
@@ -104,7 +107,8 @@ namespace DAL
         public Fornecedor LerPorID(int id)
         {
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM FORNECEDORES WHERE ID= @ID";
@@ -138,18 +142,19 @@ namespace DAL
         {
             Fornecedor Fornecedor = new Fornecedor();
             Fornecedor.id = Convert.ToInt32(reader["ID"]);
-            Fornecedor.razaoSocial = Convert.ToDouble(reader["RAZAO_SOCIAL"]);
-            Fornecedor.cnpj = Convert.ToInt32(reader["CNPJ"]);
-            Fornecedor.nomeContato = Convert.ToDateTime(reader["NOME_CONTATO"]);
-            Fornecedor.telefone = Convert.ToDateTime(reader["TELEFONE"]);
-            Fornecedor.email = Convert.ToDateTime(reader["EMAIL"]);
-            Fornecedor.usuarioId = Convert.ToDateTime(reader["USUARIO_ID"]);
+            Fornecedor.razaoSocial = Convert.ToString(reader["RAZAO_SOCIAL"]);
+            Fornecedor.cnpj = Convert.ToString(reader["CNPJ"]);
+            Fornecedor.nomeContato = Convert.ToString(reader["NOME_CONTATO"]);
+            Fornecedor.telefone = Convert.ToString(reader["TELEFONE"]);
+            Fornecedor.email = Convert.ToString(reader["EMAIL"]);
+            Fornecedor.usuarioID = Convert.ToInt32(reader["USUARIO_ID"]);
 
             return Fornecedor;
         }
         public List<Fornecedor> LerTodos()
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;

@@ -48,6 +48,7 @@
     <Compile Include="EntradaProdutos.cs" />
     <Compile Include="EntradaProdutosDetalhes.cs" />
     <Compile Include="Fornecedor.cs" />
+    <Compile Include="ICheckinProcess.cs" />
     <Compile Include="IEntityCRUD.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

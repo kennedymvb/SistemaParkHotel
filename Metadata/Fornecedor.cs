@@ -31,8 +31,8 @@ namespace Metadata
 
         }
 
-
-
-
+        public Fornecedor()
+        {
+        }
     }
 }

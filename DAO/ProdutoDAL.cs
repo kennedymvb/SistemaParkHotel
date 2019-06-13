@@ -12,11 +12,12 @@ namespace DAL
     public class ProdutoDAL : IEntityCRUD<Produto>
     {
 
-        StringConexao stc = new StringConexao();
+        
 
         public string Atualizar(Produto produto)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -25,7 +26,7 @@ namespace DAL
             command.Parameters.AddWithValue("@NOME", produto.nome);
             command.Parameters.AddWithValue("@DESCRICAO", produto.descricao);
             command.Parameters.AddWithValue("@PRECO", produto.preco);
-            command.Parameters.AddWithValue("@QTD_ESTOQUE", produto.quantidadeEstoque);
+            command.Parameters.AddWithValue("@QTD_ESTOQUE", produto.qtd_estoque);
             command.Parameters.AddWithValue("@USUARIO_ID", produto.usuarioId);
 
             try
@@ -45,7 +46,8 @@ namespace DAL
 
         public string Excluir(Produto produto)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -70,9 +72,10 @@ namespace DAL
 
         public string Inserir(Produto produto)
         {
-            StringConexao stc = new StringConexao();
 
-            string stringConexao = stc.getStringConexao();
+
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -80,7 +83,7 @@ namespace DAL
             command.Parameters.AddWithValue("@NOME", produto.nome);
             command.Parameters.AddWithValue("@DESCRICAO", produto.descricao);
             command.Parameters.AddWithValue("@PRECO", produto.preco);
-            command.Parameters.AddWithValue("@QTD_ESTOQUE", produto.quantidadeEstoque);
+            command.Parameters.AddWithValue("@QTD_ESTOQUE", produto.qtd_estoque);
             command.Parameters.AddWithValue("@USUARIO_ID", produto.usuarioId);
 
             try
@@ -100,10 +103,11 @@ namespace DAL
             return "inserido com sucesso";
         }
 
-        public produto LerPorID(int id)
+        public Produto LerPorID(int id)
         {
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM PRODUTOS WHERE ID= @ID";
@@ -133,21 +137,22 @@ namespace DAL
             return null;
 
         }
-        private produto instanciarproduto(SqlDataReader reader)
+        private Produto instanciarproduto(SqlDataReader reader)
         {
-            produto produto = new produto();
+            Produto produto = new Produto();
             produto.id = Convert.ToInt32(reader["ID"]);
-            produto.nome = Convert.ToDouble(reader["NOME"]);
-            produto.descricao = Convert.ToInt32(reader["DESCRICAO"]);
-            produto.preco = Convert.ToDateTime(reader["PRECO"]);
-            produto.quantidadeEstoque = Convert.ToDateTime(reader["QTD_ESTOQUE"]);
-            produto.usuarioId = Convert.ToDateTime(reader["USUARIO_ID"]);
+            produto.nome = Convert.ToString(reader["NOME"]);
+            produto.descricao = Convert.ToString(reader["DESCRICAO"]);
+            produto.preco = Convert.ToDouble(reader["PRECO"]);
+            produto.qtd_estoque = Convert.ToInt32(reader["QTD_ESTOQUE"]);
+            produto.usuarioId = Convert.ToInt32(reader["USUARIO_ID"]);
 
             return produto;
         }
         public List<Produto> LerTodos()
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;

@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Metadata;
 
-namespace DAO
+namespace DAL
 {
     class SaidaProdutosDetalhesDAL
     {
-        StringConexao stc = new StringConexao();
+        
 
         public string Atualizar(SaidaProdutosDetalhes saidaProdutosDetalhes)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
-            command.CommandText = "UPDATE SAIDAPRODUTOSDETALHES SET ID = @ID, CLIENTE_ID = @CLIENTE_ID, PRODUTO = @PRODUTO, FORNECEDOR_ID = @FORNECEDOR_ID, QUANTIDADE = @QUANTIDADE, VALOR_UNITARIO = @VALOR_UNITARIO, ENTRADAPRODUTO_ID = @ENTRADAPRODUTO_ID";
-            command.Parameters.AddWithValue("@ID", saidaProdutosDetalhes.id);
-            command.Parameters.AddWithValue("@CLIENTE_ID", saidaProdutosDetalhes.clienteId);
-            command.Parameters.AddWithValue("@PRODUTO", saidaProdutosDetalhes.produto);
-            command.Parameters.AddWithValue("@FORNECEDOR_ID", saidaProdutosDetalhes.fornecedorId);
-            command.Parameters.AddWithValue("@QUANTIDADE", saidaProdutosDetalhes.quantidade);
-            command.Parameters.AddWithValue("@VALOR_UNITARIO", saidaProdutosDetalhes.valorUnitario);
-            command.Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saidaProdutosDetalhes.entradaProduto);
+            command.CommandText = "UPDATE SAIDAPRODUTOSDETALHES SET CLIENTE_ID = @CLIENTE_ID, PRODUTO = @PRODUTO, FORNECEDOR_ID = @FORNECEDOR_ID, QUANTIDADE = @QUANTIDADE, VALOR_UNITARIO = @VALOR_UNITARIO, ENTRADAPRODUTO_ID = @ENTRADAPRODUTO_ID";
+            
+            command.Parameters.AddWithValue("@CLIENTE_ID", saidaProdutosDetalhes.idCliente);
+            command.Parameters.AddWithValue("@PRODUTO", saidaProdutosDetalhes.idProduto);
+            command.Parameters.AddWithValue("@FORNECEDOR_ID", saidaProdutosDetalhes.idFornecedor);
+            command.Parameters.AddWithValue("@QUANTIDADE", saidaProdutosDetalhes.Quantidade);
+            command.Parameters.AddWithValue("@VALOR_UNITARIO", saidaProdutosDetalhes.Valorunitario);
+            command.Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saidaProdutosDetalhes.Valorunitario);
 
             try
             {
@@ -42,7 +44,7 @@ namespace DAO
 
         public string Excluir(SaidaProdutosDetalhes saidaProdutosDetalhes)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -67,19 +69,19 @@ namespace DAO
 
         public string Inserir(SaidaProdutosDetalhes saidaProdutosDetalhes)
         {
-            StringConexao stc = new StringConexao();
+            
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
             command.CommandText = "INSERT INTO SAIDAPRODUTOSDETALHES (CLIENTE_ID, PRODUTO, FORNECEDOR_ID, QUANTIDADE, VALOR_UNITARIO, ENTRADAPRODUTO_ID) VALUES (@CLIENTE_ID, @PRODUTO, @FORNECEDOR_ID, @QUANTIDADE, @VALOR_UNITARIO, @ENTRADAPRODUTO_ID)";
-            command.Parameters.AddWithValue("@CLIENTE_ID", saidaProdutosDetalhes.clienteId);
-            command.Parameters.AddWithValue("@PRODUTO", saidaProdutosDetalhes.produto);
-            command.Parameters.AddWithValue("@FORNECEDOR_ID", saidaProdutosDetalhes.fornecedorId);
-            command.Parameters.AddWithValue("@QUANTIDADE", saidaProdutosDetalhes.quantidade);
-            command.Parameters.AddWithValue("@VALOR_UNITARIO", saidaProdutosDetalhes.valorUnitario);
-            command.Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saidaProdutosDetalhes.entradaProdutoId);
+            command.Parameters.AddWithValue("@CLIENTE_ID", saidaProdutosDetalhes.idCliente);
+            command.Parameters.AddWithValue("@PRODUTO", saidaProdutosDetalhes.idProduto);
+            command.Parameters.AddWithValue("@FORNECEDOR_ID", saidaProdutosDetalhes.idFornecedor);
+            command.Parameters.AddWithValue("@QUANTIDADE", saidaProdutosDetalhes.Quantidade);
+            command.Parameters.AddWithValue("@VALOR_UNITARIO", saidaProdutosDetalhes.Valorunitario);
+            command.Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saidaProdutosDetalhes.od);
 
             try
             {

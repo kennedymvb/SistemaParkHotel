@@ -49,12 +49,17 @@
     <Compile Include="EntradaProdutosDetalhesBLL.cs" />
     <Compile Include="FornecedorBLL.cs" />
     <Compile Include="SaidaProdutosDetalhesBLL.cs" />
-    <Compile Include="StringConexao.cs" />
     <Compile Include="ProdutoBLL.cs" />
     <Compile Include="QuartoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservaBLL.cs" />
     <Compile Include="UsuarioBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAO\DAL.csproj">
+      <Project>{cbde4b98-d05e-4287-84e1-661dee4aa0ac}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

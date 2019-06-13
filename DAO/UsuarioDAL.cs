@@ -4,18 +4,16 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BLL;
 using Metadata;
 
 namespace DAL
 {
     public class UsuarioDAL : IEntityCRUD<Usuario>
     {
-        StringConexao stc = new StringConexao();
 
         public string Atualizar(Usuario usuario)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -47,7 +45,7 @@ namespace DAL
 
         public string Excluir(Usuario usuario)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -74,7 +72,7 @@ namespace DAL
         {
             StringConexao stc = new StringConexao();
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -105,10 +103,10 @@ namespace DAL
             return "inserido com sucesso";
         }
 
-        public usuario LerPorID(int id)
+        public Usuario LerPorID(int id)
         {
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM USUARIOS WHERE ID= @ID";
@@ -138,24 +136,24 @@ namespace DAL
             return null;
 
         }
-        private usuario instanciarusuario(SqlDataReader reader)
+        private Usuario instanciarusuario(SqlDataReader reader)
         {
-            usuario usuario = new usuario();
+            Usuario usuario = new Usuario();
             usuario.id = Convert.ToInt32(reader["ID"]);
-            usuario.nome = Convert.ToDouble(reader["NOME"]);
-            usuario.rg = Convert.ToInt32(reader["RG"]);
-            usuario.cpf = Convert.ToDateTime(reader["CPF"]);
-            usuario.endereco = Convert.ToDateTime(reader["ENDERECO"]);
-            usuario.telefone = Convert.ToDateTime(reader["TELEFONE"]);
-            usuario.email = Convert.ToDateTime(reader["EMAIL"]);
-            usuario.senha = Convert.ToDateTime(reader["SENHA"]);
-            usuario.isAdmin = Convert.ToDateTime(reader["IS_ADMIN"]);
+            usuario.nome = Convert.ToString(reader["NOME"]);
+            usuario.rg = Convert.ToString(reader["RG"]);
+            usuario.cpf = Convert.ToString(reader["CPF"]);
+            usuario.endereco = Convert.ToString(reader["ENDERECO"]);
+            usuario.telefone = Convert.ToString(reader["TELEFONE"]);
+            usuario.email = Convert.ToString(reader["EMAIL"]);
+            usuario.senha = Convert.ToString(reader["SENHA"]);
+            usuario.isAdmin = Convert.ToBoolean(reader["IS_ADMIN"]);
 
             return usuario;
         }
         public List<Usuario> LerTodos()
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;

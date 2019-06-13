@@ -11,21 +11,21 @@ namespace DAL
 {
     public class ReservaDAL : IEntityCRUD<Reserva>
     {
-        StringConexao stc = new StringConexao();
+        
 
         public string Atualizar(Reserva reserva)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
             command.CommandText = "UPDATE RESERVAS SET ID = @ID, USUARIO_ID = @USUARIO_ID, CLIENTE_ID = @CLIENTE_ID, DATA_PREVISAO_CHEGADA = @DATA_PREVISAO_CHEGADA, DATA_PREVISAO_SAIDA = @DATA_PREVISAO_SAIDA, ID_QUARTO = @ID_QUARTO";
             command.Parameters.AddWithValue("@ID", reserva.id);
-            command.Parameters.AddWithValue("@USUARIO_ID", reserva.usuarioId);
-            command.Parameters.AddWithValue("@CLIENTE_ID", reserva.clienteId);
+            command.Parameters.AddWithValue("@USUARIO_ID", reserva.idUsuario);
+            command.Parameters.AddWithValue("@CLIENTE_ID", reserva.idCliente);
             command.Parameters.AddWithValue("@DATA_PREVISAO_CHEGADA", reserva.dataPrevisaoChegada);
             command.Parameters.AddWithValue("@DATA_PREVISAO_SAIDA", reserva.dataPrevisaoSaida);
-            command.Parameters.AddWithValue("@ID_QUARTO", reserva.quartoId);
+            command.Parameters.AddWithValue("@ID_QUARTO", reserva.idQuarto);
 
             try
             {
@@ -44,7 +44,8 @@ namespace DAL
 
         public string Excluir(Reserva reserva)
         {
-            string stringConexao = stc.getStringConexao();
+
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -69,18 +70,17 @@ namespace DAL
 
         public string Inserir(Reserva reserva)
         {
-            StringConexao stc = new StringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
 
-            string stringConexao = stc.getStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
             command.CommandText = "INSERT INTO RESERVAS (USUARIO_ID, CLIENTE_ID, DATA_PREVISAO_CHEGADA, DATA_PREVISAO_SAIDA, ID_QUARTO) VALUES (@USUARIO_ID, @CLIENTE_ID, @DATA_PREVISAO_CHEGADA, @DATA_PREVISAO_SAIDA, @ID_QUARTO)";
-            command.Parameters.AddWithValue("@USUARIO_ID", reserva.usuarioId);
-            command.Parameters.AddWithValue("@CLIENTE_ID", reserva.clienteId);
+            command.Parameters.AddWithValue("@USUARIO_ID", reserva.idUsuario);
+            command.Parameters.AddWithValue("@CLIENTE_ID", reserva.idCliente);
             command.Parameters.AddWithValue("@DATA_PREVISAO_CHEGADA", reserva.dataPrevisaoChegada);
             command.Parameters.AddWithValue("@DATA_PREVISAO_SAIDA", reserva.dataPrevisaoSaida);
-            command.Parameters.AddWithValue("@ID_QUARTO", reserva.quartoId);
+            command.Parameters.AddWithValue("@ID_QUARTO", reserva.idQuarto);
 
             try
             {
@@ -99,10 +99,11 @@ namespace DAL
             return "inserido com sucesso";
         }
 
-        public reserva LerPorID(int id)
+        public Reserva LerPorID(int id)
         {
 
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM RESERVAS WHERE ID= @ID";
@@ -132,21 +133,22 @@ namespace DAL
             return null;
 
         }
-        private reserva instanciarreserva(SqlDataReader reader)
+        private Reserva instanciarreserva(SqlDataReader reader)
         {
-            reserva reserva = new reserva();
+            Reserva reserva = new Reserva();
             reserva.id = Convert.ToInt32(reader["ID"]);
-            reserva.usuarioId = Convert.ToDouble(reader["USUARIO_ID"]);
-            reserva.clienteId = Convert.ToInt32(reader["CLIENTE_ID"]);
+            reserva.idUsuario = Convert.ToInt32(reader["USUARIO_ID"]);
+            reserva.idCliente = Convert.ToInt32(reader["CLIENTE_ID"]);
             reserva.dataPrevisaoChegada = Convert.ToDateTime(reader["DATA_PREVISAO_CHEGADA"]);
             reserva.dataPrevisaoSaida = Convert.ToDateTime(reader["DATA_PREVISAO_SAIDA"]);
-            reserva.quartoId = Convert.ToDateTime(reader["ID_QUARTO"]);
+            reserva.idQuarto = Convert.ToInt32(reader["ID_QUARTO"]);
 
             return reserva;
         }
         public List<Reserva> LerTodos()
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
+
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
@@ -155,26 +157,25 @@ namespace DAL
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
+                
                     while (reader.Read())
                     {
                         list.Add(instanciarreserva(reader));
                     }
                     return list;
-                }
-                return null;
+                
+                return list;
 
             }
-            catch (SqlException e)
+            catch 
             {
-                return "erro" + e;
+                throw new Exception("Banco de dados indisponível");
             }
             finally
             {
                 connection.Close();
             }
-            return null;
+            
 
         }
     }

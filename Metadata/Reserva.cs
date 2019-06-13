@@ -27,6 +27,10 @@ namespace Metadata
 
 
         }
+        public Reserva()
+        {
+
+        }
 
 
 

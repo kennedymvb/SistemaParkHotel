@@ -27,6 +27,8 @@ namespace Metadata
 
         }
 
-
+        public Produto()
+        {
+        }
     }
 }

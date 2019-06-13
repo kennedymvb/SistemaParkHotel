@@ -1,4 +1,4 @@
-﻿using BLL;
+﻿using DAL;;
 using Metadata;
 using System;
 using System.Collections.Generic;
@@ -11,12 +11,10 @@ namespace DAL
 {
     public class AdmnistradorDAL : IEntityCRUD<Admnistrador>
     {
-        StringConexao stc = new StringConexao();
-
 
         public string Atualizar(Admnistrador admnistrador)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
@@ -48,7 +46,7 @@ namespace DAL
 
         public string Excluir(Admnistrador admnistrador)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "DELETE FROM USUARIOS WHERE ID= @ID";
@@ -75,7 +73,7 @@ namespace DAL
 
         public string Inserir(Admnistrador admnistrador)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "INSERT INTO USUARIOS (ID, NOME, RG, CPF, ENDERECO, TELEFONE, EMAIL, SENHA) VALUES (@ID, @NOME, @RG, @CPF, @ENDERECO, @TELEFONE, @EMAIL, @SENHA)";
@@ -108,7 +106,7 @@ namespace DAL
 
         public Admnistrador LerPorID(int id)
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM USUARIOS WHERE ID= @ID";
@@ -160,7 +158,7 @@ namespace DAL
 
         public List<Admnistrador> LerTodos()
         {
-            string stringConexao = stc.getStringConexao();
+            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
