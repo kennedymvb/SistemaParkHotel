@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    class EntradaProdutosDetalhesDAL : IEntityCRUD<EntradaProdutosDetalhes>
+    public class EntradaProdutosDetalhesDAL : IEntityCRUD<EntradaProdutosDetalhes>
     {
 
         public string Atualizar(EntradaProdutosDetalhes entradaProdutosDetalhes)

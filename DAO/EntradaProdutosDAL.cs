@@ -1,4 +1,4 @@
-﻿using BLL;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -9,7 +9,7 @@ using Metadata
 
 namespace DAL
 {
-    class EntradaProdutosDAL : IEntityCRUD<EntradaProdutos>
+    public class EntradaProdutosDAL : IEntityCRUD<EntradaProdutos>
     {
         
 

@@ -48,10 +48,8 @@ namespace BLL
 
         public bool Validar(Quarto quarto)
         {
-            if (quarto.id < 1 || quarto.usuarioId < 1)
-            {
-                erros.Add("os ids não podem ser menores que 1");
-            }
+            
+            
             if (quarto.valorDiaria < 0)
             {
                 erros.Add("valor inválido");

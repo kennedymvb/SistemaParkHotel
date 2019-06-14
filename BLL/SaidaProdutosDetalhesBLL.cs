@@ -49,10 +49,8 @@ namespace BLL
 
         public bool Validar(SaidaProdutosDetalhes saida)
         {
-            if (saida.id<1 ||saida.idCliente<1 || saida.idEntradaProdutos<1||saida.idFornecedor<1 || saida.idFornecedor < 1)
-            {
-                erros.Add("O id não pode ser menor que 1");
-            }
+            
+            
             if (saida.Valorunitario < 0)
                 erros.Add("o valor tem não pode ser negativo");
 

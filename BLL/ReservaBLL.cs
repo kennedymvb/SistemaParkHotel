@@ -48,10 +48,8 @@ namespace BLL
 
         public bool Validar(Reserva reserva)
         {
-            if(reserva.id<1 || reserva.idCliente<1|| reserva.idQuarto<1|| reserva.idUsuario < 1)
-            {
-                erros.Add("os ids não podem ser menores que 1");
-            }
+            
+            
             if (reserva.dataPrevisaoSaida < reserva.dataPrevisaoChegada)
             {
                 erros.Add("datas inválidas");

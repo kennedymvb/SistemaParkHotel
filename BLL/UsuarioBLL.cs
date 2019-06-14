@@ -106,12 +106,6 @@ namespace BLL
             {
                 erros.Add("Email deve ser informado.");
             }
-
-
-
-
-
-
             #endregion
 
 
