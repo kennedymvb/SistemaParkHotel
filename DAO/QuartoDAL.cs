@@ -10,8 +10,6 @@ namespace DAL
 {
     public class QuartoDAL : IEntityCRUD<Quarto>
     {
-        
-
         public string Atualizar(Quarto quarto)
         {
             string stringConexao = StringConexao.GetStringConexao();
@@ -67,8 +65,6 @@ namespace DAL
 
         public string Inserir(Quarto quarto)
         {
-            
-
             string stringConexao = StringConexao.GetStringConexao();
 
             SqlConnection connection = new SqlConnection(stringConexao);

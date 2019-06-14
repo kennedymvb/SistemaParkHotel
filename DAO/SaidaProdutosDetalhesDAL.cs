@@ -8,7 +8,7 @@ using Metadata;
 
 namespace DAL
 {
-    class SaidaProdutosDetalhesDAL
+    public class SaidaProdutosDetalhesDAL
     {
         
 

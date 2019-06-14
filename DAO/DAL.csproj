@@ -52,6 +52,7 @@
     <Compile Include="ProdutoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuartoDAL.cs" />
+    <Compile Include="QuartoDALTeste.cs" />
     <Compile Include="ReservaDAL.cs" />
     <Compile Include="SaidaProdutosDetalhesDAL.cs" />
     <Compile Include="StringConexao.cs" />

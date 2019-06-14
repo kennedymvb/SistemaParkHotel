@@ -14,4 +14,23 @@ namespace Metadata
         T LerPorID(int id);
         List<T> LerTodos();
     }
+
+    public interface IEntityCRUD2<T>
+    {
+        DbResponse<int> Inserir(T item);
+        DbResponse<int> Atualizar(T item);
+        DbResponse<int> Excluir(T item);
+        DbResponse<T> LerPorID(int id);
+        DbResponse<List<T>> LerTodos();
+    }
+
+
+
+    public class DbResponse<T>
+    {
+        public string Mensagem { get; set; }
+        public bool Sucesso { get; set; }
+        public T Dados { get; set; }
+        public Exception Exception { get; set; }
+    }
 }
