@@ -3,11 +3,77 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL;
+using Metadata;
 
-namespace Metadata
+
+
+namespace BLL
 {
-    class Checkin
+    class CheckinBLL
     {
+        List<string> erros = new List<string>();
+
+        
+
+        CheckinDAL checkinDal = new CheckinDAL();
+
+
+        public string Inserir(Checkin checkin)
+        {
+            List<string> erros = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(checkin.dataEntrada))
+            {
+                erros.Add("data de entrada deve ser informada.");
+            }
+
+            if (string.IsNullOrWhiteSpace(checkin.dataPrevisaoSaida))
+            {
+                erros.Add("data de previsão saida deve ser informada.");
+
+            }
+
+            if (checkin.dataPrevisaoSaida < checkin.dataEntrada)
+            {
+                erros.Add("Data de saída não pode ser antes da data de entrada.");
+
+
+            }
+
+
+            if (checkin.Quarto.ID < 1)
+            {
+                erros.Add("Numero de quarto inválido.");
+            }
+
+            if (checkin.Cliente.ID < 1)
+            {
+                erros.Add("Numero de cliente inválido.");
+            }
+
+            if (checkin.reservaId.ID < 1)
+            {
+                erros.Add("Numero de reserva inválido.");
+            }
+
+
+            if (erros.Count != 0)
+            {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < erros.Count; i++)
+                {
+                    builder.AppendLine(erros[i]);
+                }
+                return builder.ToString();
+            }
+            return checkinDal.Inserir(checkin);
+        }
 
     }
+
+
+
+
 }
+
