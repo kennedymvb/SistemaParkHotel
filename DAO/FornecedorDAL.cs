@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BLL;
 using Metadata;
 
 namespace DAL
@@ -98,7 +97,7 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                if (eX.Message.Contains("UNIQUE"))
+                if (ex.Message.Contains("UNIQUE"))
 	            {
                     return "Fornecedor deve ser único, contém dados já cadastrados";
 	            }
@@ -137,7 +136,7 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                return "erro " + ex;
+                return "erro";
             }
             finally
             {

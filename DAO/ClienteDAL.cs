@@ -1,4 +1,5 @@
 ﻿using BLL;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    public class ClientesDAL : IEntityCRUD<Cliente>
+    public class ClienteDAL : IEntityCRUD<Cliente>
 
     {
 

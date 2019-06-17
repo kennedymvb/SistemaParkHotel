@@ -84,7 +84,7 @@ namespace DAL
                 return null;
 
             }
-            catch ()
+            catch (Exception ex)
             {
 
             }
@@ -131,7 +131,7 @@ namespace DAL
                 return null;
 
             }
-            catch ()
+            catch (Exception ex)
             {
 
             }

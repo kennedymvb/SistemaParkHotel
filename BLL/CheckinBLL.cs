@@ -16,7 +16,7 @@ namespace BLL
 
         
 
-        CheckinDAL checkinDal = new CheckinDAL();
+        CheckinDAL checkin = new CheckinDAL();
 
 
         public string Inserir(Checkin checkin)

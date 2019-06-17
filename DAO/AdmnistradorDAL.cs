@@ -1,8 +1,8 @@
-﻿using DAL;;
-using Metadata;
+﻿using Metadata;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using DAL;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +11,7 @@ namespace DAL
 {
     public class AdmnistradorDAL : IEntityCRUD<Admnistrador>
     {
+        AdmnistradorDAL admDAL = new AdmnistradorDAL();
 
         public string Atualizar(Admnistrador admnistrador)
         {

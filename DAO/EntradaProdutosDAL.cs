@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Metadata
+using Metadata;
 
 namespace DAL
 {
@@ -122,7 +122,6 @@ namespace DAL
             entradaProdutos.usuarioId = Convert.ToInt32(reader["USUARIO_ID"]);
             entradaProdutos.dataEntrada = Convert.ToDateTime(reader["DATA_ENTRADA"]);
 
-            entradaProdutos.email = Convert.ToString(reader["EMAIL"]);
             return entradaProdutos;
         }
 

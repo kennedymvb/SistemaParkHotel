@@ -14,11 +14,11 @@ namespace BLL
 
         EntradaProdutosDAL entradaDal = new EntradaProdutosDAL();
 
-        public string inserir(EntradaProdutos Entrada)
+        public string inserir(EntradaProdutos entrada)
         {
-            if (this.Validar(Entrada))
+            if (this.Validar(entrada))
             {
-                return entradaDal.Inserir(Entrada);
+                return entradaDal.Inserir(entrada);
             }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < erros.Count(); i++)
@@ -28,11 +28,11 @@ namespace BLL
             return sb.ToString();
         }
 
-        public string atualizar(EntradaProdutos Entrada)
+        public string atualizar(EntradaProdutos entrada)
         {
-            if (this.Validar(Entrada))
+            if (this.Validar(entrada))
             {
-                return entradaDal.Atualizar(Entrada);
+                return entradaDal.Atualizar(entrada);
             }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < erros.Count(); i++)
@@ -51,10 +51,13 @@ namespace BLL
         {
 
 
-            if (Entrada.inserir < 0)
+            if (entrada.Inserir < 0)
+            {
                 erros.Add("o valor tem não pode ser negativo");
 
-           
+            }
+
+
 
 
             if (erros.Count() > 0)

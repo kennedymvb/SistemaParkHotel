@@ -49,7 +49,7 @@ namespace BLL
         public bool Validar(Quarto quarto)
         {
        
-            }
+            
             if (quarto.valorDiaria<0)
             {
                 erros.Add("valor inválido");

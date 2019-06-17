@@ -100,7 +100,7 @@ namespace DAL
             return "inserido com sucesso";
         }
 
-        public saidaProdutosDetalhes LerPorID(int id)
+        public SaidaProdutosDetalhes LerPorID(int id)
         {
 
             string stringConexao = stc.getStringConexao();
@@ -133,16 +133,16 @@ namespace DAL
             return null;
 
         }
-        private saidaProdutosDetalhes instanciarsaidaProdutosDetalhes(SqlDataReader reader)
+        private SaidaProdutosDetalhes instanciarsaidaProdutosDetalhes(SqlDataReader reader)
         {
-            saidaProdutosDetalhes saidaProdutosDetalhes = new saidaProdutosDetalhes();
+            SaidaProdutosDetalhes saidaProdutosDetalhes = new SaidaProdutosDetalhes();
             saidaProdutosDetalhes.id = Convert.ToInt32(reader["ID"]);
-            saidaProdutosDetalhes.clienteId = Convert.ToDouble(reader["CLIENTE_ID"]);
-            saidaProdutosDetalhes.produto = Convert.ToInt32(reader["PRODUTO"]);
-            saidaProdutosDetalhes.fornecedorId = Convert.ToDateTime(reader["FORNECEDOR_ID"]);
-            saidaProdutosDetalhes.quantidade = Convert.ToDateTime(reader["QUANTIDADE"]);
-            saidaProdutosDetalhes.valorUnitario = Convert.ToDateTime(reader["VALOR_UNITARIO"]);
-            saidaProdutosDetalhes.entradaProdutoId = Convert.ToDateTime(reader["ENTRADAPRODUTO_ID"]);
+            saidaProdutosDetalhes.idCliente = Convert.ToInt32(reader["CLIENTE_ID"]);
+            saidaProdutosDetalhes.idProduto = Convert.ToInt32(reader["PRODUTO"]);
+            saidaProdutosDetalhes.idFornecedor = Convert.ToInt32(reader["FORNECEDOR_ID"]);
+            saidaProdutosDetalhes.Quantidade = Convert.ToInt32(reader["QUANTIDADE"]);
+            saidaProdutosDetalhes.Valorunitario = Convert.ToDouble(reader["VALOR_UNITARIO"]);
+            saidaProdutosDetalhes.idEntradaProdutos = Convert.ToInt32(reader["ENTRADAPRODUTO_ID"]);
 
             return saidaProdutosDetalhes;
         }

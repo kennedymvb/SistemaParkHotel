@@ -161,7 +161,7 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                return "erro" + e;
+                return "erro" + ex;
             }
             finally
             {

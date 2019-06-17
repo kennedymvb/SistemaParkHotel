@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Metadata;
 using DAL;
+using BLL;
 
 namespace BLL
 {
@@ -14,7 +15,7 @@ namespace BLL
 
         public CheckoutDAL checkoutDal = new CheckoutDAL();
 
-        public CheckinDAL checkinDal = new CheckinDAL();
+        public CheckinBLL checkin = new CheckinBLL();
 
         public string Inserir(Checkout checkout)
         {

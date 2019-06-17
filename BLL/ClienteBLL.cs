@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Metadata;
 using DAL;
+using System.Text.RegularExpressions;
 
 namespace BLL
 {
    public class ClienteBLL
    {
 
-        ClientesDAL clienteDal = new ClientesDAL();
+        ClienteDAL clienteDal = new ClienteDAL();
 
 
         private bool ValidarCPF(string cpf)
@@ -166,13 +167,7 @@ namespace BLL
                 erros.Add("Email deve ser informado.");
             }
 
-            EnderecoBLL eBLL = new EnderecoBLL();
-            string errosEndereco = eBLL.Validar(cli.EnderecoCliente);
-
-            if (!string.IsNullOrWhiteSpace(errosEndereco))
-            {
-                erros.Add(errosEndereco);
-            }
+           
 
             StringBuilder builder = new StringBuilder();
             if (erros.Count != 0)
