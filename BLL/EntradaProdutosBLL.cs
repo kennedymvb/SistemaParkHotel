@@ -51,7 +51,7 @@ namespace BLL
         {
 
 
-            if (Entrada. < 0)
+            if (Entrada.inserir < 0)
                 erros.Add("o valor tem não pode ser negativo");
 
            

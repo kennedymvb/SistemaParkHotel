@@ -30,7 +30,10 @@ namespace Metadata
 
         }
 
+        public SaidaProdutosDetalhes()
+        {
 
+        }
 
     }
 }

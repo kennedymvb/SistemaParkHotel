@@ -8,13 +8,13 @@ using DAL;
 
 namespace BLL
 {
-    class CheckoutBLL
+    public class CheckoutBLL
     {
 
 
-        private CheckoutDAL checkoutDal = new CheckoutDAL();
+        public CheckoutDAL checkoutDal = new CheckoutDAL();
 
-        // REFERENCIAR CHECKIN AQUI
+        public CheckinDAL checkinDal = new CheckinDAL();
 
         public string Inserir(Checkout checkout)
         {
@@ -39,7 +39,7 @@ namespace BLL
             }
 
 
-            if (checkout.idCheckin.ID < 1)
+            if (checkout.idCheckin < 1)
             {
                 erros.Add("Checkin inválido.");
             }
@@ -50,7 +50,7 @@ namespace BLL
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < erros.Count; i++)
                 {
-                    //Environment.NewLine
+                    
                     builder.AppendLine(erros[i]);
                 }
                 return builder.ToString();

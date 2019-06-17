@@ -28,7 +28,7 @@ namespace DAL
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
                 return "erro de conexão com o banco";
             }
@@ -53,7 +53,7 @@ namespace DAL
                 command.ExecuteNonQuery();
                 return "excluido com sucesso";
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
                 return "erro de conexão com o banco";
             }
@@ -80,7 +80,7 @@ namespace DAL
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
                 return "erro de conexão com o banco";
             }
@@ -115,9 +115,9 @@ namespace DAL
                 return null;
 
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                return "erro " + e;
+                return "erro " + ex;
             }
             finally
             {
@@ -159,7 +159,7 @@ namespace DAL
                 return null;
 
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
                 return "erro" + e;
             }

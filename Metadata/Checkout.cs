@@ -20,7 +20,8 @@ namespace Metadata
             this.valorTotal = valortotal;
             this.dataSaida = datasaida;
         }
-        public Checkout(){
+        public Checkout()
+        {
 
         }
 

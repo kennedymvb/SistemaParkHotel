@@ -10,8 +10,8 @@ using Metadata;
 
 namespace BLL
 {
-    class CheckinBLL
-    {
+   public class CheckinBLL
+   {
         List<string> erros = new List<string>();
 
         
@@ -28,13 +28,13 @@ namespace BLL
                 erros.Add("data de entrada deve ser informada.");
             }
 
-            if (string.IsNullOrWhiteSpace(checkin.dataPrevisaoSaida))
+            if (string.IsNullOrWhiteSpace(checkin.dataPrevistaSaida))
             {
                 erros.Add("data de previsão saida deve ser informada.");
 
             }
 
-            if (checkin.dataPrevisaoSaida < checkin.dataEntrada)
+            if (checkin.dataPrevistaSaida < checkin.dataEntrada)
             {
                 erros.Add("Data de saída não pode ser antes da data de entrada.");
 
@@ -42,17 +42,17 @@ namespace BLL
             }
 
 
-            if (checkin.Quarto.ID < 1)
+            if (checkin.quartoId < 1)
             {
                 erros.Add("Numero de quarto inválido.");
             }
 
-            if (checkin.Cliente.ID < 1)
+            if (checkin.clienteId < 1)
             {
                 erros.Add("Numero de cliente inválido.");
             }
 
-            if (checkin.reservaId.ID < 1)
+            if (checkin.idReserva < 1)
             {
                 erros.Add("Numero de reserva inválido.");
             }
@@ -70,7 +70,7 @@ namespace BLL
             return checkinDal.Inserir(checkin);
         }
 
-    }
+   }
 
 
 

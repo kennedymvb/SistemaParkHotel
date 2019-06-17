@@ -37,9 +37,13 @@ namespace Metadata
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                return "erro de conexão com o banco";
+                if (ex.Message.Contains("UNIQUE"))
+	            {
+                    return "Cliente deve ser único, contém dados já cadastrados";
+	            }
+                return "erro no banco de dados, contate o admin";
             }
             finally
             {
@@ -64,9 +68,9 @@ namespace Metadata
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                return "erro de conexão com o banco";
+                return "erro de conexão com o banco" + ex;
             }
             finally
             {
@@ -99,9 +103,13 @@ namespace Metadata
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                return "erro de conexão com o banco";
+                if (ex.Message.Contains("UNIQUE")) 
+	            {
+                    return "Cliente deve ser único, contém dados já cadastrados";
+	            }
+                return"erro no banco de dados, contate o admin";
             }
 
             return "cadastrado com sucesso";

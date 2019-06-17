@@ -33,9 +33,13 @@ namespace DAL
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                return "erro de conexão com o banco";
+                if (ex.Message.Contains("UNIQUE"))
+	            {
+                    return "Usuário deve ser único, contém dados já cadastrados";
+	            }
+                return "erro no banco de dados, contate o admin";
             }
 
             return "atualizado com sucesso";
@@ -58,7 +62,7 @@ namespace DAL
                 command.ExecuteNonQuery();
                 return "excluido com sucesso";
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
                 return "erro de conexão com o banco";
             }
@@ -91,9 +95,13 @@ namespace DAL
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-            catch (SqlException e)
+            catch (Exception ex)
             {
-                return "erro de conexão com o banco";
+               if (ex.Message.Contains("UNIQUE"))
+	           {
+                    return "Usuário deve ser unico";
+	           }
+               return "erro no banco de dados, contate o admin";
             }
             finally
             {
@@ -125,7 +133,7 @@ namespace DAL
                 return null;
 
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
                 return "erro " + e;
             }
@@ -173,9 +181,9 @@ namespace DAL
                 return null;
 
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                return "erro" + e;
+                return "erro" + ex;
             }
             finally
             {

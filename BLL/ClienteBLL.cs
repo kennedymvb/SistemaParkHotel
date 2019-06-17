@@ -8,8 +8,12 @@ using DAL;
 
 namespace BLL
 {
-    class ClienteBLL
-    {
+   public class ClienteBLL
+   {
+
+        ClientesDAL clienteDal = new ClientesDAL();
+
+
         private bool ValidarCPF(string cpf)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -51,22 +55,22 @@ namespace BLL
             List<string> erros = new List<string>();
 
             #region Nome
-            if (string.IsNullOrWhiteSpace(cli.Nome))
+            if (string.IsNullOrWhiteSpace(cli.nome))
             {
                 erros.Add("Nome deve ser informado.");
             }
             else
             {
-                cli.Nome = cli.Nome.Trim();
-                if (cli.Nome.Length < 3 || cli.Nome.Length > 60)
+                cli.nome = cli.nome.Trim();
+                if (cli.nome.Length < 3 || cli.nome.Length > 60)
                 {
                     erros.Add("Nome deve conter entre 3 e 60 caracteres.");
                 }
                 else
                 {
-                    for (int i = 0; i < cli.Nome.Length; i++)
+                    for (int i = 0; i < cli.nome.Length; i++)
                     {
-                        if (!char.IsLetter(cli.Nome[i]) && cli.Nome[i] != ' ')
+                        if (!char.IsLetter(cli.nome[i]) && cli.nome[i] != ' ')
                         {
                             erros.Add("Nome inválido");
                             break;
@@ -77,16 +81,16 @@ namespace BLL
             #endregion
 
             #region CPF
-            if (string.IsNullOrWhiteSpace(cli.CPF))
+            if (string.IsNullOrWhiteSpace(cli.cpf))
             {
                 erros.Add("CPF deve ser informado.");
             }
             else
             {
               
-                cli.CPF = cli.CPF.Trim();
-                cli.CPF = cli.CPF.Replace(".", "").Replace("-", "");
-                if (!this.ValidarCPF(cli.CPF))
+                cli.cpf = cli.cpf.Trim();
+                cli.cpf = cli.cpf.Replace(".", "").Replace("-", "");
+                if (!this.ValidarCPF(cli.cpf))
                 {
                     erros.Add("CPF inválido");
                 }
@@ -94,15 +98,15 @@ namespace BLL
             #endregion
 
             #region RG
-            if (string.IsNullOrWhiteSpace(cli.RG))
+            if (string.IsNullOrWhiteSpace(cli.rg))
             {
                 erros.Add("RG deve ser informado.");
             }
             else
             {
-                cli.RG = cli.RG.Trim();
-                cli.RG = cli.RG.Replace(".", "").Replace("/", "").Replace("-", "");
-                if (cli.RG.Length < 5 || cli.RG.Length > 9)
+                cli.rg = cli.rg.Trim();
+                cli.rg = cli.rg.Replace(".", "").Replace("/", "").Replace("-", "");
+                if (cli.rg.Length < 5 || cli.rg.Length > 9)
                 {
                     erros.Add("RG deve conter entre 5 e 9 caracteres.");
                 }
@@ -111,19 +115,19 @@ namespace BLL
 
 
             #region Telefone1
-            if (string.IsNullOrWhiteSpace(cli.Telefone1))
+            if (string.IsNullOrWhiteSpace(cli.telefone1))
             {
                 erros.Add("Primeiro número de telefone deve ser informado.");
             }
             else
             {
-                cli.Telefone1 =
-                    cli.Telefone1.Replace(" ", "")
+                cli.telefone1 =
+                    cli.telefone1.Replace(" ", "")
                                 .Replace("(", "")
                                 .Replace(")", "")
                                 .Replace("-", "");
 
-                if (cli.Telefone1.Length < 8 || cli.Telefone1.Length > 15)
+                if (cli.telefone1.Length < 8 || cli.telefone1.Length > 15)
                 {
                     erros.Add("Telefone deve conter entre 8 e 15 caracteres.");
                 }
@@ -133,19 +137,19 @@ namespace BLL
 
 
             #region Telefone2
-            if (string.IsNullOrWhiteSpace(cli.Telefone2))
+            if (string.IsNullOrWhiteSpace(cli.telefone2))
             {
                 erros.Add("Segundo número de telefone deve ser informado.");
             }
             else
             {
-                cli.Telefone2 =
-                    cli.Telefone1.Replace(" ", "")
+                cli.telefone2 =
+                    cli.telefone2.Replace(" ", "")
                                 .Replace("(", "")
                                 .Replace(")", "")
                                 .Replace("-", "");
 
-                if (cli.Telefone2.Length < 8 || cli.Telefone2.Length > 15)
+                if (cli.telefone2.Length < 8 || cli.telefone2.Length > 15)
                 {
                     erros.Add("Telefone deve conter entre 8 e 15 caracteres.");
                 }
@@ -156,7 +160,7 @@ namespace BLL
 
             #region Email
 
-            bool isEmail = Regex.IsMatch(cli.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+            bool isEmail = Regex.IsMatch(cli.email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             if (!isEmail)
             {
                 erros.Add("Email deve ser informado.");
@@ -185,6 +189,6 @@ namespace BLL
             #endregion
 
         }
-    }
+   }
 }
 
