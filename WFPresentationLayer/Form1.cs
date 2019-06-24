@@ -16,5 +16,15 @@ namespace WFPresentationLayer
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbTipoquarto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
