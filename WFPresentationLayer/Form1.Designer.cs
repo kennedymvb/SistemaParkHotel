@@ -48,6 +48,8 @@
             this.label42 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.txtNumeroUsuarioCheckin = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
             this.btnFazerCheckin = new System.Windows.Forms.Button();
             this.dateTimeCheckinDataentrada = new System.Windows.Forms.DateTimePicker();
             this.dateTimeCheckoutDataSaida = new System.Windows.Forms.DateTimePicker();
@@ -146,26 +148,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.labelrg = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnEntrar = new System.Windows.Forms.Button();
-            this.label40 = new System.Windows.Forms.Label();
-            this.txtemail = new System.Windows.Forms.TextBox();
-            this.txtsenha = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.btnConsultarFuncionarios = new System.Windows.Forms.Button();
+            this.btnConsultarFornecedor = new System.Windows.Forms.Button();
+            this.btnConsultarReservas = new System.Windows.Forms.Button();
+            this.btnExibirClientes = new System.Windows.Forms.Button();
+            this.btnExibirQuartos = new System.Windows.Forms.Button();
             this.tabPage7.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.tabPage7.Controls.Add(this.btnConsultarFuncionarios);
             this.tabPage7.Controls.Add(this.label20);
             this.tabPage7.Controls.Add(this.btnExcluirUsuario);
             this.tabPage7.Controls.Add(this.label46);
@@ -353,6 +353,8 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.tabPage5.Controls.Add(this.txtNumeroUsuarioCheckin);
+            this.tabPage5.Controls.Add(this.label49);
             this.tabPage5.Controls.Add(this.btnFazerCheckin);
             this.tabPage5.Controls.Add(this.dateTimeCheckinDataentrada);
             this.tabPage5.Controls.Add(this.dateTimeCheckoutDataSaida);
@@ -378,6 +380,23 @@
             this.tabPage5.Size = new System.Drawing.Size(925, 430);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "tabPage5";
+            // 
+            // txtNumeroUsuarioCheckin
+            // 
+            this.txtNumeroUsuarioCheckin.Location = new System.Drawing.Point(167, 259);
+            this.txtNumeroUsuarioCheckin.Name = "txtNumeroUsuarioCheckin";
+            this.txtNumeroUsuarioCheckin.Size = new System.Drawing.Size(100, 20);
+            this.txtNumeroUsuarioCheckin.TabIndex = 27;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(25, 264);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(136, 15);
+            this.label49.TabIndex = 26;
+            this.label49.Text = "Número do Usuário:";
             // 
             // btnFazerCheckin
             // 
@@ -841,6 +860,8 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.tabPage3.Controls.Add(this.btnConsultarReservas);
+            this.tabPage3.Controls.Add(this.btnConsultarFornecedor);
             this.tabPage3.Controls.Add(this.btncadastrarReservas);
             this.tabPage3.Controls.Add(this.dateTimeSaidaReserva);
             this.tabPage3.Controls.Add(this.DateTimeChegadaReserva);
@@ -1086,6 +1107,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.tabPage2.Controls.Add(this.btnExibirQuartos);
+            this.tabPage2.Controls.Add(this.btnExibirClientes);
             this.tabPage2.Controls.Add(this.btnExcluirQuarto);
             this.tabPage2.Controls.Add(this.btnExcluirCliente);
             this.tabPage2.Controls.Add(this.cmbTipoquarto);
@@ -1335,79 +1358,8 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Nome:";
             // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tabPage1.Controls.Add(this.btnEntrar);
-            this.tabPage1.Controls.Add(this.label40);
-            this.tabPage1.Controls.Add(this.txtemail);
-            this.tabPage1.Controls.Add(this.txtsenha);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(925, 430);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            // 
-            // btnEntrar
-            // 
-            this.btnEntrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEntrar.Location = new System.Drawing.Point(409, 230);
-            this.btnEntrar.Name = "btnEntrar";
-            this.btnEntrar.Size = new System.Drawing.Size(100, 23);
-            this.btnEntrar.TabIndex = 6;
-            this.btnEntrar.Text = "Entrar";
-            this.btnEntrar.UseVisualStyleBackColor = true;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(384, 71);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(92, 19);
-            this.label40.TabIndex = 5;
-            this.label40.Text = "Park Hotel";
-            // 
-            // txtemail
-            // 
-            this.txtemail.Location = new System.Drawing.Point(409, 148);
-            this.txtemail.Name = "txtemail";
-            this.txtemail.Size = new System.Drawing.Size(100, 20);
-            this.txtemail.TabIndex = 0;
-            // 
-            // txtsenha
-            // 
-            this.txtsenha.Location = new System.Drawing.Point(409, 191);
-            this.txtsenha.Name = "txtsenha";
-            this.txtsenha.Size = new System.Drawing.Size(100, 20);
-            this.txtsenha.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(332, 195);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 16);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Senha:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(338, 152);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 16);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Email:";
-            // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
@@ -1418,6 +1370,56 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(933, 456);
             this.tabControl1.TabIndex = 5;
+            // 
+            // btnConsultarFuncionarios
+            // 
+            this.btnConsultarFuncionarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultarFuncionarios.Location = new System.Drawing.Point(397, 376);
+            this.btnConsultarFuncionarios.Name = "btnConsultarFuncionarios";
+            this.btnConsultarFuncionarios.Size = new System.Drawing.Size(118, 40);
+            this.btnConsultarFuncionarios.TabIndex = 54;
+            this.btnConsultarFuncionarios.Text = "Consultar Funcionários";
+            this.btnConsultarFuncionarios.UseVisualStyleBackColor = true;
+            // 
+            // btnConsultarFornecedor
+            // 
+            this.btnConsultarFornecedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultarFornecedor.Location = new System.Drawing.Point(170, 354);
+            this.btnConsultarFornecedor.Name = "btnConsultarFornecedor";
+            this.btnConsultarFornecedor.Size = new System.Drawing.Size(164, 23);
+            this.btnConsultarFornecedor.TabIndex = 27;
+            this.btnConsultarFornecedor.Text = "Consultar Fornecedores";
+            this.btnConsultarFornecedor.UseVisualStyleBackColor = true;
+            // 
+            // btnConsultarReservas
+            // 
+            this.btnConsultarReservas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultarReservas.Location = new System.Drawing.Point(541, 354);
+            this.btnConsultarReservas.Name = "btnConsultarReservas";
+            this.btnConsultarReservas.Size = new System.Drawing.Size(181, 23);
+            this.btnConsultarReservas.TabIndex = 28;
+            this.btnConsultarReservas.Text = "Consultar Reservas";
+            this.btnConsultarReservas.UseVisualStyleBackColor = true;
+            // 
+            // btnExibirClientes
+            // 
+            this.btnExibirClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExibirClientes.Location = new System.Drawing.Point(194, 394);
+            this.btnExibirClientes.Name = "btnExibirClientes";
+            this.btnExibirClientes.Size = new System.Drawing.Size(123, 23);
+            this.btnExibirClientes.TabIndex = 45;
+            this.btnExibirClientes.Text = "Exibir Clientes";
+            this.btnExibirClientes.UseVisualStyleBackColor = true;
+            // 
+            // btnExibirQuartos
+            // 
+            this.btnExibirQuartos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExibirQuartos.Location = new System.Drawing.Point(556, 299);
+            this.btnExibirQuartos.Name = "btnExibirQuartos";
+            this.btnExibirQuartos.Size = new System.Drawing.Size(118, 23);
+            this.btnExibirQuartos.TabIndex = 46;
+            this.btnExibirQuartos.Text = "Exibir Quartos";
+            this.btnExibirQuartos.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1438,8 +1440,6 @@
             this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1565,14 +1565,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelrg;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button btnEntrar;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox txtemail;
-        private System.Windows.Forms.TextBox txtsenha;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TextBox txtNumeroUsuarioCheckin;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Button btnConsultarFuncionarios;
+        private System.Windows.Forms.Button btnConsultarReservas;
+        private System.Windows.Forms.Button btnConsultarFornecedor;
+        private System.Windows.Forms.Button btnExibirQuartos;
+        private System.Windows.Forms.Button btnExibirClientes;
     }
 }
 

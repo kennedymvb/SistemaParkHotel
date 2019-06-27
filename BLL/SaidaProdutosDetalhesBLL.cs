@@ -42,11 +42,6 @@ namespace BLL
             return sb.ToString();
         }
 
-
-
-
-
-
         public bool Validar(SaidaProdutosDetalhes saida)
         {
             
@@ -65,8 +60,20 @@ namespace BLL
                 return false;
             }
             return true;
+        }
 
-            
+        public SaidaProdutosDetalhes LerPorID(SaidaProdutosDetalhes saidaProdutosDetalhes)
+        {
+            if (this.Validar(saidaProdutosDetalhes))
+            {
+                return saidaDal.LerPorID(saidaProdutosDetalhes.id);
+            }
+
+            return null;
+        }
+        public List<SaidaProdutosDetalhes> LerTodos()
+        {
+            return saidaDal.LerTodos();
         }
     }
 }
