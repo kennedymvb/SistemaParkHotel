@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,39 @@ namespace DAL
             return "atualizado com sucesso";
 
 
+        }
+
+        public Usuario Autenticar(string usuario, string senha)
+        {
+            string stringConexao = StringConexao.GetStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM USUARIOS WHERE EMAIL = @USUARIO AND SENHA = @SENHA";
+            command.Parameters.AddWithValue("@USUARIO", usuario);
+            command.Parameters.AddWithValue("@SENHA",senha);
+            command.Connection = connection;
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    return instanciarusuario(reader);
+                }
+                else
+                {
+                    throw new Exception("Usuário e/ou senha incorretos.");
+                }
+            }
+            catch (SqlException ex)
+            {
+                File.WriteAllText("log.txt",ex.Message);
+                throw new Exception("Erro no banco de dados, contate o administrador");
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         public string Excluir(Usuario usuario)

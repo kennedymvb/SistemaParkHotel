@@ -22,19 +22,20 @@ namespace WFPresentationLayer
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             String senha = txtSenha.Text;
-            String login = txtUsername.Text;
-            bool IsAdmin;
+            String email = txtEmail.Text;
             UsuarioBLL usuarioBLL = new UsuarioBLL();
-
-            List<Usuario> listaUsuarios = usuarioBLL.LerTodos();
-
-            foreach (Usuario user in listaUsuarios)
+            try
             {
-                if(user.id)
+                usuarioBLL.Autenticar(email, senha);
+                Form1 frm = new Form1();
+                this.Hide();
+                frm.ShowDialog();
+                this.Show();
             }
-
-            
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
     }

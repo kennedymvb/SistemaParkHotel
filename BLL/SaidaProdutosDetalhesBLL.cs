@@ -45,7 +45,6 @@ namespace BLL
         public bool Validar(SaidaProdutosDetalhes saida)
         {
             
-            
             if (saida.Valorunitario < 0)
                 erros.Add("o valor tem não pode ser negativo");
 
@@ -53,7 +52,6 @@ namespace BLL
             {
                 erros.Add("a  quantidade não pode ser menor que 0");
             }
-            
 
             if (erros.Count() > 0)
             {
@@ -64,12 +62,7 @@ namespace BLL
 
         public SaidaProdutosDetalhes LerPorID(SaidaProdutosDetalhes saidaProdutosDetalhes)
         {
-            if (this.Validar(saidaProdutosDetalhes))
-            {
                 return saidaDal.LerPorID(saidaProdutosDetalhes.id);
-            }
-
-            return null;
         }
         public List<SaidaProdutosDetalhes> LerTodos()
         {

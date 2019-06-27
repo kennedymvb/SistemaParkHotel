@@ -45,8 +45,6 @@ namespace BLL
 
 
 
-
-
         public bool Validar(EntradaProdutosDetalhes Entrada)
         {
 

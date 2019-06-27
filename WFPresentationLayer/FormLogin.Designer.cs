@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.btnSignIn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Password = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtUsername
+            // txtEmail
             // 
-            this.txtUsername.Location = new System.Drawing.Point(282, 126);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(100, 20);
-            this.txtUsername.TabIndex = 0;
+            this.txtEmail.Location = new System.Drawing.Point(282, 126);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(100, 20);
+            this.txtEmail.TabIndex = 0;
             // 
             // txtSenha
             // 
@@ -86,7 +86,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.txtSenha);
-            this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.txtEmail);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
             this.ResumeLayout(false);
@@ -96,7 +96,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.Label label1;

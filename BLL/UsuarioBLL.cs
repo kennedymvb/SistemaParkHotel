@@ -14,7 +14,30 @@ namespace BLL
         List<string> erros = new List<string>();
         UsuarioDAL usuarioDal = new UsuarioDAL();
 
-
+        public void Autenticar(string usuario, string senha)
+        {
+            if (string.IsNullOrWhiteSpace(usuario))
+            {
+                erros.Add("Usuário não informado");
+            }
+            if (string.IsNullOrWhiteSpace(senha))
+            {
+                erros.Add("Senha deve ser informado.");
+            }
+            if (erros.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < erros.Count(); i++)
+                {
+                    sb.Append(erros[i]);
+                }
+                throw new Exception(sb.ToString());
+            }
+            Usuario user = usuarioDal.Autenticar(usuario, senha);
+            //Setamos a propriedade static da classe. Esta variável em aplicações desktop
+            //jamais morrerá e pode ser acessada de qualquer ponto do programa.
+            Usuario.UsuarioLogado = user;
+        }
 
         public string Atualizar(Usuario usuario)
         {
@@ -64,20 +87,13 @@ namespace BLL
             {
                 return usuarioDal.LerPorID(usuario.id);
             }
-            
+
             return null;
         }
         public List<Usuario> LerTodos()
         {
             return usuarioDal.LerTodos();
         }
-
-
-
-
-
-
-
 
         bool Validarcpf(string cpf)
         {

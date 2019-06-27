@@ -8,11 +8,12 @@ using Metadata;
 
 namespace BLL
 {
-    public class EntradaProdutos
+    public class EntradaProdutosBLL
     {
         List<string> erros = new List<string>();
 
         EntradaProdutosDAL entradaDal = new EntradaProdutosDAL();
+        
 
         public string inserir(EntradaProdutos entrada)
         {
@@ -42,31 +43,19 @@ namespace BLL
             return sb.ToString();
         }
 
-
-
-
-
-
-        public bool Validar(EntradaProdutos Entrada)
+        public bool Validar(EntradaProdutos entrada)
         {
-
-
-            if (entrada.Inserir < 0)
+            if ( entrada.valorTotal< 0)
             {
                 erros.Add("o valor tem não pode ser negativo");
 
             }
-
-
-
 
             if (erros.Count() > 0)
             {
                 return false;
             }
             return true;
-
-
         }
     }
 }

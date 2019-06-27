@@ -14,7 +14,7 @@ namespace BLL
     {
         List<string> erros = new List<string>();
 
-        FornecedorDAL fornecedorDAL= new FornecedorDAL();
+        FornecedorDAL fornecedorDAL = new FornecedorDAL();
 
         public string inserir(Fornecedor fornecedor)
         {
@@ -49,9 +49,6 @@ namespace BLL
             {
                 erros.Add("o cpnj está incorreto");
             }
-
-            
-
             #region email
             bool isEmail = Regex.IsMatch(fornecedor.email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             if (!isEmail)
@@ -143,7 +140,14 @@ namespace BLL
             return cnpj.EndsWith(digito);
         }
         #endregion
-        
 
+        public Fornecedor LerPorID(int id)
+        {
+                return fornecedorDAL.LerPorID(id);
+        }
+        public List<Fornecedor> LerTodos()
+        {
+            return fornecedorDAL.LerTodos();
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Metadata
         public string email { get; set; }
         public string senha { get; set; }
         public bool isAdmin { get; set; }
+        public static Usuario UsuarioLogado { get; set; }
 
 
         public Usuario(int ID, string Nome, string RG, string CPF, string Endereco, string Telefone, string Email, string Senha, bool IsAdmin)
@@ -37,5 +38,7 @@ namespace Metadata
         public Usuario()
         {
         }
+
+
     }
 }

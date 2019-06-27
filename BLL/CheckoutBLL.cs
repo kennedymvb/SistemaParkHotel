@@ -11,60 +11,44 @@ namespace BLL
 {
     public class CheckoutBLL
     {
+        Checkout checkout = new Checkout();
+        CheckinDAL checkinDAL = new CheckinDAL();
+        List<string> erros = new List<string>();
 
-
-        public CheckoutDAL checkoutDal = new CheckoutDAL();
-
-        public CheckinBLL checkin = new CheckinBLL();
-
-        public string Inserir(Checkout checkout)
+        public string inserir(Checkin checkin)
         {
-            List<string> erros = new List<string>();
-
-            if (string.IsNullOrWhiteSpace(checkout.valorTotal))
+            if (this.Validar(checkin))
             {
-                erros.Add("Valor deve ser informado.");
+                return checkinDAL.Inserir(checkin);
             }
-
-            if (string.IsNullOrWhiteSpace(checkout.dataSaida))
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < erros.Count(); i++)
             {
-                erros.Add("data deve ser informada.");
-
+                sb.Append(erros[i]);
             }
-
-            if (checkout.dataSaida < checkin.dataEntrada)
-            {
-                erros.Add("Data de saída não pode ser antes da data de entrada.");
-
-
-            }
-
-
-            if (checkout.idCheckin < 1)
-            {
-                erros.Add("Checkin inválido.");
-            }
-         
-
-            if (erros.Count != 0)
-            {
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < erros.Count; i++)
-                {
-                    
-                    builder.AppendLine(erros[i]);
-                }
-                return builder.ToString();
-            }
-            return checkoutDal.Inserir(checkout);
+            return sb.ToString();
         }
 
+        public Checkin LerPorID(int id)
+        {
+            return checkinDAL.LerPorID(id);
+        }
+        public List<Checkin> LerTodos()
+        {
+            return checkinDAL.LerTodos();
+        }
+
+        public bool Validar(Checkin checkin)
+        {
+            if (checkin.dataEntrada > checkin.dataPrevistaSaida)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+
     }
-
-
-
-
-
-
 }
 

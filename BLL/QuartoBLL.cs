@@ -42,10 +42,6 @@ namespace BLL
             return sb.ToString();
         }
 
-
-
-
-
         public bool Validar(Quarto quarto)
         {
        
@@ -55,12 +51,6 @@ namespace BLL
                 erros.Add("valor inválido");
             }
 
-
-
-
-
-
-
             if (erros.Count > 0)
             {
                 return false;
@@ -68,12 +58,6 @@ namespace BLL
             return true;
 
         }
-
-
-
-
-
-
 
     }
 }
