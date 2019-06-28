@@ -12,14 +12,14 @@ namespace BLL
     public class CheckoutBLL
     {
         Checkout checkout = new Checkout();
-        CheckinDAL checkinDAL = new CheckinDAL();
+        CheckoutDAL checkoutDal = new CheckoutDAL();
         List<string> erros = new List<string>();
 
-        public string inserir(Checkin checkin)
+        public string inserir(Checkout checkout)
         {
-            if (this.Validar(checkin))
+            if (this.Validar(checkout))
             {
-                return checkinDAL.Inserir(checkin);
+                return checkoutDal.Inserir(checkout);
             }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < erros.Count(); i++)
@@ -29,26 +29,24 @@ namespace BLL
             return sb.ToString();
         }
 
-        public Checkin LerPorID(int id)
+        public Checkout LerPorID(int id)
         {
-            return checkinDAL.LerPorID(id);
+            return checkoutDal.LerPorID(id);
         }
-        public List<Checkin> LerTodos()
+        public List<Checkout> LerTodos()
         {
-            return checkinDAL.LerTodos();
+            return checkoutDal.LerTodos();
         }
 
-        public bool Validar(Checkin checkin)
+        public bool Validar(Checkout checkout)
         {
-            if (checkin.dataEntrada > checkin.dataPrevistaSaida)
+            if (checkout.dataSaida >= checkout.dataEntrada)
             {
+                erros.Add("data saida não pode ser menor que a entrada");
                 return true;
             }
             return false;
         }
-
-
-
     }
 }
 

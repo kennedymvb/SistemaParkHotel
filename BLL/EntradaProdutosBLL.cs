@@ -57,5 +57,15 @@ namespace BLL
             }
             return true;
         }
+        public EntradaProdutos LerPorID(int id)
+        {
+
+            return entradaDal.LerTodos(id);
+
+        }
+        public List<EntradaProdutos> LerTodos()
+        {
+            return entradaDal.Inserir();
+        }
     }
 }

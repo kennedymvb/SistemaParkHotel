@@ -14,7 +14,7 @@ namespace BLL
         List<string> erros = new List<string>();
         UsuarioDAL usuarioDal = new UsuarioDAL();
 
-        public void Autenticar(string usuario, string senha)
+        public bool Autenticar(string usuario, string senha)
         {
             if (string.IsNullOrWhiteSpace(usuario))
             {
@@ -36,7 +36,12 @@ namespace BLL
             Usuario user = usuarioDal.Autenticar(usuario, senha);
             //Setamos a propriedade static da classe. Esta variável em aplicações desktop
             //jamais morrerá e pode ser acessada de qualquer ponto do programa.
+            if (user == null)
+            {
+                return false;
+            }
             Usuario.UsuarioLogado = user;
+            return true;
         }
 
         public string Atualizar(Usuario usuario)
@@ -212,10 +217,6 @@ namespace BLL
             }
             #endregion
 
-
-
-
-
             #region email
             bool isEmail = Regex.IsMatch(usuario.email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             if (!isEmail)
@@ -223,7 +224,6 @@ namespace BLL
                 erros.Add("Email deve ser informado.");
             }
             #endregion
-
 
             #region endereco
             if (string.IsNullOrWhiteSpace(usuario.endereco))
@@ -253,14 +253,8 @@ namespace BLL
                     erros.Add("senha com tem que ser maior que 8");
 
                     {
-
-
                     }
-
                     #endregion
-
-
-
                 }
             }
             if (erros.Count() > 0)

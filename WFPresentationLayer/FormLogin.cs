@@ -26,12 +26,19 @@ namespace WFPresentationLayer
             UsuarioBLL usuarioBLL = new UsuarioBLL();
             try
             {
-                usuarioBLL.Autenticar(email, senha);
-                Form1 frm = new Form1();
-                this.Hide();
-                frm.ShowDialog();
-                this.Show();
+                if(usuarioBLL.Autenticar(email, senha))
+                {
+                    Form1 frm = new Form1();
+                    this.Hide();
+                    frm.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario ou senha errados");
+                }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);

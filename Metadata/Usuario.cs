@@ -20,10 +20,8 @@ namespace Metadata
         public static Usuario UsuarioLogado { get; set; }
 
 
-        public Usuario(int ID, string Nome, string RG, string CPF, string Endereco, string Telefone, string Email, string Senha, bool IsAdmin)
+        public Usuario(string Nome, string RG, string CPF, string Endereco, string Telefone, string Email, string Senha, bool IsAdmin)
         {
-
-            this.id = ID;
             this.nome = Nome;
             this.rg = RG;
             this.cpf = CPF;

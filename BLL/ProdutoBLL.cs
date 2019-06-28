@@ -12,13 +12,14 @@ namespace BLL
     {
         List<string> erros = new List<string>();
 
-        QuartoDAL quartoDal = new QuartoDAL();
 
-        public string inserir(Quarto quarto)
+        ProdutoDAL ProdutoDal = new ProdutoDAL();
+
+        public string inserir(Produto produto)
         {
-            if (this.Validar(quarto))
+            if (this.Validar(produto))
             {
-                return quartoDal.Inserir(quarto);
+                return ProdutoDal.Inserir(produto);
             }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < erros.Count(); i++)
@@ -28,11 +29,11 @@ namespace BLL
             return sb.ToString();
         }
 
-        public string Atualizar(Quarto quarto)
+        public string Atualizar(Produto produto)
         {
-            if (this.Validar(quarto))
+            if (this.Validar(produto))
             {
-                return quartoDal.Atualizar(quarto);
+                return ProdutoDal.Atualizar(produto);
             }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < erros.Count(); i++)
@@ -42,22 +43,22 @@ namespace BLL
             return sb.ToString();
         }
 
-
-
-
-
-        public bool Validar(Quarto quarto)
+        public bool Validar(Produto produto)
         {
-            
-            
-            if (quarto.valorDiaria < 0)
+
+            if (produto.preco < 0)
             {
                 erros.Add("valor inválido");
             }
 
-
-
-
+            if (string.IsNullOrWhiteSpace(produto.nome))
+            {
+                erros.Add("nome do produto deve ser informado");
+            }
+            if (string.IsNullOrWhiteSpace(produto.descricao))
+            {
+                erros.Add("Precisa adicionar descrição do produto");
+            }
 
 
 
@@ -67,6 +68,17 @@ namespace BLL
             }
             return true;
 
+        }
+
+        public Produto LerPorID(int id)
+        {
+
+            return ProdutoDal.LerPorID(id);
+
+        }
+        public List<Produto> LerTodos()
+        {
+            return ProdutoDal.LerTodos();
         }
     }
 }

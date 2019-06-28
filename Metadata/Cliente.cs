@@ -17,9 +17,8 @@ namespace Metadata
         public string email { get; set; }
         public int usuarioID { get; set; }
 
-        public Cliente(int id, string Nome, string RG, string CPF, string Tel1, string Tel2, string Email, int IDusuario)
+        public Cliente( string Nome, string RG, string CPF, string Tel1, string Tel2, string Email, int IDusuario)
         {
-            this.id = id;
             this.nome = Nome;
             this.rg = RG;
             this.cpf = CPF;

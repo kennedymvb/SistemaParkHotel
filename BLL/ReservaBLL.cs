@@ -42,10 +42,6 @@ namespace BLL
             return sb.ToString();
         }
 
-
-
-
-
         public bool Validar(Reserva reserva)
         {
             
@@ -55,18 +51,20 @@ namespace BLL
                 erros.Add("datas inválidas");
             }
 
-
-
-
-
-
-
             if (erros.Count > 0)
             {
                 return false;
             }
             return true;
 
+        }
+        public Reserva LerPorID(int id)
+        {
+            return reservaDal.LerPorID(id);
+        }
+        public List<Reserva> LerTodos()
+        {
+            return reservaDal.LerTodos();
         }
     }
 }

@@ -58,6 +58,14 @@ namespace BLL
             return true;
 
         }
+        public Quarto LerPorID(int id)
+        {
+            return quartoDal.LerPorID(id);
+        }
+        public List<Quarto> LerTodos()
+        {
+            return quartoDal.LerTodos();
+        }
 
     }
 }
