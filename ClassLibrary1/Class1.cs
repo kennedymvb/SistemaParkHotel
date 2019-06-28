@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Metadata
+namespace ClassLibrary1
 {
-    public class Admnistrador:Usuario
+    public class Class1
     {
-        
     }
 }

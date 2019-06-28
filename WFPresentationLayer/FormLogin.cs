@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using Metadata;
 
 namespace WFPresentationLayer
 {
@@ -15,6 +17,33 @@ namespace WFPresentationLayer
         public FormLogin()
         {
             InitializeComponent();
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            String senha = txtSenha.Text;
+            String email = txtEmail.Text;
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
+            try
+            {
+                if(usuarioBLL.Autenticar(email, senha))
+                {
+                    Form1 frm = new Form1();
+                    this.Hide();
+                    frm.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario ou senha errados");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

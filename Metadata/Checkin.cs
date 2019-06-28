@@ -25,5 +25,9 @@ namespace Metadata
             this.idReserva = idreserva;
 
         }
+        public Checkin()
+        {
+
+        }
     }
 }

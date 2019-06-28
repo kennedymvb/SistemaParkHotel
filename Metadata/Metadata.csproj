@@ -41,13 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admnistrador.cs" />
     <Compile Include="Checkin.cs" />
     <Compile Include="Checkout.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="EntradaProdutos.cs" />
     <Compile Include="EntradaProdutosDetalhes.cs" />
     <Compile Include="Fornecedor.cs" />
+    <Compile Include="ICheckinProcess.cs" />
     <Compile Include="IEntityCRUD.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
