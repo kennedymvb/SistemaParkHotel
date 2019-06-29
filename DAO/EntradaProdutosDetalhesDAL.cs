@@ -8,61 +8,8 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class EntradaProdutosDetalhesDAL : IEntityCRUD<EntradaProdutosDetalhes>
+    public class EntradaProdutosDetalhesDAL : CRUDIntegridade<EntradaProdutosDetalhes>
     {
-
-        public string Atualizar(EntradaProdutosDetalhes entradaProdutosDetalhes)
-        {
-            string stringConexao = StringConexao.GetStringConexao();
-            SqlConnection connection = new SqlConnection(stringConexao);
-            SqlCommand command = new SqlCommand();
-
-            command.CommandText = "UPDATE ENTRADAPRODUTOSDETALHES SET ENTRADAPRODUTO = @ENTRADAPRODUTO, PRODUTO = @PRODUTO, FORNECEDOR_ID = @FORNECEDOR_ID, QUANTIDADE = @QUANTIDADE, VALOR_UNITARIO = @VALOR_UNITARIO)";
-            command.Parameters.AddWithValue("@ENTRADAPRODUTO", entradaProdutosDetalhes.idEntradaProduto);
-            command.Parameters.AddWithValue("@PRODUTO", entradaProdutosDetalhes.idProduto);
-            command.Parameters.AddWithValue("@FORNECEDOR_ID", entradaProdutosDetalhes.idFornecedor);
-            command.Parameters.AddWithValue("@QUANTIDADE", entradaProdutosDetalhes.quantidade);
-            command.Parameters.AddWithValue("@VALOR_UNITARIO", entradaProdutosDetalhes.valorUnitario);
-
-            try
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-            catch (SqlException e)
-            {
-                return "erro de conexão com o banco";
-            }
-
-            return "atualizado com sucesso";
-
-
-        }
-
-        public string Excluir(EntradaProdutosDetalhes entradaProdutosDetalhes)
-        {
-            string stringConexao = StringConexao.GetStringConexao();
-            SqlConnection connection = new SqlConnection(stringConexao);
-            SqlCommand command = new SqlCommand();
-
-            command.CommandText = "delete from ENTRADAPRODUTOSDETALHES WHERE ID= @ID ";
-            command.Parameters.AddWithValue("@ID", entradaProdutosDetalhes.id);
-
-            try
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-                return "excluido com sucesso";
-            }
-            catch (SqlException e)
-            {
-                return "erro de conexão com o banco";
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
 
         public string Inserir(EntradaProdutosDetalhes entradaProdutosDetalhes)
         {
@@ -98,14 +45,12 @@ namespace DAL
 
         public EntradaProdutosDetalhes LerPorID(int id)
         {
-
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM ENTRADAPRODUTOSDETALHES WHERE ID= @ID";
             command.Parameters.AddWithValue("@ID", id);
             command.Connection = connection;
-
 
             try
             {
@@ -120,13 +65,12 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro " + e;
+                throw new Exception("erro no acesso ao banco: "+e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
 
         }
         private EntradaProdutosDetalhes instanciarEntradaProdutosDetalhes(SqlDataReader reader)
@@ -165,14 +109,12 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro" + e;
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
     }
 

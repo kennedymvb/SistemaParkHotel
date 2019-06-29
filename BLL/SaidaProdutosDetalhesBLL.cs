@@ -75,10 +75,9 @@ namespace BLL
             return saidaDal.LerTodos();
         }
 
+
         private void TratarDependencias(SaidaProdutosDetalhes saida)
         {
-
-          
             if (saida.idProduto < 0)
             {
                 erros.Add("id do produto deve ser informado");
@@ -103,7 +102,6 @@ namespace BLL
                     erros.Add("cliente não encontrado no banco");
                 }
             }
-            
             
             SaidaProdutos saidaProdutos= saidaProdutosDal.LerPorID(saida.idSaidaProduto);
             if (saidaProdutos == null)

@@ -169,14 +169,12 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                
+                throw new Exception("erro no acesso ao banco: " + ex.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
         private Usuario instanciarusuario(SqlDataReader reader)
         {
@@ -213,7 +211,6 @@ namespace DAL
                     return list;
                 }
                 return null;
-
             }
             catch (SqlException ex)
             {
@@ -224,12 +221,7 @@ namespace DAL
                 connection.Close();
             }
             return null;
-
         }
     }
-
-
-
-
 }
 

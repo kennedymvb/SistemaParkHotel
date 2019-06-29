@@ -63,14 +63,12 @@ namespace DAL
             }
             catch (SqlException e)
             {
-
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
         private SaidaProdutosDetalhes instanciarsaidaProdutosDetalhes(SqlDataReader reader)
         {
@@ -78,7 +76,6 @@ namespace DAL
             saidaProdutosDetalhes.id = Convert.ToInt32(reader["ID"]);
             saidaProdutosDetalhes.idCliente = Convert.ToInt32(reader["CLIENTE_ID"]);
             saidaProdutosDetalhes.idProduto = Convert.ToInt32(reader["PRODUTO"]);
-            saidaProdutosDetalhes.idFornecedor = Convert.ToInt32(reader["FORNECEDOR_ID"]);
             saidaProdutosDetalhes.Quantidade = Convert.ToInt32(reader["QUANTIDADE"]);
             saidaProdutosDetalhes.Valorunitario = Convert.ToDouble(reader["VALOR_UNITARIO"]);
             saidaProdutosDetalhes.idEntradaProdutos = Convert.ToInt32(reader["ENTRADAPRODUTO_ID"]);

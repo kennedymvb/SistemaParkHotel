@@ -18,7 +18,6 @@ namespace DAL
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
 
-
             command.CommandText = "INSERT INTO CHECKIN (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID, ID_RESERVA) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID, @ID_RESERVA)";
             command.Parameters.AddWithValue("@DATA_ENTRADA", checkin.dataEntrada);
             command.Parameters.AddWithValue("@DATA_PREVISTA_SAIDA", checkin.dataPrevistaSaida);
@@ -26,7 +25,21 @@ namespace DAL
             command.Parameters.AddWithValue("@CLIENTE_ID", checkin.clienteId);
             command.Parameters.AddWithValue("@ID_RESERVA", checkin.idReserva);
 
-            return "";
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Message.Contains("UNIQUE"))
+                {
+                    return "Usuário deve ser único, contém dados já cadastrados";
+                }
+                return "erro no banco de dados, contate o admin";
+            }
+            return "atualizado com sucesso";
+
         }
 
         public Checkin LerPorID(int id)
@@ -98,16 +111,14 @@ namespace DAL
                 return null;
 
             }
-            catch ()
+            catch (SqlException ex)
             {
-
+                throw new Exception("erro no acesso ao banco: "+ex.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
     }
 }

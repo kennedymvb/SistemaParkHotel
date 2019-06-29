@@ -19,6 +19,12 @@ namespace WFPresentationLayer
         FornecedorBLL fornecedorBLL = new FornecedorBLL();
         ProdutoBLL produtoBLL = new ProdutoBLL();
         QuartoBLL quartoBLL = new QuartoBLL();
+        SaidaProdutosBLL saidaProdutosBLL = new SaidaProdutosBLL();
+        UsuarioBLL usuarioBLL = new UsuarioBLL();
+        ReservaBLL ReservaBLL = new ReservaBLL();
+        CheckinBLL checkinBLL = new CheckinBLL();
+        CheckoutBLL checkoutBLL = new CheckoutBLL();
+
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +35,8 @@ namespace WFPresentationLayer
         {
             MessageBox.Show("Bem-vindo " + Usuario.UsuarioLogado.nome);
         }
-      
+
+        #region Operações Cliente
         private void btnCadastroCliente_Click(object sender, EventArgs e)
         {
             Cliente cliente = InstanciarCliente();
@@ -52,6 +59,14 @@ namespace WFPresentationLayer
             Cliente cliente = new Cliente(nome, rg, cpf, telefone1, telefone2, email, Usuario.UsuarioLogado.id);
             return cliente;
         }
+
+        private void btnExibirClientes_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Operações Fornecedor
         private void btncadastrarFornecedor_Click(object sender, EventArgs e)
         {
             Fornecedor fornecedor = new Fornecedor();
@@ -70,7 +85,9 @@ namespace WFPresentationLayer
             Fornecedor fornecedor = new Fornecedor(RazaoSocial, CNPJ, Telefone, Email, IDusuario, Nomecontato);
             return fornecedor;
         }
+        #endregion
 
+        #region Operações produto
         private void btnCadastroProdutos_Click(object sender, EventArgs e)
         {
             Produto produto = new Produto();
@@ -88,7 +105,9 @@ namespace WFPresentationLayer
             Produto produto = new Produto(nome, descricao, preco, idUsuario, qtdEstoque);
             return produto;
         }
+        #endregion
 
+        #region Operações Quarto
         private void button4_Click(object sender, EventArgs e)
         {
             Quarto quarto = new Quarto();
@@ -104,16 +123,19 @@ namespace WFPresentationLayer
             Quarto quarto = new Quarto( ValorDiaria, IDUsuario, tipoQuarto);
             return quarto;
         }
+        #endregion
 
         private void label35_Click(object sender, EventArgs e)
         {
 
         }
 
+        #region Operações Usuário
         private void button1_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario();
-            usuario = instanciarUsuario();
+            Usuario usuario = instanciarUsuario();
+            usuarioBLL.Inserir(usuario);
+            
         }
 
         private Usuario instanciarUsuario()
@@ -129,15 +151,105 @@ namespace WFPresentationLayer
             bool IsAdmin = false;
             return usuario;
         }
+        #endregion
 
+        #region Operações Vendas
         private void btnCadastrarVendas_Click(object sender, EventArgs e)
         {
-            InstanciarVenda();
-        }
-
-        private void InstanciarVenda()
-        {
+            SaidaProdutos saida= InstanciarVenda();
+            saidaProdutosBLL.inserir(saida);
             
         }
+
+        private SaidaProdutos InstanciarVenda()
+        {
+            int idVendedor = int.Parse(txtnumUsuarioVenda.Text);
+            int idProduto = int.Parse(txtNumProdutoVenda.Text);
+            int idCliente = int.Parse(txtnumClienteVenda.Text);
+            DateTime dataSaida = dateTimeVenda.Value;
+            SaidaProdutos saida = new SaidaProdutos(idVendedor,idProduto, idCliente, dataSaida);
+            return saida;
+        }
+        #endregion
+
+
+        #region Operações Reserva
+        private void btncadastrarReservas_Click(object sender, EventArgs e)
+        {
+            Reserva reserva = InstanciarReserva();
+            ReservaBLL.inserir(reserva);
+
+        }
+
+        private Reserva InstanciarReserva()
+        {
+            int idCliente = int.Parse(txtnumClienteReserva.Text);
+            int idUsuario = Usuario.UsuarioLogado.id;
+            DateTime dataPrevistaChegada = DateTimeChegadaReserva.Value;
+            DateTime dataPrevistaSaida = dateTimeSaidaReserva.Value;
+            int idQuarto = int.Parse(txtnumQuartoReserva.Text);
+            Reserva reserva = new Reserva(idCliente, idUsuario, dataPrevistaChegada, dataPrevistaSaida, idQuarto);
+            return reserva;
+        }
+        #endregion
+
+        #region Operações Checkout
+        private void btnFinalizarHospedagem_Click(object sender, EventArgs e)
+        {
+            Checkout checkout = InstanciarCheckout();
+            checkoutBLL.inserir(checkout);
+            DesocuparQuarto(checkout.idCheckin);
+        }
+
+        private void DesocuparQuarto(int idCheckin)
+        {
+            Checkin checkin= checkinBLL.LerPorID(idCheckin);
+            quartoBLL.Desocupar(checkin.quartoId);
+
+        }
+
+        private Checkout InstanciarCheckout()
+        {
+            //calcular valor total
+
+            int idUsuario = Usuario.UsuarioLogado.id;
+            int idCheckin = int.Parse(txtnumeroCheckinCheckout.Text);
+            double valorTotal = double.Parse(labelValorTotalPagar.Text);
+            DateTime dataaSaida = dateTimeCheckoutDataSaida.Value;
+            DateTime dataEntrada = BuscarDataEntrada(idCheckin);
+            return new Checkout(idUsuario, idCheckin, valorTotal, dataaSaida, dataEntrada);
+
+        }
+
+        private DateTime BuscarDataEntrada(int idCheckin)
+        {
+            Checkin checkin=checkinBLL.LerPorID(idCheckin);
+            return checkin.dataEntrada;
+        }
+        #endregion
+
+
+        #region Operações checkin
+        private void btnFazerCheckin_Click(object sender, EventArgs e)
+        {
+            Checkin checkin = InstanciarCheckin();
+            checkinBLL.inserir(checkin);
+            quartoBLL.Ocupar(checkin.quartoId);
+        }
+
+        private Checkin InstanciarCheckin()
+        {
+            int idUsuario = Usuario.UsuarioLogado.id;
+            DateTime dataEntrada = dateTimeCheckinDataentrada.Value;
+            DateTime dataPrevistaSaida = dateTimeDataPSaidaCheckin.Value;
+            int idQuarto = int.Parse(txtnumeroQuartoCheckin.Text);
+            int idCliente = int.Parse(txtNumeroClienteCheckin.Text);
+            int idReserva = int.Parse(txtnumeroReservaCheckin.Text);
+            return new Checkin(idUsuario, dataEntrada, dataPrevistaSaida, idQuarto, idCliente, idReserva);
+
+        }
+        #endregion
+
+        
     }
 }

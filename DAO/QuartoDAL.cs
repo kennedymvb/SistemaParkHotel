@@ -115,15 +115,14 @@ namespace DAL
                 return null;
 
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
-                return "erro " + ex;
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
 
         }
         private Quarto instanciarquarto(SqlDataReader reader)
@@ -159,16 +158,14 @@ namespace DAL
                 return null;
 
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
-                return "erro" + ex;
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
     }
 

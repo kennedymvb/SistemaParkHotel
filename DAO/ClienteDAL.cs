@@ -1,5 +1,4 @@
-﻿using BLL;
-using DAL;
+﻿using DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -12,9 +11,6 @@ namespace Metadata
     public class ClienteDAL : IEntityCRUD<Cliente>
 
     {
-
-        
-
         public string Atualizar(Cliente cliente)
         {
             string stringConexao = StringConexao.GetStringConexao();
@@ -77,7 +73,6 @@ namespace Metadata
             {
                 connection.Close();
             }
-          
 
             return "cliente excluído";
         }
@@ -114,7 +109,6 @@ namespace Metadata
             }
 
             return "cadastrado com sucesso";
-
         }
 
         public Cliente LerPorID(int id)
@@ -138,18 +132,14 @@ namespace Metadata
                 return null;
 
             }
-            catch ()
+            catch (SqlException ex)
             {
-
+                throw new Exception("erro no acesso ao banco: "+ex.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
-
-
         }
 
         private Cliente instanciarcliente(SqlDataReader reader)
@@ -189,15 +179,14 @@ namespace Metadata
                 return null;
 
             }
-            catch ()
+            catch (SqlException ex)
             {
-
+                throw new Exception("erro no acesso ao banco: " + ex.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
 
         }
     }

@@ -43,8 +43,6 @@ namespace DAL
             }
 
             return "atualizado com sucesso";
-
-
         }
 
         public string Excluir(Fornecedor fornecedor)
@@ -122,7 +120,6 @@ namespace DAL
             command.Parameters.AddWithValue("@ID", id);
             command.Connection = connection;
 
-
             try
             {
                 connection.Open();
@@ -134,15 +131,14 @@ namespace DAL
                 return null;
 
             }
-            catch (SqlException ex)
+            catch (SqlException e)
             {
-                return "erro";
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
 
         }
         private Fornecedor instanciarFornecedor(SqlDataReader reader)
@@ -183,19 +179,14 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro" + e;
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
     }
 
-
-
-
 }
-}
+

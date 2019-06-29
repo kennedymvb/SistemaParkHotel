@@ -13,7 +13,9 @@ namespace BLL
         List<string> erros = new List<string>();
 
         ReservaDAL reservaDal = new ReservaDAL();
-
+        QuartoDAL quartoDAL = new QuartoDAL();
+        ClienteDAL clienteDAL = new ClienteDAL();
+        UsuarioDAL usuarioDAL = new UsuarioDAL();
         public string inserir(Reserva reserva)
         {
             if (this.Validar(reserva))
@@ -42,10 +44,20 @@ namespace BLL
             return sb.ToString();
         }
 
+        public Reserva LerPorID(int id)
+        {
+            return reservaDal.LerPorID(id);
+        }
+
+        public List<Reserva> LerTodos()
+        {
+            return reservaDal.LerTodos();
+        }
+
         public bool Validar(Reserva reserva)
         {
-            
-            
+
+            TratarDependencias(reserva);
             if (reserva.dataPrevisaoSaida < reserva.dataPrevisaoChegada)
             {
                 erros.Add("datas inválidas");
@@ -56,15 +68,35 @@ namespace BLL
                 return false;
             }
             return true;
+        }
 
-        }
-        public Reserva LerPorID(int id)
+
+        private void TratarDependencias(Reserva reserva)
         {
-            return reservaDal.LerPorID(id);
-        }
-        public List<Reserva> LerTodos()
-        {
-            return reservaDal.LerTodos();
+            if (reserva.idQuarto < 0)
+            {
+                erros.Add("id do quarto deve ser informado");
+            }
+            else
+            {
+                Quarto quarto = quartoDAL.LerPorID(reserva.idQuarto);
+                if (quarto == null)
+                {
+                    erros.Add("quarto não encontrado no banco");
+                }
+            }
+            if (reserva.idCliente < 0)
+            {
+                erros.Add("id do produto deve ser informado");
+            }
+            else
+            {
+                Cliente cliente = clienteDAL.LerPorID(reserva.idCliente);
+                if (cliente == null)
+                {
+                    erros.Add("cliente não encontrado no banco");
+                }
+            }
         }
     }
 }

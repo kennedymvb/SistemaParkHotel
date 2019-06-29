@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BLL;
 using Metadata;
 
 namespace DAL
@@ -40,8 +39,6 @@ namespace DAL
             }
 
             return "atualizado com sucesso";
-
-
         }
 
         public string Excluir(Produto produto)
@@ -72,8 +69,6 @@ namespace DAL
 
         public string Inserir(Produto produto)
         {
-
-
             string stringConexao = StringConexao.GetStringConexao();
 
             SqlConnection connection = new SqlConnection(stringConexao);
@@ -128,14 +123,12 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro " + e;
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
         private Produto instanciarproduto(SqlDataReader reader)
         {
@@ -174,14 +167,12 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro" + e;
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
     }
 

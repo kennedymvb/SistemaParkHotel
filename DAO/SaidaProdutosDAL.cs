@@ -10,16 +10,19 @@ namespace DAL
 {
     public class SaidaProdutosDAL : CRUDIntegridade<SaidaProdutos>
     {
-        public string Inserir(SaidaProdutos item)
+        public string Inserir(SaidaProdutos saida)
         {
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
-            command.CommandText = "INSERT INTO USUARIOS (USUARIO_ID, DATA_ENTRADA, VALORTOTAL) VALUES (@USUARIO_ID, @DATA_ENTRADA, @VALORTOTAL)";
-            command.Parameters.AddWithValue("@USUARIO_ID", entradaProdutos.usuarioId);
-            command.Parameters.AddWithValue("@DATA_ENTRADA", entradaProdutos.dataEntrada);
-            command.Parameters.AddWithValue("@VALORTOTAL", entradaProdutos.valorTotal);
+            command.CommandText = "INSERT INTO SAIDAPRODUTOS (USUARIO_ID, DATA_SAIDA, VALORTOTAL, @ID_CLIENTE, @ID_PRODUTO) VALUES (@USUARIO_ID, @DATA_SAIDA, @VALORTOTAL, @ID_CLIENTE, @ID_PRODUTO)";
+            command.Parameters.AddWithValue("@USUARIO_ID", saida.idUsuarioVendedor);
+            command.Parameters.AddWithValue("@DATA_SAIDA", saida.dataSaida);
+            command.Parameters.AddWithValue("@VALORTOTAL", saida.valorTotal);
+            command.Parameters.AddWithValue("@ID_CLIENTE", saida.idCliente);
+            command.Parameters.AddWithValue("@ID_PRODUTO", saida.idProduto);
+
             try
             {
                 connection.Open();
@@ -55,31 +58,55 @@ namespace DAL
                 }
                 return null;
             }
-            catch ()
+            catch (SqlException e)
             {
-
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
         }
 
         public List<SaidaProdutos> LerTodos()
         {
-            throw new NotImplementedException();
+
+            string stringConexao = StringConexao.GetStringConexao();
+
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            List<SaidaProdutos> list = new List<SaidaProdutos>();
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(InstanciarSaidaProdutos(reader));
+                }
+                return list;
+            }
+            catch
+            {
+                throw new Exception("Banco de dados indisponível");
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
-        private SaidaProdutos instanciarentradaProdutos(SqlDataReader reader)
+        private SaidaProdutos InstanciarSaidaProdutos(SqlDataReader reader)
         {
             SaidaProdutos saidaProdutos = new SaidaProdutos();
             saidaProdutos.id = Convert.ToInt32(reader["ID"]);
             saidaProdutos.valorTotal = Convert.ToDouble(reader["VALORTOTAL"]);
             saidaProdutos.idUsuarioVendedor = Convert.ToInt32(reader["USUARIO_ID"]);
-            saidaProdutos.data = Convert.ToDateTime(reader["DATA_ENTRADA"]);
+            saidaProdutos.dataSaida = Convert.ToDateTime(reader["DATA_SADA"]);
 
-            return entradaProdutos;
+            return saidaProdutos;
         }
     }
 }

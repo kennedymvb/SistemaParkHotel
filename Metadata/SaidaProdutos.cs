@@ -13,13 +13,15 @@ namespace Metadata
         public int idCliente { get; set; }
         public int idProduto { get; set; }
         public double valorTotal { get; set; }
+        public DateTime dataSaida { get; set; }
 
 
-        public SaidaProdutos(int idUsuario, int qtd, int idCliente, int idProduto)
+        public SaidaProdutos(int idUsuario,  int idCliente, int idProduto, DateTime dataSaida)
         {
             this.idUsuarioVendedor = idUsuario;
             this.idProduto = idProduto;
             this.idCliente = idCliente;
+            this.dataSaida = dataSaida;
         }
         public SaidaProdutos()
         {

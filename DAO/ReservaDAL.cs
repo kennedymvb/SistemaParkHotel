@@ -1,5 +1,4 @@
-﻿using BLL;
-using Metadata;
+﻿using Metadata;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -110,7 +109,6 @@ namespace DAL
             command.Parameters.AddWithValue("@ID", id);
             command.Connection = connection;
 
-
             try
             {
                 connection.Open();
@@ -124,14 +122,12 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro " + e;
+                throw new Exception("erro no acesso ao banco: " + e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
         private Reserva instanciarreserva(SqlDataReader reader)
         {
@@ -163,9 +159,6 @@ namespace DAL
                         list.Add(instanciarreserva(reader));
                     }
                     return list;
-                
-                return list;
-
             }
             catch 
             {

@@ -15,26 +15,17 @@ namespace Metadata
         public DateTime dataPrevisaoSaida { get; set; }
         public int idQuarto { get; set; }
 
-        public Reserva(int ID, int IDCliente, int IDUsuario, DateTime DataPrevChegada, DateTime DataPrevSaida, int IDQuarto)
+        public Reserva(int IDCliente, int IDUsuario, DateTime DataPrevChegada, DateTime DataPrevSaida, int IDQuarto)
         {
-
-            this.id = ID;
             this.idCliente = IDCliente;
             this.idUsuario = IDUsuario;
             this.dataPrevisaoChegada = DataPrevChegada;
             this.dataPrevisaoSaida = DataPrevSaida;
             this.idQuarto = IDQuarto;
-
-
         }
         public Reserva()
         {
 
         }
-
-
-
-
-
     }
 }

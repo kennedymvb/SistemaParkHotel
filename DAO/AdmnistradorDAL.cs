@@ -114,8 +114,6 @@ namespace DAL
             command.CommandText = "SELECT * FROM USUARIOS WHERE ID= @ID";
             command.Parameters.AddWithValue("@ID", id);
             command.Connection = connection;
-            
-
 
             try
             {

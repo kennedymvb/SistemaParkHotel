@@ -72,9 +72,9 @@ namespace DAL
                 }
                 return null;
             }
-            catch ()
+            catch (SqlException ex)
             {
-
+                throw new Exception("erro no acesso ao banco: " + ex.Message);
             }
             finally
             {
@@ -103,15 +103,14 @@ namespace DAL
                 }
                 return null;
             }
-            catch ()
+            catch (SqlException ex)
             {
-
+                throw new Exception("erro no acesso ao banco: "+ex.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
         }
     }
 }

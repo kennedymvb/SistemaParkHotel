@@ -40,7 +40,9 @@ namespace BLL
                 checkinDAL.Inserir(checkin);
                 quartoBll.Ocupar(checkin.quartoId);
                 scope.Complete();
+                return "inserido com sucesso";
             }//scope.Dispose();
+
         }
 
         public Checkin LerPorID(int id)
@@ -58,6 +60,12 @@ namespace BLL
             {
                 erros.Add("Data saída não pode ser menor que a data de entrada");
             }
+            TratarIntegridadeReferencial(checkin);
+
+        }
+
+        private void TratarIntegridadeReferencial(Checkin checkin)
+        {
             if (checkin.quartoId <= 0)
             {
                 erros.Add("QUarto deve ser informado.");
@@ -74,7 +82,7 @@ namespace BLL
                     erros.Add("O quarto já esta em uso.");
                 }
             }
-            if (checkin.clienteId<= 0)
+            if (checkin.clienteId <= 0)
             {
                 erros.Add("Cliente deve ser informado.");
             }
@@ -87,7 +95,6 @@ namespace BLL
                 }
             }
         }
-
     }
 }
 
