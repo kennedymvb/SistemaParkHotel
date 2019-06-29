@@ -33,28 +33,14 @@ namespace BLL
                 return sb.ToString();
             }
 
-            using (TransactionScope scope = new TransactionScope())
-            {
-                try
-                {
-                    contaKennedy.Sacar(10000000000);
-                    contaCelinho.Deposita(10000000000);
-                    scope.Complete();
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-
             //Se chegou aqui, bora inserir o checkin e ocupar o quarto
             //TransactionScope Isolation Level (Serializable, COmmitedRead)
             using (TransactionScope scope = new TransactionScope())
             {
                 checkinDAL.Inserir(checkin);
-                bllQuarto.Ocupar(checkin.IdQuarto);
+                quartoBll.Ocupar(checkin.quartoId);
                 scope.Complete();
             }//scope.Dispose();
-
         }
 
         public Checkin LerPorID(int id)

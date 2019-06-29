@@ -54,6 +54,7 @@
     <Compile Include="QuartoDAL.cs" />
     <Compile Include="QuartoDALTeste.cs" />
     <Compile Include="ReservaDAL.cs" />
+    <Compile Include="SaidaProdutosDAL.cs" />
     <Compile Include="SaidaProdutosDetalhesDAL.cs" />
     <Compile Include="StringConexao.cs" />
     <Compile Include="UsuarioDAL.cs" />

@@ -11,7 +11,9 @@ namespace BLL
     public class EntradaProdutosDetalhesBLL
     {
         List<string> erros = new List<string>();
-
+        ProdutoDAL produtoDAL = new ProdutoDAL();
+        FornecedorDAL fornecedorDAL = new FornecedorDAL();
+        EntradaProdutosDAL entradaProdutosDAL = new EntradaProdutosDAL();
         EntradaProdutosDetalhesDAL entradaDal = new EntradaProdutosDetalhesDAL();
 
         public string inserir(EntradaProdutosDetalhes Entrada)
@@ -42,9 +44,6 @@ namespace BLL
             return sb.ToString();
         }
 
-
-
-
         public bool Validar(EntradaProdutosDetalhes Entrada)
         {
             if (Entrada.valorUnitario < 0)
@@ -54,6 +53,7 @@ namespace BLL
             {
                 erros.Add("a  quantidade não pode ser menor que 0");
             }
+            TratarDependencias(Entrada);
 
             if (erros.Count() > 0)
             {
@@ -70,6 +70,37 @@ namespace BLL
         public List<EntradaProdutosDetalhes> LerTodos()
         {
             return entradaDal.LerTodos();
+        }
+
+        private void TratarDependencias(EntradaProdutosDetalhes entrada)
+        {
+            if (entrada.idProduto < 0)
+            {
+                erros.Add("id do produto deve ser informado");
+            }
+            else
+            {
+                Produto produto = produtoDAL.LerPorID(entrada.idProduto);
+                if (produto == null)
+                {
+                    erros.Add("produto não encontrado no banco");
+                }
+            }
+            if (entrada.idFornecedor < 0)
+            {
+                erros.Add("id do fornecedor deve ser informado");
+            }
+            else
+            {
+                Fornecedor fornecedor = fornecedorDAL.LerPorID(entrada.idFornecedor);
+                if (fornecedor == null)
+                {
+                    erros.Add("cliente não encontrado no banco");
+                }
+            }
+            EntradaProdutos entradaProdutos = new EntradaProdutos();
+            entradaProdutos = entradaProdutosDAL.LerPorID(entrada.idEntradaProduto);
+            erros.Add("erro de integridade referencial em relação à entrada de produtos.");
         }
     }
 }

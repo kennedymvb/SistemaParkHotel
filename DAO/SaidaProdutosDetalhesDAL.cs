@@ -10,78 +10,18 @@ namespace DAL
 {
     public class SaidaProdutosDetalhesDAL
     {
-        
-
-        public string Atualizar(SaidaProdutosDetalhes saidaProdutosDetalhes)
-        {
-            string stringConexao = StringConexao.GetStringConexao();
-            SqlConnection connection = new SqlConnection(stringConexao);
-            SqlCommand command = new SqlCommand();
-
-            command.CommandText = "UPDATE SAIDAPRODUTOSDETALHES SET CLIENTE_ID = @CLIENTE_ID, PRODUTO = @PRODUTO, FORNECEDOR_ID = @FORNECEDOR_ID, QUANTIDADE = @QUANTIDADE, VALOR_UNITARIO = @VALOR_UNITARIO, ENTRADAPRODUTO_ID = @ENTRADAPRODUTO_ID";
-            
-            command.Parameters.AddWithValue("@CLIENTE_ID", saidaProdutosDetalhes.idCliente);
-            command.Parameters.AddWithValue("@PRODUTO", saidaProdutosDetalhes.idProduto);
-            command.Parameters.AddWithValue("@FORNECEDOR_ID", saidaProdutosDetalhes.idFornecedor);
-            command.Parameters.AddWithValue("@QUANTIDADE", saidaProdutosDetalhes.Quantidade);
-            command.Parameters.AddWithValue("@VALOR_UNITARIO", saidaProdutosDetalhes.Valorunitario);
-            command.Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saidaProdutosDetalhes.Valorunitario);
-
-            try
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-            catch (SqlException e)
-            {
-                return "erro de conexão com o banco";
-            }
-
-            return "atualizado com sucesso";
-
-
-        }
-
-        public string Excluir(SaidaProdutosDetalhes saidaProdutosDetalhes)
-        {
-            string stringConexao = StringConexao.GetStringConexao();
-            SqlConnection connection = new SqlConnection(stringConexao);
-            SqlCommand command = new SqlCommand();
-
-            command.CommandText = "delete from SAIDAPRODUTOSDETALHES WHERE ID= @ID ";
-            command.Parameters.AddWithValue("@ID", saidaProdutosDetalhes.id);
-
-            try
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-                return "excluido com sucesso";
-            }
-            catch (SqlException e)
-            {
-                return "erro de conexão com o banco";
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
+        string stringConexao = StringConexao.GetStringConexao();
         public string Inserir(SaidaProdutosDetalhes saidaProdutosDetalhes)
         {
-            
-
-            string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
             command.CommandText = "INSERT INTO SAIDAPRODUTOSDETALHES (CLIENTE_ID, PRODUTO, FORNECEDOR_ID, QUANTIDADE, VALOR_UNITARIO, ENTRADAPRODUTO_ID) VALUES (@CLIENTE_ID, @PRODUTO, @FORNECEDOR_ID, @QUANTIDADE, @VALOR_UNITARIO, @ENTRADAPRODUTO_ID)";
             command.Parameters.AddWithValue("@CLIENTE_ID", saidaProdutosDetalhes.idCliente);
             command.Parameters.AddWithValue("@PRODUTO", saidaProdutosDetalhes.idProduto);
-            command.Parameters.AddWithValue("@FORNECEDOR_ID", saidaProdutosDetalhes.idFornecedor);
             command.Parameters.AddWithValue("@QUANTIDADE", saidaProdutosDetalhes.Quantidade);
             command.Parameters.AddWithValue("@VALOR_UNITARIO", saidaProdutosDetalhes.Valorunitario);
-            command.Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saidaProdutosDetalhes.od);
+            command.Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saidaProdutosDetalhes.idEntradaProdutos);
 
             try
             {
@@ -103,7 +43,6 @@ namespace DAL
         public SaidaProdutosDetalhes LerPorID(int id)
         {
 
-            string stringConexao = stc.getStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM SAIDAPRODUTOSDETALHES WHERE ID= @ID";
@@ -124,7 +63,7 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro " + e;
+
             }
             finally
             {
@@ -148,7 +87,6 @@ namespace DAL
         }
         public List<SaidaProdutosDetalhes> LerTodos()
         {
-            string stringConexao = stc.getStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
@@ -170,7 +108,6 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro" + e;
             }
             finally
             {

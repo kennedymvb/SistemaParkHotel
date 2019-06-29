@@ -18,14 +18,12 @@ namespace Metadata
 
         public Fornecedor(string RazaoSocial, string CNPJ, string Telefone, string Email, int IDusuario, string Nomecontato)
         {
-
             this.razaoSocial = RazaoSocial;
             this.cnpj = CNPJ;
             this.telefone = Telefone;
             this.email = Email;
             this.usuarioID = IDusuario;
             this.nomeContato = Nomecontato;
-
         }
 
         public Fornecedor()

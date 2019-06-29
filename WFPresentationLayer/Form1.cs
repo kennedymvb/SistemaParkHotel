@@ -130,5 +130,14 @@ namespace WFPresentationLayer
             return usuario;
         }
 
+        private void btnCadastrarVendas_Click(object sender, EventArgs e)
+        {
+            InstanciarVenda();
+        }
+
+        private void InstanciarVenda()
+        {
+            
+        }
     }
 }

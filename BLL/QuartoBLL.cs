@@ -44,8 +44,6 @@ namespace BLL
 
         public bool Validar(Quarto quarto)
         {
-       
-            
             if (quarto.valorDiaria<0)
             {
                 erros.Add("valor inválido");
@@ -56,8 +54,8 @@ namespace BLL
                 return false;
             }
             return true;
-
         }
+
         public Quarto LerPorID(int id)
         {
             return quartoDal.LerPorID(id);
@@ -66,6 +64,19 @@ namespace BLL
         {
             return quartoDal.LerTodos();
         }
-
+        public void Ocupar(int idQuarto)
+        {
+            Quarto quarto = new Quarto();
+            quarto = LerPorID(idQuarto);
+            quarto.estaOcupado = true;
+            Atualizar(quarto);
+        }
+        public void Desocupar(int idQuarto)
+        {
+            Quarto quarto = new Quarto();
+            quarto = LerPorID(idQuarto);
+            quarto.estaOcupado = false;
+            Atualizar(quarto);
+        }
     }
 }

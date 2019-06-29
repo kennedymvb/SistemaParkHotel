@@ -17,13 +17,11 @@ namespace Metadata
 
         public EntradaProdutosDetalhes(int id, int IDentradaproduto, int IDProduto, int IDFornecedor, int Quantidade, double ValorUnitario)
         {
-            this.id = id;
             this.idEntradaProduto = IDentradaproduto;
             this.idProduto = IDProduto;
             this.idFornecedor = IDFornecedor;
             this.quantidade = Quantidade;
             this.valorUnitario = ValorUnitario;
-
         }
 
         public EntradaProdutosDetalhes()

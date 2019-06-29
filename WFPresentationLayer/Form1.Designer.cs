@@ -89,7 +89,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.labelrg = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.CadastroCliente = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.cmbTipoQuarto = new System.Windows.Forms.ComboBox();
@@ -125,6 +125,7 @@
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.dateTimeCheckoutDataSaida = new System.Windows.Forms.DateTimePicker();
@@ -155,12 +156,11 @@
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.CadastroCliente.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -775,22 +775,23 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Nome:";
             // 
-            // tabControl1
+            // CadastroCliente
             // 
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage9);
-            this.tabControl1.Controls.Add(this.tabPage10);
-            this.tabControl1.Location = new System.Drawing.Point(1, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(933, 456);
-            this.tabControl1.TabIndex = 5;
+            this.CadastroCliente.Controls.Add(this.tabPage2);
+            this.CadastroCliente.Controls.Add(this.tabPage3);
+            this.CadastroCliente.Controls.Add(this.tabPage4);
+            this.CadastroCliente.Controls.Add(this.tabPage5);
+            this.CadastroCliente.Controls.Add(this.tabPage1);
+            this.CadastroCliente.Controls.Add(this.tabPage6);
+            this.CadastroCliente.Controls.Add(this.tabPage8);
+            this.CadastroCliente.Controls.Add(this.tabPage9);
+            this.CadastroCliente.Controls.Add(this.tabPage10);
+            this.CadastroCliente.Location = new System.Drawing.Point(1, 12);
+            this.CadastroCliente.Name = "CadastroCliente";
+            this.CadastroCliente.SelectedIndex = 0;
+            this.CadastroCliente.Size = new System.Drawing.Size(933, 456);
+            this.CadastroCliente.TabIndex = 5;
+            this.CadastroCliente.Tag = "gh";
             // 
             // tabPage1
             // 
@@ -942,6 +943,7 @@
             // 
             // dateTimeSaidaReserva
             // 
+            this.dateTimeSaidaReserva.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimeSaidaReserva.Location = new System.Drawing.Point(411, 225);
             this.dateTimeSaidaReserva.Name = "dateTimeSaidaReserva";
             this.dateTimeSaidaReserva.Size = new System.Drawing.Size(222, 20);
@@ -949,6 +951,7 @@
             // 
             // DateTimeChegadaReserva
             // 
+            this.DateTimeChegadaReserva.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DateTimeChegadaReserva.Location = new System.Drawing.Point(411, 189);
             this.DateTimeChegadaReserva.Name = "DateTimeChegadaReserva";
             this.DateTimeChegadaReserva.Size = new System.Drawing.Size(222, 20);
@@ -1094,6 +1097,7 @@
             this.btnCadastrarVendas.TabIndex = 63;
             this.btnCadastrarVendas.Text = "Cadastrar Vendas";
             this.btnCadastrarVendas.UseVisualStyleBackColor = true;
+            this.btnCadastrarVendas.Click += new System.EventHandler(this.btnCadastrarVendas_Click);
             // 
             // dateTimeVenda
             // 
@@ -1141,6 +1145,17 @@
             this.label36.Size = new System.Drawing.Size(105, 15);
             this.label36.TabIndex = 55;
             this.label36.Text = "Data da Venda:";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(294, 144);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(102, 15);
+            this.label35.TabIndex = 54;
+            this.label35.Text = "Id do vendedor";
+            this.label35.Click += new System.EventHandler(this.label35_Click);
             // 
             // label34
             // 
@@ -1443,24 +1458,13 @@
             this.label41.TabIndex = 55;
             this.label41.Text = "Telefone:";
             // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(294, 144);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(102, 15);
-            this.label35.TabIndex = 54;
-            this.label35.Text = "Id do vendedor";
-            this.label35.Click += new System.EventHandler(this.label35_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(928, 462);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.CadastroCliente);
             this.Name = "Form1";
             this.Text = "Form1";
             this.tabPage5.ResumeLayout(false);
@@ -1471,7 +1475,7 @@
             this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.CadastroCliente.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage6.ResumeLayout(false);
@@ -1544,7 +1548,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelrg;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl CadastroCliente;
         private System.Windows.Forms.TextBox txtNumeroUsuarioCheckin;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Button btnConsultarFornecedor;

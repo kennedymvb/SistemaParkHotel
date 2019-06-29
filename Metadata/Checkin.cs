@@ -14,6 +14,7 @@ namespace Metadata
         public int quartoId { get; set; }
         public int clienteId { get; set; }
         public int idReserva { get; set; }
+        
 
         public Checkin(int id, DateTime dataentrada, DateTime dataprevistasaida, int idquarto, int idcliente, int idreserva)
         {

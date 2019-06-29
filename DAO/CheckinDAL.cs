@@ -8,8 +8,9 @@ using Metadata;
 
 namespace DAL
 {
-    public class CheckinDAL : ICheckInProcess
+    public class CheckinDAL : ICheckInProcess<Checkin>
     {
+        string stringConexao = StringConexao.GetStringConexao();
         public string Inserir(Checkin checkin)
         {
             
@@ -18,7 +19,7 @@ namespace DAL
             command.Connection = connection;
 
 
-            command.CommandText = "INSERT INTO USUARIOS (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID, ID_RESERVA) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID, @ID_RESERVA)";
+            command.CommandText = "INSERT INTO CHECKIN (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID, ID_RESERVA) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID, @ID_RESERVA)";
             command.Parameters.AddWithValue("@DATA_ENTRADA", checkin.dataEntrada);
             command.Parameters.AddWithValue("@DATA_PREVISTA_SAIDA", checkin.dataPrevistaSaida);
             command.Parameters.AddWithValue("@QUARTO_ID", checkin.quartoId);

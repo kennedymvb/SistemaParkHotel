@@ -10,18 +10,18 @@ using Metadata;
 
 namespace DAL
 {
-    public class AdmnistradorDAL : IEntityCRUD<Admnistrador>
+    public class AdmnistradorDAL : IEntityCRUD<Administrador>
     {
         AdmnistradorDAL admDAL = new AdmnistradorDAL();
 
-        public string Atualizar(Admnistrador admnistrador)
+        public string Atualizar(Administrador admnistrador)
         {
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
             command.Connection = connection;
-            command.CommandText = "UPDATE USUARIOS SET ID= @ID, NOME= @NOME, RG= @RG, CPF= @CPF,ENDERECO= @ENDERECO, TELEFONE= @TELEFONE,EMAIL= @EMAIL,SENHA= @SENHA";
+            command.CommandText = "UPDATE ADMINISTRADOR SET NOME= @NOME, RG= @RG, CPF= @CPF,ENDERECO= @ENDERECO, TELEFONE= @TELEFONE,EMAIL= @EMAIL,SENHA= @SENHA";
             command.Parameters.AddWithValue("@NOME", admnistrador.nome);
             command.Parameters.AddWithValue("@RG", admnistrador.rg);
             command.Parameters.AddWithValue("@CPF", admnistrador.cpf);
@@ -46,7 +46,7 @@ namespace DAL
             return "dados atualizados com sucesso";
         }
 
-        public string Excluir(Admnistrador admnistrador)
+        public string Excluir(Administrador admnistrador)
         {
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
@@ -73,7 +73,7 @@ namespace DAL
             
         }
 
-        public string Inserir(Admnistrador admnistrador)
+        public string Inserir(Administrador admnistrador)
         {
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
@@ -106,7 +106,7 @@ namespace DAL
             return "";
         }
 
-        public Admnistrador LerPorID(int id)
+        public Administrador LerPorID(int id)
         {
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
@@ -142,9 +142,9 @@ namespace DAL
 
         }
 
-        private Admnistrador instanciarAdmin(SqlDataReader reader)
+        private Administrador instanciarAdmin(SqlDataReader reader)
         {
-            Admnistrador admin = new Admnistrador();
+            Administrador admin = new Administrador();
             admin.id = Convert.ToInt32(reader["ID"]);
             admin.nome = Convert.ToString(reader["NOME"]);
             admin.cpf = Convert.ToString(reader["CPF"]);
@@ -158,14 +158,14 @@ namespace DAL
             return admin;
         }
 
-        public List<Admnistrador> LerTodos()
+        public List<Administrador> LerTodos()
         {
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
 
-            List<Admnistrador> list = new List<Admnistrador>();
+            List<Administrador> list = new List<Administrador>();
             command.CommandText = "select * from usuarios";
             try
             {
