@@ -34,19 +34,7 @@ namespace BLL
             return sb.ToString();
         }
 
-        public string atualizar(SaidaProdutosDetalhes saida)
-        {
-            if (this.Validar(saida))
-            {
-                return saidaDal.Atualizar(saida);
-            }
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < erros.Count(); i++)
-            {
-                sb.Append(erros[i]);
-            }
-            return sb.ToString();
-        }
+        
 
         public bool Validar(SaidaProdutosDetalhes saida)
         {

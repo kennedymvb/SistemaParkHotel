@@ -67,7 +67,6 @@ namespace BLL
                 return false;
             }
             return true;
-
         }
 
         public Produto LerPorID(int id)

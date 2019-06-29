@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimeDataPSaidaCheckin = new System.Windows.Forms.DateTimePicker();
             this.txtNumeroUsuarioCheckin = new System.Windows.Forms.TextBox();
             this.label49 = new System.Windows.Forms.Label();
             this.btnFazerCheckin = new System.Windows.Forms.Button();
@@ -42,6 +44,7 @@
             this.label51 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dataGridViewProdutos = new System.Windows.Forms.DataGridView();
             this.labelValorTotalProdutos = new System.Windows.Forms.Label();
             this.btnCatalogoProdutos = new System.Windows.Forms.Button();
             this.cmbFornecedoresProdutos = new System.Windows.Forms.ComboBox();
@@ -60,6 +63,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridViewFornecedor = new System.Windows.Forms.DataGridView();
             this.btnConsultarFornecedor = new System.Windows.Forms.Button();
             this.txtEmailFornecedor = new System.Windows.Forms.TextBox();
             this.txtcnpjFornecedor = new System.Windows.Forms.TextBox();
@@ -74,6 +78,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnExibirClientes = new System.Windows.Forms.Button();
             this.txttelefone1Cliente = new System.Windows.Forms.TextBox();
             this.txttelefone2Cliente = new System.Windows.Forms.TextBox();
@@ -91,7 +96,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CadastroCliente = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridViewQuartos = new System.Windows.Forms.DataGridView();
+            this.btnExibirQuartos = new System.Windows.Forms.Button();
             this.cmbTipoQuarto = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -135,13 +141,7 @@
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.btnConsultarFuncionarios = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.btnExcluirUsuario = new System.Windows.Forms.Button();
             this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.txtTelefoneUsuario = new System.Windows.Forms.TextBox();
-            this.txtSenhaUsuario = new System.Windows.Forms.TextBox();
-            this.txtEmailUsuario = new System.Windows.Forms.TextBox();
             this.txtRGUsuario = new System.Windows.Forms.TextBox();
             this.txtEnderecoUsuario = new System.Windows.Forms.TextBox();
             this.txtCPFUsuario = new System.Windows.Forms.TextBox();
@@ -151,19 +151,30 @@
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
+            this.dataGridViewReservas = new System.Windows.Forms.DataGridView();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.txtTelefoneUsuario = new System.Windows.Forms.TextBox();
+            this.txtSenhaUsuario = new System.Windows.Forms.TextBox();
+            this.txtEmailUsuario = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
-            this.dateTimeDataPSaidaCheckin = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
+            this.dataGridViewUsuarios = new System.Windows.Forms.DataGridView();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProdutos)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFornecedor)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.CadastroCliente.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuartos)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
             this.tabPage10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage5
@@ -190,6 +201,23 @@
             this.tabPage5.Size = new System.Drawing.Size(925, 430);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "tabPage5";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(31, 128);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(141, 15);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "Data Prevista Saida: ";
+            // 
+            // dateTimeDataPSaidaCheckin
+            // 
+            this.dateTimeDataPSaidaCheckin.Location = new System.Drawing.Point(167, 128);
+            this.dateTimeDataPSaidaCheckin.Name = "dateTimeDataPSaidaCheckin";
+            this.dateTimeDataPSaidaCheckin.Size = new System.Drawing.Size(229, 20);
+            this.dateTimeDataPSaidaCheckin.TabIndex = 28;
             // 
             // txtNumeroUsuarioCheckin
             // 
@@ -300,6 +328,7 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.tabPage4.Controls.Add(this.dataGridViewProdutos);
             this.tabPage4.Controls.Add(this.labelValorTotalProdutos);
             this.tabPage4.Controls.Add(this.btnCatalogoProdutos);
             this.tabPage4.Controls.Add(this.cmbFornecedoresProdutos);
@@ -324,6 +353,14 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             // 
+            // dataGridViewProdutos
+            // 
+            this.dataGridViewProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProdutos.Location = new System.Drawing.Point(577, 6);
+            this.dataGridViewProdutos.Name = "dataGridViewProdutos";
+            this.dataGridViewProdutos.Size = new System.Drawing.Size(342, 357);
+            this.dataGridViewProdutos.TabIndex = 69;
+            // 
             // labelValorTotalProdutos
             // 
             this.labelValorTotalProdutos.AutoSize = true;
@@ -343,6 +380,7 @@
             this.btnCatalogoProdutos.TabIndex = 67;
             this.btnCatalogoProdutos.Text = "Imprimir catálogo de produtos";
             this.btnCatalogoProdutos.UseVisualStyleBackColor = true;
+            this.btnCatalogoProdutos.Click += new System.EventHandler(this.btnCatalogoProdutos_Click);
             // 
             // cmbFornecedoresProdutos
             // 
@@ -481,6 +519,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.tabPage3.Controls.Add(this.dataGridViewFornecedor);
             this.tabPage3.Controls.Add(this.btnConsultarFornecedor);
             this.tabPage3.Controls.Add(this.txtEmailFornecedor);
             this.tabPage3.Controls.Add(this.txtcnpjFornecedor);
@@ -501,6 +540,15 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             // 
+            // dataGridViewFornecedor
+            // 
+            this.dataGridViewFornecedor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewFornecedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFornecedor.Location = new System.Drawing.Point(458, 3);
+            this.dataGridViewFornecedor.Name = "dataGridViewFornecedor";
+            this.dataGridViewFornecedor.Size = new System.Drawing.Size(309, 374);
+            this.dataGridViewFornecedor.TabIndex = 28;
+            // 
             // btnConsultarFornecedor
             // 
             this.btnConsultarFornecedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -510,6 +558,7 @@
             this.btnConsultarFornecedor.TabIndex = 27;
             this.btnConsultarFornecedor.Text = "Consultar Fornecedores";
             this.btnConsultarFornecedor.UseVisualStyleBackColor = true;
+            this.btnConsultarFornecedor.Click += new System.EventHandler(this.btnConsultarFornecedor_Click);
             // 
             // txtEmailFornecedor
             // 
@@ -620,6 +669,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Controls.Add(this.btnExibirClientes);
             this.tabPage2.Controls.Add(this.txttelefone1Cliente);
             this.tabPage2.Controls.Add(this.txttelefone2Cliente);
@@ -642,6 +692,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(546, 22);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(342, 270);
+            this.dataGridView1.TabIndex = 46;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnExibirClientes
             // 
@@ -797,7 +856,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.dataGridViewQuartos);
+            this.tabPage1.Controls.Add(this.btnExibirQuartos);
             this.tabPage1.Controls.Add(this.cmbTipoQuarto);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.label2);
@@ -814,15 +874,24 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // dataGridViewQuartos
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(440, 327);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(118, 23);
-            this.button2.TabIndex = 56;
-            this.button2.Text = "Exibir Quartos";
-            this.button2.UseVisualStyleBackColor = true;
+            this.dataGridViewQuartos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewQuartos.Location = new System.Drawing.Point(488, 0);
+            this.dataGridViewQuartos.Name = "dataGridViewQuartos";
+            this.dataGridViewQuartos.Size = new System.Drawing.Size(437, 427);
+            this.dataGridViewQuartos.TabIndex = 57;
+            // 
+            // btnExibirQuartos
+            // 
+            this.btnExibirQuartos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExibirQuartos.Location = new System.Drawing.Point(75, 306);
+            this.btnExibirQuartos.Name = "btnExibirQuartos";
+            this.btnExibirQuartos.Size = new System.Drawing.Size(118, 23);
+            this.btnExibirQuartos.TabIndex = 56;
+            this.btnExibirQuartos.Text = "Exibir Quartos";
+            this.btnExibirQuartos.UseVisualStyleBackColor = true;
+            this.btnExibirQuartos.Click += new System.EventHandler(this.btnExibirQuartos_Click);
             // 
             // cmbTipoQuarto
             // 
@@ -830,7 +899,7 @@
             this.cmbTipoQuarto.Items.AddRange(new object[] {
             "Solteiro",
             "Casal"});
-            this.cmbTipoQuarto.Location = new System.Drawing.Point(469, 180);
+            this.cmbTipoQuarto.Location = new System.Drawing.Point(160, 127);
             this.cmbTipoQuarto.Name = "cmbTipoQuarto";
             this.cmbTipoQuarto.Size = new System.Drawing.Size(121, 21);
             this.cmbTipoQuarto.TabIndex = 54;
@@ -839,7 +908,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(376, 225);
+            this.label1.Location = new System.Drawing.Point(6, 185);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 15);
             this.label1.TabIndex = 53;
@@ -849,7 +918,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(357, 186);
+            this.label2.Location = new System.Drawing.Point(6, 127);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 15);
             this.label2.TabIndex = 52;
@@ -859,7 +928,7 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(334, 148);
+            this.label40.Location = new System.Drawing.Point(6, 80);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(129, 15);
             this.label40.TabIndex = 51;
@@ -867,14 +936,14 @@
             // 
             // txtValorDiaria
             // 
-            this.txtValorDiaria.Location = new System.Drawing.Point(469, 220);
+            this.txtValorDiaria.Location = new System.Drawing.Point(160, 171);
             this.txtValorDiaria.Name = "txtValorDiaria";
             this.txtValorDiaria.Size = new System.Drawing.Size(121, 20);
             this.txtValorDiaria.TabIndex = 50;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(469, 143);
+            this.textBox2.Location = new System.Drawing.Point(160, 75);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(121, 20);
             this.textBox2.TabIndex = 47;
@@ -882,7 +951,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(440, 267);
+            this.button4.Location = new System.Drawing.Point(75, 254);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(118, 23);
             this.button4.TabIndex = 49;
@@ -894,7 +963,7 @@
             // 
             this.label52.AutoSize = true;
             this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(423, 81);
+            this.label52.Location = new System.Drawing.Point(26, 28);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(167, 20);
             this.label52.TabIndex = 48;
@@ -902,6 +971,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.dataGridViewReservas);
             this.tabPage6.Controls.Add(this.btnConsultarReservas);
             this.tabPage6.Controls.Add(this.btncadastrarReservas);
             this.tabPage6.Controls.Add(this.dateTimeSaidaReserva);
@@ -930,6 +1000,7 @@
             this.btnConsultarReservas.TabIndex = 41;
             this.btnConsultarReservas.Text = "Consultar Reservas";
             this.btnConsultarReservas.UseVisualStyleBackColor = true;
+            this.btnConsultarReservas.Click += new System.EventHandler(this.btnConsultarReservas_Click);
             // 
             // btncadastrarReservas
             // 
@@ -1120,7 +1191,6 @@
             this.label35.Size = new System.Drawing.Size(102, 15);
             this.label35.TabIndex = 54;
             this.label35.Text = "Id do vendedor";
-            this.label35.Click += new System.EventHandler(this.label35_Click);
             // 
             // label34
             // 
@@ -1227,15 +1297,16 @@
             // 
             // tabPage10
             // 
-            this.tabPage10.Controls.Add(this.btnConsultarFuncionarios);
-            this.tabPage10.Controls.Add(this.label20);
-            this.tabPage10.Controls.Add(this.btnExcluirUsuario);
-            this.tabPage10.Controls.Add(this.label46);
+            this.tabPage10.Controls.Add(this.dataGridViewUsuarios);
             this.tabPage10.Controls.Add(this.label47);
             this.tabPage10.Controls.Add(this.label48);
             this.tabPage10.Controls.Add(this.txtTelefoneUsuario);
             this.tabPage10.Controls.Add(this.txtSenhaUsuario);
             this.tabPage10.Controls.Add(this.txtEmailUsuario);
+            this.tabPage10.Controls.Add(this.label41);
+            this.tabPage10.Controls.Add(this.btnConsultarFuncionarios);
+            this.tabPage10.Controls.Add(this.label20);
+            this.tabPage10.Controls.Add(this.label46);
             this.tabPage10.Controls.Add(this.txtRGUsuario);
             this.tabPage10.Controls.Add(this.txtEnderecoUsuario);
             this.tabPage10.Controls.Add(this.txtCPFUsuario);
@@ -1245,7 +1316,6 @@
             this.tabPage10.Controls.Add(this.label44);
             this.tabPage10.Controls.Add(this.label43);
             this.tabPage10.Controls.Add(this.label42);
-            this.tabPage10.Controls.Add(this.label41);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
@@ -1257,108 +1327,58 @@
             // btnConsultarFuncionarios
             // 
             this.btnConsultarFuncionarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsultarFuncionarios.Location = new System.Drawing.Point(35, 320);
+            this.btnConsultarFuncionarios.Location = new System.Drawing.Point(35, 376);
             this.btnConsultarFuncionarios.Name = "btnConsultarFuncionarios";
             this.btnConsultarFuncionarios.Size = new System.Drawing.Size(118, 40);
             this.btnConsultarFuncionarios.TabIndex = 73;
             this.btnConsultarFuncionarios.Text = "Consultar Funcionários";
             this.btnConsultarFuncionarios.UseVisualStyleBackColor = true;
+            this.btnConsultarFuncionarios.Click += new System.EventHandler(this.btnConsultarFuncionarios_Click);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(364, 27);
+            this.label20.Location = new System.Drawing.Point(263, 14);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(243, 25);
             this.label20.TabIndex = 72;
             this.label20.Text = "Tela do Administrador";
             // 
-            // btnExcluirUsuario
-            // 
-            this.btnExcluirUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcluirUsuario.Location = new System.Drawing.Point(35, 366);
-            this.btnExcluirUsuario.Name = "btnExcluirUsuario";
-            this.btnExcluirUsuario.Size = new System.Drawing.Size(118, 23);
-            this.btnExcluirUsuario.TabIndex = 71;
-            this.btnExcluirUsuario.Text = "Excluir Usuário";
-            this.btnExcluirUsuario.UseVisualStyleBackColor = true;
-            // 
             // label46
             // 
             this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(500, 158);
+            this.label46.Location = new System.Drawing.Point(20, 99);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(49, 15);
             this.label46.TabIndex = 70;
             this.label46.Text = "Nome:";
             // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(717, 227);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(52, 15);
-            this.label47.TabIndex = 69;
-            this.label47.Text = "Senha:";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(717, 200);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(48, 15);
-            this.label48.TabIndex = 68;
-            this.label48.Text = "Email:";
-            // 
-            // txtTelefoneUsuario
-            // 
-            this.txtTelefoneUsuario.Location = new System.Drawing.Point(811, 174);
-            this.txtTelefoneUsuario.Name = "txtTelefoneUsuario";
-            this.txtTelefoneUsuario.Size = new System.Drawing.Size(100, 20);
-            this.txtTelefoneUsuario.TabIndex = 67;
-            // 
-            // txtSenhaUsuario
-            // 
-            this.txtSenhaUsuario.Location = new System.Drawing.Point(811, 226);
-            this.txtSenhaUsuario.Name = "txtSenhaUsuario";
-            this.txtSenhaUsuario.Size = new System.Drawing.Size(100, 20);
-            this.txtSenhaUsuario.TabIndex = 66;
-            // 
-            // txtEmailUsuario
-            // 
-            this.txtEmailUsuario.Location = new System.Drawing.Point(811, 200);
-            this.txtEmailUsuario.Name = "txtEmailUsuario";
-            this.txtEmailUsuario.Size = new System.Drawing.Size(100, 20);
-            this.txtEmailUsuario.TabIndex = 65;
-            // 
             // txtRGUsuario
             // 
-            this.txtRGUsuario.Location = new System.Drawing.Point(564, 182);
+            this.txtRGUsuario.Location = new System.Drawing.Point(114, 129);
             this.txtRGUsuario.Name = "txtRGUsuario";
             this.txtRGUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtRGUsuario.TabIndex = 62;
             // 
             // txtEnderecoUsuario
             // 
-            this.txtEnderecoUsuario.Location = new System.Drawing.Point(811, 148);
+            this.txtEnderecoUsuario.Location = new System.Drawing.Point(114, 200);
             this.txtEnderecoUsuario.Name = "txtEnderecoUsuario";
             this.txtEnderecoUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtEnderecoUsuario.TabIndex = 60;
             // 
             // txtCPFUsuario
             // 
-            this.txtCPFUsuario.Location = new System.Drawing.Point(564, 215);
+            this.txtCPFUsuario.Location = new System.Drawing.Point(114, 163);
             this.txtCPFUsuario.Name = "txtCPFUsuario";
             this.txtCPFUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtCPFUsuario.TabIndex = 58;
             // 
             // txtnomeUsuario
             // 
-            this.txtnomeUsuario.Location = new System.Drawing.Point(564, 153);
+            this.txtnomeUsuario.Location = new System.Drawing.Point(114, 98);
             this.txtnomeUsuario.Name = "txtnomeUsuario";
             this.txtnomeUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtnomeUsuario.TabIndex = 56;
@@ -1366,7 +1386,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(666, 294);
+            this.button1.Location = new System.Drawing.Point(35, 336);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(118, 23);
             this.button1.TabIndex = 64;
@@ -1378,7 +1398,7 @@
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(380, 89);
+            this.label45.Location = new System.Drawing.Point(31, 58);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(183, 20);
             this.label45.TabIndex = 63;
@@ -1388,7 +1408,7 @@
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(500, 187);
+            this.label44.Location = new System.Drawing.Point(20, 129);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(31, 15);
             this.label44.TabIndex = 61;
@@ -1398,7 +1418,7 @@
             // 
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(717, 148);
+            this.label43.Location = new System.Drawing.Point(20, 205);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(72, 15);
             this.label43.TabIndex = 59;
@@ -1408,38 +1428,78 @@
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(500, 226);
+            this.label42.Location = new System.Drawing.Point(20, 163);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(37, 15);
             this.label42.TabIndex = 57;
             this.label42.Text = "CPF:";
             // 
+            // dataGridViewReservas
+            // 
+            this.dataGridViewReservas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewReservas.Location = new System.Drawing.Point(408, 0);
+            this.dataGridViewReservas.Name = "dataGridViewReservas";
+            this.dataGridViewReservas.Size = new System.Drawing.Size(507, 429);
+            this.dataGridViewReservas.TabIndex = 42;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(20, 288);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(52, 15);
+            this.label47.TabIndex = 79;
+            this.label47.Text = "Senha:";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(20, 261);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(48, 15);
+            this.label48.TabIndex = 78;
+            this.label48.Text = "Email:";
+            // 
+            // txtTelefoneUsuario
+            // 
+            this.txtTelefoneUsuario.Location = new System.Drawing.Point(114, 235);
+            this.txtTelefoneUsuario.Name = "txtTelefoneUsuario";
+            this.txtTelefoneUsuario.Size = new System.Drawing.Size(100, 20);
+            this.txtTelefoneUsuario.TabIndex = 77;
+            // 
+            // txtSenhaUsuario
+            // 
+            this.txtSenhaUsuario.Location = new System.Drawing.Point(114, 287);
+            this.txtSenhaUsuario.Name = "txtSenhaUsuario";
+            this.txtSenhaUsuario.Size = new System.Drawing.Size(100, 20);
+            this.txtSenhaUsuario.TabIndex = 76;
+            // 
+            // txtEmailUsuario
+            // 
+            this.txtEmailUsuario.Location = new System.Drawing.Point(114, 261);
+            this.txtEmailUsuario.Name = "txtEmailUsuario";
+            this.txtEmailUsuario.Size = new System.Drawing.Size(100, 20);
+            this.txtEmailUsuario.TabIndex = 75;
+            // 
             // label41
             // 
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(717, 174);
+            this.label41.Location = new System.Drawing.Point(20, 235);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(67, 15);
-            this.label41.TabIndex = 55;
+            this.label41.TabIndex = 74;
             this.label41.Text = "Telefone:";
             // 
-            // dateTimeDataPSaidaCheckin
+            // dataGridViewUsuarios
             // 
-            this.dateTimeDataPSaidaCheckin.Location = new System.Drawing.Point(167, 128);
-            this.dateTimeDataPSaidaCheckin.Name = "dateTimeDataPSaidaCheckin";
-            this.dateTimeDataPSaidaCheckin.Size = new System.Drawing.Size(229, 20);
-            this.dateTimeDataPSaidaCheckin.TabIndex = 28;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(31, 128);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 15);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "Data Prevista Saida: ";
+            this.dataGridViewUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUsuarios.Location = new System.Drawing.Point(459, 45);
+            this.dataGridViewUsuarios.Name = "dataGridViewUsuarios";
+            this.dataGridViewUsuarios.Size = new System.Drawing.Size(469, 384);
+            this.dataGridViewUsuarios.TabIndex = 80;
             // 
             // Form1
             // 
@@ -1454,13 +1514,17 @@
             this.tabPage5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProdutos)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFornecedor)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.CadastroCliente.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuartos)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.tabPage8.ResumeLayout(false);
@@ -1469,6 +1533,8 @@
             this.tabPage9.PerformLayout();
             this.tabPage10.ResumeLayout(false);
             this.tabPage10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1540,7 +1606,7 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnExibirQuartos;
         private System.Windows.Forms.ComboBox cmbTipoQuarto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -1580,13 +1646,7 @@
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.Button btnConsultarFuncionarios;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button btnExcluirUsuario;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox txtTelefoneUsuario;
-        private System.Windows.Forms.TextBox txtSenhaUsuario;
-        private System.Windows.Forms.TextBox txtEmailUsuario;
         private System.Windows.Forms.TextBox txtRGUsuario;
         private System.Windows.Forms.TextBox txtEnderecoUsuario;
         private System.Windows.Forms.TextBox txtCPFUsuario;
@@ -1596,10 +1656,21 @@
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimeDataPSaidaCheckin;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewFornecedor;
+        private System.Windows.Forms.DataGridView dataGridViewProdutos;
+        private System.Windows.Forms.DataGridView dataGridViewQuartos;
+        private System.Windows.Forms.DataGridView dataGridViewReservas;
+        private System.Windows.Forms.DataGridView dataGridViewUsuarios;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.TextBox txtTelefoneUsuario;
+        private System.Windows.Forms.TextBox txtSenhaUsuario;
+        private System.Windows.Forms.TextBox txtEmailUsuario;
+        private System.Windows.Forms.Label label41;
     }
 }
 

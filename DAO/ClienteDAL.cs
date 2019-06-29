@@ -151,8 +151,8 @@ namespace Metadata
             cliente.rg = Convert.ToString(reader["RG"]);
             cliente.telefone1 = Convert.ToString(reader["TELEFONE_1"]);
             cliente.telefone2 = Convert.ToString(reader["TELEFONE_2"]);
-            cliente.nome = (string)reader["Nome"];
             cliente.email = Convert.ToString(reader["EMAIL"]);
+            cliente.usuarioID = Usuario.UsuarioLogado.id;
             return cliente;
         }
 
@@ -162,22 +162,18 @@ namespace Metadata
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM CLIENTES";
             command.Connection = connection;
             List<Cliente> list = new List<Cliente>();
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
                     while (reader.Read())
                     {
                         list.Add(instanciarcliente(reader));
                     }
                     return list;
-                }
-                return null;
-
             }
             catch (SqlException ex)
             {

@@ -68,6 +68,11 @@ namespace DAL
             }
         }
 
+        private SaidaProdutos instanciarentradaProdutos(SqlDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<SaidaProdutos> LerTodos()
         {
 

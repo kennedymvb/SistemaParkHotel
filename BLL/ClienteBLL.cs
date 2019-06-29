@@ -195,7 +195,7 @@ namespace BLL
         public Cliente LerPorID(int id)
         {
 
-            return clienteDal.LerPorID(cliente.id);
+            return clienteDal.LerPorID(id);
 
         }
         public List<Cliente> LerTodos()

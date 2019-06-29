@@ -57,21 +57,7 @@ namespace BLL
             }
             #endregion
 
-            #region RG
-            if (string.IsNullOrWhiteSpace(fornecedor.rg))
-            {
-                erros.Add("rg deve ser informado.");
-            }
-            else
-            {
-                fornecedor.rg = fornecedor.rg.Trim();
-                fornecedor.rg = fornecedor.rg.Replace(".", "").Replace("/", "").Replace("-", "");
-                if (fornecedor.rg.Length < 5 || fornecedor.rg.Length > 9)
-                {
-                    erros.Add("rg deve conter entre 5 e 9 caracteres.");
-                }
-            }
-            #endregion
+            
             #region Nome
             if (string.IsNullOrWhiteSpace(fornecedor.nomeContato))
             {

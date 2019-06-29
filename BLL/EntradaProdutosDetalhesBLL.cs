@@ -30,20 +30,7 @@ namespace BLL
             return sb.ToString();
         }
 
-        public string atualizar(EntradaProdutosDetalhes Entrada)
-        {
-            if (this.Validar(Entrada))
-            {
-                return entradaDal.Atualizar(Entrada);
-            }
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < erros.Count(); i++)
-            {
-                sb.Append(erros[i]);
-            }
-            return sb.ToString();
-        }
-
+        
         public bool Validar(EntradaProdutosDetalhes Entrada)
         {
             if (Entrada.valorUnitario < 0)
