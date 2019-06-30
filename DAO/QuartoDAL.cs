@@ -141,21 +141,19 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM QUARTOS";
+
             command.Connection = connection;
             List<Quarto> list = new List<Quarto>();
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
                     while (reader.Read())
                     {
                         list.Add(instanciarquarto(reader));
                     }
-                    return list;
-                }
-                return null;
+                return list;
 
             }
             catch (SqlException e)

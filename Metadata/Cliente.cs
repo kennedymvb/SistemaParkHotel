@@ -26,13 +26,12 @@ namespace Metadata
             this.telefone2 = Tel2;
             this.email = Email;
             this.usuarioID = IDusuario;
-
         }
         public Cliente()
         {
 
         }
-
+      
 
 
 

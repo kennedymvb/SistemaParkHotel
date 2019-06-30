@@ -18,8 +18,9 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
-            command.CommandText = "INSERT INTO USUARIOS (USUARIO_ID, DATA_ENTRADA, VALORTOTAL) VALUES (@USUARIO_ID, @DATA_ENTRADA, @VALORTOTAL)";
+            command.CommandText = "INSERT INTO ENTRADAPRODUTOS (USUARIO_ID, DATA_ENTRADA, VALORTOTAL) VALUES (@USUARIO_ID, @DATA_ENTRADA, @VALORTOTAL)";
             command.Parameters.AddWithValue("@USUARIO_ID", entradaProdutos.usuarioId);
             command.Parameters.AddWithValue("@DATA_ENTRADA", entradaProdutos.dataEntrada);
             command.Parameters.AddWithValue("@VALORTOTAL", entradaProdutos.valorTotal);
@@ -56,21 +57,18 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM ENTRADAPRODUTOS";
             command.Connection = connection;
             List<EntradaProdutos> list = new List<EntradaProdutos>();
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
                     while (reader.Read())
                     {
                         list.Add(instanciarentradaProdutos(reader));
                     }
                     return list;
-                }
-                return null;
             }
             catch (SqlException ex)
             {
@@ -80,7 +78,6 @@ namespace DAL
             {
                 connection.Close();
             }
-            return null;
 
         }
 

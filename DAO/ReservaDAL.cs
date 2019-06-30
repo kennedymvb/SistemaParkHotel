@@ -147,6 +147,8 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM RESERVAS";
+
             command.Connection = connection;
             List<Reserva> list = new List<Reserva>();
             try

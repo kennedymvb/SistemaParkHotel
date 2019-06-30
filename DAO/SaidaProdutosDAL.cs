@@ -80,6 +80,8 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM SAIDAPRODUTOS";
+
             command.Connection = connection;
             List<SaidaProdutos> list = new List<SaidaProdutos>();
             try

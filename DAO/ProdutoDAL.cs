@@ -19,13 +19,14 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
-            command.CommandText = "UPDATE PRODUTOS SET ID = @ID, NOME = @NOME, DESCRICAO = @DESCRICAO, PRECO = @PRECO, QTD_ESTOQUE = @QTD_ESTOQUE, USUARIO_ID = @USUARIO_ID";
+
+            command.CommandText = "UPDATE PRODUTOS SET  NOME = @NOME, DESCRICAO = @DESCRICAO, PRECO = @PRECO, USUARIO_ID = @USUARIO_ID where ID=@ID";
             command.Parameters.AddWithValue("@ID", produto.id);
             command.Parameters.AddWithValue("@NOME", produto.nome);
             command.Parameters.AddWithValue("@DESCRICAO", produto.descricao);
             command.Parameters.AddWithValue("@PRECO", produto.preco);
-            command.Parameters.AddWithValue("@QTD_ESTOQUE", produto.qtd_estoque);
             command.Parameters.AddWithValue("@USUARIO_ID", produto.usuarioId);
 
             try
@@ -41,12 +42,36 @@ namespace DAL
             return "atualizado com sucesso";
         }
 
+        public void AtualizarQuantidade(Produto produto)
+        {
+            string stringConexao = StringConexao.GetStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+
+            command.CommandText = "UPDATE PRODUTOS SET  QTD_ESTOQUE = @QTD_ESTOQUE where ID=@ID";
+            command.Parameters.AddWithValue("@ID", produto.id);
+            command.Parameters.AddWithValue("@QTD_ESTOQUE", produto.qtdEstoque);
+
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("erro no acesso ao banco: "+e.Message);
+            }
+
+        }
+
         public string Excluir(Produto produto)
         {
             string stringConexao = StringConexao.GetStringConexao();
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
             command.CommandText = "delete from PRODUTOS WHERE ID= @ID ";
             command.Parameters.AddWithValue("@ID", produto.id);
@@ -73,12 +98,12 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
-            command.CommandText = "INSERT INTO PRODUTOS (NOME, DESCRICAO, PRECO, QTD_ESTOQUE, USUARIO_ID) VALUES (@NOME, @DESCRICAO, @PRECO, @QTD_ESTOQUE, @USUARIO_ID)";
+            command.CommandText = "INSERT INTO PRODUTOS (NOME, DESCRICAO, PRECO, USUARIO_ID, QTD_ESTOQUE) VALUES (@NOME, @DESCRICAO, @PRECO, @USUARIO_ID, 0)";
             command.Parameters.AddWithValue("@NOME", produto.nome);
             command.Parameters.AddWithValue("@DESCRICAO", produto.descricao);
             command.Parameters.AddWithValue("@PRECO", produto.preco);
-            command.Parameters.AddWithValue("@QTD_ESTOQUE", produto.qtd_estoque);
             command.Parameters.AddWithValue("@USUARIO_ID", produto.usuarioId);
 
             try
@@ -137,7 +162,7 @@ namespace DAL
             produto.nome = Convert.ToString(reader["NOME"]);
             produto.descricao = Convert.ToString(reader["DESCRICAO"]);
             produto.preco = Convert.ToDouble(reader["PRECO"]);
-            produto.qtd_estoque = Convert.ToInt32(reader["QTD_ESTOQUE"]);
+            produto.qtdEstoque = Convert.ToInt32(reader["QTD_ESTOQUE"]);
             produto.usuarioId = Convert.ToInt32(reader["USUARIO_ID"]);
 
             return produto;
@@ -148,21 +173,19 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM PRODUTOS";
+
             command.Connection = connection;
             List<Produto> list = new List<Produto>();
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
                     while (reader.Read())
                     {
                         list.Add(instanciarproduto(reader));
                     }
                     return list;
-                }
-                return null;
 
             }
             catch (SqlException e)

@@ -79,5 +79,9 @@ namespace BLL
         {
             return ProdutoDal.LerTodos();
         }
+        public void atualizarQuantidadeEstoque(Produto produto)
+        {
+            ProdutoDal.AtualizarQuantidade(produto);
+        }
     }
 }

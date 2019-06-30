@@ -24,6 +24,7 @@ namespace WFPresentationLayer
         ReservaBLL ReservaBLL = new ReservaBLL();
         CheckinBLL checkinBLL = new CheckinBLL();
         CheckoutBLL checkoutBLL = new CheckoutBLL();
+        EntradaProdutosBLL entradaProdutosBLL = new EntradaProdutosBLL();
 
         public Form1()
         {
@@ -33,21 +34,26 @@ namespace WFPresentationLayer
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            esconderDataGridViews();
+            
+            if (!Usuario.UsuarioLogado.isAdmin)
+            {
+                this.TabAdministrador.Dispose();
+            }
             MessageBox.Show("Bem-vindo " + Usuario.UsuarioLogado.nome);
         }
+
+        
 
         #region Operações Cliente
         private void btnCadastroCliente_Click(object sender, EventArgs e)
         {
             Cliente cliente = InstanciarCliente();
             MessageBox.Show(clienteBLL.Inserir(cliente));
+            this.dataGridView1.Show();
             dataGridView1.DataSource = clienteBLL.LerTodos();
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private Cliente InstanciarCliente()
         {
@@ -63,7 +69,28 @@ namespace WFPresentationLayer
 
         private void btnExibirClientes_Click(object sender, EventArgs e)
         {
+            this.dataGridView1.Show();
             dataGridView1.DataSource=clienteBLL.LerTodos();
+        }
+
+        int idCliente;//global
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idCliente= (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+            txtnomeCliente.Text = (string)dataGridView1.Rows[e.RowIndex].Cells[1].Value;
+            txtrgCliente.Text = (string)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
+            txtcpfCliente.Text = (string)dataGridView1.Rows[e.RowIndex].Cells[3].Value;
+            txttelefone1Cliente.Text = (string)dataGridView1.Rows[e.RowIndex].Cells[4].Value;
+            txttelefone2Cliente.Text = (string)dataGridView1.Rows[e.RowIndex].Cells[5].Value;
+            txtemailCliente.Text = (string)dataGridView1.Rows[e.RowIndex].Cells[6].Value;
+        }
+
+        private void BtnAtualizarClientes_Click(object sender, EventArgs e)
+        {
+            Cliente clienteAtualizar = InstanciarCliente();
+            clienteAtualizar.id = idCliente;
+            MessageBox.Show(clienteBLL.Atualizar(clienteAtualizar));
+            dataGridView1.DataSource = clienteBLL.LerTodos();
         }
         #endregion
 
@@ -74,6 +101,7 @@ namespace WFPresentationLayer
             fornecedor = InstanciarFornecedor();
             MessageBox.Show(fornecedorBLL.inserir(fornecedor));
             dataGridViewFornecedor.DataSource = fornecedorBLL.LerTodos();
+            this.dataGridViewFornecedor.Show();
 
         }
 
@@ -92,16 +120,36 @@ namespace WFPresentationLayer
         private void btnConsultarFornecedor_Click(object sender, EventArgs e)
         {
             dataGridViewFornecedor.DataSource = fornecedorBLL.LerTodos();
+            this.dataGridViewFornecedor.Show();
+        }
+        int idFornecedor;
+        private void dataGridViewFornecedor_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            idFornecedor = (int)dataGridViewFornecedor.Rows[e.RowIndex].Cells[0].Value;
+            txtrazaoSocial.Text = (string)dataGridViewFornecedor.Rows[e.RowIndex].Cells[1].Value;
+            txtcnpjFornecedor.Text = (string)dataGridViewFornecedor.Rows[e.RowIndex].Cells[2].Value;
+            txtNomecontatoFornecedor.Text = (string)dataGridViewFornecedor.Rows[e.RowIndex].Cells[6].Value;
+            txtTelefoneFornecedor.Text = (string)dataGridViewFornecedor.Rows[e.RowIndex].Cells[3].Value;
+            txtEmailFornecedor.Text = (string)dataGridViewFornecedor.Rows[e.RowIndex].Cells[4].Value;
+        }
+        
+        private void btnAtualizarFornecedor_Click(object sender, EventArgs e)
+        {
+            Fornecedor fornecedorAtualizar = InstanciarFornecedor();
+            fornecedorAtualizar.id = idFornecedor;
+            MessageBox.Show(fornecedorBLL.Atualizar(fornecedorAtualizar));
+            dataGridViewFornecedor.DataSource = fornecedorBLL.LerTodos();
         }
         #endregion
 
-        #region Operações produto
+        #region produto
+
         private void btnCadastroProdutos_Click(object sender, EventArgs e)
         {
             Produto produto = new Produto();
             produto = InstanciarProduto();
             MessageBox.Show(produtoBLL.inserir(produto));
-            dataGridViewProdutos.DataSource = produtoBLL.LerTodos();
+            exibirProdutos();
         }
 
         private Produto InstanciarProduto()
@@ -110,15 +158,56 @@ namespace WFPresentationLayer
             string descricao = txtdescricaoproduto.Text;
             double preco = Double.Parse(txtvalorunitarioproduto.Text); 
             int idUsuario = Usuario.UsuarioLogado.id;
-            int qtdEstoque = Convert.ToInt32(txtQuantidadeCadastroProduto.Text);
-            Produto produto = new Produto(nome, descricao, preco, idUsuario, qtdEstoque);
+            Produto produto = new Produto(nome, descricao, preco, idUsuario, 0);
             return produto;
         }
 
         private void btnCatalogoProdutos_Click(object sender, EventArgs e)
         {
-            dataGridViewProdutos.DataSource = produtoBLL.LerTodos();
+            exibirProdutos();
         }
+
+        private void exibirProdutos()
+        {
+            dataGridViewProdutos.DataSource = produtoBLL.LerTodos();
+            this.dataGridViewProdutos.Show();
+        }
+        #endregion
+
+        #region Entrada de Produtos
+
+
+        private void btnCadastrarEntrada_Click_1(object sender, EventArgs e)
+        {
+            EntradaProdutos entradaProduto = InstanciarEntradaProdutos();
+            entradaProdutosBLL.inserir(entradaProduto);
+            exibirEntradas();
+            FormEntradaProdutosDetalhes frm = new FormEntradaProdutosDetalhes();
+            this.Hide();
+
+            frm.ShowDialog();
+
+
+        }
+
+        private EntradaProdutos InstanciarEntradaProdutos()
+        {
+            DateTime dataEntrada = dateTimeEntrada.Value;
+            double valorTotal = double.Parse(txtValorTotalLote.Text);
+            return new EntradaProdutos(Usuario.UsuarioLogado.id, dataEntrada, valorTotal);
+        }
+
+        private void btnExibirEntradas_Click(object sender, EventArgs e)
+        {
+            exibirEntradas();
+        }
+        private void exibirEntradas()
+        {
+            dataGridViewEntradaProdutos.DataSource = entradaProdutosBLL.LerTodos();
+            this.dataGridViewProdutos.Show();
+        }
+
+
         #endregion
 
         #region Operações Quarto
@@ -141,7 +230,15 @@ namespace WFPresentationLayer
         }
         private void btnExibirQuartos_Click(object sender, EventArgs e)
         {
-            dataGridViewQuartos.DataSource = quartoBLL.LerTodos();
+            try
+            {
+                dataGridViewQuartos.DataSource = quartoBLL.LerTodos();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         #endregion
 
@@ -151,8 +248,8 @@ namespace WFPresentationLayer
         {
             Usuario usuario = instanciarUsuario();
             MessageBox.Show(usuarioBLL.Inserir(usuario));
-            dataGridViewUsuarios.DataSource = usuarioBLL.LerTodos();
-
+            dataGridViewAdministrador.DataSource = usuarioBLL.LerTodos();
+            this.dataGridViewAdministrador.Show();
         }
 
         private Usuario instanciarUsuario()
@@ -169,7 +266,28 @@ namespace WFPresentationLayer
         }
         private void btnConsultarFuncionarios_Click(object sender, EventArgs e)
         {
-            dataGridViewUsuarios.DataSource = usuarioBLL.LerTodos();
+            dataGridViewAdministrador.DataSource = usuarioBLL.LerTodos();
+            this.dataGridViewAdministrador.Show();
+
+        }
+        int idUsuario;
+        private void dataGridViewAdministrador_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idUsuario = (int)dataGridViewAdministrador.Rows[e.RowIndex].Cells[0].Value;
+            txtnomeUsuario.Text = (string)dataGridViewAdministrador.Rows[e.RowIndex].Cells[1].Value;
+            txtRGUsuario.Text = (string)dataGridViewAdministrador.Rows[e.RowIndex].Cells[2].Value;
+            txtCPFUsuario.Text = (string)dataGridViewAdministrador.Rows[e.RowIndex].Cells[3].Value;
+            txtEnderecoUsuario.Text = (string)dataGridViewAdministrador.Rows[e.RowIndex].Cells[4].Value;
+            txtTelefoneUsuario.Text = (string)dataGridViewAdministrador.Rows[e.RowIndex].Cells[5].Value;
+            txtEmailUsuario.Text = (string)dataGridViewAdministrador.Rows[e.RowIndex].Cells[6].Value;
+            txtSenhaUsuario.Text = (string)dataGridViewAdministrador.Rows[e.RowIndex].Cells[7].Value;
+        }
+        private void atualizarUsuario_Click(object sender, EventArgs e)
+        {
+            Usuario usuarioAtualizar = instanciarUsuario();
+            usuarioAtualizar.id = idUsuario;
+            MessageBox.Show(usuarioBLL.Atualizar(usuarioAtualizar));
+            dataGridViewAdministrador.DataSource = usuarioBLL.LerTodos();
         }
         #endregion
 
@@ -199,6 +317,7 @@ namespace WFPresentationLayer
             Reserva reserva = InstanciarReserva();
             MessageBox.Show(ReservaBLL.inserir(reserva));
             dataGridViewReservas.DataSource = ReservaBLL.LerTodos();
+            this.dataGridViewReservas.Show();
         }
 
         private Reserva InstanciarReserva()
@@ -213,7 +332,13 @@ namespace WFPresentationLayer
         }
         private void btnConsultarReservas_Click(object sender, EventArgs e)
         {
-            dataGridViewReservas.DataSource = ReservaBLL.LerTodos();
+            
+                dataGridViewReservas.DataSource = ReservaBLL.LerTodos();
+            
+            
+            
+            this.dataGridViewReservas.Show();
+
         }
         #endregion
 
@@ -272,12 +397,15 @@ namespace WFPresentationLayer
             return new Checkin(idUsuario, dataEntrada, dataPrevistaSaida, idQuarto, idCliente, idReserva);
 
         }
-
         #endregion
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void esconderDataGridViews()
         {
-
+            this.dataGridView1.Hide();
+            this.dataGridViewFornecedor.Hide();
+            this.dataGridViewProdutos.Hide();
+            this.dataGridViewQuartos.Hide();
+            this.dataGridViewReservas.Hide();
+            this.dataGridViewAdministrador.Hide();
         }
 
         

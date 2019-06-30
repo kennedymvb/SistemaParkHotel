@@ -17,8 +17,9 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
-            command.CommandText = "UPDATE USUARIOS SET ID = @ID, NOME = @NOME, RG = @RG, CPF = @CPF, ENDERECO = @ENDERECO, TELEFONE = @TELEFONE, EMAIL = @EMAIL, SENHA = @SENHA, IS_ADMIN = @IS_ADMIN  ";
+            command.CommandText = "UPDATE USUARIOS SET  NOME = @NOME, RG = @RG, CPF = @CPF, ENDERECO = @ENDERECO, TELEFONE = @TELEFONE, EMAIL = @EMAIL, SENHA = @SENHA where ID=@ID  ";
             command.Parameters.AddWithValue("@ID", usuario.id);
             command.Parameters.AddWithValue("@NOME", usuario.nome);
             command.Parameters.AddWithValue("@RG", usuario.rg);
@@ -27,7 +28,6 @@ namespace DAL
             command.Parameters.AddWithValue("@TELEFONE", usuario.telefone);
             command.Parameters.AddWithValue("@EMAIL", usuario.email);
             command.Parameters.AddWithValue("@SENHA", usuario.senha);
-            command.Parameters.AddWithValue("@IS_ADMIN", usuario.isAdmin);
 
             try
             {
@@ -53,10 +53,10 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
             command.CommandText = "SELECT * FROM USUARIOS WHERE EMAIL = @USUARIO AND SENHA = @SENHA";
             command.Parameters.AddWithValue("@USUARIO", usuario);
             command.Parameters.AddWithValue("@SENHA",senha);
-            command.Connection = connection;
             try
             {
                 connection.Open();
@@ -86,6 +86,7 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
             command.CommandText = "delete from USUARIOS WHERE ID= @ID ";
             command.Parameters.AddWithValue("@ID", usuario.id);
@@ -113,6 +114,7 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
             command.CommandText = "INSERT INTO USUARIOS (NOME, RG, CPF, ENDERECO, TELEFONE, EMAIL, SENHA, IS_ADMIN ) VALUES (@NOME, @RG, @CPF, @ENDERECO, @TELEFONE, @EMAIL, @SENHA, @IS_ADMIN)";
             command.Parameters.AddWithValue("@NOME", usuario.nome);
@@ -154,8 +156,6 @@ namespace DAL
             command.CommandText = "SELECT * FROM USUARIOS WHERE ID= @ID";
             command.Parameters.AddWithValue("@ID", id);
             command.Connection = connection;
-
-
             try
             {
                 connection.Open();
@@ -196,31 +196,28 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM USUARIOS";
+
             command.Connection = connection;
             List<Usuario> list = new List<Usuario>();
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
                     while (reader.Read())
                     {
                         list.Add(instanciarusuario(reader));
                     }
                     return list;
-                }
-                return null;
             }
             catch (SqlException ex)
             {
-                
+                throw new Exception("problemas ao acessar o banco: "+ex.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
         }
     }
 }

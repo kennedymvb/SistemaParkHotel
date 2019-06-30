@@ -163,7 +163,7 @@ namespace DAL
             command.Connection = connection;
 
             List<Administrador> list = new List<Administrador>();
-            command.CommandText = "select * from usuarios";
+            command.CommandText = "select * from USUARIOS";
             try
             {
                 connection.Open();

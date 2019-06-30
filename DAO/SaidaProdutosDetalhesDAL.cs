@@ -86,21 +86,19 @@ namespace DAL
         {
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM SAIDAPRODUTOSDETALHES";
+
             command.Connection = connection;
             List<SaidaProdutosDetalhes> list = new List<SaidaProdutosDetalhes>();
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
                     while (reader.Read())
                     {
                         list.Add(instanciarsaidaProdutosDetalhes(reader));
                     }
                     return list;
-                }
-                return null;
 
             }
             catch (SqlException e)

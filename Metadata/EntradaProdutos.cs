@@ -13,10 +13,11 @@ namespace Metadata
         public DateTime dataEntrada { get; set; }
         public double valorTotal { get; set; }
 
-        public EntradaProdutos(int IDusuario, DateTime Dataentrada)
+        public EntradaProdutos(int IDusuario, DateTime Dataentrada, double valorTotal)
         {
             this.usuarioId = IDusuario;
             this.dataEntrada = Dataentrada;
+            this.valorTotal = valorTotal;
         }
         public EntradaProdutos()
         {

@@ -21,16 +21,22 @@ namespace WFPresentationLayer
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
+            logar();
+        }
+
+        private void logar()
+        {
             String senha = txtSenha.Text;
             String email = txtEmail.Text;
             UsuarioBLL usuarioBLL = new UsuarioBLL();
             try
             {
-                if(usuarioBLL.Autenticar(email, senha))
+                if (usuarioBLL.Autenticar(email, senha))
                 {
                     Form1 frm = new Form1();
                     this.Hide();
                     frm.ShowDialog();
+
                     this.Show();
                 }
                 else
@@ -43,7 +49,14 @@ namespace WFPresentationLayer
             {
                 MessageBox.Show(ex.Message);
             }
+        }
 
+        private void txtSenha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                logar();
+            }
         }
     }
 }

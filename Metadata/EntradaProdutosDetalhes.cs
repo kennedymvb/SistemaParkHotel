@@ -15,9 +15,9 @@ namespace Metadata
         public int quantidade { get; set; }
         public double valorUnitario { get; set; }
 
-        public EntradaProdutosDetalhes(int id, int IDentradaproduto, int IDProduto, int IDFornecedor, int Quantidade, double ValorUnitario)
+        public EntradaProdutosDetalhes(int IdEntradaproduto, int IDProduto, int IDFornecedor, int Quantidade, double ValorUnitario)
         {
-            this.idEntradaProduto = IDentradaproduto;
+            this.idEntradaProduto = IdEntradaproduto;
             this.idProduto = IDProduto;
             this.idFornecedor = IDFornecedor;
             this.quantidade = Quantidade;

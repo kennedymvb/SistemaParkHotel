@@ -20,14 +20,16 @@ namespace Metadata
 
             command.Connection = connection;
 
-            command.CommandText = "UPDATE CLIENTES SET NOME=@NOME, RG=@RG, CPF=@CPF, TELEFONE_1=@TELEFONE_1, TELEFONE_2=@TELEFONE_2, EMAIL=@EMAIL, USUARIO_ID=@USUARIO_ID)";
+            command.CommandText = "UPDATE CLIENTES SET NOME=@NOME, RG=@RG, CPF=@CPF, TELEFONE_1=@TELEFONE_1, TELEFONE_2=@TELEFONE_2, EMAIL=@EMAIL WHERE ID=@ID";
+
+            command.Parameters.AddWithValue("@ID", cliente.id);
             command.Parameters.AddWithValue("@NOME", cliente.nome);
             command.Parameters.AddWithValue("@RG", cliente.rg);
             command.Parameters.AddWithValue("@CPF", cliente.cpf);
             command.Parameters.AddWithValue("@TELEFONE_1", cliente.telefone1);
             command.Parameters.AddWithValue("@TELEFONE_2", cliente.telefone2);
             command.Parameters.AddWithValue("@EMAIL", cliente.email);
-            command.Parameters.AddWithValue("@USUARIO_ID", cliente.usuarioID);
+            
 
             try
             {
@@ -169,11 +171,11 @@ namespace Metadata
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        list.Add(instanciarcliente(reader));
-                    }
-                    return list;
+                while (reader.Read())
+                {
+                    list.Add(instanciarcliente(reader));
+                }
+                return list;
             }
             catch (SqlException ex)
             {

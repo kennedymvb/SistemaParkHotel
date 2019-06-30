@@ -90,21 +90,20 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM CHECKOUT";
+
             command.Connection = connection;
             List<Checkout> list = new List<Checkout>();
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
+                
                     while (reader.Read())
                     {
                         list.Add(instanciarcheckout(reader));
                     }
                     return list;
-                }
-                return null;
 
             }
             catch (Exception ex)

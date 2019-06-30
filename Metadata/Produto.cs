@@ -13,16 +13,16 @@ namespace Metadata
         public string descricao { get; set; }
         public double preco { get; set; }
         public int usuarioId { get; set; }
-        public int qtd_estoque { get; set; }
+        public int qtdEstoque { get; set; }
 
 
-        public Produto(string Nome, string Descricao, double Preco, int IDUsuario, int QuantEstoque)
+        public Produto(string Nome, string Descricao, double Preco, int IDUsuario, int qtdEstoque)
         {
+            this.qtdEstoque = qtdEstoque;
             this.nome = Nome;
             this.descricao = Descricao;
             this.preco = Preco;
             this.usuarioId = IDUsuario;
-            this.qtd_estoque = QuantEstoque;
         }
 
         public Produto()

@@ -15,18 +15,17 @@ namespace DAL
         public string Atualizar(Fornecedor fornecedor)
         {
             string stringConexao = StringConexao.GetStringConexao();
-
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
-            command.CommandText = "UPDATE FORNECEDORES SET ID = @ID, RAZAO_SOCIAL = @RAZAO_SOCIAL, CNPJ = @CNPJ, NOME_CONTATO = @NOME_CONTATO, TELEFONE = @TELEFONE, EMAIL = @EMAIL, USUARIO_ID = @USUARIO_ID)";
+            command.CommandText = "UPDATE FORNECEDORES SET RAZAO_SOCIAL = @RAZAO_SOCIAL, CNPJ = @CNPJ, NOME_CONTATO = @NOME_CONTATO, TELEFONE = @TELEFONE, EMAIL = @EMAIL WHERE ID=@ID";
             command.Parameters.AddWithValue("@ID", fornecedor.id);
             command.Parameters.AddWithValue("@RAZAO_SOCIAL", fornecedor.razaoSocial);
             command.Parameters.AddWithValue("@CNPJ", fornecedor.cnpj);
             command.Parameters.AddWithValue("@NOME_CONTATO", fornecedor.nomeContato);
             command.Parameters.AddWithValue("@TELEFONE", fornecedor.telefone);
             command.Parameters.AddWithValue("@EMAIL", fornecedor.email);
-            command.Parameters.AddWithValue("@USUARIO_ID", fornecedor.usuarioID);
 
             try
             {
@@ -41,16 +40,15 @@ namespace DAL
 	            }
                 return "Erro no banco de dados, contate o admin";
             }
-
             return "atualizado com sucesso";
         }
 
         public string Excluir(Fornecedor fornecedor)
         {
             string stringConexao = StringConexao.GetStringConexao();
-
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
             command.CommandText = "delete from FORNECEDORES WHERE ID= @ID ";
             command.Parameters.AddWithValue("@ID", fornecedor.id);
@@ -73,12 +71,11 @@ namespace DAL
 
         public string Inserir(Fornecedor fornecedor)
         {
-            StringConexao stc = new StringConexao();
-
             string stringConexao = StringConexao.GetStringConexao();
-
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+
 
             command.CommandText = "INSERT INTO FORNECEDORES (RAZAO_SOCIAL, CNPJ, NOME_CONTATO, TELEFONE, EMAIL, USUARIO_ID) VALUES (@RAZAO_SOCIAL, @CNPJ, @NOME_CONTATO, @TELEFONE, @EMAIL, @USUARIO_ID)";
             command.Parameters.AddWithValue("@RAZAO_SOCIAL", fornecedor.razaoSocial);
@@ -113,12 +110,11 @@ namespace DAL
         {
 
             string stringConexao = StringConexao.GetStringConexao();
-
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
             command.CommandText = "SELECT * FROM FORNECEDORES WHERE ID= @ID";
             command.Parameters.AddWithValue("@ID", id);
-            command.Connection = connection;
 
             try
             {
@@ -160,21 +156,19 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "select * from fornecedores";
             command.Connection = connection;
             List<Fornecedor> list = new List<Fornecedor>();
             try
             {
                 connection.Open();
+
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
                     while (reader.Read())
                     {
                         list.Add(instanciarFornecedor(reader));
                     }
                     return list;
-                }
-                return null;
 
             }
             catch (SqlException e)

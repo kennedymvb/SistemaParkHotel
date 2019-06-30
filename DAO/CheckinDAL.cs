@@ -95,20 +95,19 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT * FROM CHECKIN";
+
             command.Connection = connection;
             List<Checkin> list = new List<Checkin>();
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read()) {
                     while (reader.Read())
                     {
                         list.Add(instanciarCheckin(reader));
                     }
                     return list;
-                }
-                return null;
 
             }
             catch (SqlException ex)
