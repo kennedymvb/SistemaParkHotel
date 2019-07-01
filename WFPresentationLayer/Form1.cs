@@ -30,6 +30,19 @@ namespace WFPresentationLayer
         {
             InitializeComponent();
             this.Load += Form1_Load;
+            carregarCmbBox();
+
+        }
+
+        private void carregarCmbBox()
+        {
+            List<String> tipoQuarto = new List<string>();
+            tipoQuarto.Add("Comum");
+            tipoQuarto.Add("Suite");
+            tipoQuarto.Add("Supreme");
+            tipoQuarto.Add("Diamante");
+
+            cmbTipoQuarto.DataSource = tipoQuarto;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -38,7 +51,7 @@ namespace WFPresentationLayer
             
             if (!Usuario.UsuarioLogado.isAdmin)
             {
-                this.TabAdministrador.Dispose();
+                this.TabAdministrador.Hide();
             }
             MessageBox.Show("Bem-vindo " + Usuario.UsuarioLogado.nome);
         }
@@ -180,11 +193,11 @@ namespace WFPresentationLayer
         private void btnCadastrarEntrada_Click_1(object sender, EventArgs e)
         {
             EntradaProdutos entradaProduto = InstanciarEntradaProdutos();
-            entradaProdutosBLL.inserir(entradaProduto);
+            FormEntradaProdutosDetalhes.idEntradaCorrespondente = entradaProdutosBLL.inserir(entradaProduto);
             exibirEntradas();
             FormEntradaProdutosDetalhes frm = new FormEntradaProdutosDetalhes();
             this.Hide();
-
+            
             frm.ShowDialog();
 
 
@@ -197,14 +210,15 @@ namespace WFPresentationLayer
             return new EntradaProdutos(Usuario.UsuarioLogado.id, dataEntrada, valorTotal);
         }
 
-        private void btnExibirEntradas_Click(object sender, EventArgs e)
-        {
-            exibirEntradas();
-        }
         private void exibirEntradas()
         {
             dataGridViewEntradaProdutos.DataSource = entradaProdutosBLL.LerTodos();
             this.dataGridViewProdutos.Show();
+        }
+        private void btnExibirEntradas_Click_1(object sender, EventArgs e)
+        {
+            exibirEntradas();
+
         }
 
 
@@ -233,6 +247,7 @@ namespace WFPresentationLayer
             try
             {
                 dataGridViewQuartos.DataSource = quartoBLL.LerTodos();
+                dataGridViewQuartos.Show();
 
             }
             catch (Exception ex)
@@ -391,12 +406,57 @@ namespace WFPresentationLayer
             int idUsuario = Usuario.UsuarioLogado.id;
             DateTime dataEntrada = dateTimeCheckinDataentrada.Value;
             DateTime dataPrevistaSaida = dateTimeDataPSaidaCheckin.Value;
-            int idQuarto = int.Parse(txtnumeroQuartoCheckin.Text);
-            int idCliente = int.Parse(txtNumeroClienteCheckin.Text);
-            int idReserva = int.Parse(txtnumeroReservaCheckin.Text);
+            int idQuarto = pegarIdQuarto();
+            int idCliente = int.Parse(txtNumCliente.Text);
+            if (ckbNaoTem.Checked)
+            {
+                return new Checkin(idUsuario, dataEntrada, dataPrevistaSaida, idQuarto, idCliente);
+            }
+            int idReserva = int.Parse(txtNumReserva.Text);
             return new Checkin(idUsuario, dataEntrada, dataPrevistaSaida, idQuarto, idCliente, idReserva);
+        }
+        //
+        //
+        /// <summary>
+        /// Melhorar aqui: reusar lerNaoOcupados.
+        /// </summary>
+        /// <returns></returns>
+        private int pegarIdQuarto()
+        {
+            return quartoBLL.LerNaoOcupados()[cmbNumQuartoCheckin.SelectedIndex].id;
+        }
+
+        private void ckbNaoTem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckbNaoTem.Checked)
+            {
+                txtNumReserva.Enabled = false;
+            }
+            else
+            {
+                txtNumReserva.Enabled = true;
+            }
+        }
+
+        private void BtnPesquisarCliente_Click(object sender, EventArgs e)
+        {
+            dataGridViewClientesCheckin.Show();
+            dataGridViewClientesCheckin.DataSource = clienteBLL.LerTodos();
+        }
+
+        private void dataGridViewClientesCheckin_DoubleClick(object sender, EventArgs e)
+        {
+            
 
         }
+        private void dataGridViewClientesCheckin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtNumCliente.Text = dataGridViewClientesCheckin.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtNumCliente.Enabled = false;
+
+        }
+
+
         #endregion
         private void esconderDataGridViews()
         {
@@ -406,6 +466,7 @@ namespace WFPresentationLayer
             this.dataGridViewQuartos.Hide();
             this.dataGridViewReservas.Hide();
             this.dataGridViewAdministrador.Hide();
+            this.dataGridViewClientesCheckin.Hide();
         }
 
         

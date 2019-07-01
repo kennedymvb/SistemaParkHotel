@@ -18,7 +18,7 @@ namespace BLL
         EntradaProdutosDAL entradaDal = new EntradaProdutosDAL();
         
 
-        public string inserir(EntradaProdutos entrada)
+        public int inserir(EntradaProdutos entrada)
         {
             if (this.Validar(entrada))
             {
@@ -29,7 +29,7 @@ namespace BLL
             {
                 sb.Append(erros[i]);
             }
-            return sb.ToString();
+            throw new Exception(sb.ToString());
         }
 
         public bool Validar(EntradaProdutos entrada)

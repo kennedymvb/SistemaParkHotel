@@ -165,6 +165,37 @@ namespace DAL
                 connection.Close();
             }
         }
+
+        public List<Quarto> LerNaoOcupados()
+        {
+            string stringConexao = StringConexao.GetStringConexao();
+
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "SELECT ID, VALOR_DIARIA FROM QUARTOS where ESTA_OCUPADO=0";
+
+            command.Connection = connection;
+            List<Quarto> list = new List<Quarto>();
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(instanciarquarto(reader));
+                }
+                return list;
+
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("erro no acesso ao banco: " + e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 
 

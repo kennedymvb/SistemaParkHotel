@@ -83,7 +83,8 @@
             this.btnCadastrarEntrada.TabIndex = 92;
             this.btnCadastrarEntrada.Text = "Finalizar";
             this.btnCadastrarEntrada.UseVisualStyleBackColor = true;
-            //  
+            this.btnCadastrarEntrada.Click += new System.EventHandler(this.btnCadastrarEntrada_Click_1);
+            // 
             // txtValorEntrada
             // 
             this.txtValorEntrada.Location = new System.Drawing.Point(379, 239);

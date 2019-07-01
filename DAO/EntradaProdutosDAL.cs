@@ -11,10 +11,10 @@ namespace DAL
 {
     public class EntradaProdutosDAL : CRUDIntegridade<EntradaProdutos>
     {
-
-        public string Inserir(EntradaProdutos entradaProdutos)
+        int quantidadeEntradaLista;
+        public int Inserir(EntradaProdutos entradaProdutos)
         {
-
+            quantidadeEntradaLista = LerTodos().Count;
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
@@ -31,15 +31,19 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro de conexão com o banco";
+                throw new Exception("erro no acesso ao banco: "+e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return "dados atualizados com sucesso";
+            return pegarIdEntrada();
         }
-
+        //GAMBIARRRRRAAAAAAAAAAAAAAAAAA
+        private int pegarIdEntrada()
+        {
+            return LerTodos()[quantidadeEntradaLista].id;
+        }
 
         private EntradaProdutos instanciarentradaProdutos(SqlDataReader reader)
         {
@@ -87,9 +91,9 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
-            command.CommandText = "select * from entradaProdutoss where id= @id";
-            command.Parameters.AddWithValue("@id", id);
             command.Connection = connection;
+            command.CommandText = "select * from entradaProdutos where id= @id";
+            command.Parameters.AddWithValue("@id", id);
             try
             {
                 connection.Open();
@@ -108,6 +112,11 @@ namespace DAL
             {
                 connection.Close();
             }
+        }
+
+        string CRUDIntegridade<EntradaProdutos>.Inserir(EntradaProdutos item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

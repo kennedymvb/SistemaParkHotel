@@ -11,15 +11,16 @@ namespace BLL
     public class EntradaProdutosDetalhesBLL
     {
         List<string> erros = new List<string>();
-        ProdutoDAL produtoDAL = new ProdutoDAL();
-        FornecedorDAL fornecedorDAL = new FornecedorDAL();
-        EntradaProdutosDAL entradaProdutosDAL = new EntradaProdutosDAL();
+        ProdutoBLL produtoBLL = new ProdutoBLL();
+        FornecedorBLL fornecedorBLL = new FornecedorBLL();
+        EntradaProdutosBLL entradaProdutosBLL = new EntradaProdutosBLL();
         EntradaProdutosDetalhesDAL entradaDal = new EntradaProdutosDetalhesDAL();
 
         public string inserir(EntradaProdutosDetalhes Entrada)
         {
             if (this.Validar(Entrada))
             {
+                
                 return entradaDal.Inserir(Entrada);
             }
             StringBuilder sb = new StringBuilder();
@@ -67,7 +68,7 @@ namespace BLL
             }
             else
             {
-                Produto produto = produtoDAL.LerPorID(entrada.idProduto);
+                Produto produto = produtoBLL.LerPorID(entrada.idProduto);
                 if (produto == null)
                 {
                     erros.Add("produto não encontrado no banco");
@@ -79,15 +80,25 @@ namespace BLL
             }
             else
             {
-                Fornecedor fornecedor = fornecedorDAL.LerPorID(entrada.idFornecedor);
+                Fornecedor fornecedor = fornecedorBLL.LerPorID(entrada.idFornecedor);
                 if (fornecedor == null)
                 {
-                    erros.Add("cliente não encontrado no banco");
+                    erros.Add("fornecedor não encontrado no banco");
                 }
             }
-            EntradaProdutos entradaProdutos = new EntradaProdutos();
-            entradaProdutos = entradaProdutosDAL.LerPorID(entrada.idEntradaProduto);
-            erros.Add("erro de integridade referencial em relação à entrada de produtos.");
+            if (entrada.idEntradaProduto < 0)
+            {
+                erros.Add("id da entrada correspondente deve ser informado");
+            }
+            else
+            {
+                EntradaProdutos entradaProdutos = entradaProdutosBLL.LerPorID(entrada.idEntradaProduto);
+                if (entradaProdutos == null)
+                {
+                    erros.Add("id da entrada correspondente não encontrado no banco");
+                }
+            }
+
         }
     }
 }

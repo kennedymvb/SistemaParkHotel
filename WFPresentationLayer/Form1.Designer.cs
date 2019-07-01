@@ -90,17 +90,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.txtValorDiaria = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.NumQuarto = new System.Windows.Forms.TextBox();
+            this.CadastrarQuarto = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
             this.TabCheckin = new System.Windows.Forms.TabPage();
+            this.ckbNaoTem = new System.Windows.Forms.CheckBox();
+            this.txtNumReserva = new System.Windows.Forms.TextBox();
+            this.BtnPesquisarCliente = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimeDataPSaidaCheckin = new System.Windows.Forms.DateTimePicker();
-            this.txtNumeroUsuarioCheckin = new System.Windows.Forms.TextBox();
-            this.txtnumeroReservaCheckin = new System.Windows.Forms.TextBox();
-            this.txtNumeroClienteCheckin = new System.Windows.Forms.TextBox();
-            this.txtnumeroQuartoCheckin = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
             this.btnFazerCheckin = new System.Windows.Forms.Button();
             this.dateTimeCheckinDataentrada = new System.Windows.Forms.DateTimePicker();
             this.label60 = new System.Windows.Forms.Label();
@@ -166,7 +164,10 @@
             this.label55 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.dataGridViewEntradaProdutos = new System.Windows.Forms.DataGridView();
-            this.label21 = new System.Windows.Forms.Label();
+            this.dataGridViewClientesCheckin = new System.Windows.Forms.DataGridView();
+            this.txtNumCliente = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.TabAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).BeginInit();
             this.TabCheckout.SuspendLayout();
@@ -185,6 +186,8 @@
             this.CadastroEntradaProdutos.SuspendLayout();
             this.tabCadastroEntradaProdutos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntradaProdutos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClientesCheckin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // TabAdministrador
@@ -500,6 +503,7 @@
             // 
             // TabVendas
             // 
+            this.TabVendas.Controls.Add(this.button3);
             this.TabVendas.Controls.Add(this.txtNumProdutoVenda);
             this.TabVendas.Controls.Add(this.txtnumClienteVenda);
             this.TabVendas.Controls.Add(this.txtnumUsuarioVenda);
@@ -520,21 +524,21 @@
             // 
             // txtNumProdutoVenda
             // 
-            this.txtNumProdutoVenda.Location = new System.Drawing.Point(436, 248);
+            this.txtNumProdutoVenda.Location = new System.Drawing.Point(251, 248);
             this.txtNumProdutoVenda.Name = "txtNumProdutoVenda";
             this.txtNumProdutoVenda.Size = new System.Drawing.Size(100, 20);
             this.txtNumProdutoVenda.TabIndex = 60;
             // 
             // txtnumClienteVenda
             // 
-            this.txtnumClienteVenda.Location = new System.Drawing.Point(440, 213);
+            this.txtnumClienteVenda.Location = new System.Drawing.Point(251, 202);
             this.txtnumClienteVenda.Name = "txtnumClienteVenda";
             this.txtnumClienteVenda.Size = new System.Drawing.Size(100, 20);
             this.txtnumClienteVenda.TabIndex = 56;
             // 
             // txtnumUsuarioVenda
             // 
-            this.txtnumUsuarioVenda.Location = new System.Drawing.Point(440, 141);
+            this.txtnumUsuarioVenda.Location = new System.Drawing.Point(251, 102);
             this.txtnumUsuarioVenda.Name = "txtnumUsuarioVenda";
             this.txtnumUsuarioVenda.Size = new System.Drawing.Size(100, 20);
             this.txtnumUsuarioVenda.TabIndex = 53;
@@ -542,7 +546,7 @@
             // btnCadastrarVendas
             // 
             this.btnCadastrarVendas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrarVendas.Location = new System.Drawing.Point(348, 332);
+            this.btnCadastrarVendas.Location = new System.Drawing.Point(131, 350);
             this.btnCadastrarVendas.Name = "btnCadastrarVendas";
             this.btnCadastrarVendas.Size = new System.Drawing.Size(181, 23);
             this.btnCadastrarVendas.TabIndex = 63;
@@ -552,7 +556,7 @@
             // 
             // dateTimeVenda
             // 
-            this.dateTimeVenda.Location = new System.Drawing.Point(410, 178);
+            this.dateTimeVenda.Location = new System.Drawing.Point(251, 149);
             this.dateTimeVenda.Name = "dateTimeVenda";
             this.dateTimeVenda.Size = new System.Drawing.Size(232, 20);
             this.dateTimeVenda.TabIndex = 62;
@@ -561,7 +565,7 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(294, 248);
+            this.label39.Location = new System.Drawing.Point(33, 253);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(136, 15);
             this.label39.TabIndex = 61;
@@ -571,17 +575,17 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(299, 218);
+            this.label38.Location = new System.Drawing.Point(33, 202);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(131, 15);
+            this.label38.Size = new System.Drawing.Size(127, 15);
             this.label38.TabIndex = 57;
-            this.label38.Text = "Número do Cliente:";
+            this.label38.Text = "Número do Cliente";
             // 
             // label36
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(299, 182);
+            this.label36.Location = new System.Drawing.Point(33, 153);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(105, 15);
             this.label36.TabIndex = 55;
@@ -591,7 +595,7 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(294, 144);
+            this.label35.Location = new System.Drawing.Point(33, 102);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(102, 15);
             this.label35.TabIndex = 54;
@@ -601,7 +605,7 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(293, 99);
+            this.label34.Location = new System.Drawing.Point(150, 38);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(148, 20);
             this.label34.TabIndex = 52;
@@ -748,8 +752,8 @@
             this.TabQuartos.Controls.Add(this.label2);
             this.TabQuartos.Controls.Add(this.label40);
             this.TabQuartos.Controls.Add(this.txtValorDiaria);
-            this.TabQuartos.Controls.Add(this.textBox2);
-            this.TabQuartos.Controls.Add(this.button4);
+            this.TabQuartos.Controls.Add(this.NumQuarto);
+            this.TabQuartos.Controls.Add(this.CadastrarQuarto);
             this.TabQuartos.Controls.Add(this.label52);
             this.TabQuartos.Location = new System.Drawing.Point(4, 22);
             this.TabQuartos.Name = "TabQuartos";
@@ -821,28 +825,28 @@
             // 
             // txtValorDiaria
             // 
-            this.txtValorDiaria.Location = new System.Drawing.Point(160, 171);
+            this.txtValorDiaria.Location = new System.Drawing.Point(160, 185);
             this.txtValorDiaria.Name = "txtValorDiaria";
             this.txtValorDiaria.Size = new System.Drawing.Size(121, 20);
             this.txtValorDiaria.TabIndex = 50;
             // 
-            // textBox2
+            // NumQuarto
             // 
-            this.textBox2.Location = new System.Drawing.Point(160, 75);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
-            this.textBox2.TabIndex = 47;
+            this.NumQuarto.Location = new System.Drawing.Point(160, 75);
+            this.NumQuarto.Name = "NumQuarto";
+            this.NumQuarto.Size = new System.Drawing.Size(121, 20);
+            this.NumQuarto.TabIndex = 47;
             // 
-            // button4
+            // CadastrarQuarto
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(75, 254);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(118, 23);
-            this.button4.TabIndex = 49;
-            this.button4.Text = "Cadastrar Quarto";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.CadastrarQuarto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CadastrarQuarto.Location = new System.Drawing.Point(75, 254);
+            this.CadastrarQuarto.Name = "CadastrarQuarto";
+            this.CadastrarQuarto.Size = new System.Drawing.Size(118, 23);
+            this.CadastrarQuarto.TabIndex = 49;
+            this.CadastrarQuarto.Text = "Cadastrar Quarto";
+            this.CadastrarQuarto.UseVisualStyleBackColor = true;
+            this.CadastrarQuarto.Click += new System.EventHandler(this.button4_Click);
             // 
             // label52
             // 
@@ -857,13 +861,14 @@
             // TabCheckin
             // 
             this.TabCheckin.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.TabCheckin.Controls.Add(this.dataGridView2);
+            this.TabCheckin.Controls.Add(this.txtNumCliente);
+            this.TabCheckin.Controls.Add(this.dataGridViewClientesCheckin);
+            this.TabCheckin.Controls.Add(this.ckbNaoTem);
+            this.TabCheckin.Controls.Add(this.txtNumReserva);
+            this.TabCheckin.Controls.Add(this.BtnPesquisarCliente);
             this.TabCheckin.Controls.Add(this.label4);
             this.TabCheckin.Controls.Add(this.dateTimeDataPSaidaCheckin);
-            this.TabCheckin.Controls.Add(this.txtNumeroUsuarioCheckin);
-            this.TabCheckin.Controls.Add(this.txtnumeroReservaCheckin);
-            this.TabCheckin.Controls.Add(this.txtNumeroClienteCheckin);
-            this.TabCheckin.Controls.Add(this.txtnumeroQuartoCheckin);
-            this.TabCheckin.Controls.Add(this.label49);
             this.TabCheckin.Controls.Add(this.btnFazerCheckin);
             this.TabCheckin.Controls.Add(this.dateTimeCheckinDataentrada);
             this.TabCheckin.Controls.Add(this.label60);
@@ -879,6 +884,35 @@
             this.TabCheckin.TabIndex = 4;
             this.TabCheckin.Text = "Operações com Check-in";
             // 
+            // ckbNaoTem
+            // 
+            this.ckbNaoTem.AutoSize = true;
+            this.ckbNaoTem.Location = new System.Drawing.Point(327, 251);
+            this.ckbNaoTem.Name = "ckbNaoTem";
+            this.ckbNaoTem.Size = new System.Drawing.Size(66, 17);
+            this.ckbNaoTem.TabIndex = 34;
+            this.ckbNaoTem.Text = "Não tem";
+            this.ckbNaoTem.UseVisualStyleBackColor = true;
+            this.ckbNaoTem.CheckedChanged += new System.EventHandler(this.ckbNaoTem_CheckedChanged);
+            // 
+            // txtNumReserva
+            // 
+            this.txtNumReserva.Location = new System.Drawing.Point(179, 249);
+            this.txtNumReserva.Name = "txtNumReserva";
+            this.txtNumReserva.Size = new System.Drawing.Size(100, 20);
+            this.txtNumReserva.TabIndex = 33;
+            // 
+            // BtnPesquisarCliente
+            // 
+            this.BtnPesquisarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPesquisarCliente.Location = new System.Drawing.Point(178, 198);
+            this.BtnPesquisarCliente.Name = "BtnPesquisarCliente";
+            this.BtnPesquisarCliente.Size = new System.Drawing.Size(148, 23);
+            this.BtnPesquisarCliente.TabIndex = 30;
+            this.BtnPesquisarCliente.Text = "Pesquisar Cliente";
+            this.BtnPesquisarCliente.UseVisualStyleBackColor = true;
+            this.BtnPesquisarCliente.Click += new System.EventHandler(this.BtnPesquisarCliente_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -891,48 +925,10 @@
             // 
             // dateTimeDataPSaidaCheckin
             // 
-            this.dateTimeDataPSaidaCheckin.Location = new System.Drawing.Point(167, 128);
+            this.dateTimeDataPSaidaCheckin.Location = new System.Drawing.Point(178, 128);
             this.dateTimeDataPSaidaCheckin.Name = "dateTimeDataPSaidaCheckin";
             this.dateTimeDataPSaidaCheckin.Size = new System.Drawing.Size(229, 20);
             this.dateTimeDataPSaidaCheckin.TabIndex = 28;
-            // 
-            // txtNumeroUsuarioCheckin
-            // 
-            this.txtNumeroUsuarioCheckin.Location = new System.Drawing.Point(167, 259);
-            this.txtNumeroUsuarioCheckin.Name = "txtNumeroUsuarioCheckin";
-            this.txtNumeroUsuarioCheckin.Size = new System.Drawing.Size(100, 20);
-            this.txtNumeroUsuarioCheckin.TabIndex = 27;
-            // 
-            // txtnumeroReservaCheckin
-            // 
-            this.txtnumeroReservaCheckin.Location = new System.Drawing.Point(167, 223);
-            this.txtnumeroReservaCheckin.Name = "txtnumeroReservaCheckin";
-            this.txtnumeroReservaCheckin.Size = new System.Drawing.Size(100, 20);
-            this.txtnumeroReservaCheckin.TabIndex = 21;
-            // 
-            // txtNumeroClienteCheckin
-            // 
-            this.txtNumeroClienteCheckin.Location = new System.Drawing.Point(167, 188);
-            this.txtNumeroClienteCheckin.Name = "txtNumeroClienteCheckin";
-            this.txtNumeroClienteCheckin.Size = new System.Drawing.Size(100, 20);
-            this.txtNumeroClienteCheckin.TabIndex = 9;
-            // 
-            // txtnumeroQuartoCheckin
-            // 
-            this.txtnumeroQuartoCheckin.Location = new System.Drawing.Point(167, 154);
-            this.txtnumeroQuartoCheckin.Name = "txtnumeroQuartoCheckin";
-            this.txtnumeroQuartoCheckin.Size = new System.Drawing.Size(100, 20);
-            this.txtnumeroQuartoCheckin.TabIndex = 7;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(25, 264);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(136, 15);
-            this.label49.TabIndex = 26;
-            this.label49.Text = "Número do Usuário:";
             // 
             // btnFazerCheckin
             // 
@@ -947,7 +943,7 @@
             // 
             // dateTimeCheckinDataentrada
             // 
-            this.dateTimeCheckinDataentrada.Location = new System.Drawing.Point(167, 88);
+            this.dateTimeCheckinDataentrada.Location = new System.Drawing.Point(178, 88);
             this.dateTimeCheckinDataentrada.Name = "dateTimeCheckinDataentrada";
             this.dateTimeCheckinDataentrada.Size = new System.Drawing.Size(229, 20);
             this.dateTimeCheckinDataentrada.TabIndex = 24;
@@ -956,17 +952,17 @@
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(25, 228);
+            this.label60.Location = new System.Drawing.Point(31, 250);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(138, 15);
+            this.label60.Size = new System.Drawing.Size(142, 15);
             this.label60.TabIndex = 20;
-            this.label60.Text = "Número da Reserva:";
+            this.label60.Text = "Número da Reserva: ";
             // 
             // label53
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(32, 193);
+            this.label53.Location = new System.Drawing.Point(31, 198);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(131, 15);
             this.label53.TabIndex = 8;
@@ -1532,7 +1528,6 @@
             this.tabCadastroEntradaProdutos.Controls.Add(this.label55);
             this.tabCadastroEntradaProdutos.Controls.Add(this.label61);
             this.tabCadastroEntradaProdutos.Controls.Add(this.dataGridViewEntradaProdutos);
-            this.tabCadastroEntradaProdutos.Controls.Add(this.label21);
             this.tabCadastroEntradaProdutos.Location = new System.Drawing.Point(4, 22);
             this.tabCadastroEntradaProdutos.Name = "tabCadastroEntradaProdutos";
             this.tabCadastroEntradaProdutos.Padding = new System.Windows.Forms.Padding(3);
@@ -1563,6 +1558,7 @@
             this.btnExibirEntradas.TabIndex = 93;
             this.btnExibirEntradas.Text = "Exibir Entradas";
             this.btnExibirEntradas.UseVisualStyleBackColor = true;
+            this.btnExibirEntradas.Click += new System.EventHandler(this.btnExibirEntradas_Click_1);
             // 
             // btnCadastrarEntrada
             // 
@@ -1614,15 +1610,42 @@
             this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(342, 357);
             this.dataGridViewEntradaProdutos.TabIndex = 69;
             // 
-            // label21
+            // dataGridViewClientesCheckin
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(154, 16);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(175, 20);
-            this.label21.TabIndex = 52;
-            this.label21.Text = "Entrada de Produtos";
+            this.dataGridViewClientesCheckin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewClientesCheckin.Location = new System.Drawing.Point(577, 6);
+            this.dataGridViewClientesCheckin.Name = "dataGridViewClientesCheckin";
+            this.dataGridViewClientesCheckin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewClientesCheckin.Size = new System.Drawing.Size(342, 357);
+            this.dataGridViewClientesCheckin.TabIndex = 70;
+            this.dataGridViewClientesCheckin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClientesCheckin_CellDoubleClick);
+            this.dataGridViewClientesCheckin.DoubleClick += new System.EventHandler(this.dataGridViewClientesCheckin_DoubleClick);
+            // 
+            // txtNumCliente
+            // 
+            this.txtNumCliente.Location = new System.Drawing.Point(360, 200);
+            this.txtNumCliente.Name = "txtNumCliente";
+            this.txtNumCliente.Size = new System.Drawing.Size(100, 20);
+            this.txtNumCliente.TabIndex = 71;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(382, 202);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(125, 20);
+            this.button3.TabIndex = 64;
+            this.button3.Text = "Pesquisar Cliente";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(178, 159);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(282, 25);
+            this.dataGridView2.TabIndex = 72;
             // 
             // Form1
             // 
@@ -1661,6 +1684,8 @@
             this.tabCadastroEntradaProdutos.ResumeLayout(false);
             this.tabCadastroEntradaProdutos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntradaProdutos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClientesCheckin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1729,17 +1754,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox txtValorDiaria;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox NumQuarto;
+        private System.Windows.Forms.Button CadastrarQuarto;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TabPage TabCheckin;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimeDataPSaidaCheckin;
-        private System.Windows.Forms.TextBox txtNumeroUsuarioCheckin;
-        private System.Windows.Forms.TextBox txtnumeroReservaCheckin;
-        private System.Windows.Forms.TextBox txtNumeroClienteCheckin;
-        private System.Windows.Forms.TextBox txtnumeroQuartoCheckin;
-        private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Button btnFazerCheckin;
         private System.Windows.Forms.DateTimePicker dateTimeCheckinDataentrada;
         private System.Windows.Forms.Label label60;
@@ -1797,7 +1817,6 @@
         private System.Windows.Forms.TabControl CadastroEntradaProdutos;
         private System.Windows.Forms.TabPage tabCadastroEntradaProdutos;
         private System.Windows.Forms.DataGridView dataGridViewEntradaProdutos;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtValorTotalLote;
         private System.Windows.Forms.DateTimePicker dateTimeEntrada;
@@ -1806,6 +1825,13 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.CheckBox ckbNaoTem;
+        private System.Windows.Forms.TextBox txtNumReserva;
+        private System.Windows.Forms.Button BtnPesquisarCliente;
+        private System.Windows.Forms.DataGridView dataGridViewClientesCheckin;
+        private System.Windows.Forms.TextBox txtNumCliente;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 

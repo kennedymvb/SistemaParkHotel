@@ -14,7 +14,7 @@ namespace WFPresentationLayer
 {
     public partial class FormEntradaProdutosDetalhes : Form
     {
-        
+        public static int idEntradaCorrespondente;
         FornecedorBLL fornecedorBLL = new FornecedorBLL();
         EntradaProdutosDetalhesBLL entradaDetalhesBLL = new EntradaProdutosDetalhesBLL();
         ProdutoBLL produtoBLL = new ProdutoBLL();
@@ -25,14 +25,6 @@ namespace WFPresentationLayer
             InitializeComponent();
             carregarComboBox();
         }
-
-        
-
-        private void btnCadastrarEntrada_Click(object sender, EventArgs e)
-        {
-
-        }
-
         
         private void carregarComboBox()
         {
@@ -50,47 +42,49 @@ namespace WFPresentationLayer
             }
             cmbProduto.DataSource = nomesProdutos;
         }
-        private EntradaProdutosDetalhes InstanciarEntradaProdutosDetalhes(int idEntradaProduto)
+        private EntradaProdutosDetalhes InstanciarEntradaProdutosDetalhes()
         {
             Produto produto = encontrarIdProduto();
+
             int idProduto = produto.id;
             int idFornecedor = encontrarIdFornecedor();
             int quantidade = int.Parse(txtQuantidadeEntrada.Text);
             double valorUnitario = double.Parse(txtValorEntrada.Text) / int.Parse(txtQuantidadeEntrada.Text);
-            LblValorUnitarioCompra.Text = valorUnitario.ToString("C2");
+
             produtoBLL.atualizarQuantidadeEstoque(produto);
-            return new EntradaProdutosDetalhes(idEntradaProduto, idProduto, idFornecedor, quantidade, valorUnitario); ;
+            return new EntradaProdutosDetalhes(idEntradaCorrespondente, idProduto, idFornecedor, quantidade, valorUnitario); 
         }
 
         private int encontrarIdFornecedor()
         {
-            foreach (Fornecedor item in fornecedorBLL.LerTodos())
-            {
-                if (item.razaoSocial == cmbProduto.SelectedText)
-                {
-                    return item.id;
-                }
-            }
-            return 0;
-        }
+            return produtoBLL.LerTodos()[cmbFornecedor.SelectedIndex].id;
 
+        }
+        //gambiarra
         private Produto encontrarIdProduto()
         {
-            foreach (Produto item in produtoBLL.LerTodos())
-            {
-                if (item.nome == cmbProduto.SelectedText)
-                {
-                    return item;
-                }
-            }
-            return null;
+            return produtoBLL.LerTodos()[cmbProduto.SelectedIndex];
         }
-
-        
 
         private void btnAdicionarAoLote_Click(object sender, EventArgs e)
         {
-
+            EntradaProdutosDetalhes entradaProdutosDetalhes = InstanciarEntradaProdutosDetalhes();
+            MessageBox.Show(entradaDetalhesBLL.inserir(entradaProdutosDetalhes));
+            LblValorUnitarioCompra.Text = (double.Parse(txtValorEntrada.Text) / double.Parse(txtQuantidadeEntrada.Text)).ToString("C2");
+            limparTextBox();
         }
+
+        private void limparTextBox()
+        {
+            txtQuantidadeEntrada.Clear();
+            txtValorEntrada.Clear();
+        }
+
+        private void btnCadastrarEntrada_Click_1(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        
     }
 }
