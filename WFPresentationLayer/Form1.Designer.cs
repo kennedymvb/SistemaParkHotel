@@ -167,7 +167,7 @@
             this.dataGridViewClientesCheckin = new System.Windows.Forms.DataGridView();
             this.txtNumCliente = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewQuartosLivres = new System.Windows.Forms.DataGridView();
             this.TabAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).BeginInit();
             this.TabCheckout.SuspendLayout();
@@ -187,7 +187,7 @@
             this.tabCadastroEntradaProdutos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntradaProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClientesCheckin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuartosLivres)).BeginInit();
             this.SuspendLayout();
             // 
             // TabAdministrador
@@ -861,7 +861,7 @@
             // TabCheckin
             // 
             this.TabCheckin.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.TabCheckin.Controls.Add(this.dataGridView2);
+            this.TabCheckin.Controls.Add(this.dataGridViewQuartosLivres);
             this.TabCheckin.Controls.Add(this.txtNumCliente);
             this.TabCheckin.Controls.Add(this.dataGridViewClientesCheckin);
             this.TabCheckin.Controls.Add(this.ckbNaoTem);
@@ -972,11 +972,12 @@
             // 
             this.label54.AutoSize = true;
             this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(31, 159);
+            this.label54.Location = new System.Drawing.Point(31, 169);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(129, 15);
+            this.label54.Size = new System.Drawing.Size(58, 15);
             this.label54.TabIndex = 6;
-            this.label54.Text = "Número do Quarto:";
+            this.label54.Text = "Quarto: ";
+            this.label54.Click += new System.EventHandler(this.label54_Click);
             // 
             // label51
             // 
@@ -1638,14 +1639,14 @@
             this.button3.Text = "Pesquisar Cliente";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dataGridViewQuartosLivres
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(178, 159);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(282, 25);
-            this.dataGridView2.TabIndex = 72;
+            this.dataGridViewQuartosLivres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewQuartosLivres.Location = new System.Drawing.Point(178, 159);
+            this.dataGridViewQuartosLivres.Name = "dataGridViewQuartosLivres";
+            this.dataGridViewQuartosLivres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewQuartosLivres.Size = new System.Drawing.Size(282, 25);
+            this.dataGridViewQuartosLivres.TabIndex = 72;
             // 
             // Form1
             // 
@@ -1685,7 +1686,7 @@
             this.tabCadastroEntradaProdutos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntradaProdutos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClientesCheckin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuartosLivres)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1831,7 +1832,7 @@
         private System.Windows.Forms.DataGridView dataGridViewClientesCheckin;
         private System.Windows.Forms.TextBox txtNumCliente;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewQuartosLivres;
     }
 }
 

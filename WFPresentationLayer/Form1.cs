@@ -423,7 +423,7 @@ namespace WFPresentationLayer
         /// <returns></returns>
         private int pegarIdQuarto()
         {
-            return quartoBLL.LerNaoOcupados()[cmbNumQuartoCheckin.SelectedIndex].id;
+
         }
 
         private void ckbNaoTem_CheckedChanged(object sender, EventArgs e)
@@ -469,6 +469,9 @@ namespace WFPresentationLayer
             this.dataGridViewClientesCheckin.Hide();
         }
 
-        
+        private void label54_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
