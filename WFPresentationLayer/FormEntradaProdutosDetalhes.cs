@@ -14,56 +14,40 @@ namespace WFPresentationLayer
 {
     public partial class FormEntradaProdutosDetalhes : Form
     {
-        public static int idEntradaCorrespondente;
         FornecedorBLL fornecedorBLL = new FornecedorBLL();
         EntradaProdutosDetalhesBLL entradaDetalhesBLL = new EntradaProdutosDetalhesBLL();
         ProdutoBLL produtoBLL = new ProdutoBLL();
         public FormEntradaProdutosDetalhes()
         {
-            FormLogin formLogin = new FormLogin();
-            formLogin.Hide();
+            
             InitializeComponent();
             carregarComboBox();
         }
         
         private void carregarComboBox()
         {
-            List<string> nomesFornecedores = new List<string>();
-            List<string> nomesProdutos = new List<string>();
+            cmbProduto.DisplayMember = "NOME";
+            cmbProduto.ValueMember = "ID";
+            cmbProduto.DataSource = produtoBLL.LerTodos();
+            cmbFornecedor.DisplayMember = "razaoSocial";
+            cmbFornecedor.ValueMember = "ID";
+            cmbFornecedor.DataSource = fornecedorBLL.LerTodos();
 
-            foreach (Fornecedor item in fornecedorBLL.LerTodos())
-            {
-                nomesFornecedores.Add(item.razaoSocial);
-            }
-            cmbFornecedor.DataSource = nomesFornecedores;
-            foreach (Produto item in produtoBLL.LerTodos())
-            {
-                nomesProdutos.Add(item.nome);
-            }
-            cmbProduto.DataSource = nomesProdutos;
         }
         private EntradaProdutosDetalhes InstanciarEntradaProdutosDetalhes()
         {
-            Produto produto = encontrarIdProduto();
-
-            int idProduto = produto.id;
+            int idProduto = (int)cmbProduto.SelectedValue;
             int idFornecedor = encontrarIdFornecedor();
             int quantidade = int.Parse(txtQuantidadeEntrada.Text);
             double valorUnitario = double.Parse(txtValorEntrada.Text) / int.Parse(txtQuantidadeEntrada.Text);
-
-            produtoBLL.atualizarQuantidadeEstoque(produto);
-            return new EntradaProdutosDetalhes(idEntradaCorrespondente, idProduto, idFornecedor, quantidade, valorUnitario); 
+            produtoBLL.atualizarQuantidadeEstoque(produtoBLL.LerPorID(idProduto));
+            return new EntradaProdutosDetalhes(Form1.idEntradaCorrespondente, idProduto, idFornecedor, quantidade, valorUnitario); 
         }
 
         private int encontrarIdFornecedor()
         {
-            return produtoBLL.LerTodos()[cmbFornecedor.SelectedIndex].id;
+            return (int)cmbFornecedor.SelectedValue;
 
-        }
-        //gambiarra
-        private Produto encontrarIdProduto()
-        {
-            return produtoBLL.LerTodos()[cmbProduto.SelectedIndex];
         }
 
         private void btnAdicionarAoLote_Click(object sender, EventArgs e)
@@ -82,7 +66,8 @@ namespace WFPresentationLayer
 
         private void btnCadastrarEntrada_Click_1(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Hide();
+       
         }
 
         private void FormEntradaProdutosDetalhes_Load(object sender, EventArgs e)

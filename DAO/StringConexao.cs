@@ -15,7 +15,7 @@ namespace DAL
         {
             if (stringDeConexao == null)
             {
-                stringDeConexao = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\kennedy\Documents\BancoParkHotel.mdf;Integrated Security=True;Connect Timeout=30";
+                stringDeConexao = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\moc\Documents\SistemaHotel.mdf;Integrated Security=True;Connect Timeout=30";
                         //ConfigurationManager.ConnectionStrings["SqlConnectionServer"].ConnectionString;
             }
             return stringDeConexao;

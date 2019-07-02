@@ -11,23 +11,21 @@ namespace DAL
 {
     public class EntradaProdutosDAL : CRUDIntegridade<EntradaProdutos>
     {
-        int quantidadeEntradaLista;
         public int Inserir(EntradaProdutos entradaProdutos)
         {
-            quantidadeEntradaLista = LerTodos().Count;
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
 
-            command.CommandText = "INSERT INTO ENTRADAPRODUTOS (USUARIO_ID, DATA_ENTRADA, VALORTOTAL) VALUES (@USUARIO_ID, @DATA_ENTRADA, @VALORTOTAL)";
+            command.CommandText = "INSERT INTO ENTRADAPRODUTOS (USUARIO_ID, DATA_ENTRADA, VALORTOTAL) VALUES (@USUARIO_ID, @DATA_ENTRADA, @VALORTOTAL); select scope_identity()";
             command.Parameters.AddWithValue("@USUARIO_ID", entradaProdutos.usuarioId);
             command.Parameters.AddWithValue("@DATA_ENTRADA", entradaProdutos.dataEntrada);
             command.Parameters.AddWithValue("@VALORTOTAL", entradaProdutos.valorTotal);
             try
             {
                 connection.Open();
-                command.ExecuteNonQuery();
+                return Convert.ToInt32(command.ExecuteScalar());
             }
             catch (SqlException e)
             {
@@ -37,12 +35,34 @@ namespace DAL
             {
                 connection.Close();
             }
-            return pegarIdEntrada();
         }
         //GAMBIARRRRRAAAAAAAAAAAAAAAAAA
         private int pegarIdEntrada()
         {
-            return LerTodos()[quantidadeEntradaLista].id;
+            string stringConexao = StringConexao.GetStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+
+            command.CommandText = "select SCOPE_IDENTITY()";
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                return Convert.ToInt32(reader[""]);
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("erro no acesso ao banco: " + e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            
+
+
         }
 
         private EntradaProdutos instanciarentradaProdutos(SqlDataReader reader)

@@ -31,8 +31,14 @@ namespace WFPresentationLayer
             InitializeComponent();
             this.Load += Form1_Load;
             carregarCmbBox();
-
+            carregarQuartos();
+            if (!Usuario.UsuarioLogado.isAdmin) {
+                TabAdministrador.Dispose();
+            }
         }
+
+        public static int idEntradaCorrespondente;
+
 
         private void carregarCmbBox()
         {
@@ -193,7 +199,7 @@ namespace WFPresentationLayer
         private void btnCadastrarEntrada_Click_1(object sender, EventArgs e)
         {
             EntradaProdutos entradaProduto = InstanciarEntradaProdutos();
-            FormEntradaProdutosDetalhes.idEntradaCorrespondente = entradaProdutosBLL.inserir(entradaProduto);
+            idEntradaCorrespondente=entradaProdutosBLL.inserir(entradaProduto);
             exibirEntradas();
             FormEntradaProdutosDetalhes frm = new FormEntradaProdutosDetalhes();
             this.Hide();
@@ -254,6 +260,10 @@ namespace WFPresentationLayer
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void carregarQuartos()
+        {
+            dataGridViewQuartosLivres.DataSource = quartoBLL.LerNaoOcupados();
         }
         #endregion
 
@@ -423,7 +433,7 @@ namespace WFPresentationLayer
         /// <returns></returns>
         private int pegarIdQuarto()
         {
-
+            return ((Quarto)dataGridViewQuartosLivres.SelectedRows[0].DataBoundItem).id;
         }
 
         private void ckbNaoTem_CheckedChanged(object sender, EventArgs e)
@@ -467,6 +477,8 @@ namespace WFPresentationLayer
             this.dataGridViewReservas.Hide();
             this.dataGridViewAdministrador.Hide();
             this.dataGridViewClientesCheckin.Hide();
+            this.dataGridViewQuartosLivres.Hide();
+            
         }
 
         private void label54_Click(object sender, EventArgs e)
@@ -482,6 +494,11 @@ namespace WFPresentationLayer
         private void label9_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            dataGridViewQuartosLivres.Show();
         }
     }
 }
