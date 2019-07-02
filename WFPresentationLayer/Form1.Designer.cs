@@ -1248,7 +1248,7 @@
             this.btnAtualizarFornecedor.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAtualizarFornecedor.Location = new System.Drawing.Point(322, 323);
             this.btnAtualizarFornecedor.Name = "btnAtualizarFornecedor";
-            this.btnAtualizarFornecedor.Size = new System.Drawing.Size(102, 23);
+            this.btnAtualizarFornecedor.Size = new System.Drawing.Size(105, 23);
             this.btnAtualizarFornecedor.TabIndex = 29;
             this.btnAtualizarFornecedor.Text = "Atualizar";
             this.btnAtualizarFornecedor.UseVisualStyleBackColor = true;
@@ -1405,7 +1405,7 @@
             this.BtnAtualizarClientes.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAtualizarClientes.Location = new System.Drawing.Point(312, 352);
             this.BtnAtualizarClientes.Name = "BtnAtualizarClientes";
-            this.BtnAtualizarClientes.Size = new System.Drawing.Size(75, 23);
+            this.BtnAtualizarClientes.Size = new System.Drawing.Size(116, 23);
             this.BtnAtualizarClientes.TabIndex = 47;
             this.BtnAtualizarClientes.Text = "Atualizar Dados";
             this.BtnAtualizarClientes.UseVisualStyleBackColor = true;

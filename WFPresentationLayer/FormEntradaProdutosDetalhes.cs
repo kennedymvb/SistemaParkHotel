@@ -85,6 +85,9 @@ namespace WFPresentationLayer
             this.Dispose();
         }
 
-        
+        private void FormEntradaProdutosDetalhes_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
