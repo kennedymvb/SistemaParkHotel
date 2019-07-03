@@ -94,6 +94,7 @@
             this.CadastrarQuarto = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
             this.TabCheckin = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.dataGridViewQuartosLivres = new System.Windows.Forms.DataGridView();
             this.txtNumCliente = new System.Windows.Forms.TextBox();
             this.dataGridViewClientesCheckin = new System.Windows.Forms.DataGridView();
@@ -167,7 +168,7 @@
             this.label55 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.dataGridViewEntradaProdutos = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.lblUsuarioAtual = new System.Windows.Forms.Label();
             this.TabAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).BeginInit();
             this.TabCheckout.SuspendLayout();
@@ -888,6 +889,17 @@
             this.TabCheckin.TabIndex = 4;
             this.TabCheckin.Text = "Operações com Check-in";
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(154, 196);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(86, 23);
+            this.button4.TabIndex = 73;
+            this.button4.Text = "Pesquisar Cliente";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
             // dataGridViewQuartosLivres
             // 
             this.dataGridViewQuartosLivres.AllowUserToAddRows = false;
@@ -1362,6 +1374,7 @@
             this.TabClientes.BackColor = System.Drawing.Color.Transparent;
             this.TabClientes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabClientes.BackgroundImage")));
             this.TabClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TabClientes.Controls.Add(this.lblUsuarioAtual);
             this.TabClientes.Controls.Add(this.BtnAtualizarClientes);
             this.TabClientes.Controls.Add(this.dataGridView1);
             this.TabClientes.Controls.Add(this.btnExibirClientes);
@@ -1663,16 +1676,15 @@
             this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(342, 357);
             this.dataGridViewEntradaProdutos.TabIndex = 69;
             // 
-            // button4
+            // lblUsuarioAtual
             // 
-            this.button4.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(154, 196);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 23);
-            this.button4.TabIndex = 73;
-            this.button4.Text = "Pesquisar Cliente";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            this.lblUsuarioAtual.AutoSize = true;
+            this.lblUsuarioAtual.Font = new System.Drawing.Font("Miriam CLM", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblUsuarioAtual.Location = new System.Drawing.Point(13, 406);
+            this.lblUsuarioAtual.Name = "lblUsuarioAtual";
+            this.lblUsuarioAtual.Size = new System.Drawing.Size(88, 13);
+            this.lblUsuarioAtual.TabIndex = 48;
+            this.lblUsuarioAtual.Text = "Usuario atual: ";
             // 
             // Form1
             // 
@@ -1858,6 +1870,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridViewQuartosLivres;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label lblUsuarioAtual;
     }
 }
 

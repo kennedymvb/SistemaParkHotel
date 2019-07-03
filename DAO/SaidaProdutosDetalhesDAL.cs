@@ -16,12 +16,12 @@ namespace DAL
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
-            command.CommandText = "INSERT INTO SAIDAPRODUTOSDETALHES (CLIENTE_ID, PRODUTO, FORNECEDOR_ID, QUANTIDADE, VALOR_UNITARIO, ENTRADAPRODUTO_ID) VALUES (@CLIENTE_ID, @PRODUTO, @FORNECEDOR_ID, @QUANTIDADE, @VALOR_UNITARIO, @ENTRADAPRODUTO_ID)";
+            command.CommandText = "INSERT INTO SAIDAPRODUTOSDETALHES (CLIENTE_ID, PRODUTO, FORNECEDOR_ID, QUANTIDADE, VALOR_UNITARIO, SAIDAPRODUTO_ID) VALUES (@CLIENTE_ID, @PRODUTO, @FORNECEDOR_ID, @QUANTIDADE, @VALOR_UNITARIO, @SAIDAPRODUTO_ID)";
             command.Parameters.AddWithValue("@CLIENTE_ID", saidaProdutosDetalhes.idCliente);
-            command.Parameters.AddWithValue("@PRODUTO", saidaProdutosDetalhes.idProduto);
+            command.Parameters.AddWithValue("@PRODUTO_ID", saidaProdutosDetalhes.idProduto);
             command.Parameters.AddWithValue("@QUANTIDADE", saidaProdutosDetalhes.Quantidade);
             command.Parameters.AddWithValue("@VALOR_UNITARIO", saidaProdutosDetalhes.Valorunitario);
-            command.Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saidaProdutosDetalhes.idEntradaProdutos);
+            command.Parameters.AddWithValue("@SAIDAPRODUTO_ID", saidaProdutosDetalhes.idEntradaProdutos);
 
             try
             {

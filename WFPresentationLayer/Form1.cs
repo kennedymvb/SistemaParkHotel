@@ -35,6 +35,12 @@ namespace WFPresentationLayer
             if (!Usuario.UsuarioLogado.isAdmin) {
                 TabAdministrador.Dispose();
             }
+            carregarLabels();
+        }
+
+        private void carregarLabels()
+        {
+            lblUsuarioAtual.Text = usuarioBLL.LerPorID(Usuario.UsuarioLogado).nome;
         }
 
         public static int idEntradaCorrespondente;
@@ -407,7 +413,7 @@ namespace WFPresentationLayer
         private void btnFazerCheckin_Click(object sender, EventArgs e)
         {
             Checkin checkin = InstanciarCheckin();
-            checkinBLL.inserir(checkin);
+            MessageBox.Show(checkinBLL.inserir(checkin));
             quartoBLL.Ocupar(checkin.quartoId);
         }
 
