@@ -21,7 +21,7 @@ namespace DAL
             command.Connection = connection;
 
 
-            command.CommandText = "INSERT INTO USUARIOS (CHECK_IN_ID, VALOR_TOTAL, DATA_SAIDA) VALUES  (@CHECK_IN_ID, @VALOR_TOTAL, @DATA_SAIDA)";
+            command.CommandText = "INSERT INTO CHECKOUTS (CHECK_IN_ID, VALOR_TOTAL, DATA_SAIDA) VALUES  (@CHECK_IN_ID, @VALOR_TOTAL, @DATA_SAIDA)";
             command.Parameters.AddWithValue("@VALOR_TOTAL", checkout.valorTotal);
             command.Parameters.AddWithValue("@DATA_SAIDA", checkout.dataSaida);
             command.Parameters.AddWithValue("@CHECK_IN_ID", checkout.idCheckin);
@@ -34,9 +34,10 @@ namespace DAL
             {
                 if (ex.Message.Contains("UNIQUE"))
                 {
-                    return "Usuário deve ser único, contém dados já cadastrados";
+                    throw new Exception("checkout deve ser único, contém dados já cadastrados");
                 }
-                return "erro no banco de dados, contate o admin";
+                throw new Exception("erro no banco de dados, contate o admin");
+
             }
             return "atualizado com sucesso";
         }

@@ -94,7 +94,7 @@
             this.CadastrarQuarto = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
             this.TabCheckin = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnPesquisarQuartosLivres = new System.Windows.Forms.Button();
             this.dataGridViewQuartosLivres = new System.Windows.Forms.DataGridView();
             this.txtNumCliente = new System.Windows.Forms.TextBox();
             this.dataGridViewClientesCheckin = new System.Windows.Forms.DataGridView();
@@ -141,6 +141,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.TabClientes = new System.Windows.Forms.TabPage();
+            this.lblUsuarioAtual = new System.Windows.Forms.Label();
             this.BtnAtualizarClientes = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnExibirClientes = new System.Windows.Forms.Button();
@@ -168,7 +169,8 @@
             this.label55 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.dataGridViewEntradaProdutos = new System.Windows.Forms.DataGridView();
-            this.btnPesquisarProduto = new System.Windows.Forms.Button();
+            this.txtQuartoCheckin = new System.Windows.Forms.TextBox();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.TabAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).BeginInit();
             this.TabCheckout.SuspendLayout();
@@ -189,6 +191,7 @@
             this.CadastroEntradaProdutos.SuspendLayout();
             this.tabCadastroEntradaProdutos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntradaProdutos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // TabAdministrador
@@ -415,6 +418,7 @@
             // 
             this.TabCheckout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabCheckout.BackgroundImage")));
             this.TabCheckout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TabCheckout.Controls.Add(this.dataGridView2);
             this.TabCheckout.Controls.Add(this.dateTimeCheckoutDataSaida);
             this.TabCheckout.Controls.Add(this.labelValorTotalPagar);
             this.TabCheckout.Controls.Add(this.txtnumeroCheckinCheckout);
@@ -510,7 +514,6 @@
             // 
             this.TabVendas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabVendas.BackgroundImage")));
             this.TabVendas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.TabVendas.Controls.Add(this.btnPesquisarProduto);
             this.TabVendas.Controls.Add(this.button3);
             this.TabVendas.Controls.Add(this.txtNumProdutoVenda);
             this.TabVendas.Controls.Add(this.txtnumClienteVenda);
@@ -533,13 +536,12 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(55, 317);
+            this.button3.Location = new System.Drawing.Point(382, 202);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(125, 20);
             this.button3.TabIndex = 64;
             this.button3.Text = "Pesquisar Cliente";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // txtNumProdutoVenda
             // 
@@ -565,9 +567,9 @@
             // btnCadastrarVendas
             // 
             this.btnCadastrarVendas.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrarVendas.Location = new System.Drawing.Point(242, 382);
+            this.btnCadastrarVendas.Location = new System.Drawing.Point(71, 322);
             this.btnCadastrarVendas.Name = "btnCadastrarVendas";
-            this.btnCadastrarVendas.Size = new System.Drawing.Size(194, 34);
+            this.btnCadastrarVendas.Size = new System.Drawing.Size(140, 23);
             this.btnCadastrarVendas.TabIndex = 63;
             this.btnCadastrarVendas.Text = "Cadastrar Vendas";
             this.btnCadastrarVendas.UseVisualStyleBackColor = true;
@@ -867,7 +869,8 @@
             this.TabCheckin.BackColor = System.Drawing.Color.Transparent;
             this.TabCheckin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabCheckin.BackgroundImage")));
             this.TabCheckin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.TabCheckin.Controls.Add(this.button4);
+            this.TabCheckin.Controls.Add(this.txtQuartoCheckin);
+            this.TabCheckin.Controls.Add(this.btnPesquisarQuartosLivres);
             this.TabCheckin.Controls.Add(this.dataGridViewQuartosLivres);
             this.TabCheckin.Controls.Add(this.txtNumCliente);
             this.TabCheckin.Controls.Add(this.dataGridViewClientesCheckin);
@@ -891,16 +894,16 @@
             this.TabCheckin.TabIndex = 4;
             this.TabCheckin.Text = "Operações com Check-in";
             // 
-            // button4
+            // btnPesquisarQuartosLivres
             // 
-            this.button4.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(154, 196);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 23);
-            this.button4.TabIndex = 73;
-            this.button4.Text = "Pesquisar Cliente";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            this.btnPesquisarQuartosLivres.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisarQuartosLivres.Location = new System.Drawing.Point(154, 196);
+            this.btnPesquisarQuartosLivres.Name = "btnPesquisarQuartosLivres";
+            this.btnPesquisarQuartosLivres.Size = new System.Drawing.Size(86, 23);
+            this.btnPesquisarQuartosLivres.TabIndex = 73;
+            this.btnPesquisarQuartosLivres.Text = "Pesquisar Cliente";
+            this.btnPesquisarQuartosLivres.UseVisualStyleBackColor = true;
+            this.btnPesquisarQuartosLivres.Click += new System.EventHandler(this.btnPesquisarQuartosLivres_Click);
             // 
             // dataGridViewQuartosLivres
             // 
@@ -913,6 +916,7 @@
             this.dataGridViewQuartosLivres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewQuartosLivres.Size = new System.Drawing.Size(541, 188);
             this.dataGridViewQuartosLivres.TabIndex = 72;
+            this.dataGridViewQuartosLivres.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewQuartosLivres_CellDoubleClick);
             // 
             // txtNumCliente
             // 
@@ -1376,6 +1380,7 @@
             this.TabClientes.BackColor = System.Drawing.Color.Transparent;
             this.TabClientes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabClientes.BackgroundImage")));
             this.TabClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TabClientes.Controls.Add(this.lblUsuarioAtual);
             this.TabClientes.Controls.Add(this.BtnAtualizarClientes);
             this.TabClientes.Controls.Add(this.dataGridView1);
             this.TabClientes.Controls.Add(this.btnExibirClientes);
@@ -1399,6 +1404,16 @@
             this.TabClientes.Size = new System.Drawing.Size(925, 430);
             this.TabClientes.TabIndex = 1;
             this.TabClientes.Text = "Operações com clientes";
+            // 
+            // lblUsuarioAtual
+            // 
+            this.lblUsuarioAtual.AutoSize = true;
+            this.lblUsuarioAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblUsuarioAtual.Location = new System.Drawing.Point(13, 406);
+            this.lblUsuarioAtual.Name = "lblUsuarioAtual";
+            this.lblUsuarioAtual.Size = new System.Drawing.Size(101, 15);
+            this.lblUsuarioAtual.TabIndex = 48;
+            this.lblUsuarioAtual.Text = "Usuario atual: ";
             // 
             // BtnAtualizarClientes
             // 
@@ -1677,15 +1692,21 @@
             this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(342, 357);
             this.dataGridViewEntradaProdutos.TabIndex = 69;
             // 
-            // btnPesquisarProduto
+            // txtQuartoCheckin
             // 
-            this.btnPesquisarProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisarProduto.Location = new System.Drawing.Point(196, 317);
-            this.btnPesquisarProduto.Name = "btnPesquisarProduto";
-            this.btnPesquisarProduto.Size = new System.Drawing.Size(125, 20);
-            this.btnPesquisarProduto.TabIndex = 65;
-            this.btnPesquisarProduto.Text = "Pesquisar Produto";
-            this.btnPesquisarProduto.UseVisualStyleBackColor = true;
+            this.txtQuartoCheckin.Location = new System.Drawing.Point(246, 199);
+            this.txtQuartoCheckin.Name = "txtQuartoCheckin";
+            this.txtQuartoCheckin.Size = new System.Drawing.Size(61, 20);
+            this.txtQuartoCheckin.TabIndex = 74;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(552, 36);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(358, 247);
+            this.dataGridView2.TabIndex = 71;
             // 
             // Form1
             // 
@@ -1726,6 +1747,7 @@
             this.tabCadastroEntradaProdutos.ResumeLayout(false);
             this.tabCadastroEntradaProdutos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntradaProdutos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1870,8 +1892,10 @@
         private System.Windows.Forms.TextBox txtNumCliente;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridViewQuartosLivres;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button btnPesquisarProduto;
+        private System.Windows.Forms.Button btnPesquisarQuartosLivres;
+        private System.Windows.Forms.Label lblUsuarioAtual;
+        private System.Windows.Forms.TextBox txtQuartoCheckin;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 

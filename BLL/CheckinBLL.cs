@@ -20,7 +20,7 @@ namespace BLL
         ReservaBLL reservaBll = new ReservaBLL();
 
 
-        public string inserir(Checkin checkin)
+        public void inserir(Checkin checkin)
         {
             Validar(checkin);
             if (erros.Count > 0)
@@ -30,7 +30,8 @@ namespace BLL
                 {
                     sb.Append(erros[i]);
                 }
-                return sb.ToString();
+                erros.Clear();
+                throw new Exception(sb.ToString());
             }
 
             //Se chegou aqui, bora inserir o checkin e ocupar o quarto
@@ -40,7 +41,6 @@ namespace BLL
                 checkinDAL.Inserir(checkin);
                 quartoBll.Ocupar(checkin.quartoId);
                 scope.Complete();
-                return "inserido com sucesso";
             }//scope.Dispose();
 
         }

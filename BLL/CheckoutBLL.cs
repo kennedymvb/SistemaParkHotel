@@ -29,14 +29,11 @@ namespace BLL
                 {
                     sb.Append(erros[i]);
                 }
-                return sb.ToString();
+                throw new Exception(sb.ToString());
             }
-            else
-            {
                 checkoutDal.Inserir(checkout);
                 DesocuparQuarto(checkout);
-                return "inserido com sucesso";
-            }
+                return "checkout feito com sucesso";
         }
 
         public Checkout LerPorID(int id)
