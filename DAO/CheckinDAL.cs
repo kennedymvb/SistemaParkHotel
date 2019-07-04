@@ -11,19 +11,31 @@ namespace DAL
     public class CheckinDAL : ICheckInProcess<Checkin>
     {
         string stringConexao = StringConexao.GetStringConexao();
-        public string Inserir(Checkin checkin)
+        public void Inserir(Checkin checkin)
         {
             
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
 
-            command.CommandText = "INSERT INTO CHECKIN (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID, ID_RESERVA) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID, @ID_RESERVA)";
-            command.Parameters.AddWithValue("@DATA_ENTRADA", checkin.dataEntrada);
-            command.Parameters.AddWithValue("@DATA_PREVISTA_SAIDA", checkin.dataPrevistaSaida);
-            command.Parameters.AddWithValue("@QUARTO_ID", checkin.quartoId);
-            command.Parameters.AddWithValue("@CLIENTE_ID", checkin.clienteId);
-            command.Parameters.AddWithValue("@ID_RESERVA", checkin.idReserva);
+            if (checkin.idReserva > 0)
+            {
+                command.CommandText = "INSERT INTO CHECKINS (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID, ID_RESERVA) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID, @ID_RESERVA)";
+                command.Parameters.AddWithValue("@DATA_ENTRADA", checkin.dataEntrada);
+                command.Parameters.AddWithValue("@DATA_PREVISTA_SAIDA", checkin.dataPrevistaSaida);
+                command.Parameters.AddWithValue("@QUARTO_ID", checkin.quartoId);
+                command.Parameters.AddWithValue("@CLIENTE_ID", checkin.clienteId);
+                command.Parameters.AddWithValue("@ID_RESERVA", checkin.idReserva);
+            }
+            else
+            {
+                command.CommandText = "INSERT INTO CHECKINS (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID)";
+                command.Parameters.AddWithValue("@DATA_ENTRADA", checkin.dataEntrada);
+                command.Parameters.AddWithValue("@DATA_PREVISTA_SAIDA", checkin.dataPrevistaSaida);
+                command.Parameters.AddWithValue("@QUARTO_ID", checkin.quartoId);
+                command.Parameters.AddWithValue("@CLIENTE_ID", checkin.clienteId);
+            }
+            
 
             try
             {
@@ -34,12 +46,10 @@ namespace DAL
             {
                 if (ex.Message.Contains("UNIQUE"))
                 {
-                    return "Usuário deve ser único, contém dados já cadastrados";
+                    throw new Exception("erro de chave unica");
                 }
-                return "erro no banco de dados, contate o admin";
+                throw new Exception("erro no banco");
             }
-            return "atualizado com sucesso";
-
         }
 
         public Checkin LerPorID(int id)

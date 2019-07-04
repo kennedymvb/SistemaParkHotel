@@ -86,11 +86,11 @@ namespace BLL
             return sb.ToString();
         }
 
-        public Usuario LerPorID(Usuario usuario)
+        public Usuario LerPorID(int id)
         {
-            if (this.Validar(usuario))
+            if (!(id<1))
             {
-                return usuarioDal.LerPorID(usuario.id);
+                return usuarioDal.LerPorID(id);
             }
 
             return null;

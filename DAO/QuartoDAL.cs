@@ -18,7 +18,7 @@ namespace DAL
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
 
-            command.CommandText = "UPDATE QUARTOS SET VALOR_DIARIA = @VALOR_DIARIA, USUARIO_ID = @USUARIO_ID, ESTA_OCUPADO = @ESTA_OCUPADO, TIPO= @TIPO";
+            command.CommandText = "UPDATE QUARTOS SET VALOR_DIARIA = @VALOR_DIARIA, USUARIO_ID = @USUARIO_ID, ESTA_OCUPADO = @ESTA_OCUPADO, TIPO= @TIPO WHERE ID=@ID";
             command.Parameters.AddWithValue("@ID", quarto.id);
             command.Parameters.AddWithValue("@VALOR_DIARIA", quarto.valorDiaria);
             command.Parameters.AddWithValue("@USUARIO_ID", quarto.usuarioId);

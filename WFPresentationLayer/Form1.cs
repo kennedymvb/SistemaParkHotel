@@ -31,7 +31,6 @@ namespace WFPresentationLayer
             InitializeComponent();
             this.Load += Form1_Load;
             carregarCmbBox();
-            carregarQuartos();
             if (!Usuario.UsuarioLogado.isAdmin) {
                 TabAdministrador.Dispose();
             }
@@ -40,7 +39,7 @@ namespace WFPresentationLayer
 
         private void carregarLabels()
         {
-            lblUsuarioAtual.Text = usuarioBLL.LerPorID(Usuario.UsuarioLogado).nome;
+            lblUsuarioAtual.Text = usuarioBLL.LerPorID(Usuario.UsuarioLogado.id).nome;
         }
 
         public static int idEntradaCorrespondente;
@@ -267,10 +266,7 @@ namespace WFPresentationLayer
                 MessageBox.Show(ex.Message);
             }
         }
-        private void carregarQuartos()
-        {
-            dataGridViewQuartosLivres.DataSource = quartoBLL.LerNaoOcupados();
-        }
+        
         #endregion
 
 
@@ -413,8 +409,15 @@ namespace WFPresentationLayer
         private void btnFazerCheckin_Click(object sender, EventArgs e)
         {
             Checkin checkin = InstanciarCheckin();
-            MessageBox.Show(checkinBLL.inserir(checkin));
-            quartoBLL.Ocupar(checkin.quartoId);
+            try
+            {
+                checkinBLL.inserir(checkin);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //só posso ocupar o quarto após ser inserido o checkin
         }
 
         private Checkin InstanciarCheckin()
@@ -422,7 +425,7 @@ namespace WFPresentationLayer
             int idUsuario = Usuario.UsuarioLogado.id;
             DateTime dataEntrada = dateTimeCheckinDataentrada.Value;
             DateTime dataPrevistaSaida = dateTimeDataPSaidaCheckin.Value;
-            int idQuarto = pegarIdQuarto();
+            int idQuarto = int.Parse(txtQuartoCheckin.Text);
             int idCliente = int.Parse(txtNumCliente.Text);
             if (ckbNaoTem.Checked)
             {
@@ -437,9 +440,10 @@ namespace WFPresentationLayer
         /// Melhorar aqui: reusar lerNaoOcupados.
         /// </summary>
         /// <returns></returns>
-        private int pegarIdQuarto()
+        private void dataGridViewQuartosLivres_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            return ((Quarto)dataGridViewQuartosLivres.SelectedRows[0].DataBoundItem).id;
+            txtQuartoCheckin.Text =dataGridViewQuartosLivres.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtQuartoCheckin.Enabled = false;
         }
 
         private void ckbNaoTem_CheckedChanged(object sender, EventArgs e)
@@ -469,7 +473,20 @@ namespace WFPresentationLayer
         {
             txtNumCliente.Text = dataGridViewClientesCheckin.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtNumCliente.Enabled = false;
+        }
+        private void btnPesquisarQuartosLivres_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridViewQuartosLivres.DataSource = quartoBLL.LerNaoOcupados();
+                dataGridViewQuartosLivres.Show();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
         }
 
 
@@ -502,9 +519,6 @@ namespace WFPresentationLayer
 
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            dataGridViewQuartosLivres.Show();
-        }
+        
     }
 }
