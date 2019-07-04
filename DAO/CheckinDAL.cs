@@ -91,7 +91,10 @@ namespace DAL
         {
             Checkin checkin = new Checkin();
             checkin.id = Convert.ToInt32(reader["ID"]);
-            checkin.idReserva = Convert.ToInt32(reader["ID_RESERVA"]);
+            if (reader["ID_RESERVA"]!=DBNull.Value)
+            {
+                checkin.idReserva = Convert.ToInt32(reader["ID_RESERVA"]);
+            }
             checkin.dataEntrada = Convert.ToDateTime(reader["DATA_ENTRADA"]);
             checkin.quartoId = Convert.ToInt32(reader["QUARTO_ID"]);
             checkin.clienteId = Convert.ToInt32(reader["CLIENTE_ID"]);

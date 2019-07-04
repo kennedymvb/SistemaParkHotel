@@ -1,1 +1,1 @@
-﻿select * from CLIENTES
+﻿select * from checkins
