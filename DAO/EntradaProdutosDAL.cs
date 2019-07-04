@@ -36,7 +36,6 @@ namespace DAL
                 connection.Close();
             }
         }
-        //GAMBIARRRRRAAAAAAAAAAAAAAAAAA
         private int pegarIdEntrada()
         {
             string stringConexao = StringConexao.GetStringConexao();

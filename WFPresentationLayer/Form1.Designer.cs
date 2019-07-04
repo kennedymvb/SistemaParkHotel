@@ -51,6 +51,7 @@
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.TabCheckout = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dateTimeCheckoutDataSaida = new System.Windows.Forms.DateTimePicker();
             this.labelValorTotalPagar = new System.Windows.Forms.Label();
             this.txtnumeroCheckinCheckout = new System.Windows.Forms.TextBox();
@@ -94,6 +95,7 @@
             this.CadastrarQuarto = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
             this.TabCheckin = new System.Windows.Forms.TabPage();
+            this.txtQuartoCheckin = new System.Windows.Forms.TextBox();
             this.btnPesquisarQuartosLivres = new System.Windows.Forms.Button();
             this.dataGridViewQuartosLivres = new System.Windows.Forms.DataGridView();
             this.txtNumCliente = new System.Windows.Forms.TextBox();
@@ -169,11 +171,10 @@
             this.label55 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.dataGridViewEntradaProdutos = new System.Windows.Forms.DataGridView();
-            this.txtQuartoCheckin = new System.Windows.Forms.TextBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.TabAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).BeginInit();
             this.TabCheckout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.TabVendas.SuspendLayout();
             this.TabReservas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservas)).BeginInit();
@@ -191,7 +192,6 @@
             this.CadastroEntradaProdutos.SuspendLayout();
             this.tabCadastroEntradaProdutos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntradaProdutos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // TabAdministrador
@@ -434,6 +434,15 @@
             this.TabCheckout.TabIndex = 10;
             this.TabCheckout.Text = "Checkout";
             this.TabCheckout.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(552, 36);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(358, 247);
+            this.dataGridView2.TabIndex = 71;
             // 
             // dateTimeCheckoutDataSaida
             // 
@@ -893,6 +902,13 @@
             this.TabCheckin.Size = new System.Drawing.Size(925, 430);
             this.TabCheckin.TabIndex = 4;
             this.TabCheckin.Text = "Operações com Check-in";
+            // 
+            // txtQuartoCheckin
+            // 
+            this.txtQuartoCheckin.Location = new System.Drawing.Point(246, 199);
+            this.txtQuartoCheckin.Name = "txtQuartoCheckin";
+            this.txtQuartoCheckin.Size = new System.Drawing.Size(61, 20);
+            this.txtQuartoCheckin.TabIndex = 74;
             // 
             // btnPesquisarQuartosLivres
             // 
@@ -1687,26 +1703,10 @@
             // 
             this.dataGridViewEntradaProdutos.AllowUserToResizeRows = false;
             this.dataGridViewEntradaProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEntradaProdutos.Location = new System.Drawing.Point(577, 3);
+            this.dataGridViewEntradaProdutos.Location = new System.Drawing.Point(583, 0);
             this.dataGridViewEntradaProdutos.Name = "dataGridViewEntradaProdutos";
             this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(342, 357);
             this.dataGridViewEntradaProdutos.TabIndex = 69;
-            // 
-            // txtQuartoCheckin
-            // 
-            this.txtQuartoCheckin.Location = new System.Drawing.Point(246, 199);
-            this.txtQuartoCheckin.Name = "txtQuartoCheckin";
-            this.txtQuartoCheckin.Size = new System.Drawing.Size(61, 20);
-            this.txtQuartoCheckin.TabIndex = 74;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(552, 36);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(358, 247);
-            this.dataGridView2.TabIndex = 71;
             // 
             // Form1
             // 
@@ -1722,6 +1722,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).EndInit();
             this.TabCheckout.ResumeLayout(false);
             this.TabCheckout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.TabVendas.ResumeLayout(false);
             this.TabVendas.PerformLayout();
             this.TabReservas.ResumeLayout(false);
@@ -1747,7 +1748,6 @@
             this.tabCadastroEntradaProdutos.ResumeLayout(false);
             this.tabCadastroEntradaProdutos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntradaProdutos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
