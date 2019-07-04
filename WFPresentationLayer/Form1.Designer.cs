@@ -94,6 +94,7 @@
             this.CadastrarQuarto = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
             this.TabCheckin = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.dataGridViewQuartosLivres = new System.Windows.Forms.DataGridView();
             this.txtNumCliente = new System.Windows.Forms.TextBox();
             this.dataGridViewClientesCheckin = new System.Windows.Forms.DataGridView();
@@ -167,7 +168,7 @@
             this.label55 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.dataGridViewEntradaProdutos = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnPesquisarProduto = new System.Windows.Forms.Button();
             this.TabAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).BeginInit();
             this.TabCheckout.SuspendLayout();
@@ -509,6 +510,7 @@
             // 
             this.TabVendas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabVendas.BackgroundImage")));
             this.TabVendas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TabVendas.Controls.Add(this.btnPesquisarProduto);
             this.TabVendas.Controls.Add(this.button3);
             this.TabVendas.Controls.Add(this.txtNumProdutoVenda);
             this.TabVendas.Controls.Add(this.txtnumClienteVenda);
@@ -531,12 +533,13 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(382, 202);
+            this.button3.Location = new System.Drawing.Point(55, 317);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(125, 20);
             this.button3.TabIndex = 64;
             this.button3.Text = "Pesquisar Cliente";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // txtNumProdutoVenda
             // 
@@ -562,9 +565,9 @@
             // btnCadastrarVendas
             // 
             this.btnCadastrarVendas.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrarVendas.Location = new System.Drawing.Point(71, 322);
+            this.btnCadastrarVendas.Location = new System.Drawing.Point(242, 382);
             this.btnCadastrarVendas.Name = "btnCadastrarVendas";
-            this.btnCadastrarVendas.Size = new System.Drawing.Size(140, 23);
+            this.btnCadastrarVendas.Size = new System.Drawing.Size(194, 34);
             this.btnCadastrarVendas.TabIndex = 63;
             this.btnCadastrarVendas.Text = "Cadastrar Vendas";
             this.btnCadastrarVendas.UseVisualStyleBackColor = true;
@@ -887,6 +890,17 @@
             this.TabCheckin.Size = new System.Drawing.Size(925, 430);
             this.TabCheckin.TabIndex = 4;
             this.TabCheckin.Text = "Operações com Check-in";
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(154, 196);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(86, 23);
+            this.button4.TabIndex = 73;
+            this.button4.Text = "Pesquisar Cliente";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // dataGridViewQuartosLivres
             // 
@@ -1663,16 +1677,15 @@
             this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(342, 357);
             this.dataGridViewEntradaProdutos.TabIndex = 69;
             // 
-            // button4
+            // btnPesquisarProduto
             // 
-            this.button4.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(154, 196);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 23);
-            this.button4.TabIndex = 73;
-            this.button4.Text = "Pesquisar Cliente";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            this.btnPesquisarProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisarProduto.Location = new System.Drawing.Point(196, 317);
+            this.btnPesquisarProduto.Name = "btnPesquisarProduto";
+            this.btnPesquisarProduto.Size = new System.Drawing.Size(125, 20);
+            this.btnPesquisarProduto.TabIndex = 65;
+            this.btnPesquisarProduto.Text = "Pesquisar Produto";
+            this.btnPesquisarProduto.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1858,6 +1871,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridViewQuartosLivres;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnPesquisarProduto;
     }
 }
 

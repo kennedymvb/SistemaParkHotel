@@ -357,11 +357,7 @@ namespace WFPresentationLayer
         }
         private void btnConsultarReservas_Click(object sender, EventArgs e)
         {
-            
-                dataGridViewReservas.DataSource = ReservaBLL.LerTodos();
-            
-            
-            
+            dataGridViewReservas.DataSource = ReservaBLL.LerReservaViewModel();
             this.dataGridViewReservas.Show();
 
         }
@@ -499,6 +495,11 @@ namespace WFPresentationLayer
         private void button4_Click_1(object sender, EventArgs e)
         {
             dataGridViewQuartosLivres.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

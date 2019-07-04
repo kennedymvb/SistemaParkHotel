@@ -30,13 +30,13 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro de conexão com o banco";
+                throw new Exception(e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return "dados atualizados com sucesso";
+            throw new Exception("dados atualizados com sucesso");
         }
 
         public SaidaProdutos LerPorID(int id)
