@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Metadata;
 using DAL;
+using DAO.ReservaViewModel;
 
 namespace BLL
 {
@@ -97,6 +98,10 @@ namespace BLL
                     erros.Add("cliente não encontrado no banco");
                 }
             }
+        }
+        public List<ReservaViewModel> LerReservaViewModel()
+        {
+            return reservaDal.LerReservasViewModel();
         }
     }
 }

@@ -51,6 +51,7 @@
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.TabCheckout = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dateTimeCheckoutDataSaida = new System.Windows.Forms.DateTimePicker();
             this.labelValorTotalPagar = new System.Windows.Forms.Label();
             this.txtnumeroCheckinCheckout = new System.Windows.Forms.TextBox();
@@ -90,12 +91,12 @@
             this.cmbTipoQuarto = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
             this.txtValorDiaria = new System.Windows.Forms.TextBox();
-            this.NumQuarto = new System.Windows.Forms.TextBox();
             this.CadastrarQuarto = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
             this.TabCheckin = new System.Windows.Forms.TabPage();
+            this.txtQuartoCheckin = new System.Windows.Forms.TextBox();
+            this.btnPesquisarQuartosLivres = new System.Windows.Forms.Button();
             this.dataGridViewQuartosLivres = new System.Windows.Forms.DataGridView();
             this.txtNumCliente = new System.Windows.Forms.TextBox();
             this.dataGridViewClientesCheckin = new System.Windows.Forms.DataGridView();
@@ -142,6 +143,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.TabClientes = new System.Windows.Forms.TabPage();
+            this.lblUsuarioAtual = new System.Windows.Forms.Label();
             this.BtnAtualizarClientes = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnExibirClientes = new System.Windows.Forms.Button();
@@ -161,17 +163,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CadastroEntradaProdutos = new System.Windows.Forms.TabControl();
             this.tabCadastroEntradaProdutos = new System.Windows.Forms.TabPage();
-            this.txtValorTotalLote = new System.Windows.Forms.TextBox();
-            this.dateTimeEntrada = new System.Windows.Forms.DateTimePicker();
             this.btnExibirEntradas = new System.Windows.Forms.Button();
             this.btnCadastrarEntrada = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.dataGridViewEntradaProdutos = new System.Windows.Forms.DataGridView();
             this.TabAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).BeginInit();
             this.TabCheckout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.TabVendas.SuspendLayout();
             this.TabReservas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservas)).BeginInit();
@@ -415,6 +414,7 @@
             // 
             this.TabCheckout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabCheckout.BackgroundImage")));
             this.TabCheckout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TabCheckout.Controls.Add(this.dataGridView2);
             this.TabCheckout.Controls.Add(this.dateTimeCheckoutDataSaida);
             this.TabCheckout.Controls.Add(this.labelValorTotalPagar);
             this.TabCheckout.Controls.Add(this.txtnumeroCheckinCheckout);
@@ -430,6 +430,15 @@
             this.TabCheckout.TabIndex = 10;
             this.TabCheckout.Text = "Checkout";
             this.TabCheckout.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(552, 36);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(358, 247);
+            this.dataGridView2.TabIndex = 71;
             // 
             // dateTimeCheckoutDataSaida
             // 
@@ -531,10 +540,10 @@
             // 
             // button3
             // 
-            this.button3.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(232, 322);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(382, 202);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 23);
+            this.button3.Size = new System.Drawing.Size(125, 20);
             this.button3.TabIndex = 64;
             this.button3.Text = "Pesquisar Cliente";
             this.button3.UseVisualStyleBackColor = true;
@@ -657,7 +666,7 @@
             this.dataGridViewReservas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewReservas.Location = new System.Drawing.Point(408, 0);
             this.dataGridViewReservas.Name = "dataGridViewReservas";
-            this.dataGridViewReservas.Size = new System.Drawing.Size(507, 429);
+            this.dataGridViewReservas.Size = new System.Drawing.Size(517, 429);
             this.dataGridViewReservas.TabIndex = 42;
             // 
             // btnConsultarReservas
@@ -771,9 +780,7 @@
             this.TabQuartos.Controls.Add(this.cmbTipoQuarto);
             this.TabQuartos.Controls.Add(this.label1);
             this.TabQuartos.Controls.Add(this.label2);
-            this.TabQuartos.Controls.Add(this.label40);
             this.TabQuartos.Controls.Add(this.txtValorDiaria);
-            this.TabQuartos.Controls.Add(this.NumQuarto);
             this.TabQuartos.Controls.Add(this.CadastrarQuarto);
             this.TabQuartos.Controls.Add(this.label52);
             this.TabQuartos.Location = new System.Drawing.Point(4, 22);
@@ -834,29 +841,12 @@
             this.label2.TabIndex = 52;
             this.label2.Text = "Tipo de Quarto:";
             // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(47, 130);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(129, 20);
-            this.label40.TabIndex = 51;
-            this.label40.Text = "Número do Quarto:";
-            // 
             // txtValorDiaria
             // 
             this.txtValorDiaria.Location = new System.Drawing.Point(152, 216);
             this.txtValorDiaria.Name = "txtValorDiaria";
             this.txtValorDiaria.Size = new System.Drawing.Size(121, 20);
             this.txtValorDiaria.TabIndex = 50;
-            // 
-            // NumQuarto
-            // 
-            this.NumQuarto.Location = new System.Drawing.Point(182, 130);
-            this.NumQuarto.Name = "NumQuarto";
-            this.NumQuarto.Size = new System.Drawing.Size(121, 20);
-            this.NumQuarto.TabIndex = 47;
             // 
             // CadastrarQuarto
             // 
@@ -884,6 +874,8 @@
             this.TabCheckin.BackColor = System.Drawing.Color.Transparent;
             this.TabCheckin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabCheckin.BackgroundImage")));
             this.TabCheckin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TabCheckin.Controls.Add(this.txtQuartoCheckin);
+            this.TabCheckin.Controls.Add(this.btnPesquisarQuartosLivres);
             this.TabCheckin.Controls.Add(this.dataGridViewQuartosLivres);
             this.TabCheckin.Controls.Add(this.txtNumCliente);
             this.TabCheckin.Controls.Add(this.dataGridViewClientesCheckin);
@@ -907,29 +899,51 @@
             this.TabCheckin.TabIndex = 4;
             this.TabCheckin.Text = "Operações com Check-in";
             // 
+            // txtQuartoCheckin
+            // 
+            this.txtQuartoCheckin.Location = new System.Drawing.Point(246, 199);
+            this.txtQuartoCheckin.Name = "txtQuartoCheckin";
+            this.txtQuartoCheckin.Size = new System.Drawing.Size(61, 20);
+            this.txtQuartoCheckin.TabIndex = 74;
+            // 
+            // btnPesquisarQuartosLivres
+            // 
+            this.btnPesquisarQuartosLivres.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisarQuartosLivres.Location = new System.Drawing.Point(154, 196);
+            this.btnPesquisarQuartosLivres.Name = "btnPesquisarQuartosLivres";
+            this.btnPesquisarQuartosLivres.Size = new System.Drawing.Size(86, 23);
+            this.btnPesquisarQuartosLivres.TabIndex = 73;
+            this.btnPesquisarQuartosLivres.Text = "Pesquisar Cliente";
+            this.btnPesquisarQuartosLivres.UseVisualStyleBackColor = true;
+            this.btnPesquisarQuartosLivres.Click += new System.EventHandler(this.btnPesquisarQuartosLivres_Click);
+            // 
             // dataGridViewQuartosLivres
             // 
+            this.dataGridViewQuartosLivres.AllowUserToAddRows = false;
+            this.dataGridViewQuartosLivres.AllowUserToDeleteRows = false;
             this.dataGridViewQuartosLivres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewQuartosLivres.Location = new System.Drawing.Point(121, 199);
+            this.dataGridViewQuartosLivres.Location = new System.Drawing.Point(378, 215);
             this.dataGridViewQuartosLivres.Name = "dataGridViewQuartosLivres";
+            this.dataGridViewQuartosLivres.ReadOnly = true;
             this.dataGridViewQuartosLivres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewQuartosLivres.Size = new System.Drawing.Size(282, 25);
+            this.dataGridViewQuartosLivres.Size = new System.Drawing.Size(541, 188);
             this.dataGridViewQuartosLivres.TabIndex = 72;
+            this.dataGridViewQuartosLivres.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewQuartosLivres_CellDoubleClick);
             // 
             // txtNumCliente
             // 
-            this.txtNumCliente.Location = new System.Drawing.Point(390, 236);
+            this.txtNumCliente.Location = new System.Drawing.Point(246, 233);
             this.txtNumCliente.Name = "txtNumCliente";
-            this.txtNumCliente.Size = new System.Drawing.Size(100, 20);
+            this.txtNumCliente.Size = new System.Drawing.Size(61, 20);
             this.txtNumCliente.TabIndex = 71;
             // 
             // dataGridViewClientesCheckin
             // 
             this.dataGridViewClientesCheckin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewClientesCheckin.Location = new System.Drawing.Point(577, 6);
+            this.dataGridViewClientesCheckin.Location = new System.Drawing.Point(378, 0);
             this.dataGridViewClientesCheckin.Name = "dataGridViewClientesCheckin";
             this.dataGridViewClientesCheckin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewClientesCheckin.Size = new System.Drawing.Size(342, 357);
+            this.dataGridViewClientesCheckin.Size = new System.Drawing.Size(547, 186);
             this.dataGridViewClientesCheckin.TabIndex = 70;
             this.dataGridViewClientesCheckin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClientesCheckin_CellDoubleClick);
             this.dataGridViewClientesCheckin.DoubleClick += new System.EventHandler(this.dataGridViewClientesCheckin_DoubleClick);
@@ -937,7 +951,7 @@
             // ckbNaoTem
             // 
             this.ckbNaoTem.AutoSize = true;
-            this.ckbNaoTem.Location = new System.Drawing.Point(350, 286);
+            this.ckbNaoTem.Location = new System.Drawing.Point(306, 283);
             this.ckbNaoTem.Name = "ckbNaoTem";
             this.ckbNaoTem.Size = new System.Drawing.Size(66, 17);
             this.ckbNaoTem.TabIndex = 34;
@@ -947,7 +961,7 @@
             // 
             // txtNumReserva
             // 
-            this.txtNumReserva.Location = new System.Drawing.Point(202, 284);
+            this.txtNumReserva.Location = new System.Drawing.Point(173, 283);
             this.txtNumReserva.Name = "txtNumReserva";
             this.txtNumReserva.Size = new System.Drawing.Size(100, 20);
             this.txtNumReserva.TabIndex = 33;
@@ -955,9 +969,9 @@
             // BtnPesquisarCliente
             // 
             this.BtnPesquisarCliente.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPesquisarCliente.Location = new System.Drawing.Point(201, 233);
+            this.BtnPesquisarCliente.Location = new System.Drawing.Point(154, 232);
             this.BtnPesquisarCliente.Name = "BtnPesquisarCliente";
-            this.BtnPesquisarCliente.Size = new System.Drawing.Size(148, 23);
+            this.BtnPesquisarCliente.Size = new System.Drawing.Size(86, 23);
             this.BtnPesquisarCliente.TabIndex = 30;
             this.BtnPesquisarCliente.Text = "Pesquisar Cliente";
             this.BtnPesquisarCliente.UseVisualStyleBackColor = true;
@@ -967,7 +981,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(54, 163);
+            this.label4.Location = new System.Drawing.Point(6, 166);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(143, 20);
             this.label4.TabIndex = 29;
@@ -975,9 +989,10 @@
             // 
             // dateTimeDataPSaidaCheckin
             // 
-            this.dateTimeDataPSaidaCheckin.Location = new System.Drawing.Point(201, 163);
+            this.dateTimeDataPSaidaCheckin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeDataPSaidaCheckin.Location = new System.Drawing.Point(142, 163);
             this.dateTimeDataPSaidaCheckin.Name = "dateTimeDataPSaidaCheckin";
-            this.dateTimeDataPSaidaCheckin.Size = new System.Drawing.Size(229, 20);
+            this.dateTimeDataPSaidaCheckin.Size = new System.Drawing.Size(78, 20);
             this.dateTimeDataPSaidaCheckin.TabIndex = 28;
             // 
             // btnFazerCheckin
@@ -993,16 +1008,17 @@
             // 
             // dateTimeCheckinDataentrada
             // 
-            this.dateTimeCheckinDataentrada.Location = new System.Drawing.Point(201, 123);
+            this.dateTimeCheckinDataentrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeCheckinDataentrada.Location = new System.Drawing.Point(120, 107);
             this.dateTimeCheckinDataentrada.Name = "dateTimeCheckinDataentrada";
-            this.dateTimeCheckinDataentrada.Size = new System.Drawing.Size(229, 20);
+            this.dateTimeCheckinDataentrada.Size = new System.Drawing.Size(74, 20);
             this.dateTimeCheckinDataentrada.TabIndex = 24;
             // 
             // label60
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(54, 285);
+            this.label60.Location = new System.Drawing.Point(9, 283);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(140, 20);
             this.label60.TabIndex = 20;
@@ -1012,7 +1028,7 @@
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(54, 233);
+            this.label53.Location = new System.Drawing.Point(16, 233);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(132, 20);
             this.label53.TabIndex = 8;
@@ -1022,7 +1038,7 @@
             // 
             this.label54.AutoSize = true;
             this.label54.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(54, 204);
+            this.label54.Location = new System.Drawing.Point(16, 199);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(61, 20);
             this.label54.TabIndex = 6;
@@ -1043,7 +1059,7 @@
             // 
             this.label50.AutoSize = true;
             this.label50.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(88, 123);
+            this.label50.Location = new System.Drawing.Point(6, 107);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(99, 20);
             this.label50.TabIndex = 1;
@@ -1376,6 +1392,7 @@
             this.TabClientes.BackColor = System.Drawing.Color.Transparent;
             this.TabClientes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabClientes.BackgroundImage")));
             this.TabClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TabClientes.Controls.Add(this.lblUsuarioAtual);
             this.TabClientes.Controls.Add(this.BtnAtualizarClientes);
             this.TabClientes.Controls.Add(this.dataGridView1);
             this.TabClientes.Controls.Add(this.btnExibirClientes);
@@ -1399,6 +1416,16 @@
             this.TabClientes.Size = new System.Drawing.Size(925, 430);
             this.TabClientes.TabIndex = 1;
             this.TabClientes.Text = "Operações com clientes";
+            // 
+            // lblUsuarioAtual
+            // 
+            this.lblUsuarioAtual.AutoSize = true;
+            this.lblUsuarioAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblUsuarioAtual.Location = new System.Drawing.Point(13, 406);
+            this.lblUsuarioAtual.Name = "lblUsuarioAtual";
+            this.lblUsuarioAtual.Size = new System.Drawing.Size(101, 15);
+            this.lblUsuarioAtual.TabIndex = 48;
+            this.lblUsuarioAtual.Text = "Usuario atual: ";
             // 
             // BtnAtualizarClientes
             // 
@@ -1587,12 +1614,8 @@
             this.tabCadastroEntradaProdutos.BackColor = System.Drawing.Color.Transparent;
             this.tabCadastroEntradaProdutos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabCadastroEntradaProdutos.BackgroundImage")));
             this.tabCadastroEntradaProdutos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabCadastroEntradaProdutos.Controls.Add(this.txtValorTotalLote);
-            this.tabCadastroEntradaProdutos.Controls.Add(this.dateTimeEntrada);
             this.tabCadastroEntradaProdutos.Controls.Add(this.btnExibirEntradas);
             this.tabCadastroEntradaProdutos.Controls.Add(this.btnCadastrarEntrada);
-            this.tabCadastroEntradaProdutos.Controls.Add(this.label14);
-            this.tabCadastroEntradaProdutos.Controls.Add(this.label55);
             this.tabCadastroEntradaProdutos.Controls.Add(this.label61);
             this.tabCadastroEntradaProdutos.Controls.Add(this.dataGridViewEntradaProdutos);
             this.tabCadastroEntradaProdutos.Location = new System.Drawing.Point(4, 22);
@@ -1602,67 +1625,33 @@
             this.tabCadastroEntradaProdutos.TabIndex = 12;
             this.tabCadastroEntradaProdutos.Text = "Entrada de produtos";
             // 
-            // txtValorTotalLote
-            // 
-            this.txtValorTotalLote.Location = new System.Drawing.Point(250, 189);
-            this.txtValorTotalLote.Name = "txtValorTotalLote";
-            this.txtValorTotalLote.Size = new System.Drawing.Size(136, 20);
-            this.txtValorTotalLote.TabIndex = 98;
-            // 
-            // dateTimeEntrada
-            // 
-            this.dateTimeEntrada.Location = new System.Drawing.Point(250, 149);
-            this.dateTimeEntrada.Name = "dateTimeEntrada";
-            this.dateTimeEntrada.Size = new System.Drawing.Size(136, 20);
-            this.dateTimeEntrada.TabIndex = 97;
-            // 
             // btnExibirEntradas
             // 
             this.btnExibirEntradas.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExibirEntradas.Location = new System.Drawing.Point(250, 291);
+            this.btnExibirEntradas.Location = new System.Drawing.Point(251, 178);
             this.btnExibirEntradas.Name = "btnExibirEntradas";
-            this.btnExibirEntradas.Size = new System.Drawing.Size(145, 22);
+            this.btnExibirEntradas.Size = new System.Drawing.Size(145, 49);
             this.btnExibirEntradas.TabIndex = 93;
             this.btnExibirEntradas.Text = "Exibir Entradas";
             this.btnExibirEntradas.UseVisualStyleBackColor = true;
-            this.btnExibirEntradas.Click += new System.EventHandler(this.btnExibirEntradas_Click_1);
+            this.btnExibirEntradas.Click += new System.EventHandler(this.btnExibirEntradas_Click);
             // 
             // btnCadastrarEntrada
             // 
             this.btnCadastrarEntrada.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrarEntrada.Location = new System.Drawing.Point(84, 291);
+            this.btnCadastrarEntrada.Location = new System.Drawing.Point(50, 178);
             this.btnCadastrarEntrada.Name = "btnCadastrarEntrada";
-            this.btnCadastrarEntrada.Size = new System.Drawing.Size(150, 22);
+            this.btnCadastrarEntrada.Size = new System.Drawing.Size(153, 49);
             this.btnCadastrarEntrada.TabIndex = 92;
-            this.btnCadastrarEntrada.Text = "Próxima Página";
+            this.btnCadastrarEntrada.Text = "Cadastrar Entrada";
             this.btnCadastrarEntrada.UseVisualStyleBackColor = true;
-            this.btnCadastrarEntrada.Click += new System.EventHandler(this.btnCadastrarEntrada_Click_1);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(121, 189);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(123, 20);
-            this.label14.TabIndex = 84;
-            this.label14.Text = "Valor total do lote";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(85, 149);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(159, 20);
-            this.label55.TabIndex = 82;
-            this.label55.Text = "Data da compra do Lote";
+            this.btnCadastrarEntrada.Click += new System.EventHandler(this.btnCadastrarEntrada_Click);
             // 
             // label61
             // 
             this.label61.AutoSize = true;
             this.label61.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(219, 67);
+            this.label61.Location = new System.Drawing.Point(149, 19);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(189, 27);
             this.label61.TabIndex = 81;
@@ -1672,9 +1661,9 @@
             // 
             this.dataGridViewEntradaProdutos.AllowUserToResizeRows = false;
             this.dataGridViewEntradaProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEntradaProdutos.Location = new System.Drawing.Point(580, 6);
+            this.dataGridViewEntradaProdutos.Location = new System.Drawing.Point(414, 3);
             this.dataGridViewEntradaProdutos.Name = "dataGridViewEntradaProdutos";
-            this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(342, 357);
+            this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(375, 413);
             this.dataGridViewEntradaProdutos.TabIndex = 69;
             // 
             // Form1
@@ -1691,6 +1680,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).EndInit();
             this.TabCheckout.ResumeLayout(false);
             this.TabCheckout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.TabVendas.ResumeLayout(false);
             this.TabVendas.PerformLayout();
             this.TabReservas.ResumeLayout(false);
@@ -1782,9 +1772,7 @@
         private System.Windows.Forms.ComboBox cmbTipoQuarto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox txtValorDiaria;
-        private System.Windows.Forms.TextBox NumQuarto;
         private System.Windows.Forms.Button CadastrarQuarto;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TabPage TabCheckin;
@@ -1848,12 +1836,8 @@
         private System.Windows.Forms.TabPage tabCadastroEntradaProdutos;
         private System.Windows.Forms.DataGridView dataGridViewEntradaProdutos;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtValorTotalLote;
-        private System.Windows.Forms.DateTimePicker dateTimeEntrada;
         private System.Windows.Forms.Button btnExibirEntradas;
         private System.Windows.Forms.Button btnCadastrarEntrada;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.CheckBox ckbNaoTem;
         private System.Windows.Forms.TextBox txtNumReserva;
@@ -1862,6 +1846,10 @@
         private System.Windows.Forms.TextBox txtNumCliente;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridViewQuartosLivres;
+        private System.Windows.Forms.Button btnPesquisarQuartosLivres;
+        private System.Windows.Forms.Label lblUsuarioAtual;
+        private System.Windows.Forms.TextBox txtQuartoCheckin;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 

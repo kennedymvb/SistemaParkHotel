@@ -14,62 +14,51 @@ namespace WFPresentationLayer
 {
     public partial class FormEntradaProdutosDetalhes : Form
     {
-        public static int idEntradaCorrespondente;
+        EntradaProdutosBLL entradaProdutosBLL = new EntradaProdutosBLL();
         FornecedorBLL fornecedorBLL = new FornecedorBLL();
-        EntradaProdutosDetalhesBLL entradaDetalhesBLL = new EntradaProdutosDetalhesBLL();
         ProdutoBLL produtoBLL = new ProdutoBLL();
+        EntradaProdutos entradaProdutos = new EntradaProdutos();
         public FormEntradaProdutosDetalhes()
         {
-            FormLogin formLogin = new FormLogin();
-            formLogin.Hide();
             InitializeComponent();
             carregarComboBox();
+            configurarGroupBox();
         }
-        
+
+        private void configurarGroupBox()
+        {
+            groupBoxDetalhes.Hide();
+            groupBoxEntrada.Show();
+        }
+
         private void carregarComboBox()
         {
-            List<string> nomesFornecedores = new List<string>();
-            List<string> nomesProdutos = new List<string>();
+            cmbProduto.DisplayMember = "NOME";
+            cmbProduto.ValueMember = "ID";
+            cmbProduto.DataSource = produtoBLL.LerTodos();
+            cmbFornecedor.DisplayMember = "razaoSocial";
+            cmbFornecedor.ValueMember = "ID";
+            cmbFornecedor.DataSource = fornecedorBLL.LerTodos();
 
-            foreach (Fornecedor item in fornecedorBLL.LerTodos())
-            {
-                nomesFornecedores.Add(item.razaoSocial);
-            }
-            cmbFornecedor.DataSource = nomesFornecedores;
-            foreach (Produto item in produtoBLL.LerTodos())
-            {
-                nomesProdutos.Add(item.nome);
-            }
-            cmbProduto.DataSource = nomesProdutos;
         }
-        private EntradaProdutosDetalhes InstanciarEntradaProdutosDetalhes()
+        private ItensEntrada InstanciarEntradaProdutosDetalhes()
         {
-            Produto produto = encontrarIdProduto();
-
-            int idProduto = produto.id;
+            int idProduto = (int)cmbProduto.SelectedValue;
             int idFornecedor = encontrarIdFornecedor();
             int quantidade = int.Parse(txtQuantidadeEntrada.Text);
             double valorUnitario = double.Parse(txtValorEntrada.Text) / int.Parse(txtQuantidadeEntrada.Text);
-
-            produtoBLL.atualizarQuantidadeEstoque(produto);
-            return new EntradaProdutosDetalhes(idEntradaCorrespondente, idProduto, idFornecedor, quantidade, valorUnitario); 
+            produtoBLL.atualizarQuantidadeEstoque(produtoBLL.LerPorID(idProduto));
+            return new ItensEntrada(idProduto, idFornecedor, quantidade, valorUnitario); 
         }
 
         private int encontrarIdFornecedor()
         {
-            return produtoBLL.LerTodos()[cmbFornecedor.SelectedIndex].id;
-
-        }
-        //gambiarra
-        private Produto encontrarIdProduto()
-        {
-            return produtoBLL.LerTodos()[cmbProduto.SelectedIndex];
+            return (int)cmbFornecedor.SelectedValue;
         }
 
         private void btnAdicionarAoLote_Click(object sender, EventArgs e)
         {
-            EntradaProdutosDetalhes entradaProdutosDetalhes = InstanciarEntradaProdutosDetalhes();
-            MessageBox.Show(entradaDetalhesBLL.inserir(entradaProdutosDetalhes));
+            entradaProdutos.itens.Add(InstanciarEntradaProdutosDetalhes());
             LblValorUnitarioCompra.Text = (double.Parse(txtValorEntrada.Text) / double.Parse(txtQuantidadeEntrada.Text)).ToString("C2");
             limparTextBox();
         }
@@ -80,12 +69,32 @@ namespace WFPresentationLayer
             txtValorEntrada.Clear();
         }
 
-        private void btnCadastrarEntrada_Click_1(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
+        
 
         private void FormEntradaProdutosDetalhes_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProximaPagina_Click(object sender, EventArgs e)
+        {
+            entradaProdutos = InstanciarEntradaProdutos();
+            groupBoxDetalhes.Show();
+        }
+
+        private EntradaProdutos InstanciarEntradaProdutos()
+        {
+            DateTime dataEntrada = dateTimeEntrada.Value;
+            double valorTotal = double.Parse(txtValorTotalLote.Text);
+            return new EntradaProdutos(Usuario.UsuarioLogado.id, dataEntrada, valorTotal);
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            entradaProdutosBLL.inserir(entradaProdutos);
+        }
+
+        private void btnExibirEntradas_Click(object sender, EventArgs e)
         {
 
         }

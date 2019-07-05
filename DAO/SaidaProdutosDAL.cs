@@ -16,12 +16,10 @@ namespace DAL
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
 
-            command.CommandText = "INSERT INTO SAIDAPRODUTOS (USUARIO_ID, DATA_SAIDA, VALORTOTAL, @ID_CLIENTE, @ID_PRODUTO) VALUES (@USUARIO_ID, @DATA_SAIDA, @VALORTOTAL, @ID_CLIENTE, @ID_PRODUTO)";
+            command.CommandText = "INSERT INTO SAIDAPRODUTOS (USUARIO_ID, DATA_SAIDA, VALORTOTAL, ID_PRODUTO) VALUES (@USUARIO_ID, @DATA_SAIDA, @VALORTOTAL,)";
             command.Parameters.AddWithValue("@USUARIO_ID", saida.idUsuarioVendedor);
             command.Parameters.AddWithValue("@DATA_SAIDA", saida.dataSaida);
             command.Parameters.AddWithValue("@VALORTOTAL", saida.valorTotal);
-            command.Parameters.AddWithValue("@ID_CLIENTE", saida.idCliente);
-            command.Parameters.AddWithValue("@ID_PRODUTO", saida.idProduto);
 
             try
             {
@@ -30,13 +28,13 @@ namespace DAL
             }
             catch (SqlException e)
             {
-                return "erro de conexão com o banco";
+                throw new Exception(e.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return "dados atualizados com sucesso";
+            throw new Exception("dados atualizados com sucesso");
         }
 
         public SaidaProdutos LerPorID(int id)

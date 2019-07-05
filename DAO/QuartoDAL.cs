@@ -16,12 +16,15 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
-            command.CommandText = "UPDATE QUARTOS SET ID = @ID, VALOR_DIARIA = @VALOR_DIARIA, USUARIO_ID = @USUARIO_ID, ESTA_OCUPADO = @ESTA_OCUPADO";
+            command.CommandText = "UPDATE QUARTOS SET VALOR_DIARIA = @VALOR_DIARIA, USUARIO_ID = @USUARIO_ID, ESTA_OCUPADO = @ESTA_OCUPADO, TIPO= @TIPO WHERE ID=@ID";
             command.Parameters.AddWithValue("@ID", quarto.id);
             command.Parameters.AddWithValue("@VALOR_DIARIA", quarto.valorDiaria);
             command.Parameters.AddWithValue("@USUARIO_ID", quarto.usuarioId);
             command.Parameters.AddWithValue("@ESTA_OCUPADO", quarto.estaOcupado);
+            command.Parameters.AddWithValue("@TIPO", quarto.tipo);
+
 
             try
             {
@@ -43,6 +46,7 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
             command.CommandText = "delete from QUARTOS WHERE ID= @ID ";
             command.Parameters.AddWithValue("@ID", quarto.id);
@@ -69,11 +73,14 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
-            command.CommandText = "INSERT INTO QUARTOS (VALOR_DIARIA, USUARIO_ID, ESTA_OCUPADO) VALUES (@VALOR_DIARIA, @USUARIO_ID, @ESTA_OCUPADO)";
+            command.CommandText = "INSERT INTO QUARTOS (VALOR_DIARIA, USUARIO_ID, ESTA_OCUPADO, TIPO) VALUES (@VALOR_DIARIA, @USUARIO_ID, @ESTA_OCUPADO, @TIPO)";
             command.Parameters.AddWithValue("@VALOR_DIARIA", quarto.valorDiaria);
             command.Parameters.AddWithValue("@USUARIO_ID", quarto.usuarioId);
             command.Parameters.AddWithValue("@ESTA_OCUPADO", quarto.estaOcupado);
+            command.Parameters.AddWithValue("@TIPO", quarto.tipo);
+
 
             try
             {
@@ -99,6 +106,7 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+
             command.CommandText = "SELECT * FROM QUARTOS WHERE ID= @ID";
             command.Parameters.AddWithValue("@ID", id);
             command.Connection = connection;
@@ -132,6 +140,8 @@ namespace DAL
             quarto.valorDiaria = Convert.ToDouble(reader["VALOR_DIARIA"]);
             quarto.usuarioId = Convert.ToInt32(reader["USUARIO_ID"]);
             quarto.estaOcupado = Convert.ToBoolean(reader["ESTA_OCUPADO"]);
+            quarto.tipo = Convert.ToString(reader["TIPO"]);
+
 
             return quarto;
         }
@@ -172,7 +182,7 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT ID, VALOR_DIARIA FROM QUARTOS where ESTA_OCUPADO=0";
+            command.CommandText = "SELECT id 'Número', VALOR_DIARIA 'Valor Diaria', ESTA_OCUPADO 'Ocupado', TIPO 'Tipo' FROM QUARTOS where ESTA_OCUPADO=0";
 
             command.Connection = connection;
             List<Quarto> list = new List<Quarto>();
@@ -182,7 +192,7 @@ namespace DAL
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    list.Add(instanciarquarto(reader));
+                    list.Add(instanciarquartoLivre(reader));
                 }
                 return list;
 
@@ -195,6 +205,16 @@ namespace DAL
             {
                 connection.Close();
             }
+        }
+
+        private Quarto instanciarquartoLivre(SqlDataReader reader)
+        {
+            Quarto quarto = new Quarto();
+            quarto.id = Convert.ToInt32(reader["Número"]);
+            quarto.valorDiaria = Convert.ToDouble(reader["Valor Diaria"]);
+            quarto.estaOcupado = Convert.ToBoolean(reader["Ocupado"]);
+            quarto.tipo = Convert.ToString(reader["Tipo"]);
+            return quarto;
         }
     }
 

@@ -8,7 +8,7 @@ namespace Metadata
 {
     public interface ICheckInProcess<T>
     {
-        string Inserir(T checkin);
+        void Inserir(T checkin);
         List<T> LerTodos();
         T LerPorID(int id);
     }

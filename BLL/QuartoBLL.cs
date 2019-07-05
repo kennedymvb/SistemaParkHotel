@@ -74,13 +74,12 @@ namespace BLL
         }
         public List<Quarto> LerNaoOcupados()
         {
-            if (quartoDal.LerNaoOcupados() == null)
+            List<Quarto> qVagos = quartoDal.LerNaoOcupados();
+            if (qVagos.Count == 0)
             {
-                throw new Exception("não há quartos no banco");
+                throw new Exception("não há quartos livres");
             }
-            
-            return quartoDal.LerTodos();
-            
+            return qVagos;
         }
         public void Ocupar(int idQuarto)
         {

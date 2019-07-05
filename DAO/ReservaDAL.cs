@@ -1,4 +1,5 @@
-﻿using Metadata;
+﻿using DAO.ReservaViewModel;
+using Metadata;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -170,8 +171,58 @@ namespace DAL
             {
                 connection.Close();
             }
-            
+        }
+        public List<ReservaViewModel> LerReservasViewModel()
+        {
+            string stringConexao = StringConexao.GetStringConexao();
 
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText =
+                @"SELECT FROM R RESERVA R.ID 'Reserva',
+                C.ID 'IdCliente',
+                C.Nome 'NomeCliente',
+                F.ID 'Funcionario',
+                F.Nome 'NomeFuncionario',
+                R.Data_ENTRADA 'DataEntrada',
+                R.DATA_SAIDA_PREVISTA 'DataSaidaPrevista',
+                Q.ID 'NumeroQuarto',
+                Q.VALOR_DIARIA 'ValorDiaria',
+                Q.Tipo 'Tipo'
+                FROM RESERVAS R INNER JOIN CLIENTES C ON
+                R.ID_CLIENTES = C.ID
+                INNER JOIN FUNCIONARIOS F ON
+                F.ID = R.ID_FUNCIONARIO";
+            List<ReservaViewModel> listReserva = new List<ReservaViewModel>();
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    ReservaViewModel viewModel = new ReservaViewModel();
+                    listReserva.Add(instanciarReservaViewModel(reader));
+                }
+                return listReserva;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private ReservaViewModel instanciarReservaViewModel(SqlDataReader reader)
+        {
+            string Cliente = reader["NomeCliente"].ToString();
+            DateTime DataEntrada = Convert.ToDateTime(reader["DataEntrada"]);
+            DateTime DataSaida= Convert.ToDateTime(reader["DataSaidaPrevista"]);
+            int id = Convert.ToInt32(reader["IdCliente"]);
+            int idFuncionario = Convert.ToInt32(reader["IdFuncionario"]);
+            int Quarto = Convert.ToInt32(reader[""]);
+            string tipoQuarto = reader["Tipo"].ToString();
+            string valor = Convert.ToDouble(reader["ValorDiaria"]).ToString("C2");
+            return new ReservaViewModel(id, Cliente, Quarto, tipoQuarto, valor, DataEntrada, DataSaida , idFuncionario);
         }
     }
 

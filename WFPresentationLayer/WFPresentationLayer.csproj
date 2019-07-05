@@ -102,6 +102,10 @@
       <Project>{777a4cff-afdd-4b53-896d-03627ad9b572}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DAO\DAL.csproj">
+      <Project>{CBDE4B98-D05E-4287-84E1-661DEE4AA0AC}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Metadata\Metadata.csproj">
       <Project>{2bd648e5-053d-4043-873b-60e4e695d87c}</Project>
       <Name>Metadata</Name>

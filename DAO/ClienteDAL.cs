@@ -165,6 +165,7 @@ namespace Metadata
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = "SELECT * FROM CLIENTES";
+
             command.Connection = connection;
             List<Cliente> list = new List<Cliente>();
             try
