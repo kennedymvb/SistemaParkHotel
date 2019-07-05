@@ -1,6 +1,6 @@
 ﻿namespace WFPresentationLayer
 {
-    partial class FormEntradaProdutosDetalhes
+    partial class FormSaidaProdutosDetalhes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEntradaProdutosDetalhes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSaidaProdutosDetalhes));
             this.btnAdicionarAoLote = new System.Windows.Forms.Button();
             this.LblValorUnitarioCompra = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.txtValorEntrada = new System.Windows.Forms.TextBox();
             this.txtQuantidadeEntrada = new System.Windows.Forms.TextBox();
-            this.cmbFornecedor = new System.Windows.Forms.ComboBox();
             this.cmbProduto = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.txtValorTotalLote = new System.Windows.Forms.TextBox();
@@ -50,6 +48,9 @@
             this.label15 = new System.Windows.Forms.Label();
             this.groupBoxEntrada = new System.Windows.Forms.GroupBox();
             this.groupBoxDetalhes = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtNumClienteSaidaDetalhes = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxEntrada.SuspendLayout();
             this.groupBoxDetalhes.SuspendLayout();
             this.SuspendLayout();
@@ -112,14 +113,6 @@
             this.txtQuantidadeEntrada.Size = new System.Drawing.Size(100, 20);
             this.txtQuantidadeEntrada.TabIndex = 90;
             // 
-            // cmbFornecedor
-            // 
-            this.cmbFornecedor.FormattingEnabled = true;
-            this.cmbFornecedor.Location = new System.Drawing.Point(71, 59);
-            this.cmbFornecedor.Name = "cmbFornecedor";
-            this.cmbFornecedor.Size = new System.Drawing.Size(121, 21);
-            this.cmbFornecedor.TabIndex = 89;
-            // 
             // cmbProduto
             // 
             this.cmbProduto.FormattingEnabled = true;
@@ -138,17 +131,6 @@
             this.label29.Size = new System.Drawing.Size(150, 20);
             this.label29.TabIndex = 87;
             this.label29.Text = "Valor total da Compra";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(67, 36);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(150, 20);
-            this.label12.TabIndex = 84;
-            this.label12.Text = "Selecionar Fornecedor";
             // 
             // label14
             // 
@@ -256,12 +238,13 @@
             // 
             // groupBoxDetalhes
             // 
+            this.groupBoxDetalhes.Controls.Add(this.button1);
+            this.groupBoxDetalhes.Controls.Add(this.txtNumClienteSaidaDetalhes);
+            this.groupBoxDetalhes.Controls.Add(this.label2);
             this.groupBoxDetalhes.Controls.Add(this.label15);
-            this.groupBoxDetalhes.Controls.Add(this.cmbFornecedor);
             this.groupBoxDetalhes.Controls.Add(this.LblValorUnitarioCompra);
             this.groupBoxDetalhes.Controls.Add(this.btnExibirEntradas);
             this.groupBoxDetalhes.Controls.Add(this.label37);
-            this.groupBoxDetalhes.Controls.Add(this.label12);
             this.groupBoxDetalhes.Controls.Add(this.btnAdicionarAoLote);
             this.groupBoxDetalhes.Controls.Add(this.cmbProduto);
             this.groupBoxDetalhes.Controls.Add(this.btnFinalizar);
@@ -276,7 +259,34 @@
             this.groupBoxDetalhes.TabStop = false;
             this.groupBoxDetalhes.Text = "Compras do lote";
             // 
-            // FormEntradaProdutosDetalhes
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(70, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(127, 20);
+            this.label2.TabIndex = 104;
+            this.label2.Text = "Selecionar Cliente";
+            // 
+            // txtNumClienteSaidaDetalhes
+            // 
+            this.txtNumClienteSaidaDetalhes.Location = new System.Drawing.Point(74, 59);
+            this.txtNumClienteSaidaDetalhes.Name = "txtNumClienteSaidaDetalhes";
+            this.txtNumClienteSaidaDetalhes.Size = new System.Drawing.Size(118, 20);
+            this.txtNumClienteSaidaDetalhes.TabIndex = 105;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(218, 57);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 106;
+            this.button1.Text = "Selecionar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // FormSaidaProdutosDetalhes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -285,7 +295,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBoxEntrada);
             this.Controls.Add(this.label21);
-            this.Name = "FormEntradaProdutosDetalhes";
+            this.Name = "FormSaidaProdutosDetalhes";
             this.Text = "FormEntradaProdutosDetalhes";
             this.Load += new System.EventHandler(this.FormEntradaProdutosDetalhes_Load);
             this.groupBoxEntrada.ResumeLayout(false);
@@ -305,10 +315,8 @@
         private System.Windows.Forms.Button btnFinalizar;
         private System.Windows.Forms.TextBox txtValorEntrada;
         private System.Windows.Forms.TextBox txtQuantidadeEntrada;
-        private System.Windows.Forms.ComboBox cmbFornecedor;
         private System.Windows.Forms.ComboBox cmbProduto;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtValorTotalLote;
@@ -320,5 +328,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.GroupBox groupBoxEntrada;
         private System.Windows.Forms.GroupBox groupBoxDetalhes;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtNumClienteSaidaDetalhes;
     }
 }

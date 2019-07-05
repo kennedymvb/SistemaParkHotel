@@ -54,7 +54,7 @@ namespace DAL
                 commands[i].CommandText = "INSERT INTO ENTRADAPRODUTOSDETALHES (ENTRADAPRODUTO_ID, PRODUTO_ID, FORNECEDOR_ID, QUANTIDADE, VALOR_UNITARIO) VALUES (@ENTRADAPRODUTO_ID, @PRODUTO_ID, @FORNECEDOR_ID, @QUANTIDADE, @VALOR_UNITARIO)";
                 commands[i].Parameters.AddWithValue("@ENTRADAPRODUTO_ID", entrada.id);
                 commands[i].Parameters.AddWithValue("@PRODUTO_ID", entrada.itens[i].idProduto);
-                commands[i].Parameters.AddWithValue("@FORNECEDOR_ID", entrada.itens[i].idFornecedor);
+                commands[i].Parameters.AddWithValue("@FORNECEDOR_ID", entrada.itens[i].idCliente);
                 commands[i].Parameters.AddWithValue("@QUANTIDADE", entrada.itens[i].quantidade);
                 commands[i].Parameters.AddWithValue("@VALOR_UNITARIO", entrada.itens[i].valorUnitario);
 

@@ -53,12 +53,14 @@
     <Compile Include="QuartoDAL.cs" />
     <Compile Include="QuartoDALTeste.cs" />
     <Compile Include="ReservaDAL.cs" />
+    <Compile Include="ViewModels\CheckinViewModel.cs" />
     <Compile Include="ViewModels\EntradaProdutosViewModel.cs" />
     <Compile Include="ViewModels\ReservaViewModel.cs" />
     <Compile Include="SaidaProdutosDAL.cs" />
     <Compile Include="SaidaProdutosDetalhesDAL.cs" />
     <Compile Include="StringConexao.cs" />
     <Compile Include="UsuarioDAL.cs" />
+    <Compile Include="ViewModels\SaidaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Metadata\Metadata.csproj">

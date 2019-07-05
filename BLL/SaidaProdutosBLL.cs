@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using DAL;
 using Metadata;
 namespace BLL
@@ -15,18 +16,25 @@ namespace BLL
         ClienteDAL clienteDAL = new ClienteDAL();
         UsuarioDAL usuarioDAL = new UsuarioDAL();
 
-        public string inserir(SaidaProdutos saida)
+        public void inserir(SaidaProdutos saida)
         {
             if (this.Validar(saida))
             {
-                return saidaDal.Inserir(saida);
+                using (TransactionScope scope= new TransactionScope())
+                {
+
+                    saida.id = saidaDal.Inserir(saida);
+                    saidaDal.InserirItens(saida);
+                    scope.Complete();
+                    
+                }
             }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < erros.Count(); i++)
             {
                 sb.Append(erros[i]);
             }
-            return sb.ToString();
+            throw new Exception(sb.ToString());
         }
 
         public bool Validar(SaidaProdutos saida)

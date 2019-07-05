@@ -31,9 +31,6 @@ namespace DAO.ViewModels
         {
 
         }
-
-
-
     }
     
 

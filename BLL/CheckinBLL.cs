@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using DAL;
+using DAO.ViewModels;
 using Metadata;
 
 
@@ -41,8 +42,7 @@ namespace BLL
                 checkinDAL.Inserir(checkin);
                 quartoBll.Ocupar(checkin.quartoId);
                 scope.Complete();
-            }//scope.Dispose();
-
+            }
         }
 
         public Checkin LerPorID(int id)
@@ -52,6 +52,10 @@ namespace BLL
         public List<Checkin> LerTodos()
         {
             return checkinDAL.LerTodos();
+        }
+        public List<CheckinViewModel> LerCheckinViewModels()
+        {
+            return checkinDAL.LerCheckinViewModel();
         }
 
         public void Validar(Checkin checkin)

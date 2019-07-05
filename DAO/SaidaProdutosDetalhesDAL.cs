@@ -99,7 +99,6 @@ namespace DAL
                         list.Add(instanciarsaidaProdutosDetalhes(reader));
                     }
                     return list;
-
             }
             catch (SqlException e)
             {
@@ -109,7 +108,6 @@ namespace DAL
                 connection.Close();
             }
             return null;
-
         }
     }
 

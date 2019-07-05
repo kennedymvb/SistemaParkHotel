@@ -51,7 +51,7 @@
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.TabCheckout = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckinsCheckout = new System.Windows.Forms.DataGridView();
             this.dateTimeCheckoutDataSaida = new System.Windows.Forms.DateTimePicker();
             this.labelValorTotalPagar = new System.Windows.Forms.Label();
             this.txtnumeroCheckinCheckout = new System.Windows.Forms.TextBox();
@@ -167,10 +167,12 @@
             this.btnCadastrarEntrada = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.dataGridViewEntradaProdutos = new System.Windows.Forms.DataGridView();
+            this.btnPesquisarCheckin = new System.Windows.Forms.Button();
+            this.btnProximaPagina = new System.Windows.Forms.Button();
             this.TabAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).BeginInit();
             this.TabCheckout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCheckinsCheckout)).BeginInit();
             this.TabVendas.SuspendLayout();
             this.TabReservas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservas)).BeginInit();
@@ -414,7 +416,8 @@
             // 
             this.TabCheckout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabCheckout.BackgroundImage")));
             this.TabCheckout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.TabCheckout.Controls.Add(this.dataGridView2);
+            this.TabCheckout.Controls.Add(this.btnPesquisarCheckin);
+            this.TabCheckout.Controls.Add(this.dataGridViewCheckinsCheckout);
             this.TabCheckout.Controls.Add(this.dateTimeCheckoutDataSaida);
             this.TabCheckout.Controls.Add(this.labelValorTotalPagar);
             this.TabCheckout.Controls.Add(this.txtnumeroCheckinCheckout);
@@ -431,14 +434,14 @@
             this.TabCheckout.Text = "Checkout";
             this.TabCheckout.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dataGridViewCheckinsCheckout
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(552, 36);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(358, 247);
-            this.dataGridView2.TabIndex = 71;
+            this.dataGridViewCheckinsCheckout.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCheckinsCheckout.Location = new System.Drawing.Point(552, 36);
+            this.dataGridViewCheckinsCheckout.Name = "dataGridViewCheckinsCheckout";
+            this.dataGridViewCheckinsCheckout.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewCheckinsCheckout.Size = new System.Drawing.Size(358, 247);
+            this.dataGridViewCheckinsCheckout.TabIndex = 71;
             // 
             // dateTimeCheckoutDataSaida
             // 
@@ -459,9 +462,9 @@
             // 
             // txtnumeroCheckinCheckout
             // 
-            this.txtnumeroCheckinCheckout.Location = new System.Drawing.Point(422, 137);
+            this.txtnumeroCheckinCheckout.Location = new System.Drawing.Point(362, 137);
             this.txtnumeroCheckinCheckout.Name = "txtnumeroCheckinCheckout";
-            this.txtnumeroCheckinCheckout.Size = new System.Drawing.Size(111, 20);
+            this.txtnumeroCheckinCheckout.Size = new System.Drawing.Size(62, 20);
             this.txtnumeroCheckinCheckout.TabIndex = 26;
             // 
             // label56
@@ -498,7 +501,7 @@
             // 
             this.label59.AutoSize = true;
             this.label59.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.Location = new System.Drawing.Point(274, 142);
+            this.label59.Location = new System.Drawing.Point(210, 137);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(146, 20);
             this.label59.TabIndex = 25;
@@ -519,6 +522,7 @@
             // 
             this.TabVendas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabVendas.BackgroundImage")));
             this.TabVendas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TabVendas.Controls.Add(this.btnProximaPagina);
             this.TabVendas.Controls.Add(this.button3);
             this.TabVendas.Controls.Add(this.txtNumProdutoVenda);
             this.TabVendas.Controls.Add(this.txtnumClienteVenda);
@@ -1666,6 +1670,27 @@
             this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(375, 413);
             this.dataGridViewEntradaProdutos.TabIndex = 69;
             // 
+            // btnPesquisarCheckin
+            // 
+            this.btnPesquisarCheckin.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisarCheckin.Location = new System.Drawing.Point(441, 137);
+            this.btnPesquisarCheckin.Name = "btnPesquisarCheckin";
+            this.btnPesquisarCheckin.Size = new System.Drawing.Size(92, 20);
+            this.btnPesquisarCheckin.TabIndex = 72;
+            this.btnPesquisarCheckin.Text = "Pesquisar";
+            this.btnPesquisarCheckin.UseVisualStyleBackColor = true;
+            this.btnPesquisarCheckin.Click += new System.EventHandler(this.btnPesquisarCheckin_Click);
+            // 
+            // btnProximaPagina
+            // 
+            this.btnProximaPagina.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProximaPagina.Location = new System.Drawing.Point(393, 296);
+            this.btnProximaPagina.Name = "btnProximaPagina";
+            this.btnProximaPagina.Size = new System.Drawing.Size(125, 20);
+            this.btnProximaPagina.TabIndex = 65;
+            this.btnProximaPagina.Text = "Cadastrar Venda";
+            this.btnProximaPagina.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1680,7 +1705,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).EndInit();
             this.TabCheckout.ResumeLayout(false);
             this.TabCheckout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCheckinsCheckout)).EndInit();
             this.TabVendas.ResumeLayout(false);
             this.TabVendas.PerformLayout();
             this.TabReservas.ResumeLayout(false);
@@ -1849,7 +1874,9 @@
         private System.Windows.Forms.Button btnPesquisarQuartosLivres;
         private System.Windows.Forms.Label lblUsuarioAtual;
         private System.Windows.Forms.TextBox txtQuartoCheckin;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewCheckinsCheckout;
+        private System.Windows.Forms.Button btnPesquisarCheckin;
+        private System.Windows.Forms.Button btnProximaPagina;
     }
 }
 

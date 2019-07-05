@@ -30,6 +30,7 @@ namespace BLL
                     {
                         entrada.id=entradaDal.Inserir(entrada);
                         entradaDal.InserirItens(entrada);
+
                         scope.Complete();
                     }
                     catch (Exception ex)

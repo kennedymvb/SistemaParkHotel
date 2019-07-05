@@ -306,25 +306,6 @@ namespace WFPresentationLayer
         }
         #endregion
 
-        #region Operações Vendas
-        private void btnCadastrarVendas_Click(object sender, EventArgs e)
-        {
-            SaidaProdutos saida= InstanciarVenda();
-            saidaProdutosBLL.inserir(saida);
-            
-        }
-
-        private SaidaProdutos InstanciarVenda()
-        {
-            int idVendedor = int.Parse(txtnumUsuarioVenda.Text);
-            int idProduto = int.Parse(txtNumProdutoVenda.Text);
-            int idCliente = int.Parse(txtnumClienteVenda.Text);
-            DateTime dataSaida = dateTimeVenda.Value;
-            SaidaProdutos saida = new SaidaProdutos(idVendedor,idProduto, idCliente, dataSaida);
-            return saida;
-        }
-        #endregion
-
 
         #region Operações Reserva
         private void btncadastrarReservas_Click(object sender, EventArgs e)
@@ -517,6 +498,11 @@ namespace WFPresentationLayer
         private void btnExibirEntradas_Click(object sender, EventArgs e)
         {
             dataGridViewEntradaProdutos.DataSource = entradaProdutosBLL.LerTodos();
+        }
+
+        private void btnPesquisarCheckin_Click(object sender, EventArgs e)
+        {
+            dataGridViewCheckinsCheckout.DataSource = checkinBLL.LerCheckinViewModels();
         }
     }
 }

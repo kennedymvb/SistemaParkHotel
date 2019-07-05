@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAO.ViewModels;
 using Metadata;
 
 namespace DAL
@@ -81,9 +82,6 @@ namespace DAL
             {
                 connection.Close();
             }
-            return null;
-
-
 
         }
 
@@ -99,6 +97,52 @@ namespace DAL
             checkin.quartoId = Convert.ToInt32(reader["QUARTO_ID"]);
             checkin.clienteId = Convert.ToInt32(reader["CLIENTE_ID"]);
             checkin.dataPrevistaSaida = Convert.ToDateTime(reader["DATA_PREVISTA_SAIDA"]);
+            return checkin;
+        }
+
+        public List<CheckinViewModel> LerCheckinViewModel()
+        {
+            string stringConexao = StringConexao.GetStringConexao();
+
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"SELECT C.ID , C.DATA_ENTRADA, C.DATA_PREVISTA_SAIDA,
+            C.QUARTO_ID, C.ID, C.ID_RESERVA, CL.NOME INNER JOIN CLIENTES CL ON C.CLIENTE_ID= CL.ID";
+
+            command.Connection = connection;
+            List<CheckinViewModel> list = new List<CheckinViewModel>();
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(instanciarCheckinViewModel(reader));
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        private CheckinViewModel instanciarCheckinViewModel(SqlDataReader reader)
+        {
+            CheckinViewModel checkin = new CheckinViewModel();
+            checkin.Id = Convert.ToInt32(reader["ID"]);
+            if (reader["ID_RESERVA"] != DBNull.Value)
+            {
+                checkin.idReserva = Convert.ToInt32(reader["ID_RESERVA"]);
+            }
+            checkin.DataEntrada = Convert.ToDateTime(reader["DATA_ENTRADA"]);
+            checkin.quarto = Convert.ToInt32(reader["QUARTO_ID"]);
+            checkin.Cliente = Convert.ToString(reader["CLIENTE_ID"]);
+            checkin.DataPrevistaSaida = Convert.ToDateTime(reader["DATA_PREVISTA_SAIDA"]);
             return checkin;
         }
 
