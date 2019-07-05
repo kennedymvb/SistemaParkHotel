@@ -41,7 +41,7 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(357, 147);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(100, 20);
+            this.txtEmail.Size = new System.Drawing.Size(140, 20);
             this.txtEmail.TabIndex = 0;
             // 
             // txtSenha
@@ -49,7 +49,7 @@
             this.txtSenha.Location = new System.Drawing.Point(357, 193);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
-            this.txtSenha.Size = new System.Drawing.Size(100, 20);
+            this.txtSenha.Size = new System.Drawing.Size(140, 20);
             this.txtSenha.TabIndex = 1;
             this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
