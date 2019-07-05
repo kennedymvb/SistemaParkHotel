@@ -163,12 +163,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CadastroEntradaProdutos = new System.Windows.Forms.TabControl();
             this.tabCadastroEntradaProdutos = new System.Windows.Forms.TabPage();
-            this.txtValorTotalLote = new System.Windows.Forms.TextBox();
-            this.dateTimeEntrada = new System.Windows.Forms.DateTimePicker();
             this.btnExibirEntradas = new System.Windows.Forms.Button();
             this.btnCadastrarEntrada = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.dataGridViewEntradaProdutos = new System.Windows.Forms.DataGridView();
             this.TabAdministrador.SuspendLayout();
@@ -1618,12 +1614,8 @@
             this.tabCadastroEntradaProdutos.BackColor = System.Drawing.Color.Transparent;
             this.tabCadastroEntradaProdutos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabCadastroEntradaProdutos.BackgroundImage")));
             this.tabCadastroEntradaProdutos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tabCadastroEntradaProdutos.Controls.Add(this.txtValorTotalLote);
-            this.tabCadastroEntradaProdutos.Controls.Add(this.dateTimeEntrada);
             this.tabCadastroEntradaProdutos.Controls.Add(this.btnExibirEntradas);
             this.tabCadastroEntradaProdutos.Controls.Add(this.btnCadastrarEntrada);
-            this.tabCadastroEntradaProdutos.Controls.Add(this.label14);
-            this.tabCadastroEntradaProdutos.Controls.Add(this.label55);
             this.tabCadastroEntradaProdutos.Controls.Add(this.label61);
             this.tabCadastroEntradaProdutos.Controls.Add(this.dataGridViewEntradaProdutos);
             this.tabCadastroEntradaProdutos.Location = new System.Drawing.Point(4, 22);
@@ -1633,67 +1625,33 @@
             this.tabCadastroEntradaProdutos.TabIndex = 12;
             this.tabCadastroEntradaProdutos.Text = "Entrada de produtos";
             // 
-            // txtValorTotalLote
-            // 
-            this.txtValorTotalLote.Location = new System.Drawing.Point(250, 189);
-            this.txtValorTotalLote.Name = "txtValorTotalLote";
-            this.txtValorTotalLote.Size = new System.Drawing.Size(136, 20);
-            this.txtValorTotalLote.TabIndex = 98;
-            // 
-            // dateTimeEntrada
-            // 
-            this.dateTimeEntrada.Location = new System.Drawing.Point(250, 149);
-            this.dateTimeEntrada.Name = "dateTimeEntrada";
-            this.dateTimeEntrada.Size = new System.Drawing.Size(136, 20);
-            this.dateTimeEntrada.TabIndex = 97;
-            // 
             // btnExibirEntradas
             // 
             this.btnExibirEntradas.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExibirEntradas.Location = new System.Drawing.Point(250, 291);
+            this.btnExibirEntradas.Location = new System.Drawing.Point(251, 178);
             this.btnExibirEntradas.Name = "btnExibirEntradas";
-            this.btnExibirEntradas.Size = new System.Drawing.Size(145, 22);
+            this.btnExibirEntradas.Size = new System.Drawing.Size(145, 49);
             this.btnExibirEntradas.TabIndex = 93;
             this.btnExibirEntradas.Text = "Exibir Entradas";
             this.btnExibirEntradas.UseVisualStyleBackColor = true;
-            this.btnExibirEntradas.Click += new System.EventHandler(this.btnExibirEntradas_Click_1);
+            this.btnExibirEntradas.Click += new System.EventHandler(this.btnExibirEntradas_Click);
             // 
             // btnCadastrarEntrada
             // 
             this.btnCadastrarEntrada.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrarEntrada.Location = new System.Drawing.Point(84, 291);
+            this.btnCadastrarEntrada.Location = new System.Drawing.Point(50, 178);
             this.btnCadastrarEntrada.Name = "btnCadastrarEntrada";
-            this.btnCadastrarEntrada.Size = new System.Drawing.Size(150, 22);
+            this.btnCadastrarEntrada.Size = new System.Drawing.Size(153, 49);
             this.btnCadastrarEntrada.TabIndex = 92;
-            this.btnCadastrarEntrada.Text = "Próxima Página";
+            this.btnCadastrarEntrada.Text = "Cadastrar Entrada";
             this.btnCadastrarEntrada.UseVisualStyleBackColor = true;
-            this.btnCadastrarEntrada.Click += new System.EventHandler(this.btnCadastrarEntrada_Click_1);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(121, 189);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(123, 20);
-            this.label14.TabIndex = 84;
-            this.label14.Text = "Valor total do lote";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(85, 149);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(159, 20);
-            this.label55.TabIndex = 82;
-            this.label55.Text = "Data da compra do Lote";
+            this.btnCadastrarEntrada.Click += new System.EventHandler(this.btnCadastrarEntrada_Click);
             // 
             // label61
             // 
             this.label61.AutoSize = true;
             this.label61.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(219, 67);
+            this.label61.Location = new System.Drawing.Point(149, 19);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(189, 27);
             this.label61.TabIndex = 81;
@@ -1703,9 +1661,9 @@
             // 
             this.dataGridViewEntradaProdutos.AllowUserToResizeRows = false;
             this.dataGridViewEntradaProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEntradaProdutos.Location = new System.Drawing.Point(583, 0);
+            this.dataGridViewEntradaProdutos.Location = new System.Drawing.Point(414, 3);
             this.dataGridViewEntradaProdutos.Name = "dataGridViewEntradaProdutos";
-            this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(342, 357);
+            this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(375, 413);
             this.dataGridViewEntradaProdutos.TabIndex = 69;
             // 
             // Form1
@@ -1878,12 +1836,8 @@
         private System.Windows.Forms.TabPage tabCadastroEntradaProdutos;
         private System.Windows.Forms.DataGridView dataGridViewEntradaProdutos;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtValorTotalLote;
-        private System.Windows.Forms.DateTimePicker dateTimeEntrada;
         private System.Windows.Forms.Button btnExibirEntradas;
         private System.Windows.Forms.Button btnCadastrarEntrada;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.CheckBox ckbNaoTem;
         private System.Windows.Forms.TextBox txtNumReserva;

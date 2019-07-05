@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using DAL;
+using DAO.ViewModels;
 using Metadata;
 
 namespace BLL
@@ -22,7 +24,20 @@ namespace BLL
         {
             if (this.Validar(entrada))
             {
-                return entradaDal.Inserir(entrada);
+                using(TransactionScope scope= new TransactionScope())
+                {
+                    try
+                    {
+                        entrada.id=entradaDal.Inserir(entrada);
+                        entradaDal.InserirItens(entrada);
+                        scope.Complete();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+
             }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < erros.Count(); i++)
@@ -52,7 +67,7 @@ namespace BLL
             return entradaDal.LerPorID(id);
 
         }
-        public List<EntradaProdutos> LerTodos()
+        public List<EntradaProdutosViewModel> LerTodos()
         {
             return entradaDal.LerTodos();
         }

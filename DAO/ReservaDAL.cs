@@ -214,7 +214,6 @@ namespace DAL
 
         private ReservaViewModel instanciarReservaViewModel(SqlDataReader reader)
         {
-
             string Cliente = reader["NomeCliente"].ToString();
             DateTime DataEntrada = Convert.ToDateTime(reader["DataEntrada"]);
             DateTime DataSaida= Convert.ToDateTime(reader["DataSaidaPrevista"]);
@@ -223,7 +222,7 @@ namespace DAL
             int Quarto = Convert.ToInt32(reader[""]);
             string tipoQuarto = reader["Tipo"].ToString();
             string valor = Convert.ToDouble(reader["ValorDiaria"]).ToString("C2");
-            return new ReservaViewModel(id, Cliente, Quarto, idFuncionario, DataEntrada, DataSaida, tipoQuarto, valor);
+            return new ReservaViewModel(id, Cliente, Quarto, tipoQuarto, valor, DataEntrada, DataSaida , idFuncionario);
         }
     }
 

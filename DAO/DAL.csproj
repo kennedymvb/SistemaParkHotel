@@ -47,14 +47,14 @@
     <Compile Include="CheckoutDAL.cs" />
     <Compile Include="ClienteDAL.cs" />
     <Compile Include="EntradaProdutosDAL.cs" />
-    <Compile Include="EntradaProdutosDetalhesDAL.cs" />
     <Compile Include="FornecedorDAL.cs" />
     <Compile Include="ProdutoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuartoDAL.cs" />
     <Compile Include="QuartoDALTeste.cs" />
     <Compile Include="ReservaDAL.cs" />
-    <Compile Include="ReservaViewModel\ReservaViewModel.cs" />
+    <Compile Include="ViewModels\EntradaProdutosViewModel.cs" />
+    <Compile Include="ViewModels\ReservaViewModel.cs" />
     <Compile Include="SaidaProdutosDAL.cs" />
     <Compile Include="SaidaProdutosDetalhesDAL.cs" />
     <Compile Include="StringConexao.cs" />

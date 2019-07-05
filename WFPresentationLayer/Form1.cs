@@ -198,28 +198,17 @@ namespace WFPresentationLayer
         }
         #endregion
 
-        #region Entrada de Produtos
+        /*#region Entrada de Produtos
 
 
         private void btnCadastrarEntrada_Click_1(object sender, EventArgs e)
         {
-            EntradaProdutos entradaProduto = InstanciarEntradaProdutos();
             idEntradaCorrespondente=entradaProdutosBLL.inserir(entradaProduto);
             exibirEntradas();
-            FormEntradaProdutosDetalhes frm = new FormEntradaProdutosDetalhes();
-            this.Hide();
             
-            frm.ShowDialog();
-
-
         }
 
-        private EntradaProdutos InstanciarEntradaProdutos()
-        {
-            DateTime dataEntrada = dateTimeEntrada.Value;
-            double valorTotal = double.Parse(txtValorTotalLote.Text);
-            return new EntradaProdutos(Usuario.UsuarioLogado.id, dataEntrada, valorTotal);
-        }
+        
 
         private void exibirEntradas()
         {
@@ -230,10 +219,9 @@ namespace WFPresentationLayer
         {
             exibirEntradas();
 
-        }
+        }*/
 
 
-        #endregion
 
         #region Operações Quarto
         private void button4_Click(object sender, EventArgs e)
@@ -519,6 +507,16 @@ namespace WFPresentationLayer
 
         }
 
-        
+        private void btnCadastrarEntrada_Click(object sender, EventArgs e)
+        {
+            FormEntradaProdutosDetalhes frm = new FormEntradaProdutosDetalhes();
+            this.Hide();
+            frm.ShowDialog();
+        }
+
+        private void btnExibirEntradas_Click(object sender, EventArgs e)
+        {
+            dataGridViewEntradaProdutos.DataSource = entradaProdutosBLL.LerTodos();
+        }
     }
 }

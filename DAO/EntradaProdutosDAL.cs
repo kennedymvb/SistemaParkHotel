@@ -5,11 +5,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAO.ViewModels;
 using Metadata;
 
 namespace DAL
 {
-    public class EntradaProdutosDAL : CRUDIntegridade<EntradaProdutos>
+    public class EntradaProdutosDAL
     {
         public int Inserir(EntradaProdutos entradaProdutos)
         {
@@ -18,7 +19,7 @@ namespace DAL
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
 
-            command.CommandText = "INSERT INTO ENTRADAPRODUTOS (USUARIO_ID, DATA_ENTRADA, VALORTOTAL) VALUES (@USUARIO_ID, @DATA_ENTRADA, @VALORTOTAL); select scope_identity()";
+            command.CommandText = "INSERT INTO ENTRADAPRODUTOS (USUARIO_ID, DATA_ENTRADA, VALORTOTAL) VALUES (@USUARIO_ID, @DATA_ENTRADA, @VALORTOTAL); select scope_identity() 'id'";
             command.Parameters.AddWithValue("@USUARIO_ID", entradaProdutos.usuarioId);
             command.Parameters.AddWithValue("@DATA_ENTRADA", entradaProdutos.dataEntrada);
             command.Parameters.AddWithValue("@VALORTOTAL", entradaProdutos.valorTotal);
@@ -36,34 +37,55 @@ namespace DAL
                 connection.Close();
             }
         }
-        private int pegarIdEntrada()
+
+        public void InserirItens(EntradaProdutos entrada)
         {
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-
-            command.CommandText = "select SCOPE_IDENTITY()";
-
-            try
+            List<SqlCommand> commands = new List<SqlCommand>();
+            for (int i = 0; i < entrada.itens.Count; i++)
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                return Convert.ToInt32(reader[""]);
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                commands.Add(command);
             }
-            catch (SqlException e)
+            for (int i = 0; i < entrada.itens.Count; i++)
             {
-                throw new Exception("erro no acesso ao banco: " + e.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            
+                commands[i].CommandText = "INSERT INTO ENTRADAPRODUTOSDETALHES (ENTRADAPRODUTO_ID, PRODUTO_ID, FORNECEDOR_ID, QUANTIDADE, VALOR_UNITARIO) VALUES (@ENTRADAPRODUTO_ID, @PRODUTO_ID, @FORNECEDOR_ID, @QUANTIDADE, @VALOR_UNITARIO)";
+                commands[i].Parameters.AddWithValue("@ENTRADAPRODUTO_ID", entrada.id);
+                commands[i].Parameters.AddWithValue("@PRODUTO_ID", entrada.itens[i].idProduto);
+                commands[i].Parameters.AddWithValue("@FORNECEDOR_ID", entrada.itens[i].idFornecedor);
+                commands[i].Parameters.AddWithValue("@QUANTIDADE", entrada.itens[i].quantidade);
+                commands[i].Parameters.AddWithValue("@VALOR_UNITARIO", entrada.itens[i].valorUnitario);
 
-
+                try
+                {
+                    connection.Open();
+                    commands[i].ExecuteNonQuery();
+                }
+                catch (SqlException e)
+                {
+                    throw new Exception(e.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
         }
-
+    
+        private EntradaProdutosViewModel instanciarentradaProdutosView(SqlDataReader reader)
+        {
+            EntradaProdutosViewModel entradaProdutos = new EntradaProdutosViewModel();
+            entradaProdutos.Data=Convert.ToDateTime(reader["DATA"]);
+            entradaProdutos.Lote = Convert.ToInt32(reader["IDLOTE"]);
+            entradaProdutos.Produto = Convert.ToString(reader["PRODUTO"]);
+            entradaProdutos.Quantidade = Convert.ToInt32(reader["QUANTIDADE"]);
+            entradaProdutos.Valor_Lote = Convert.ToDouble(reader["VALOR_LOTE"]).ToString();
+            entradaProdutos.Valor_Unitario= Convert.ToDouble(reader["VALOR_UNITARIO"]).ToString();
+            entradaProdutos.Fornecedor= Convert.ToString(reader["NOME_FORNECEDOR"]);
+            return entradaProdutos;
+        }
         private EntradaProdutos instanciarentradaProdutos(SqlDataReader reader)
         {
             EntradaProdutos entradaProdutos = new EntradaProdutos();
@@ -75,21 +97,31 @@ namespace DAL
             return entradaProdutos;
         }
 
-        public List<EntradaProdutos> LerTodos()
+        public List<EntradaProdutosViewModel> LerTodos()
         {
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT * FROM ENTRADAPRODUTOS";
             command.Connection = connection;
-            List<EntradaProdutos> list = new List<EntradaProdutos>();
+            command.CommandText = @"SELECT EP.ID 'IDLOTE',
+                EP.DATA_ENTRADA 'DATA',
+                P.NOME 'PRODUTO',
+                EP.VALORTOTAL 'VALOR_LOTE',
+                F.RAZAO_SOCIAL 'NOME_FORNECEDOR', 
+                ED.QUANTIDADE 'QUANTIDADE' ,
+                ED.VALOR_UNITARIO 'VALOR_UNITARIO'
+                FROM ENTRADAPRODUTOSDETALHES ED
+                INNER JOIN ENTRADAPRODUTOS EP ON ED.ENTRADAPRODUTO_ID=EP.ID 
+                INNER JOIN PRODUTOS P ON ED.PRODUTO_ID= P.ID 
+                INNER JOIN FORNECEDORES F ON F.ID= ED.FORNECEDOR_ID";
             try
             {
+                List<EntradaProdutosViewModel> list = new List<EntradaProdutosViewModel>();
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        list.Add(instanciarentradaProdutos(reader));
+                        list.Add(instanciarentradaProdutosView(reader));
                     }
                     return list;
             }
@@ -133,9 +165,6 @@ namespace DAL
             }
         }
 
-        string CRUDIntegridade<EntradaProdutos>.Inserir(EntradaProdutos item)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
