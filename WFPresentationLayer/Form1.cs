@@ -504,5 +504,12 @@ namespace WFPresentationLayer
         {
             dataGridViewCheckinsCheckout.DataSource = checkinBLL.LerCheckinViewModels();
         }
+
+        private void btnProximaPagina_Click(object sender, EventArgs e)
+        {
+            FormSaidaProdutosDetalhes frm = new FormSaidaProdutosDetalhes();
+            frm.Show();
+            this.Hide();
+        }
     }
 }

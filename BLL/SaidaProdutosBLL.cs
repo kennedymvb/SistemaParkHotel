@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using DAL;
+using DAO.ViewModels;
 using Metadata;
 namespace BLL
 {
     public class SaidaProdutosBLL
     {
         List<string> erros = new List<string>();
-        ProdutoDAL produtoDAL = new ProdutoDAL();
         SaidaProdutosDAL saidaDal = new SaidaProdutosDAL();
-        ClienteDAL clienteDAL = new ClienteDAL();
-        UsuarioDAL usuarioDAL = new UsuarioDAL();
+        ClienteBLL clienteBLL = new ClienteBLL();
+        UsuarioBLL usuarioBLL = new UsuarioBLL();
+        ProdutoBLL produtoBLL = new ProdutoBLL();
 
         public void inserir(SaidaProdutos saida)
         {
@@ -22,20 +23,37 @@ namespace BLL
             {
                 using (TransactionScope scope= new TransactionScope())
                 {
-
-                    saida.id = saidaDal.Inserir(saida);
-                    saidaDal.InserirItens(saida);
-                    scope.Complete();
-                    
+                    try
+                    {
+                        saida.id = saidaDal.Inserir(saida);
+                        saidaDal.InserirItens(saida);
+                        foreach (ItensSaida item in saida.itens)
+                        {
+                            Produto p = produtoBLL.LerPorID(item.id);
+                            p.preco = (p.qtdEstoque * p.preco) - (item.quantidade * item.valorUnitario) / (p.qtdEstoque - item.quantidade);
+                            p.qtdEstoque -= item.quantidade;
+                            produtoBLL.Atualizar(p);
+                        }
+                        scope.Complete();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Erro na transação: "+ex.Message);
+                    }
                 }
             }
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < erros.Count(); i++)
+            if (erros.Count > 0)
             {
-                sb.Append(erros[i]);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < erros.Count(); i++)
+                {
+                    sb.Append(erros[i]+"\n");
+                }
+                throw new Exception(sb.ToString());
             }
-            throw new Exception(sb.ToString());
+            
         }
+
 
         public bool Validar(SaidaProdutos saida)
         {
@@ -57,44 +75,20 @@ namespace BLL
             return saidaDal.LerPorID(id);
 
         }
-        public List<SaidaProdutos> LerTodos()
+        public List<SaidaViewModel> LerTodos()
         {
             return saidaDal.LerTodos();
         }
 
         private void TratarDependencias(SaidaProdutos saida)
         {
-            if (saida.idProduto < 0)
-            {
-                erros.Add("id do produto deve ser informado");
-            }
-            else
-            {
-                Produto produto = produtoDAL.LerPorID(saida.idProduto);
-                if (produto == null)
-                {
-                    erros.Add("produto não encontrado no banco");
-                }
-            }
-            if (saida.idCliente < 0)
-            {
-                erros.Add("id do produto deve ser informado");
-            }
-            else
-            {
-                Cliente cliente = clienteDAL.LerPorID(saida.idCliente);
-                if (cliente == null)
-                {
-                    erros.Add("cliente não encontrado no banco");
-                }
-            }
-            if (saida.idUsuarioVendedor < 0)
+            if (!(saida.idUsuarioVendedor > 0))
             {
                 erros.Add("id do vendedor deve ser informado");
             }
             else
             {
-                Usuario usuario = usuarioDAL.LerPorID(saida.idUsuarioVendedor);
+                Usuario usuario = usuarioBLL.LerPorID(saida.idUsuarioVendedor);
                 if (usuario == null)
                 {
                     erros.Add("usuario não encontrado no banco");

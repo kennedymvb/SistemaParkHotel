@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class CheckoutDAL : CRUDIntegridade<Checkout>
+    public class CheckoutDAL
     {
         StringConexao stc = new StringConexao();
 
-        public string Inserir(Checkout checkout)
+        public void Inserir(Checkout checkout)
         {
             string stringConexao = StringConexao.GetStringConexao();
 
@@ -39,7 +39,6 @@ namespace DAL
                 throw new Exception("erro no banco de dados, contate o admin");
 
             }
-            return "atualizado com sucesso";
         }
 
         public Checkout LerPorID(int id)

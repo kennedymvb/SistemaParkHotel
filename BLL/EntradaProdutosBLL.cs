@@ -13,10 +13,9 @@ namespace BLL
     public class EntradaProdutosBLL
     {
         List<string> erros = new List<string>();
-        ProdutoDAL produtoDAL = new ProdutoDAL();
-        SaidaProdutosDAL saidaDal = new SaidaProdutosDAL();
-        ClienteDAL clienteDAL = new ClienteDAL();
-        UsuarioDAL usuarioDAL = new UsuarioDAL();
+        ProdutoBLL produtoBLL = new ProdutoBLL();
+        ClienteBLL clienteBLL = new ClienteBLL();
+        UsuarioBLL usuarioBLL = new UsuarioBLL();
         EntradaProdutosDAL entradaDal = new EntradaProdutosDAL();
         
 
@@ -30,12 +29,20 @@ namespace BLL
                     {
                         entrada.id=entradaDal.Inserir(entrada);
                         entradaDal.InserirItens(entrada);
-
+                        foreach (ItensEntrada item in entrada.itens)
+                        {
+                            Produto p = produtoBLL.LerPorID(item.idProduto);
+                            int quantidadeAntiga = p.qtdEstoque;
+                            double valorAntigo = p.preco;
+                            p.qtdEstoque -= item.quantidade;
+                            p.preco = (valorAntigo * quantidadeAntiga) + (item.quantidade * item.valorUnitario) / (quantidadeAntiga+item.quantidade);
+                            produtoBLL.Atualizar(p);
+                        }
                         scope.Complete();
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.Message);
+                        throw new Exception("Erro na transação: "+ex.Message);
                     }
                 }
 
@@ -81,7 +88,7 @@ namespace BLL
             }
             else
             {
-                Usuario usuario = usuarioDAL.LerPorID(entrada.usuarioId);
+                Usuario usuario = usuarioBLL.LerPorID(entrada.usuarioId);
                 if (usuario == null)
                 {
                     erros.Add("usuario não encontrado no banco");

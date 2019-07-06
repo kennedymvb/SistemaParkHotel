@@ -51,6 +51,7 @@
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.TabCheckout = new System.Windows.Forms.TabPage();
+            this.btnPesquisarCheckin = new System.Windows.Forms.Button();
             this.dataGridViewCheckinsCheckout = new System.Windows.Forms.DataGridView();
             this.dateTimeCheckoutDataSaida = new System.Windows.Forms.DateTimePicker();
             this.labelValorTotalPagar = new System.Windows.Forms.Label();
@@ -61,16 +62,7 @@
             this.label59 = new System.Windows.Forms.Label();
             this.btnFinalizarHospedagem = new System.Windows.Forms.Button();
             this.TabVendas = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.txtNumProdutoVenda = new System.Windows.Forms.TextBox();
-            this.txtnumClienteVenda = new System.Windows.Forms.TextBox();
-            this.txtnumUsuarioVenda = new System.Windows.Forms.TextBox();
-            this.btnCadastrarVendas = new System.Windows.Forms.Button();
-            this.dateTimeVenda = new System.Windows.Forms.DateTimePicker();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
+            this.btnProximaPagina = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
             this.TabReservas = new System.Windows.Forms.TabPage();
             this.dataGridViewReservas = new System.Windows.Forms.DataGridView();
@@ -167,8 +159,6 @@
             this.btnCadastrarEntrada = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.dataGridViewEntradaProdutos = new System.Windows.Forms.DataGridView();
-            this.btnPesquisarCheckin = new System.Windows.Forms.Button();
-            this.btnProximaPagina = new System.Windows.Forms.Button();
             this.TabAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdministrador)).BeginInit();
             this.TabCheckout.SuspendLayout();
@@ -434,6 +424,17 @@
             this.TabCheckout.Text = "Checkout";
             this.TabCheckout.UseVisualStyleBackColor = true;
             // 
+            // btnPesquisarCheckin
+            // 
+            this.btnPesquisarCheckin.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisarCheckin.Location = new System.Drawing.Point(441, 137);
+            this.btnPesquisarCheckin.Name = "btnPesquisarCheckin";
+            this.btnPesquisarCheckin.Size = new System.Drawing.Size(92, 20);
+            this.btnPesquisarCheckin.TabIndex = 72;
+            this.btnPesquisarCheckin.Text = "Pesquisar";
+            this.btnPesquisarCheckin.UseVisualStyleBackColor = true;
+            this.btnPesquisarCheckin.Click += new System.EventHandler(this.btnPesquisarCheckin_Click);
+            // 
             // dataGridViewCheckinsCheckout
             // 
             this.dataGridViewCheckinsCheckout.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -523,16 +524,6 @@
             this.TabVendas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabVendas.BackgroundImage")));
             this.TabVendas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.TabVendas.Controls.Add(this.btnProximaPagina);
-            this.TabVendas.Controls.Add(this.button3);
-            this.TabVendas.Controls.Add(this.txtNumProdutoVenda);
-            this.TabVendas.Controls.Add(this.txtnumClienteVenda);
-            this.TabVendas.Controls.Add(this.txtnumUsuarioVenda);
-            this.TabVendas.Controls.Add(this.btnCadastrarVendas);
-            this.TabVendas.Controls.Add(this.dateTimeVenda);
-            this.TabVendas.Controls.Add(this.label39);
-            this.TabVendas.Controls.Add(this.label38);
-            this.TabVendas.Controls.Add(this.label36);
-            this.TabVendas.Controls.Add(this.label35);
             this.TabVendas.Controls.Add(this.label34);
             this.TabVendas.Location = new System.Drawing.Point(4, 22);
             this.TabVendas.Name = "TabVendas";
@@ -542,100 +533,22 @@
             this.TabVendas.Text = "Vendas";
             this.TabVendas.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnProximaPagina
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(382, 202);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 20);
-            this.button3.TabIndex = 64;
-            this.button3.Text = "Pesquisar Cliente";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // txtNumProdutoVenda
-            // 
-            this.txtNumProdutoVenda.Location = new System.Drawing.Point(186, 268);
-            this.txtNumProdutoVenda.Name = "txtNumProdutoVenda";
-            this.txtNumProdutoVenda.Size = new System.Drawing.Size(100, 20);
-            this.txtNumProdutoVenda.TabIndex = 60;
-            // 
-            // txtnumClienteVenda
-            // 
-            this.txtnumClienteVenda.Location = new System.Drawing.Point(186, 214);
-            this.txtnumClienteVenda.Name = "txtnumClienteVenda";
-            this.txtnumClienteVenda.Size = new System.Drawing.Size(100, 20);
-            this.txtnumClienteVenda.TabIndex = 56;
-            // 
-            // txtnumUsuarioVenda
-            // 
-            this.txtnumUsuarioVenda.Location = new System.Drawing.Point(174, 117);
-            this.txtnumUsuarioVenda.Name = "txtnumUsuarioVenda";
-            this.txtnumUsuarioVenda.Size = new System.Drawing.Size(112, 20);
-            this.txtnumUsuarioVenda.TabIndex = 53;
-            // 
-            // btnCadastrarVendas
-            // 
-            this.btnCadastrarVendas.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrarVendas.Location = new System.Drawing.Point(71, 322);
-            this.btnCadastrarVendas.Name = "btnCadastrarVendas";
-            this.btnCadastrarVendas.Size = new System.Drawing.Size(140, 23);
-            this.btnCadastrarVendas.TabIndex = 63;
-            this.btnCadastrarVendas.Text = "Cadastrar Vendas";
-            this.btnCadastrarVendas.UseVisualStyleBackColor = true;
-            this.btnCadastrarVendas.Click += new System.EventHandler(this.btnCadastrarVendas_Click);
-            // 
-            // dateTimeVenda
-            // 
-            this.dateTimeVenda.Location = new System.Drawing.Point(163, 165);
-            this.dateTimeVenda.Name = "dateTimeVenda";
-            this.dateTimeVenda.Size = new System.Drawing.Size(123, 20);
-            this.dateTimeVenda.TabIndex = 62;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(52, 268);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(135, 20);
-            this.label39.TabIndex = 61;
-            this.label39.Text = "Número do Produto:";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(52, 217);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(128, 20);
-            this.label38.TabIndex = 57;
-            this.label38.Text = "Número do Cliente";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(52, 168);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(105, 20);
-            this.label36.TabIndex = 55;
-            this.label36.Text = "Data da Venda:";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(52, 117);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(105, 20);
-            this.label35.TabIndex = 54;
-            this.label35.Text = "Id do vendedor";
+            this.btnProximaPagina.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProximaPagina.Location = new System.Drawing.Point(306, 254);
+            this.btnProximaPagina.Name = "btnProximaPagina";
+            this.btnProximaPagina.Size = new System.Drawing.Size(125, 20);
+            this.btnProximaPagina.TabIndex = 65;
+            this.btnProximaPagina.Text = "Cadastrar Venda";
+            this.btnProximaPagina.UseVisualStyleBackColor = true;
+            this.btnProximaPagina.Click += new System.EventHandler(this.btnProximaPagina_Click);
             // 
             // label34
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(122, 66);
+            this.label34.Location = new System.Drawing.Point(279, 51);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(152, 27);
             this.label34.TabIndex = 52;
@@ -1670,27 +1583,6 @@
             this.dataGridViewEntradaProdutos.Size = new System.Drawing.Size(375, 413);
             this.dataGridViewEntradaProdutos.TabIndex = 69;
             // 
-            // btnPesquisarCheckin
-            // 
-            this.btnPesquisarCheckin.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisarCheckin.Location = new System.Drawing.Point(441, 137);
-            this.btnPesquisarCheckin.Name = "btnPesquisarCheckin";
-            this.btnPesquisarCheckin.Size = new System.Drawing.Size(92, 20);
-            this.btnPesquisarCheckin.TabIndex = 72;
-            this.btnPesquisarCheckin.Text = "Pesquisar";
-            this.btnPesquisarCheckin.UseVisualStyleBackColor = true;
-            this.btnPesquisarCheckin.Click += new System.EventHandler(this.btnPesquisarCheckin_Click);
-            // 
-            // btnProximaPagina
-            // 
-            this.btnProximaPagina.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProximaPagina.Location = new System.Drawing.Point(393, 296);
-            this.btnProximaPagina.Name = "btnProximaPagina";
-            this.btnProximaPagina.Size = new System.Drawing.Size(125, 20);
-            this.btnProximaPagina.TabIndex = 65;
-            this.btnProximaPagina.Text = "Cadastrar Venda";
-            this.btnProximaPagina.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1768,15 +1660,6 @@
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Button btnFinalizarHospedagem;
         private System.Windows.Forms.TabPage TabVendas;
-        private System.Windows.Forms.TextBox txtNumProdutoVenda;
-        private System.Windows.Forms.TextBox txtnumClienteVenda;
-        private System.Windows.Forms.TextBox txtnumUsuarioVenda;
-        private System.Windows.Forms.Button btnCadastrarVendas;
-        private System.Windows.Forms.DateTimePicker dateTimeVenda;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TabPage TabReservas;
         private System.Windows.Forms.DataGridView dataGridViewReservas;
@@ -1869,7 +1752,6 @@
         private System.Windows.Forms.Button BtnPesquisarCliente;
         private System.Windows.Forms.DataGridView dataGridViewClientesCheckin;
         private System.Windows.Forms.TextBox txtNumCliente;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridViewQuartosLivres;
         private System.Windows.Forms.Button btnPesquisarQuartosLivres;
         private System.Windows.Forms.Label lblUsuarioAtual;

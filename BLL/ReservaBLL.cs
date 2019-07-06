@@ -14,9 +14,9 @@ namespace BLL
         List<string> erros = new List<string>();
 
         ReservaDAL reservaDal = new ReservaDAL();
-        QuartoDAL quartoDAL = new QuartoDAL();
-        ClienteDAL clienteDAL = new ClienteDAL();
-        UsuarioDAL usuarioDAL = new UsuarioDAL();
+        QuartoBLL quartoBLL = new QuartoBLL();
+        ClienteBLL clienteBLL = new ClienteBLL();
+        UsuarioBLL usuarioBLL = new UsuarioBLL();
         public string inserir(Reserva reserva)
         {
             if (this.Validar(reserva))
@@ -80,7 +80,7 @@ namespace BLL
             }
             else
             {
-                Quarto quarto = quartoDAL.LerPorID(reserva.idQuarto);
+                Quarto quarto = quartoBLL.LerPorID(reserva.idQuarto);
                 if (quarto == null)
                 {
                     erros.Add("quarto não encontrado no banco");
@@ -92,7 +92,7 @@ namespace BLL
             }
             else
             {
-                Cliente cliente = clienteDAL.LerPorID(reserva.idCliente);
+                Cliente cliente = clienteBLL.LerPorID(reserva.idCliente);
                 if (cliente == null)
                 {
                     erros.Add("cliente não encontrado no banco");

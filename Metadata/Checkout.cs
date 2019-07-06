@@ -14,6 +14,7 @@ namespace Metadata
         public DateTime dataSaida { get; set; }
         public DateTime dataEntrada { get; set; }
         public int idUsuario { get; set; }
+        public bool PendenteCheckout { get; set; }
 
         public Checkout(int idUsuario, int idcheckin, double valortotal, DateTime datasaida, DateTime dataEntrada)
         {

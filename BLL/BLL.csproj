@@ -47,7 +47,6 @@
     <Compile Include="ClienteBLL.cs" />
     <Compile Include="EntradaProdutosBLL.cs" />
     <Compile Include="FornecedorBLL.cs" />
-    <Compile Include="SaidaProdutosDetalhesBLL.cs" />
     <Compile Include="ProdutoBLL.cs" />
     <Compile Include="QuartoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

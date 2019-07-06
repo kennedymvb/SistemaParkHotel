@@ -15,7 +15,8 @@ namespace Metadata
         public int clienteId { get; set; }
         public int idReserva { get; set; }
         public int idUsuario { get; set; }
-        
+        public bool PendenteCheckout { get; set; }
+
 
         public Checkin(int idUsuario, DateTime dataentrada, DateTime dataprevistasaida, int idquarto, int idcliente, int idreserva)
         {

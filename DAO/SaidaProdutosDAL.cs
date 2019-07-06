@@ -72,13 +72,13 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             List<SqlCommand> commands = new List<SqlCommand>();
-            for (int i = 0; i < entrada.itens.Count; i++)
+            for (int i = 0; i < saida.itens.Count; i++)
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
                 commands.Add(command);
             }
-            for (int i = 0; i < entrada.itens.Count; i++)
+            for (int i = 0; i < saida.itens.Count; i++)
             {
                 commands[i].CommandText = "INSERT INTO ENTRADAPRODUTOSDETALHES (ENTRADAPRODUTO_ID, PRODUTO_ID, CLIENTE_ID, QUANTIDADE, VALOR_UNITARIO) VALUES (@ENTRADAPRODUTO_ID, @PRODUTO_ID, @CLIENTE_ID, @QUANTIDADE, @VALOR_UNITARIO)";
                 commands[i].Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saida.id);
@@ -118,7 +118,7 @@ namespace DAL
                 FROM ENTRADAPRODUTOSDETALHES ED
                 INNER JOIN ENTRADAPRODUTOS EP ON ED.ENTRADAPRODUTO_ID=EP.ID 
                 INNER JOIN PRODUTOS P ON ED.PRODUTO_ID= P.ID 
-                INNER JOIN CLIENTES F ON F.ID= ED.FORNECEDOR_ID";
+                INNER JOIN CLIENTES CL ON CL.ID= ED.FORNECEDOR_ID";
             try
             {
                 List<SaidaViewModel> list = new List<SaidaViewModel>();

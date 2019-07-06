@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Metadata;
 using DAL;
+using System.Transactions;
 
 namespace BLL
 {
@@ -16,11 +17,19 @@ namespace BLL
         QuartoBLL quartoBLL = new QuartoBLL();
         
 
-        public string inserir(Checkout checkout)
+        public void inserir(Checkout checkout)
         {
             if (this.Validar(checkout))
             {
-                return checkoutDal.Inserir(checkout);
+                using (TransactionScope scope= new TransactionScope())
+                {
+                    checkoutDal.Inserir(checkout);
+                    Checkin checkin = checkinBLL.LerPorID(checkout.idCheckin);
+                    quartoBLL.Desocupar(checkin.quartoId);
+                    checkin.PendenteCheckout = false;
+                    scope.Complete();
+                }
+                
             }
             if (erros.Count > 0)
             {
@@ -31,9 +40,6 @@ namespace BLL
                 }
                 throw new Exception(sb.ToString());
             }
-                checkoutDal.Inserir(checkout);
-                DesocuparQuarto(checkout);
-                return "checkout feito com sucesso";
         }
 
         public Checkout LerPorID(int id)
@@ -70,13 +76,6 @@ namespace BLL
                     erros.Add("Checkin desse cliente não encontrado no banco.");
                 }
             }
-        }
-
-        private void DesocuparQuarto(Checkout checkout)
-        {
-            Checkin checkin = new Checkin();
-            checkin = checkinBLL.LerPorID(checkout.idCheckin);
-            quartoBLL.Desocupar(checkin.quartoId);
         }
     }
 }

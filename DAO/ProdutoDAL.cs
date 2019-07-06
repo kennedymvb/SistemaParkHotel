@@ -42,28 +42,6 @@ namespace DAL
             return "atualizado com sucesso";
         }
 
-        public void AtualizarQuantidade(Produto produto)
-        {
-            string stringConexao = StringConexao.GetStringConexao();
-            SqlConnection connection = new SqlConnection(stringConexao);
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-
-            command.CommandText = "UPDATE PRODUTOS SET  QTD_ESTOQUE = @QTD_ESTOQUE where ID=@ID";
-            command.Parameters.AddWithValue("@ID", produto.id);
-            command.Parameters.AddWithValue("@QTD_ESTOQUE", produto.qtdEstoque);
-
-            try
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-            catch (SqlException e)
-            {
-                throw new Exception("erro no acesso ao banco: "+e.Message);
-            }
-
-        }
 
         public string Excluir(Produto produto)
         {

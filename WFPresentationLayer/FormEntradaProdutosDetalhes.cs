@@ -47,7 +47,6 @@ namespace WFPresentationLayer
             int idFornecedor = encontrarIdFornecedor();
             int quantidade = int.Parse(txtQuantidadeEntrada.Text);
             double valorUnitario = double.Parse(txtValorEntrada.Text) / int.Parse(txtQuantidadeEntrada.Text);
-            produtoBLL.atualizarQuantidadeEstoque(produtoBLL.LerPorID(idProduto));
             return new ItensEntrada(idProduto, idFornecedor, quantidade, valorUnitario); 
         }
 

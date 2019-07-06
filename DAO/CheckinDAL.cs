@@ -107,7 +107,9 @@ namespace DAL
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.CommandText = @"SELECT C.ID , C.DATA_ENTRADA, C.DATA_PREVISTA_SAIDA,
-            C.QUARTO_ID, C.ID, C.ID_RESERVA, CL.NOME INNER JOIN CLIENTES CL ON C.CLIENTE_ID= CL.ID";
+            C.QUARTO_ID, C.ID, C.ID_RESERVA, CL.NOME FROM CHECKINS C 
+            INNER JOIN CLIENTES CL ON C.CLIENTE_ID= CL.ID
+            WHERE C.PENDENTE_CHECKOUT=1 ";
 
             command.Connection = connection;
             List<CheckinViewModel> list = new List<CheckinViewModel>();
@@ -121,7 +123,7 @@ namespace DAL
                 }
                 return list;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -141,7 +143,7 @@ namespace DAL
             }
             checkin.DataEntrada = Convert.ToDateTime(reader["DATA_ENTRADA"]);
             checkin.quarto = Convert.ToInt32(reader["QUARTO_ID"]);
-            checkin.Cliente = Convert.ToString(reader["CLIENTE_ID"]);
+            checkin.Cliente = Convert.ToString(reader["NOME"]);
             checkin.DataPrevistaSaida = Convert.ToDateTime(reader["DATA_PREVISTA_SAIDA"]);
             return checkin;
         }
