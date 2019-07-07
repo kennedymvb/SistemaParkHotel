@@ -17,6 +17,7 @@ namespace WFPresentationLayer
         public FormQuartos()
         {
             InitializeComponent();
+            carregarCmbBox();
         }
 
         QuartoBLL quartoBLL = new QuartoBLL();
@@ -61,6 +62,17 @@ namespace WFPresentationLayer
             string tipoQuarto = cmbTipoQuarto.Text;
             Quarto quarto = new Quarto(ValorDiaria, IDUsuario, tipoQuarto);
             return quarto;
+        }
+
+        private void carregarCmbBox()
+        {
+            List<String> tipoQuarto = new List<string>();
+            tipoQuarto.Add("Comum");
+            tipoQuarto.Add("Suite");
+            tipoQuarto.Add("Supreme");
+            tipoQuarto.Add("Diamante");
+
+            cmbTipoQuarto.DataSource = tipoQuarto;
         }
     }
 }

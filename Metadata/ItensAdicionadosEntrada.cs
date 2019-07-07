@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    public class ItensAdicionados
+    public class ItensAdicionadosEntrada
     {
-        public int Venda { get; set; }
+        public int Compra { get; set; }
         public string Produto { get; set; }
-        public double Valor { get; set; }
-        
-        public ItensAdicionados()
+        public string Fornecedor { get; set; }
+
+        public ItensAdicionadosEntrada()
         {
         }
     }

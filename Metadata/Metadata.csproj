@@ -47,7 +47,8 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="CRUDIntegridade.cs" />
     <Compile Include="EntradaProdutos.cs" />
-    <Compile Include="ItensAdicionados.cs" />
+    <Compile Include="ItensAdicionadosEntrada.cs" />
+    <Compile Include="ItensAdicionadosSaida.cs" />
     <Compile Include="ItensSaida.cs" />
     <Compile Include="ItensEntrada.cs" />
     <Compile Include="EntradaProdutosDetalhes.cs" />

@@ -35,12 +35,6 @@ namespace WFPresentationLayer
             txtNumCheckin.Text = Convert.ToString(idCheckin);
             txtNumCheckin.Enabled = false;
         }
-        private void btnCadastrarEntrada_Click(object sender, EventArgs e)
-        {
-            FormEntradaProdutosDetalhes frm = new FormEntradaProdutosDetalhes();
-            this.Hide();
-            frm.ShowDialog();
-        }
 
         private void btnSelecionarCliente_Click_1(object sender, EventArgs e)
         {

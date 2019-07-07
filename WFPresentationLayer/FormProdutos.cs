@@ -18,6 +18,7 @@ namespace WFPresentationLayer
         {
             InitializeComponent();
         }
+        private int idProduto { get; set; }
         ProdutoBLL produtoBLL = new ProdutoBLL(); 
 
         private void btnCadastroProdutos_Click(object sender, EventArgs e)
@@ -38,10 +39,6 @@ namespace WFPresentationLayer
             exibirProdutos();
         }
 
-        private void dataGridViewProdutos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         private Produto InstanciarProduto()
         {
             string nome = txtnomeproduto.Text;
@@ -58,6 +55,14 @@ namespace WFPresentationLayer
             this.dataGridViewProdutos.Show();
         }
 
-       
+        private void dataGridViewProdutos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.idProduto = (int)dataGridViewProdutos.Rows[e.RowIndex].Cells[0].Value;
+            txtnomeproduto.Text = (string)dataGridViewProdutos.Rows[e.RowIndex].Cells[1].Value;
+            txtdescricaoproduto.Text = (string)dataGridViewProdutos.Rows[e.RowIndex].Cells[2].Value;
+            txtvalorunitarioproduto.Text = dataGridViewProdutos.Rows[e.RowIndex].Cells[3].Value.ToString();
+        }
+
+
     }
 }

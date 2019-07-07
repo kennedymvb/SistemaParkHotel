@@ -39,11 +39,9 @@
             this.label29 = new System.Windows.Forms.Label();
             this.dataGridDia = new System.Windows.Forms.DataGridView();
             this.lblValorCompra = new System.Windows.Forms.Label();
-            this.dataGridsaidaLote = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblProdutosLote = new System.Windows.Forms.Label();
             this.btnApagarRegistro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDia)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridsaidaLote)).BeginInit();
             this.SuspendLayout();
             // 
             // label21
@@ -130,10 +128,14 @@
             // 
             // dataGridDia
             // 
+            this.dataGridDia.AllowUserToAddRows = false;
+            this.dataGridDia.AllowUserToDeleteRows = false;
             this.dataGridDia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridDia.Location = new System.Drawing.Point(854, 403);
+            this.dataGridDia.Location = new System.Drawing.Point(628, 80);
             this.dataGridDia.Name = "dataGridDia";
-            this.dataGridDia.Size = new System.Drawing.Size(60, 49);
+            this.dataGridDia.ReadOnly = true;
+            this.dataGridDia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridDia.Size = new System.Drawing.Size(331, 203);
             this.dataGridDia.TabIndex = 121;
             // 
             // lblValorCompra
@@ -146,28 +148,16 @@
             this.lblValorCompra.TabIndex = 122;
             this.lblValorCompra.Text = "0";
             // 
-            // dataGridsaidaLote
+            // lblProdutosLote
             // 
-            this.dataGridsaidaLote.AllowUserToAddRows = false;
-            this.dataGridsaidaLote.AllowUserToDeleteRows = false;
-            this.dataGridsaidaLote.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridsaidaLote.Location = new System.Drawing.Point(507, 80);
-            this.dataGridsaidaLote.Name = "dataGridsaidaLote";
-            this.dataGridsaidaLote.ReadOnly = true;
-            this.dataGridsaidaLote.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridsaidaLote.Size = new System.Drawing.Size(449, 203);
-            this.dataGridsaidaLote.TabIndex = 123;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(513, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 20);
-            this.label1.TabIndex = 124;
-            this.label1.Text = "Produtos do lote";
+            this.lblProdutosLote.AutoSize = true;
+            this.lblProdutosLote.BackColor = System.Drawing.Color.Transparent;
+            this.lblProdutosLote.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProdutosLote.Location = new System.Drawing.Point(624, 57);
+            this.lblProdutosLote.Name = "lblProdutosLote";
+            this.lblProdutosLote.Size = new System.Drawing.Size(111, 20);
+            this.lblProdutosLote.TabIndex = 124;
+            this.lblProdutosLote.Text = "Produtos do lote";
             // 
             // btnApagarRegistro
             // 
@@ -188,8 +178,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(957, 524);
             this.Controls.Add(this.btnApagarRegistro);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridsaidaLote);
+            this.Controls.Add(this.lblProdutosLote);
             this.Controls.Add(this.lblValorCompra);
             this.Controls.Add(this.dataGridDia);
             this.Controls.Add(this.label15);
@@ -203,7 +192,6 @@
             this.Name = "FormSaidaProdutosDetalhes";
             this.Text = "FormEntradaProdutosDetalhes";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridsaidaLote)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,8 +208,7 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.DataGridView dataGridDia;
         private System.Windows.Forms.Label lblValorCompra;
-        private System.Windows.Forms.DataGridView dataGridsaidaLote;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblProdutosLote;
         private System.Windows.Forms.Button btnApagarRegistro;
     }
 }

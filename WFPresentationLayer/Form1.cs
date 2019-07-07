@@ -15,137 +15,156 @@ namespace WFPresentationLayer
     
     public partial class Form1 : Form
     {
-        ClienteBLL clienteBLL = new ClienteBLL();
-        FornecedorBLL fornecedorBLL = new FornecedorBLL();
-        ProdutoBLL produtoBLL = new ProdutoBLL();
-        QuartoBLL quartoBLL = new QuartoBLL();
-        SaidaProdutosBLL saidaProdutosBLL = new SaidaProdutosBLL();
-        UsuarioBLL usuarioBLL = new UsuarioBLL();
-        ReservaBLL ReservaBLL = new ReservaBLL();
-        CheckinBLL checkinBLL = new CheckinBLL();
-        CheckoutBLL checkoutBLL = new CheckoutBLL();
-        EntradaProdutosBLL entradaProdutosBLL = new EntradaProdutosBLL();
+        
         public Form1()
         {
             InitializeComponent();
-            carregarCmbBox();
             if (!Usuario.UsuarioLogado.isAdmin) {
-                TabAdministrador.Dispose();
+                btnAdministrador.Dispose();
             }
-            carregarLabels();
+            lblBemVindo.Text = "Bem vindo, " + Usuario.UsuarioLogado.nome + "!";
         }
-        public Form1(int idCheckin)
-        {
-            InitializeComponent();
-            this.Load += Form1_Load;
-            carregarCmbBox();
-            if (!Usuario.UsuarioLogado.isAdmin)
-            {
-                TabAdministrador.Dispose();
-            }
-            carregarLabels();
-        }
+        FormEntradaProdutos formEntrada = new FormEntradaProdutos();
+        FormSaidaProdutos formSaida = new FormSaidaProdutos();
+        FormCheckin formCheckin = new FormCheckin();
+        FormCheckout formCheckout = new FormCheckout();
+        FormUsuarios formUsuarios = new FormUsuarios();
+        FormClientes formClientes = new FormClientes();
+        FormQuartos formQuartos = new FormQuartos();
+        FormReservas formReservas = new FormReservas();
+        FormProdutos formProdutos = new FormProdutos();
 
-        private void carregarLabels()
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            lblUsuarioAtual.Text = usuarioBLL.LerPorID(Usuario.UsuarioLogado.id).nome;
+            AjustarHoras();
         }
 
-        public static int idEntradaCorrespondente;
-
-
-        private void carregarCmbBox()
+        private void btnCompras_Click(object sender, EventArgs e)
         {
-            List<String> tipoQuarto = new List<string>();
-            tipoQuarto.Add("Comum");
-            tipoQuarto.Add("Suite");
-            tipoQuarto.Add("Supreme");
-            tipoQuarto.Add("Diamante");
-
-            cmbTipoQuarto.DataSource = tipoQuarto;
+            formEntrada.ShowDialog();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void btnVendas_Click(object sender, EventArgs e)
         {
-            esconderDataGridViews();
-            
-            if (!Usuario.UsuarioLogado.isAdmin)
-            {
-                this.TabAdministrador.Hide();
-            }
-            MessageBox.Show("Bem-vindo " + Usuario.UsuarioLogado.nome);
+            formSaida.ShowDialog();
         }
 
-        
-
-       
-
-
-
-
-        #region Operações Quarto
-        
-        
-        #endregion
-
-
-        #region Operações Usuário
-       
-        #endregion
-
-
-      
-
-        #region Operações Checkout
-        private void btnFinalizarHospedagem_Click(object sender, EventArgs e)
+        private void btnCheckin_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        
-
-        
-
-        
-        #endregion
-
-
-        #region Operações checkin
-        
-
-
-        #endregion
-       
-
-        
-
-        private void btnExibirEntradas_Click(object sender, EventArgs e)
-        {
-            dataGridViewEntradaProdutos.DataSource = entradaProdutosBLL.LerTodos();
-        }
-
-       
-
-        private void btnProximaPagina_Click(object sender, EventArgs e)
-        {
-            FormSaidaProdutos frmsaida = new FormSaidaProdutos();
-            frmsaida.ShowDialog();
+            formCheckin.ShowDialog();
         }
 
         private void btnFazerCheckout_Click(object sender, EventArgs e)
         {
-            FormCheckout frmCheckout = new FormCheckout();
-            
-            frmCheckout.ShowDialog();
+            formCheckout.ShowDialog();
         }
 
-        private void Form1_Deactivate(object sender, EventArgs e)
+        private void btnCliente_Click(object sender, EventArgs e)
         {
+            formCheckin.ShowDialog();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void btnProdutos_Click(object sender, EventArgs e)
         {
-
+            formProdutos.ShowDialog();
         }
+
+        private void btnReservas_Click(object sender, EventArgs e)
+        {
+            formReservas.ShowDialog();
+        }
+
+        private void btnQuartos_Click(object sender, EventArgs e)
+        {
+            formQuartos.ShowDialog();
+        }
+
+        private void btnAdministrador_Click(object sender, EventArgs e)
+        {
+            formUsuarios.ShowDialog();
+        }
+
+        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formEntrada.ShowDialog();
+        }
+
+        private void vendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formSaida.ShowDialog();
+        }
+
+        private void checkinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formCheckin.ShowDialog();
+        }
+
+        private void checkoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formCheckout.ShowDialog();
+        }
+
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formClientes.ShowDialog();
+        }
+
+        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formProdutos.ShowDialog();
+        }
+
+        private void reservaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formReservas.ShowDialog();
+        }
+
+        private void quartosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formQuartos.ShowDialog();
+        }
+
+        private void administradorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formUsuarios.ShowDialog();
+        }
+
+        private void AjustarHoras()
+        {
+            string horas;
+            string minutos;
+            string segundo;
+
+            int hora = int.Parse(DateTime.Now.Hour.ToString());
+            int minuto = int.Parse(DateTime.Now.Minute.ToString());
+            int segundos = int.Parse(DateTime.Now.Second.ToString());
+
+            if (hora < 10)
+            {
+                horas = "0" + hora.ToString();
+            }
+            else
+            {
+                horas = hora.ToString();
+            }
+            if (minuto < 10)
+            {
+                minutos = "0" + minuto.ToString();
+            }
+            else
+            {
+                minutos = minuto.ToString();
+            }
+            if (segundos < 10)
+            {
+                segundo = "0" + segundos.ToString();
+            }
+            else
+            {
+                segundo = segundos.ToString();
+            }
+            lblHoras.Text = horas + ":" + minutos + ":" + segundo;
+        }
+
     }
 }
