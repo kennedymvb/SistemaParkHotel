@@ -57,7 +57,7 @@
             // btnCompras
             // 
             this.btnCompras.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompras.Location = new System.Drawing.Point(67, 134);
+            this.btnCompras.Location = new System.Drawing.Point(48, 216);
             this.btnCompras.Name = "btnCompras";
             this.btnCompras.Size = new System.Drawing.Size(93, 46);
             this.btnCompras.TabIndex = 96;
@@ -68,7 +68,7 @@
             // btnFazerCheckout
             // 
             this.btnFazerCheckout.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFazerCheckout.Location = new System.Drawing.Point(749, 132);
+            this.btnFazerCheckout.Location = new System.Drawing.Point(1106, 430);
             this.btnFazerCheckout.Name = "btnFazerCheckout";
             this.btnFazerCheckout.Size = new System.Drawing.Size(89, 46);
             this.btnFazerCheckout.TabIndex = 95;
@@ -79,7 +79,7 @@
             // btnVendas
             // 
             this.btnVendas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVendas.Location = new System.Drawing.Point(280, 134);
+            this.btnVendas.Location = new System.Drawing.Point(458, 216);
             this.btnVendas.Name = "btnVendas";
             this.btnVendas.Size = new System.Drawing.Size(89, 44);
             this.btnVendas.TabIndex = 94;
@@ -90,7 +90,7 @@
             // btnCheckin
             // 
             this.btnCheckin.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckin.Location = new System.Drawing.Point(514, 134);
+            this.btnCheckin.Location = new System.Drawing.Point(824, 428);
             this.btnCheckin.Name = "btnCheckin";
             this.btnCheckin.Size = new System.Drawing.Size(93, 46);
             this.btnCheckin.TabIndex = 97;
@@ -101,7 +101,7 @@
             // btnCliente
             // 
             this.btnCliente.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCliente.Location = new System.Drawing.Point(67, 240);
+            this.btnCliente.Location = new System.Drawing.Point(67, 431);
             this.btnCliente.Name = "btnCliente";
             this.btnCliente.Size = new System.Drawing.Size(93, 44);
             this.btnCliente.TabIndex = 98;
@@ -112,7 +112,7 @@
             // btnProdutos
             // 
             this.btnProdutos.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProdutos.Location = new System.Drawing.Point(280, 240);
+            this.btnProdutos.Location = new System.Drawing.Point(458, 429);
             this.btnProdutos.Name = "btnProdutos";
             this.btnProdutos.Size = new System.Drawing.Size(89, 44);
             this.btnProdutos.TabIndex = 99;
@@ -123,7 +123,7 @@
             // btnReservas
             // 
             this.btnReservas.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReservas.Location = new System.Drawing.Point(514, 240);
+            this.btnReservas.Location = new System.Drawing.Point(824, 218);
             this.btnReservas.Name = "btnReservas";
             this.btnReservas.Size = new System.Drawing.Size(93, 44);
             this.btnReservas.TabIndex = 100;
@@ -134,7 +134,7 @@
             // btnQuartos
             // 
             this.btnQuartos.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuartos.Location = new System.Drawing.Point(749, 240);
+            this.btnQuartos.Location = new System.Drawing.Point(1106, 218);
             this.btnQuartos.Name = "btnQuartos";
             this.btnQuartos.Size = new System.Drawing.Size(89, 44);
             this.btnQuartos.TabIndex = 101;
@@ -145,7 +145,7 @@
             // btnAdministrador
             // 
             this.btnAdministrador.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdministrador.Location = new System.Drawing.Point(399, 358);
+            this.btnAdministrador.Location = new System.Drawing.Point(957, 27);
             this.btnAdministrador.Name = "btnAdministrador";
             this.btnAdministrador.Size = new System.Drawing.Size(113, 58);
             this.btnAdministrador.TabIndex = 102;
@@ -177,7 +177,7 @@
             this.administradorToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(928, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1277, 24);
             this.menuStrip1.TabIndex = 104;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -264,7 +264,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(928, 462);
+            this.ClientSize = new System.Drawing.Size(1277, 585);
             this.Controls.Add(this.lblHoras);
             this.Controls.Add(this.lblBemVindo);
             this.Controls.Add(this.btnAdministrador);
