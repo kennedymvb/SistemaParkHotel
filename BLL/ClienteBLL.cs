@@ -27,8 +27,9 @@ namespace BLL
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < erros.Count(); i++)
             {
-                sb.Append(erros[i]);
+                sb.Append(erros[i]+"\n");
             }
+            erros.Clear();
             return sb.ToString();
         }
 
@@ -49,7 +50,7 @@ namespace BLL
         public bool Validar(Cliente cliente)
         {
             
-            if (string.IsNullOrWhiteSpace(cliente.cpf))
+            if (!string.IsNullOrWhiteSpace(cliente.cpf))
             {
                 if (ValidarCPF(cliente.cpf))
                 {

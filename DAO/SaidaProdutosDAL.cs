@@ -67,6 +67,31 @@ namespace DAL
             }
         }
 
+        public void AtualizarValorTotal(SaidaProdutos saida)
+        {
+            string stringConexao = StringConexao.GetStringConexao();
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+
+            command.CommandText = "update SAIDAPRODUTOS SET VALOR_TOTAL=@VALOR_TOTAL WHERE ID=@ID";
+            command.Parameters.AddWithValue("@ID", saida.id);
+            command.Parameters.AddWithValue("@VALOR_TOTAL", saida.valorTotal);
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         public void InserirItens(SaidaProdutos saida)
         {
             string stringConexao = StringConexao.GetStringConexao();
@@ -98,6 +123,36 @@ namespace DAL
                 {
                     connection.Close();
                 }
+            }
+        }
+
+        public List<double> lerPorCheckin(int checkinId)
+        {
+            string stringConexao = StringConexao.GetStringConexao();
+
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "select VALOR_TOTAL from SAIDAPRODUTOS where checkin_id= @id";
+            command.Parameters.AddWithValue("@id", checkinId);
+            command.Connection = connection;
+            try
+            {
+                List<double> list = new List<double>();
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(Convert.ToDouble(reader["VALOR_TOTAL"]));
+                }
+                return list;
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("erro no acesso ao banco: " + e.Message);
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 

@@ -59,9 +59,9 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
             command.CommandText = "select * from Checkins where id= @id";
             command.Parameters.AddWithValue("@id", id);
-            command.Connection = connection;
 
             try
             {
@@ -145,6 +145,7 @@ namespace DAL
             checkin.quarto = Convert.ToInt32(reader["QUARTO_ID"]);
             checkin.Cliente = Convert.ToString(reader["NOME"]);
             checkin.DataPrevistaSaida = Convert.ToDateTime(reader["DATA_PREVISTA_SAIDA"]);
+            checkin.CheckoutPendente = true;
             return checkin;
         }
 
@@ -177,6 +178,19 @@ namespace DAL
             {
                 connection.Close();
             }
+        }
+        public void AtualizarPendenciaCheckout(int id)
+        {
+            string stringConexao = StringConexao.GetStringConexao();
+
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+
+            command.CommandText = "UPDATE CHECKINS SET PENDENTE_CHECKOUT=0 where ID=@ID";
+            command.Parameters.AddWithValue("@ID", id);
+            connection.Open();
+            command.ExecuteNonQuery();
         }
     }
 }

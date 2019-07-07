@@ -37,17 +37,36 @@ namespace BLL
 
             //Se chegou aqui, bora inserir o checkin e ocupar o quarto
             //TransactionScope Isolation Level (Serializable, COmmitedRead)
-            using (TransactionScope scope = new TransactionScope())
+            try
             {
-                checkinDAL.Inserir(checkin);
-                quartoBll.Ocupar(checkin.quartoId);
-                scope.Complete();
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    checkinDAL.Inserir(checkin);
+                    quartoBll.Ocupar(checkin.quartoId);
+                    scope.Complete();
+                }
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        internal void AtualizarPendenciaCheckout(int id)
+        {
+            checkinDAL.AtualizarPendenciaCheckout(id);
         }
 
         public Checkin LerPorID(int id)
         {
-            return checkinDAL.LerPorID(id);
+            try
+            {
+                return checkinDAL.LerPorID(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
         public List<Checkin> LerTodos()
         {
@@ -55,7 +74,14 @@ namespace BLL
         }
         public List<CheckinViewModel> LerCheckinViewModels()
         {
-            return checkinDAL.LerCheckinViewModel();
+            try
+            {
+                return checkinDAL.LerCheckinViewModel();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void Validar(Checkin checkin)

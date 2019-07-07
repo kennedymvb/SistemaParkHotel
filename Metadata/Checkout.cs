@@ -16,11 +16,10 @@ namespace Metadata
         public int idUsuario { get; set; }
         public bool PendenteCheckout { get; set; }
 
-        public Checkout(int idUsuario, int idcheckin, double valortotal, DateTime datasaida, DateTime dataEntrada)
+        public Checkout(int idUsuario, int idcheckin, DateTime datasaida, DateTime dataEntrada)
         {
             this.idUsuario = idUsuario;
             this.idCheckin = idcheckin;
-            this.valorTotal = valortotal;
             this.dataSaida = datasaida;
             this.dataEntrada = dataEntrada;
         }

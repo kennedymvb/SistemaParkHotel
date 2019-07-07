@@ -18,12 +18,7 @@ namespace WFPresentationLayer
         public FormSaidaProdutos()
         {
             InitializeComponent();
-        }
-        public FormSaidaProdutos(int idCheckin)
-        {
-            InitializeComponent();
-            this.idCheckin = idCheckin;
-            tratarTxtBox();
+            dataGridSelecionarCheckin.Hide();
         }
 
 
@@ -34,8 +29,6 @@ namespace WFPresentationLayer
             DateTime dataEntrada = dateTimeVenda.Value;
             return new SaidaProdutos(Usuario.UsuarioLogado.id, dataEntrada, idCheckin);
         }
-
-        
 
         private void tratarTxtBox()
         {
@@ -51,17 +44,20 @@ namespace WFPresentationLayer
 
         private void btnSelecionarCliente_Click_1(object sender, EventArgs e)
         {
-            dataGridDia.DataSource = checkinBLL.LerCheckinViewModels();
-            FormSelecionarCheckin frm = new FormSelecionarCheckin(dataGridDia);
-            frm.Show();
-            this.Dispose();
+            dataGridSelecionarCheckin.DataSource =checkinBLL.LerCheckinViewModels();
+            dataGridSelecionarCheckin.Show();
         }
 
         private void btnProximaPagina_Click_1(object sender, EventArgs e)
         {
             FormSaidaProdutosDetalhes frm = new FormSaidaProdutosDetalhes(InstanciarSaidaProdutos());
-            frm.Show();
-            this.Hide();
+            frm.ShowDialog();
+        }
+
+        private void dataGridSelecionarCheckin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtNumCheckin.Text = dataGridSelecionarCheckin.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtNumCheckin.Enabled = false;
         }
     }
 }

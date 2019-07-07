@@ -111,13 +111,20 @@ namespace WFPresentationLayer
                 saidaProdutosBLL.inserir(saidaProdutos);
                 MessageBox.Show("Finalizado com sucesso");
                 this.Dispose();
+                GerarForm1();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro de cadastro: " + ex.Message);
             }
         }
-        
+
+        private void GerarForm1()
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+        }
+
         private void tratarRepeticaoId()
         {
 

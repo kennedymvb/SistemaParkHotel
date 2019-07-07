@@ -32,7 +32,7 @@ namespace WFPresentationLayer
             try
             {
                 
-if (usuarioBLL.Autenticar(email, senha))
+                if (usuarioBLL.Autenticar(email, senha))
                 {
                     Form1 frm = new Form1();
                     this.Hide();

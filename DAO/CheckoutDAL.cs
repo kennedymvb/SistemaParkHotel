@@ -20,7 +20,6 @@ namespace DAL
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
 
-
             command.CommandText = "INSERT INTO CHECKOUTS (CHECK_IN_ID, VALOR_TOTAL, DATA_SAIDA) VALUES  (@CHECK_IN_ID, @VALOR_TOTAL, @DATA_SAIDA)";
             command.Parameters.AddWithValue("@VALOR_TOTAL", checkout.valorTotal);
             command.Parameters.AddWithValue("@DATA_SAIDA", checkout.dataSaida);
@@ -37,7 +36,10 @@ namespace DAL
                     throw new Exception("checkout deve ser único, contém dados já cadastrados");
                 }
                 throw new Exception("erro no banco de dados, contate o admin");
-
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -64,14 +66,12 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
+                throw new Exception(ex.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
-
         }
 
         private Checkout instanciarcheckout(SqlDataReader reader)
@@ -98,24 +98,36 @@ namespace DAL
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                
-                    while (reader.Read())
-                    {
-                        list.Add(instanciarcheckout(reader));
-                    }
-                    return list;
-
+                while (reader.Read())
+                {
+                    list.Add(instanciarcheckout(reader));
+                }
+                return list;
             }
             catch (Exception ex)
             {
-
+                throw new Exception(ex.Message);
             }
             finally
             {
                 connection.Close();
             }
-            return null;
+        }
+        public void AtualizarValorTotal(Checkout checkout)
+        {
+            string stringConexao = StringConexao.GetStringConexao();
 
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+
+            command.CommandText = "UPDATE CHECKOUTS SET VALOR_TOTAL=@VALOR_TOTAL WHERE ID=@ID";
+            command.Parameters.AddWithValue("@VALOR_TOTAL", checkout.valorTotal);
+            command.Parameters.AddWithValue("@ID", checkout.id);
+            connection.Open();
+
+            command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

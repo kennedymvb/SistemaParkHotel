@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridDialog1 = new System.Windows.Forms.DataGridView();
-            this.btnOk = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDialog1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,26 +43,13 @@
             this.dataGridDialog1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridDialog1.Size = new System.Drawing.Size(757, 394);
             this.dataGridDialog1.TabIndex = 0;
-            this.dataGridDialog1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridDialog1_CellContentDoubleClick);
-            this.dataGridDialog1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridDialog1_CellDoubleClick);
-            // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(357, 358);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 1;
-            this.btnOk.Text = "OK";
-            this.btnOk.UseVisualStyleBackColor = true;
-            // 
-            // FormDialog
+            // FormSelecionarCheckin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 393);
-            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.dataGridDialog1);
-            this.Name = "FormDialog";
+            this.Name = "FormSelecionarCheckin";
             this.Text = "FormDialog";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDialog1)).EndInit();
             this.ResumeLayout(false);
@@ -73,6 +59,5 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridDialog1;
-        private System.Windows.Forms.Button btnOk;
     }
 }

@@ -21,15 +21,21 @@ namespace BLL
         {
             if (this.Validar(checkout))
             {
-                using (TransactionScope scope= new TransactionScope())
+                try
                 {
-                    checkoutDal.Inserir(checkout);
-                    Checkin checkin = checkinBLL.LerPorID(checkout.idCheckin);
-                    quartoBLL.Desocupar(checkin.quartoId);
-                    checkin.PendenteCheckout = false;
-                    scope.Complete();
+                    using (TransactionScope scope = new TransactionScope())
+                    {
+                        checkoutDal.Inserir(checkout);
+                        Checkin checkin = checkinBLL.LerPorID(checkout.idCheckin);
+                        quartoBLL.Desocupar(checkin.quartoId);
+                        checkinBLL.AtualizarPendenciaCheckout(checkin.id);
+                        scope.Complete();
+                    }
                 }
-                
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
             }
             if (erros.Count > 0)
             {
@@ -44,19 +50,40 @@ namespace BLL
 
         public Checkout LerPorID(int id)
         {
-            return checkoutDal.LerPorID(id);
+            try
+            {
+                return checkoutDal.LerPorID(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
         public List<Checkout> LerTodos()
         {
-            return checkoutDal.LerTodos();
+            try
+            {
+                return checkoutDal.LerTodos();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void atualizarValorTotal(Checkout checkout)
+        {
+            checkoutDal.AtualizarValorTotal(checkout);
         }
 
         public bool Validar(Checkout checkout)
         {
             TratarIntegridadeReferencial(checkout);
-            if (checkout.dataSaida >= checkout.dataEntrada)
+            TimeSpan diferenca = checkout.dataSaida.Subtract(checkout.dataEntrada);
+            
+            if (diferenca.TotalMilliseconds<=0)
             {
-                erros.Add("data saida não pode ser menor que a entrada");
+                erros.Add("data saida tem que ser maior que a data de entrada");
                 return true;
             }
             return false;
