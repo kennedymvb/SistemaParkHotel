@@ -10,12 +10,19 @@ using System.Windows.Forms;
 
 namespace WFPresentationLayer
 {
-    public partial class FormDialog : Form
+    public partial class FormSelecionarCheckin : Form
     {
-        public FormDialog(DataGridView dataGridDia)
+        public int QuemChamou { get; set; }
+        public FormSelecionarCheckin(DataGridView dataGridDia)
         {
+            this.QuemChamou = 0;
             InitializeComponent();
             inicializar(dataGridDia);
+        }
+        public FormSelecionarCheckin()
+        {
+            this.QuemChamou = 1;
+            InitializeComponent();
         }
 
         private void inicializar(DataGridView dataGridDia)
@@ -25,10 +32,18 @@ namespace WFPresentationLayer
 
         private void dataGridDialog1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int idCliente = int.Parse(dataGridDialog1.Rows[e.RowIndex].Cells[0].Value.ToString());
-            FormSaidaProdutosDetalhes f = new FormSaidaProdutosDetalhes(idCliente);
-            f.Show();
-            this.Dispose();
+            if (QuemChamou == 0)
+            {
+                int idCliente = int.Parse(dataGridDialog1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                FormSaidaProdutos f = new FormSaidaProdutos(idCliente);
+                f.Show();
+                this.Dispose();
+            }
+            else
+            {
+
+            }
+            
         }
 
         private void dataGridDialog1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)

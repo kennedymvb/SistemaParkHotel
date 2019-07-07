@@ -63,7 +63,6 @@
             this.btnFinalizarHospedagem = new System.Windows.Forms.Button();
             this.TabVendas = new System.Windows.Forms.TabPage();
             this.btnProximaPagina = new System.Windows.Forms.Button();
-            this.label34 = new System.Windows.Forms.Label();
             this.TabReservas = new System.Windows.Forms.TabPage();
             this.dataGridViewReservas = new System.Windows.Forms.DataGridView();
             this.btnConsultarReservas = new System.Windows.Forms.Button();
@@ -524,7 +523,6 @@
             this.TabVendas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TabVendas.BackgroundImage")));
             this.TabVendas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.TabVendas.Controls.Add(this.btnProximaPagina);
-            this.TabVendas.Controls.Add(this.label34);
             this.TabVendas.Location = new System.Drawing.Point(4, 22);
             this.TabVendas.Name = "TabVendas";
             this.TabVendas.Padding = new System.Windows.Forms.Padding(3);
@@ -536,23 +534,13 @@
             // btnProximaPagina
             // 
             this.btnProximaPagina.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProximaPagina.Location = new System.Drawing.Point(306, 254);
+            this.btnProximaPagina.Location = new System.Drawing.Point(258, 276);
             this.btnProximaPagina.Name = "btnProximaPagina";
             this.btnProximaPagina.Size = new System.Drawing.Size(125, 20);
             this.btnProximaPagina.TabIndex = 65;
             this.btnProximaPagina.Text = "Cadastrar Venda";
             this.btnProximaPagina.UseVisualStyleBackColor = true;
             this.btnProximaPagina.Click += new System.EventHandler(this.btnProximaPagina_Click);
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(279, 51);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(152, 27);
-            this.label34.TabIndex = 52;
-            this.label34.Text = "Cadastro Vendas";
             // 
             // TabReservas
             // 
@@ -863,7 +851,6 @@
             this.dataGridViewClientesCheckin.Size = new System.Drawing.Size(547, 186);
             this.dataGridViewClientesCheckin.TabIndex = 70;
             this.dataGridViewClientesCheckin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClientesCheckin_CellDoubleClick);
-            this.dataGridViewClientesCheckin.DoubleClick += new System.EventHandler(this.dataGridViewClientesCheckin_DoubleClick);
             // 
             // ckbNaoTem
             // 
@@ -915,7 +902,7 @@
             // btnFazerCheckin
             // 
             this.btnFazerCheckin.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFazerCheckin.Location = new System.Drawing.Point(154, 354);
+            this.btnFazerCheckin.Location = new System.Drawing.Point(32, 349);
             this.btnFazerCheckin.Name = "btnFazerCheckin";
             this.btnFazerCheckin.Size = new System.Drawing.Size(148, 23);
             this.btnFazerCheckin.TabIndex = 25;
@@ -960,7 +947,6 @@
             this.label54.Size = new System.Drawing.Size(61, 20);
             this.label54.TabIndex = 6;
             this.label54.Text = "Quarto: ";
-            this.label54.Click += new System.EventHandler(this.label54_Click);
             // 
             // label51
             // 
@@ -1395,7 +1381,6 @@
             this.txttelefone2Cliente.Name = "txttelefone2Cliente";
             this.txttelefone2Cliente.Size = new System.Drawing.Size(125, 20);
             this.txttelefone2Cliente.TabIndex = 11;
-            this.txttelefone2Cliente.TextChanged += new System.EventHandler(this.txttelefone2Cliente_TextChanged);
             // 
             // txtrgCliente
             // 
@@ -1445,7 +1430,6 @@
             this.label9.Size = new System.Drawing.Size(78, 20);
             this.label9.TabIndex = 12;
             this.label9.Text = "Telefone 2:";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // label10
             // 
@@ -1562,7 +1546,6 @@
             this.btnCadastrarEntrada.TabIndex = 92;
             this.btnCadastrarEntrada.Text = "Cadastrar Entrada";
             this.btnCadastrarEntrada.UseVisualStyleBackColor = true;
-            this.btnCadastrarEntrada.Click += new System.EventHandler(this.btnCadastrarEntrada_Click);
             // 
             // label61
             // 
@@ -1599,7 +1582,6 @@
             this.TabCheckout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCheckinsCheckout)).EndInit();
             this.TabVendas.ResumeLayout(false);
-            this.TabVendas.PerformLayout();
             this.TabReservas.ResumeLayout(false);
             this.TabReservas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservas)).EndInit();
@@ -1660,7 +1642,6 @@
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Button btnFinalizarHospedagem;
         private System.Windows.Forms.TabPage TabVendas;
-        private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TabPage TabReservas;
         private System.Windows.Forms.DataGridView dataGridViewReservas;
         private System.Windows.Forms.Button btnConsultarReservas;

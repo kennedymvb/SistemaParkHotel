@@ -16,12 +16,13 @@ namespace DAL
             string stringConexao = StringConexao.GetStringConexao();
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
-            command.CommandText = "INSERT INTO SAIDAPRODUTOS (USUARIO_ID, DATA_SAIDA, VALORTOTAL, ID_PRODUTO) VALUES (@USUARIO_ID, @DATA_SAIDA, @VALORTOTAL); select SCOPE_IDENTITY()";
+            command.CommandText = "INSERT INTO SAIDAPRODUTOS (USUARIO_ID, DATA_SAIDA, VALOR_TOTAL, CHECKIN_ID) VALUES (@USUARIO_ID, @DATA_SAIDA, @VALORTOTAL, @CHECKIN_ID); select scope_identity() 'id'";
             command.Parameters.AddWithValue("@USUARIO_ID", saida.idUsuarioVendedor);
             command.Parameters.AddWithValue("@DATA_SAIDA", saida.dataSaida);
             command.Parameters.AddWithValue("@VALORTOTAL", saida.valorTotal);
-
+            command.Parameters.AddWithValue("@CHECKIN_ID", saida.idCheckin);
             try
             {
                 connection.Open();
@@ -35,7 +36,6 @@ namespace DAL
             {
                 connection.Close();
             }
-            throw new Exception("dados atualizados com sucesso");
         }
 
         public SaidaProdutos LerPorID(int id)
@@ -80,10 +80,9 @@ namespace DAL
             }
             for (int i = 0; i < saida.itens.Count; i++)
             {
-                commands[i].CommandText = "INSERT INTO ENTRADAPRODUTOSDETALHES (ENTRADAPRODUTO_ID, PRODUTO_ID, CLIENTE_ID, QUANTIDADE, VALOR_UNITARIO) VALUES (@ENTRADAPRODUTO_ID, @PRODUTO_ID, @CLIENTE_ID, @QUANTIDADE, @VALOR_UNITARIO)";
-                commands[i].Parameters.AddWithValue("@ENTRADAPRODUTO_ID", saida.id);
+                commands[i].CommandText = "INSERT INTO SAIDAPRODUTOSDETALHES (SAIDAPRODUTO_ID, PRODUTO_ID, QUANTIDADE, VALOR_UNITARIO) VALUES (@SAIDAPRODUTO_ID, @PRODUTO_ID, @QUANTIDADE, @VALOR_UNITARIO)";
+                commands[i].Parameters.AddWithValue("@SAIDAPRODUTO_ID", saida.id);
                 commands[i].Parameters.AddWithValue("@PRODUTO_ID", saida.itens[i].idProduto);
-                commands[i].Parameters.AddWithValue("@CLIENTE_ID", saida.itens[i].idCliente);
                 commands[i].Parameters.AddWithValue("@QUANTIDADE", saida.itens[i].quantidade);
                 commands[i].Parameters.AddWithValue("@VALOR_UNITARIO", saida.itens[i].valorUnitario);
                 try
@@ -108,17 +107,18 @@ namespace DAL
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
-            command.CommandText = @"SELECT EP.ID 'IDLOTE',
-                EP.DATA_ENTRADA 'DATA',
+            command.CommandText = @"SELECT SP.ID 'IDLOTE',
+                SP.DATA_SAIDA 'DATA',
                 P.NOME 'PRODUTO',
-                EP.VALORTOTAL 'VALOR_LOTE',
+                SP.VALOR_TOTAL 'VALOR_LOTE',
                 CL.NOME 'NOME_CLIENTE', 
-                ED.QUANTIDADE 'QUANTIDADE' ,
-                ED.VALOR_UNITARIO 'VALOR_UNITARIO'
-                FROM ENTRADAPRODUTOSDETALHES ED
-                INNER JOIN ENTRADAPRODUTOS EP ON ED.ENTRADAPRODUTO_ID=EP.ID 
-                INNER JOIN PRODUTOS P ON ED.PRODUTO_ID= P.ID 
-                INNER JOIN CLIENTES CL ON CL.ID= ED.FORNECEDOR_ID";
+                SD.QUANTIDADE 'QUANTIDADE' ,
+                SD.VALOR_UNITARIO 'VALOR_UNITARIO'
+                FROM SAIDAPRODUTOSDETALHES SD
+                INNER JOIN SAIDAPRODUTOS SP ON SD.SAIDAPRODUTO_ID=SP.ID 
+                INNER JOIN PRODUTOS P ON SD.PRODUTO_ID= P.ID 
+                INNER JOIN CHECKINS CH ON SP.checkin_id= CH.ID
+                INNER JOIN CLIENTES CL ON CL.ID= CH.CLIENTE_ID";
             try
             {
                 List<SaidaViewModel> list = new List<SaidaViewModel>();
@@ -150,6 +150,7 @@ namespace DAL
             saidaProdutos.valorTotal = Convert.ToDouble(reader["VALORTOTAL"]);
             saidaProdutos.idUsuarioVendedor = Convert.ToInt32(reader["USUARIO_ID"]);
             saidaProdutos.dataSaida = Convert.ToDateTime(reader["DATA_SADA"]);
+            saidaProdutos.idCheckin = Convert.ToInt32(reader["checkin_id"]);
 
             return saidaProdutos;
         }

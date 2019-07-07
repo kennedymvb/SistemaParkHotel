@@ -25,13 +25,23 @@ namespace WFPresentationLayer
         CheckinBLL checkinBLL = new CheckinBLL();
         CheckoutBLL checkoutBLL = new CheckoutBLL();
         EntradaProdutosBLL entradaProdutosBLL = new EntradaProdutosBLL();
-
         public Form1()
         {
             InitializeComponent();
             this.Load += Form1_Load;
             carregarCmbBox();
             if (!Usuario.UsuarioLogado.isAdmin) {
+                TabAdministrador.Dispose();
+            }
+            carregarLabels();
+        }
+        public Form1(int idCheckin)
+        {
+            InitializeComponent();
+            this.Load += Form1_Load;
+            carregarCmbBox();
+            if (!Usuario.UsuarioLogado.isAdmin)
+            {
                 TabAdministrador.Dispose();
             }
             carregarLabels();
@@ -97,7 +107,7 @@ namespace WFPresentationLayer
             dataGridView1.DataSource=clienteBLL.LerTodos();
         }
 
-        int idCliente;//global
+        int idCliente;
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             idCliente= (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
@@ -198,28 +208,6 @@ namespace WFPresentationLayer
         }
         #endregion
 
-        /*#region Entrada de Produtos
-
-
-        private void btnCadastrarEntrada_Click_1(object sender, EventArgs e)
-        {
-            idEntradaCorrespondente=entradaProdutosBLL.inserir(entradaProduto);
-            exibirEntradas();
-            
-        }
-
-        
-
-        private void exibirEntradas()
-        {
-            dataGridViewEntradaProdutos.DataSource = entradaProdutosBLL.LerTodos();
-            this.dataGridViewProdutos.Show();
-        }
-        private void btnExibirEntradas_Click_1(object sender, EventArgs e)
-        {
-            exibirEntradas();
-
-        }*/
 
 
 
@@ -328,13 +316,8 @@ namespace WFPresentationLayer
         }
         private void btnConsultarReservas_Click(object sender, EventArgs e)
         {
-            
-                dataGridViewReservas.DataSource = ReservaBLL.LerTodos();
-            
-            
-            
+            dataGridViewReservas.DataSource = ReservaBLL.LerTodos();
             this.dataGridViewReservas.Show();
-
         }
         #endregion
 
@@ -350,7 +333,6 @@ namespace WFPresentationLayer
         {
             Checkin checkin= checkinBLL.LerPorID(idCheckin);
             quartoBLL.Desocupar(checkin.quartoId);
-
         }
 
         private Checkout InstanciarCheckout()
@@ -433,11 +415,6 @@ namespace WFPresentationLayer
             dataGridViewClientesCheckin.DataSource = clienteBLL.LerTodos();
         }
 
-        private void dataGridViewClientesCheckin_DoubleClick(object sender, EventArgs e)
-        {
-            
-
-        }
         private void dataGridViewClientesCheckin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             txtNumCliente.Text = dataGridViewClientesCheckin.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -454,7 +431,6 @@ namespace WFPresentationLayer
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
             }
         }
 
@@ -473,27 +449,7 @@ namespace WFPresentationLayer
             
         }
 
-        private void label54_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txttelefone2Cliente_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCadastrarEntrada_Click(object sender, EventArgs e)
-        {
-            FormEntradaProdutosDetalhes frm = new FormEntradaProdutosDetalhes();
-            this.Hide();
-            frm.ShowDialog();
-        }
+        
 
         private void btnExibirEntradas_Click(object sender, EventArgs e)
         {
@@ -502,14 +458,17 @@ namespace WFPresentationLayer
 
         private void btnPesquisarCheckin_Click(object sender, EventArgs e)
         {
-            dataGridViewCheckinsCheckout.DataSource = checkinBLL.LerCheckinViewModels();
+            FormSelecionarCheckin frm = new FormSelecionarCheckin();
+            frm.Show();
+
         }
 
         private void btnProximaPagina_Click(object sender, EventArgs e)
         {
-            FormSaidaProdutosDetalhes frm = new FormSaidaProdutosDetalhes();
-            frm.Show();
+            FormSaidaProdutos frmsaida = new FormSaidaProdutos();
             this.Hide();
+            frmsaida.Show();
+            this.Show();
         }
     }
 }

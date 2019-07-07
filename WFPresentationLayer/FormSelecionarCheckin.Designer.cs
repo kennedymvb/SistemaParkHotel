@@ -1,6 +1,6 @@
 ﻿namespace WFPresentationLayer
 {
-    partial class FormDialog
+    partial class FormSelecionarCheckin
     {
         /// <summary>
         /// Required designer variable.

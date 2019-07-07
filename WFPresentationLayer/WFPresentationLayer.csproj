@@ -52,11 +52,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDialog.cs">
+    <Compile Include="FormSelecionarCheckin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDialog.Designer.cs">
-      <DependentUpon>FormDialog.cs</DependentUpon>
+    <Compile Include="FormSelecionarCheckin.Designer.cs">
+      <DependentUpon>FormSelecionarCheckin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSaidaProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSaidaProdutos.Designer.cs">
+      <DependentUpon>FormSaidaProdutos.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSaidaProdutosDetalhes.cs">
       <SubType>Form</SubType>
@@ -81,8 +87,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDialog.resx">
-      <DependentUpon>FormDialog.cs</DependentUpon>
+    <EmbeddedResource Include="FormSelecionarCheckin.resx">
+      <DependentUpon>FormSelecionarCheckin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSaidaProdutos.resx">
+      <DependentUpon>FormSaidaProdutos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSaidaProdutosDetalhes.resx">
       <DependentUpon>FormSaidaProdutosDetalhes.cs</DependentUpon>

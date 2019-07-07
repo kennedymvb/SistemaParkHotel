@@ -37,7 +37,6 @@ if (usuarioBLL.Autenticar(email, senha))
                     Form1 frm = new Form1();
                     this.Hide();
                     frm.ShowDialog();
-                    this.Show();
                 }
                 else
                 {

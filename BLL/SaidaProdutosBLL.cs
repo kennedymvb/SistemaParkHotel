@@ -19,41 +19,38 @@ namespace BLL
 
         public void inserir(SaidaProdutos saida)
         {
-            if (this.Validar(saida))
-            {
-                using (TransactionScope scope= new TransactionScope())
-                {
-                    try
-                    {
-                        saida.id = saidaDal.Inserir(saida);
-                        saidaDal.InserirItens(saida);
-                        foreach (ItensSaida item in saida.itens)
-                        {
-                            Produto p = produtoBLL.LerPorID(item.id);
-                            p.preco = (p.qtdEstoque * p.preco) - (item.quantidade * item.valorUnitario) / (p.qtdEstoque - item.quantidade);
-                            p.qtdEstoque -= item.quantidade;
-                            produtoBLL.Atualizar(p);
-                        }
-                        scope.Complete();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception("Erro na transação: "+ex.Message);
-                    }
-                }
-            }
-            if (erros.Count > 0)
+            if (!this.Validar(saida))
             {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < erros.Count(); i++)
                 {
-                    sb.Append(erros[i]+"\n");
+                    sb.Append(erros[i] + "\n");
                 }
                 throw new Exception(sb.ToString());
             }
+            using (TransactionScope scope = new TransactionScope())
+            {
+                try
+                {
+                    saida.id = saidaDal.Inserir(saida);
+                    saidaDal.InserirItens(saida);
+                    foreach (ItensSaida item in saida.itens)
+                    {
+                        Produto p = produtoBLL.LerPorID(item.idProduto);
+                        p.preco = (p.qtdEstoque * p.preco) - (item.quantidade * item.valorUnitario) / (p.qtdEstoque - item.quantidade);
+                        p.qtdEstoque -= item.quantidade;
+                        produtoBLL.Atualizar(p);
+                    }
+                    scope.Complete();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Erro na transação: " + ex.Message);
+                }
+            }
+           
             
         }
-
 
         public bool Validar(SaidaProdutos saida)
         {
