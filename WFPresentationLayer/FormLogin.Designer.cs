@@ -41,29 +41,26 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(555, 221);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmail.Location = new System.Drawing.Point(465, 211);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(211, 22);
+            this.txtEmail.Size = new System.Drawing.Size(159, 20);
             this.txtEmail.TabIndex = 0;
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(555, 265);
-            this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSenha.Location = new System.Drawing.Point(465, 246);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
-            this.txtSenha.Size = new System.Drawing.Size(211, 22);
+            this.txtSenha.Size = new System.Drawing.Size(159, 20);
             this.txtSenha.TabIndex = 1;
             this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
             // btnSignIn
             // 
             this.btnSignIn.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignIn.Location = new System.Drawing.Point(555, 323);
-            this.btnSignIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSignIn.Location = new System.Drawing.Point(465, 293);
             this.btnSignIn.Name = "btnSignIn";
-            this.btnSignIn.Size = new System.Drawing.Size(90, 28);
+            this.btnSignIn.Size = new System.Drawing.Size(68, 23);
             this.btnSignIn.TabIndex = 2;
             this.btnSignIn.Text = "Sign in";
             this.btnSignIn.UseVisualStyleBackColor = true;
@@ -74,10 +71,9 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(483, 221);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(411, 211);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 22);
+            this.label1.Size = new System.Drawing.Size(48, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "Email:";
             // 
@@ -86,10 +82,9 @@
             this.Password.AutoSize = true;
             this.Password.BackColor = System.Drawing.Color.Transparent;
             this.Password.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Password.Location = new System.Drawing.Point(483, 265);
-            this.Password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Password.Location = new System.Drawing.Point(411, 246);
             this.Password.Name = "Password";
-            this.Password.Size = new System.Drawing.Size(63, 22);
+            this.Password.Size = new System.Drawing.Size(49, 17);
             this.Password.TabIndex = 4;
             this.Password.Text = "Senha:";
             // 
@@ -99,10 +94,9 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(42)))), ((int)(((byte)(80)))));
-            this.label2.Location = new System.Drawing.Point(478, 131);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(407, 137);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(209, 51);
+            this.label2.Size = new System.Drawing.Size(164, 41);
             this.label2.TabIndex = 5;
             this.label2.Text = "Park Hotel";
             // 
@@ -110,19 +104,20 @@
             // 
             this.pictureBox10.BackColor = System.Drawing.Color.MediumAquamarine;
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(235, 131);
+            this.pictureBox10.Location = new System.Drawing.Point(225, 137);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(224, 242);
+            this.pictureBox10.Size = new System.Drawing.Size(168, 197);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 117;
             this.pictureBox10.TabStop = false;
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(936, 538);
             this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Password);
@@ -131,7 +126,6 @@
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.txtEmail);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
