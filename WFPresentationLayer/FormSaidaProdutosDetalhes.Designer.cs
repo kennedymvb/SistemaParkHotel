@@ -51,7 +51,7 @@
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Segoe Script", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(245, 32);
+            this.label21.Location = new System.Drawing.Point(223, 32);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(123, 44);
@@ -74,7 +74,7 @@
             // 
             this.btnAdicionarAoLote.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdicionarAoLote.Location = new System.Drawing.Point(266, 541);
-            this.btnAdicionarAoLote.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdicionarAoLote.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdicionarAoLote.Name = "btnAdicionarAoLote";
             this.btnAdicionarAoLote.Size = new System.Drawing.Size(241, 28);
             this.btnAdicionarAoLote.TabIndex = 114;
@@ -86,7 +86,7 @@
             // 
             this.cmbProduto.FormattingEnabled = true;
             this.cmbProduto.Location = new System.Drawing.Point(186, 200);
-            this.cmbProduto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProduto.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProduto.Name = "cmbProduto";
             this.cmbProduto.Size = new System.Drawing.Size(160, 24);
             this.cmbProduto.TabIndex = 110;
@@ -95,7 +95,7 @@
             // 
             this.btnFinalizar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinalizar.Location = new System.Drawing.Point(613, 541);
-            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFinalizar.Margin = new System.Windows.Forms.Padding(4);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(204, 28);
             this.btnFinalizar.TabIndex = 113;
@@ -118,7 +118,7 @@
             // txtQuantidadeProdutos
             // 
             this.txtQuantidadeProdutos.Location = new System.Drawing.Point(186, 251);
-            this.txtQuantidadeProdutos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtQuantidadeProdutos.Margin = new System.Windows.Forms.Padding(4);
             this.txtQuantidadeProdutos.Name = "txtQuantidadeProdutos";
             this.txtQuantidadeProdutos.Size = new System.Drawing.Size(160, 22);
             this.txtQuantidadeProdutos.TabIndex = 111;
@@ -142,7 +142,7 @@
             this.dataGridDia.AllowUserToDeleteRows = false;
             this.dataGridDia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDia.Location = new System.Drawing.Point(837, 98);
-            this.dataGridDia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridDia.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridDia.Name = "dataGridDia";
             this.dataGridDia.ReadOnly = true;
             this.dataGridDia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -176,7 +176,7 @@
             // 
             this.btnApagarRegistro.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApagarRegistro.Location = new System.Drawing.Point(912, 356);
-            this.btnApagarRegistro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnApagarRegistro.Margin = new System.Windows.Forms.Padding(4);
             this.btnApagarRegistro.Name = "btnApagarRegistro";
             this.btnApagarRegistro.Size = new System.Drawing.Size(143, 27);
             this.btnApagarRegistro.TabIndex = 125;
@@ -215,7 +215,7 @@
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label21);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormSaidaProdutosDetalhes";
             this.Text = "FormEntradaProdutosDetalhes";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDia)).EndInit();
