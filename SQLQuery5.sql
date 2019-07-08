@@ -1,0 +1,5 @@
+﻿SELECT * FROM CLIENTES C 
+            INNER JOIN CHECKINS CH
+            ON CH.CLIENTE_ID=C.ID
+			where ch.PENDENTE_CHECKOUT NOT LIKE 1
+            

@@ -1,0 +1,1 @@
+﻿alter table reservas add PENDENTE_CHECKIN BIT NULL DEFAULT 1

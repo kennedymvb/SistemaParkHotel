@@ -74,6 +74,7 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
 
             command.CommandText = "INSERT INTO RESERVAS (USUARIO_ID, CLIENTE_ID, DATA_PREVISAO_CHEGADA, DATA_PREVISAO_SAIDA, ID_QUARTO) VALUES (@USUARIO_ID, @CLIENTE_ID, @DATA_PREVISAO_CHEGADA, @DATA_PREVISAO_SAIDA, @ID_QUARTO)";
             command.Parameters.AddWithValue("@USUARIO_ID", reserva.idUsuario);
@@ -108,9 +109,21 @@ namespace DAL
 
             command.Connection = connection;
             command.CommandText =
-                @"SELECT R.ID, C.NOME, R.DATA_PREVISAO_CHEGADA, R.ID_QUARTO
-                FROM RESERVAS R INNER JOIN CLIENTES C
-				ON R.CLIENTE_ID= C.ID
+                @"SELECT R.ID 'Reserva',
+                C.ID 'IdCliente',
+                C.Nome 'NomeCliente',
+                F.ID 'Funcionario',
+                F.Nome 'NomeFuncionario',
+                R.DATA_PREVISAO_CHEGADA 'DataEntrada',
+                R.DATA_PREVISAO_SAIDA 'DataSaidaPrevista',
+                Q.ID 'NumeroQuarto',
+                Q.VALOR_DIARIA 'ValorDiaria',
+                Q.Tipo 'Tipo'
+                FROM RESERVAS R INNER JOIN CLIENTES C ON
+                R.CLIENTE_ID = C.ID
+                INNER JOIN USUARIOS F ON
+                F.ID = R.USUARIO_ID
+				INNER JOIN QUARTOS Q ON R.ID_QUARTO=Q.ID
                 WHERE R.PENDENTE_CHECKIN=1";
             List<ReservaViewModel> listReserva = new List<ReservaViewModel>();
             try
@@ -216,20 +229,21 @@ namespace DAL
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
             command.CommandText =
-                @"SELECT FROM R RESERVA R.ID 'Reserva',
+                @"SELECT R.ID 'Reserva',
                 C.ID 'IdCliente',
                 C.Nome 'NomeCliente',
                 F.ID 'Funcionario',
                 F.Nome 'NomeFuncionario',
-                R.Data_ENTRADA 'DataEntrada',
-                R.DATA_SAIDA_PREVISTA 'DataSaidaPrevista',
+                R.DATA_PREVISAO_CHEGADA 'DataEntrada',
+                R.DATA_PREVISAO_SAIDA 'DataSaidaPrevista',
                 Q.ID 'NumeroQuarto',
                 Q.VALOR_DIARIA 'ValorDiaria',
                 Q.Tipo 'Tipo'
                 FROM RESERVAS R INNER JOIN CLIENTES C ON
-                R.ID_CLIENTES = C.ID
-                INNER JOIN FUNCIONARIOS F ON
-                F.ID = R.ID_FUNCIONARIO";
+                R.CLIENTE_ID = C.ID
+                INNER JOIN USUARIOS F ON
+                F.ID = R.USUARIO_ID
+				INNER JOIN QUARTOS Q ON R.ID_QUARTO=Q.ID";
             List<ReservaViewModel> listReserva = new List<ReservaViewModel>();
             try
             {
@@ -258,8 +272,8 @@ namespace DAL
             DateTime DataEntrada = Convert.ToDateTime(reader["DataEntrada"]);
             DateTime DataSaida= Convert.ToDateTime(reader["DataSaidaPrevista"]);
             int id = Convert.ToInt32(reader["IdCliente"]);
-            int idFuncionario = Convert.ToInt32(reader["IdFuncionario"]);
-            int Quarto = Convert.ToInt32(reader[""]);
+            int idFuncionario = Convert.ToInt32(reader["Funcionario"]);
+            int Quarto = Convert.ToInt32(reader["NumeroQuarto"]);
             string tipoQuarto = reader["Tipo"].ToString();
             string valor = Convert.ToDouble(reader["ValorDiaria"]).ToString("C2");
             return new ReservaViewModel(id, Cliente, Quarto, tipoQuarto, valor, DataEntrada, DataSaida , idFuncionario);

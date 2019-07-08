@@ -59,7 +59,8 @@ namespace BLL
         {
 
             TratarDependencias(reserva);
-            if (reserva.dataPrevisaoSaida < reserva.dataPrevisaoChegada)
+            double diferenca = reserva.dataPrevisaoSaida.Subtract(reserva.dataPrevisaoChegada).TotalHours;
+            if (diferenca>0)
             {
                 erros.Add("datas inválidas");
             }
