@@ -166,5 +166,9 @@ namespace WFPresentationLayer
             lblHoras.Text = horas + ":" + minutos + ":" + segundo;
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
