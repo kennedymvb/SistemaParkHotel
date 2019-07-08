@@ -21,7 +21,7 @@ namespace DAL
 
             if (checkin.idReserva > 0)
             {
-                command.CommandText = "INSERT INTO CHECKINS (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID, ID_RESERVA) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID, @ID_RESERVA)";
+                command.CommandText = "INSERT INTO CHECKINS (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID, ID_RESERVA, PENDENTE_CHECKOUT) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID, @ID_RESERVA, 1)";
                 command.Parameters.AddWithValue("@DATA_ENTRADA", checkin.dataEntrada);
                 command.Parameters.AddWithValue("@DATA_PREVISTA_SAIDA", checkin.dataPrevistaSaida);
                 command.Parameters.AddWithValue("@QUARTO_ID", checkin.quartoId);
@@ -30,14 +30,12 @@ namespace DAL
             }
             else
             {
-                command.CommandText = "INSERT INTO CHECKINS (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID)";
+                command.CommandText = "INSERT INTO CHECKINS (DATA_ENTRADA, DATA_PREVISTA_SAIDA, QUARTO_ID, CLIENTE_ID, PENDENTE_CHECKOUT) VALUES  (@DATA_ENTRADA, @DATA_PREVISTA_SAIDA, @QUARTO_ID, @CLIENTE_ID, 1)";
                 command.Parameters.AddWithValue("@DATA_ENTRADA", checkin.dataEntrada);
                 command.Parameters.AddWithValue("@DATA_PREVISTA_SAIDA", checkin.dataPrevistaSaida);
                 command.Parameters.AddWithValue("@QUARTO_ID", checkin.quartoId);
                 command.Parameters.AddWithValue("@CLIENTE_ID", checkin.clienteId);
             }
-            
-
             try
             {
                 connection.Open();
@@ -50,6 +48,10 @@ namespace DAL
                     throw new Exception("erro de chave unica");
                 }
                 throw new Exception("erro no banco");
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -97,6 +99,8 @@ namespace DAL
             checkin.quartoId = Convert.ToInt32(reader["QUARTO_ID"]);
             checkin.clienteId = Convert.ToInt32(reader["CLIENTE_ID"]);
             checkin.dataPrevistaSaida = Convert.ToDateTime(reader["DATA_PREVISTA_SAIDA"]);
+            checkin.PendenteCheckout = Convert.ToBoolean(reader["PENDENTE_CHECKOUT"]);
+
             return checkin;
         }
 
@@ -106,12 +110,12 @@ namespace DAL
 
             SqlConnection connection = new SqlConnection(stringConexao);
             SqlCommand command = new SqlCommand();
+            command.Connection = connection;
             command.CommandText = @"SELECT C.ID , C.DATA_ENTRADA, C.DATA_PREVISTA_SAIDA,
-            C.QUARTO_ID, C.ID, C.ID_RESERVA, CL.NOME FROM CHECKINS C 
+            C.QUARTO_ID, C.ID, C.ID_RESERVA, CL.NOME, C.PENDENTE_CHECKOUT FROM CHECKINS C 
             INNER JOIN CLIENTES CL ON C.CLIENTE_ID= CL.ID
             WHERE C.PENDENTE_CHECKOUT=1 ";
 
-            command.Connection = connection;
             List<CheckinViewModel> list = new List<CheckinViewModel>();
             try
             {
@@ -145,7 +149,7 @@ namespace DAL
             checkin.quarto = Convert.ToInt32(reader["QUARTO_ID"]);
             checkin.Cliente = Convert.ToString(reader["NOME"]);
             checkin.DataPrevistaSaida = Convert.ToDateTime(reader["DATA_PREVISTA_SAIDA"]);
-            checkin.CheckoutPendente = true;
+            checkin.CheckoutPendente =Convert.ToBoolean(reader["PENDENTE_CHECKOUT"]);
             return checkin;
         }
 
@@ -191,6 +195,8 @@ namespace DAL
             command.Parameters.AddWithValue("@ID", id);
             connection.Open();
             command.ExecuteNonQuery();
+            connection.Close();
+
         }
     }
 }

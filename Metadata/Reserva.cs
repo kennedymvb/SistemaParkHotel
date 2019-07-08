@@ -14,6 +14,7 @@ namespace Metadata
         public DateTime dataPrevisaoChegada { get; set; }
         public DateTime dataPrevisaoSaida { get; set; }
         public int idQuarto { get; set; }
+        public bool pendenteCheckout { get; set; }
 
         public Reserva(int IDCliente, int IDUsuario, DateTime DataPrevChegada, DateTime DataPrevSaida, int IDQuarto)
         {
@@ -22,6 +23,7 @@ namespace Metadata
             this.dataPrevisaoChegada = DataPrevChegada;
             this.dataPrevisaoSaida = DataPrevSaida;
             this.idQuarto = IDQuarto;
+            this.pendenteCheckout = true;
         }
         public Reserva()
         {

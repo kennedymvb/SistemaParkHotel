@@ -99,6 +99,41 @@ namespace DAL
             return "inserido com sucesso";
         }
 
+        public List<ReservaViewModel> lerReservasPendentes()
+        {
+            string stringConexao = StringConexao.GetStringConexao();
+
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+
+            command.Connection = connection;
+            command.CommandText =
+                @"SELECT R.ID, C.NOME, R.DATA_PREVISAO_CHEGADA, R.ID_QUARTO
+                FROM RESERVAS R INNER JOIN CLIENTES C
+				ON R.CLIENTE_ID= C.ID
+                WHERE R.PENDENTE_CHECKIN=1";
+            List<ReservaViewModel> listReserva = new List<ReservaViewModel>();
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    ReservaViewModel viewModel = new ReservaViewModel();
+                    listReserva.Add(instanciarReservaViewModel(reader));
+                }
+                return listReserva;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         public Reserva LerPorID(int id)
         {
 
@@ -139,6 +174,7 @@ namespace DAL
             reserva.dataPrevisaoChegada = Convert.ToDateTime(reader["DATA_PREVISAO_CHEGADA"]);
             reserva.dataPrevisaoSaida = Convert.ToDateTime(reader["DATA_PREVISAO_SAIDA"]);
             reserva.idQuarto = Convert.ToInt32(reader["ID_QUARTO"]);
+            reserva.pendenteCheckout = Convert.ToBoolean(reader["PENDENTE_CHECKOUT"]);
 
             return reserva;
         }
@@ -209,6 +245,10 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 

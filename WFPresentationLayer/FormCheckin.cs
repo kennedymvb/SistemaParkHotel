@@ -21,6 +21,7 @@ namespace WFPresentationLayer
         CheckinBLL checkinBLL = new CheckinBLL();
         QuartoBLL quartoBLL = new QuartoBLL();
         ClienteBLL clienteBLL = new ClienteBLL();
+        ReservaBLL reservaBLL = new ReservaBLL();
 
         private void btnFazerCheckin_Click(object sender, EventArgs e)
         {
@@ -29,6 +30,7 @@ namespace WFPresentationLayer
                 Checkin checkin = InstanciarCheckin();
                 checkinBLL.inserir(checkin);
                 MessageBox.Show("Checkin efetuado com sucesso");
+                atualizarDataGridClientes();
             }
             catch (Exception ex)
             {
@@ -66,8 +68,7 @@ namespace WFPresentationLayer
         {
             try
             {
-                dataGridViewClientesCheckin.Show();
-                dataGridViewClientesCheckin.DataSource = clienteBLL.LerTodos();
+                atualizarDataGridClientes();
             }
             catch (Exception ex)
             {
@@ -125,5 +126,34 @@ namespace WFPresentationLayer
             txtQuartoCheckin.Enabled = false;
         }
 
+        private void lblAgora_CheckedChanged(object sender, EventArgs e)
+        {
+            if (lblAgora.Checked)
+            {
+                dateTimeCheckinDataentrada.Enabled = false;
+            }
+            else
+            {
+                dateTimeCheckinDataentrada.Enabled = true;
+            }
+        }
+
+        private void atualizarDataGridClientes()
+        {
+            dataGridViewClientesCheckin.DataSource = clienteBLL.lerClientesDisponiveis();
+            dataGridViewClientesCheckin.Show();
+        }
+
+        private void btnPesquisarReservas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridReservas.DataSource = reservaBLL.lerReservasPendentes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro no acesso ao banco: "+ex.Message);
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace WFPresentationLayer
 
         private void btnProximaPagina_Click(object sender, EventArgs e)
         {
-            FormEntradaProdutosDetalhes formDetalhes = new FormEntradaProdutosDetalhes(entradaProdutos);
+            FormEntradaProdutosDetalhes formDetalhes = new FormEntradaProdutosDetalhes(InstanciarEntradaProdutos());
             formDetalhes.ShowDialog();
         }
     }

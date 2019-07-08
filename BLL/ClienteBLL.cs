@@ -158,6 +158,11 @@ namespace BLL
             }
             return false;
         }
+
+        public object lerClientesDisponiveis()
+        {
+            return clienteDal.lerClientesDisponiveis();
+        }
         #endregion
         #region Validar CPF
         private bool ValidarCPF(string cpf)

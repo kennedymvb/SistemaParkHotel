@@ -38,10 +38,12 @@ namespace WFPresentationLayer
                 saidaProdutos.itens.Add(InstanciarSaidaProdutosDetalhes());
                 VisualizarItensAdicionados();
                 atualizarValorTotal();
+                limparTextBox();
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro, insira os dados corretamente!\n"+ex.Message);
             }
         }
 
@@ -125,37 +127,31 @@ namespace WFPresentationLayer
             {
                 if ((int)cmbProduto.SelectedValue == saidaProdutos.itens[i].idProduto)
                 {
-                    saidaProdutos.itens.RemoveAt(saidaProdutos.itens.Count-1);
+                    saidaProdutos.itens.RemoveAt(i);
                     VisualizarItensAdicionados();
                     throw new Exception("Você não pode inserir duas vezes o mesmo produto.\n" +
                         " Preencha novamente!\n Agora, com a quantidade completa de uma só vez.");
-
                 }
             }
         }
 
         private void VisualizarItensAdicionados()
         {
-            List<ItensAdicionadosSaida> ProdutosAdicionados = new List<ItensAdicionadosSaida>();
-
-            int counter=1;
-            foreach (ItensSaida item in saidaProdutos.itens)
-            {
-                ItensAdicionadosSaida i = new ItensAdicionadosSaida();
-                Produto p = produtosBLL.LerPorID(item.idProduto);
-                i.Produto = p.nome;
-                i.Valor = p.preco;
-                i.Venda = counter++;
-                ProdutosAdicionados.Add(i);
-            }
-            foreach(ItensAdicionadosSaida x in ProdutosAdicionados)
-            {
-                MessageBox.Show(x.Produto);
-            }
-            dataGridDia.DataSource = ProdutosAdicionados;
-            dataGridDia.Show();
-            btnApagarRegistro.Show();
-            lblProdutosLote.Show();
+                List<ItensAdicionadosSaida> ProdutosAdicionados = new List<ItensAdicionadosSaida>();
+                int counter = 1;
+                foreach (ItensSaida item in saidaProdutos.itens)
+                {
+                    ItensAdicionadosSaida i = new ItensAdicionadosSaida();
+                    Produto p = produtosBLL.LerPorID(item.idProduto);
+                    i.Produto = p.nome;
+                    i.Valor = p.preco;
+                    i.Venda = counter++;
+                    ProdutosAdicionados.Add(i);
+                }
+                dataGridDia.DataSource = ProdutosAdicionados;
+                dataGridDia.Show();
+                btnApagarRegistro.Show();
+                lblProdutosLote.Show();
         }
 
         private void esconderItens()

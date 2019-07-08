@@ -103,5 +103,10 @@ namespace BLL
         {
             return reservaDal.LerReservasViewModel();
         }
+
+        public List<ReservaViewModel> lerReservasPendentes()
+        {
+            return reservaDal.lerReservasPendentes();
+        }
     }
 }

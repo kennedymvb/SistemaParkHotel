@@ -26,47 +26,6 @@ namespace WFPresentationLayer
             this.entradaProdutos = entradaProdutos;
         }
 
-        private void carregarComboBox()
-        {
-            cmbProduto.DisplayMember = "NOME";
-            cmbProduto.ValueMember = "ID";
-            cmbProduto.DataSource = produtoBLL.LerTodos();
-            cmbFornecedor.DisplayMember = "razaoSocial";
-            cmbFornecedor.ValueMember = "ID";
-            cmbFornecedor.DataSource = fornecedorBLL.LerTodos();
-        }
-        private ItensEntrada InstanciarEntradaProdutosDetalhes()
-        {
-            int idProduto = (int)cmbProduto.SelectedValue;
-            int idFornecedor = encontrarIdFornecedor();
-            int quantidade = int.Parse(txtQuantidadeEntrada.Text);
-            double valorUnitario = double.Parse(txtValorEntrada.Text) / int.Parse(txtQuantidadeEntrada.Text);
-            return new ItensEntrada(idProduto, idFornecedor, quantidade, valorUnitario); 
-        }
-
-        private int encontrarIdFornecedor()
-        {
-            return (int)cmbFornecedor.SelectedValue;
-        }
-        
-        private void limparTextBox()
-        {
-            txtQuantidadeEntrada.Clear();
-            txtValorEntrada.Clear();
-        }
-
-        private void btnFinalizar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                entradaProdutosBLL.inserir(entradaProdutos);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("erro na solicitação: "+ex.Message);
-            }
-        }
-        
         private void btnAdicionarAoLote_Click_1(object sender, EventArgs e)
         {
             try
@@ -80,22 +39,78 @@ namespace WFPresentationLayer
             {
                 MessageBox.Show(ex.Message);
             }
+        }
 
+        private void btnFinalizar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                entradaProdutosBLL.inserir(entradaProdutos);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro na solicitação: " + ex.Message);
+            }
+        }
+        
+        private ItensEntrada InstanciarEntradaProdutosDetalhes()
+        {
+            try
+            {
+                int idProduto = (int)cmbProduto.SelectedValue;
+                int idFornecedor = encontrarIdFornecedor();
+                int quantidade = int.Parse(txtQuantidadeEntrada.Text);
+                double valorUnitario = double.Parse(txtValorEntrada.Text) / int.Parse(txtQuantidadeEntrada.Text);
+                return new ItensEntrada(idProduto, idFornecedor, quantidade, valorUnitario);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Dados inválidos");
+            }
+        }
+
+        private int encontrarIdFornecedor()
+        {
+            return (int)cmbFornecedor.SelectedValue;
+        }
+        
+        private void limparTextBox()
+        {
+            txtQuantidadeEntrada.Clear();
+            txtValorEntrada.Clear();
         }
 
         private void tratarRepeticaoId()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < entradaProdutos.itens.Count; i++)
+            {
+                if ((int)cmbProduto.SelectedValue == entradaProdutos.itens[i].idProduto && (int)cmbFornecedor.SelectedValue == entradaProdutos.itens[i].idFornecedor)
+                {
+                    entradaProdutos.itens.RemoveAt(i);
+                    VisualizarItensAdicionados();
+                    throw new Exception("Você não pode inserir duas vezes o mesmo produto com o mesmo fornecedor.\n" +
+                        " Preencha novamente!\n Agora, com a quantidade completa de uma só vez.");
+                }
+            }
         }
+
+        
 
         private void btnExibirEntradas_Click_1(object sender, EventArgs e)
         {
 
         }
 
-        private void btnFinalizar_Click_1(object sender, EventArgs e)
-        {
+        
 
+        private void carregarComboBox()
+        {
+            cmbProduto.DisplayMember = "NOME";
+            cmbProduto.ValueMember = "ID";
+            cmbProduto.DataSource = produtoBLL.LerTodos();
+            cmbFornecedor.DisplayMember = "razaoSocial";
+            cmbFornecedor.ValueMember = "ID";
+            cmbFornecedor.DataSource = fornecedorBLL.LerTodos();
         }
 
         private void txtValorEntrada_TextChanged(object sender, EventArgs e)
@@ -140,21 +155,28 @@ namespace WFPresentationLayer
 
         private void VisualizarItensAdicionados()
         {
-            List<ItensAdicionadosEntrada> ProdutosAdicionados = new List<ItensAdicionadosEntrada>();
-
-            int counter = 1;
-            foreach (ItensEntrada item in entradaProdutos.itens)
+            try
             {
-                ItensAdicionadosEntrada i = new ItensAdicionadosEntrada();
-                Produto p = produtoBLL.LerPorID(item.idProduto);
-                i.Produto = p.nome;
-                i.Compra = counter++;
-                ProdutosAdicionados.Add(i);
+                List<ItensAdicionadosEntrada> ProdutosAdicionados = new List<ItensAdicionadosEntrada>();
+                int counter = 1;
+                foreach (ItensEntrada item in entradaProdutos.itens)
+                {
+                    ItensAdicionadosEntrada i = new ItensAdicionadosEntrada();
+                    Produto p = produtoBLL.LerPorID(item.idProduto);
+                    i.Produto = p.nome;
+                    i.Compra = counter++;
+                    ProdutosAdicionados.Add(i);
+                }
+                dataGridDia.DataSource = ProdutosAdicionados;
+                dataGridDia.Show();
+                btnApagarRegistro.Show();
+                lblProdutosLote.Show();
             }
-            dataGridDia.DataSource = ProdutosAdicionados;
-            dataGridDia.Show();
-            btnApagarRegistro.Show();
-            lblProdutosLote.Show();
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro na solicitação: "+ex.Message);
+            }
+            
         }
     }
 }

@@ -86,7 +86,9 @@ namespace BLL
 
         public void Validar(Checkin checkin)
         {
-            if (checkin.dataEntrada > checkin.dataPrevistaSaida)
+            double diferenca = checkin.dataPrevistaSaida.Subtract(checkin.dataEntrada).Minutes;
+
+            if (checkin.dataPrevistaSaida.Subtract(checkin.dataEntrada).Minutes<0)
             {
                 erros.Add("Data saída não pode ser menor que a data de entrada");
             }
