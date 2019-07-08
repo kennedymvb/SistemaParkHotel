@@ -30,8 +30,14 @@ namespace WFPresentationLayer
 
         private void btnPesquisarCheckin_Click(object sender, EventArgs e)
         {
-            dataGridSelecionarCheckin.DataSource=checkinBLL.LerCheckinViewModels();
-            dataGridSelecionarCheckin.Show();
+            try
+            {
+                atualizarDataGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro na pesquisa: "+ex.Message);
+            }
         }
 
         private void btnFinalizarHospedagem_Click(object sender, EventArgs e)
@@ -44,12 +50,13 @@ namespace WFPresentationLayer
                     Checkin checkinCorrespondente = getCheckinCorrespondente(checkout);
                     VerificarDuplicidade(checkinCorrespondente);
                     checkoutBLL.inserir(checkout);
-                    checkout.valorTotal=calcularValorTotal(checkinCorrespondente, checkout);
+                    checkout.valorTotal=checkoutBLL.calcularValorTotal(checkinCorrespondente, checkout);
                     checkoutBLL.atualizarValorTotal(checkout);
                     scope.Complete();
                     MessageBox.Show("O valor total a pagar é: " + checkout.valorTotal.ToString("C2"));
                     atualizarLabelValorTotal(checkout.valorTotal);
                 }
+                atualizarDataGrid();
             }
             catch (Exception ex)
             {
@@ -58,11 +65,18 @@ namespace WFPresentationLayer
 
         }
 
+        private void atualizarDataGrid()
+        {
+            dataGridSelecionarCheckin.DataSource = checkinBLL.LerCheckinViewModels();
+            dataGridSelecionarCheckin.Show();
+        }
+
         private void VerificarDuplicidade(Checkin checkin)
         {
             if (!checkin.PendenteCheckout)
             {
-                throw new Exception("O checkout desse checkin já foi efetuado");
+                atualizarDataGrid();
+                throw new Exception("O checkout desse checkin já foi efetuado\n Confira no textBox o id escolhido");
             }
         }
 
@@ -70,43 +84,6 @@ namespace WFPresentationLayer
         {
             return checkinBLL.LerPorID(checkout.idCheckin);
         }
-
-        private double calcularValorTotal(Checkin checkin, Checkout checkout)
-        {
-            return  getValorDiarias(checkin, checkout) + getValorCompras(checkin);
-        }
-
-        private double getValorCompras(Checkin checkin)
-        {
-            double somaTotal = 0;
-            int idCheckin = int.Parse(txtnumeroCheckinCheckout.Text);
-            List<double> ListaTotalCompras =saidaProdutosBLL.LerPorCheckinId(idCheckin);
-            foreach (double item in ListaTotalCompras)
-            {
-                somaTotal += item;
-            }
-            return somaTotal;
-        }
-
-        private double getValorDiarias(Checkin checkin, Checkout checkout)
-        {
-            return getTotalDias(checkout) * getvalorDiario(checkin);
-        }
-
-        private double getvalorDiario(Checkin checkin)
-        {
-            return quartoBLL.LerPorID(checkin.quartoId).valorDiaria;
-        }
-
-        private double getTotalDias(Checkout checkout)
-        {
-            DateTime dataEntrada = checkout.dataEntrada;
-            DateTime dataSaida = checkout.dataSaida;
-            TimeSpan diferenca = dataSaida.Subtract(dataEntrada);
-            double totalDias = Math.Ceiling(diferenca.TotalDays);
-            return totalDias;
-        }
-
 
         private Checkout InstanciarCheckout()
         {

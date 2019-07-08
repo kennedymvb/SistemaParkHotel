@@ -22,10 +22,11 @@ namespace DAL
             command.Connection = connection;
 
 
-            command.CommandText = "UPDATE PRODUTOS SET  NOME = @NOME, DESCRICAO = @DESCRICAO, PRECO = @PRECO, USUARIO_ID = @USUARIO_ID where ID=@ID";
+            command.CommandText = "UPDATE PRODUTOS SET  NOME = @NOME, DESCRICAO = @DESCRICAO, PRECO = @PRECO, USUARIO_ID = @USUARIO_ID, QTD_ESTOQUE=@QTD_ESTOQUE where ID=@ID";
             command.Parameters.AddWithValue("@ID", produto.id);
             command.Parameters.AddWithValue("@NOME", produto.nome);
             command.Parameters.AddWithValue("@DESCRICAO", produto.descricao);
+            command.Parameters.AddWithValue("@QTD_ESTOQUE", produto.qtdEstoque);
             command.Parameters.AddWithValue("@PRECO", produto.preco);
             command.Parameters.AddWithValue("@USUARIO_ID", produto.usuarioId);
 

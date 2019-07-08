@@ -133,7 +133,7 @@
             this.dataGridDia.AllowUserToAddRows = false;
             this.dataGridDia.AllowUserToDeleteRows = false;
             this.dataGridDia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridDia.Location = new System.Drawing.Point(628, 80);
+            this.dataGridDia.Location = new System.Drawing.Point(627, 74);
             this.dataGridDia.Name = "dataGridDia";
             this.dataGridDia.ReadOnly = true;
             this.dataGridDia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

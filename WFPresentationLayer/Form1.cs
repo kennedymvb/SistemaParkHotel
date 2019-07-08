@@ -61,7 +61,7 @@ namespace WFPresentationLayer
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
-            formCheckin.ShowDialog();
+            formClientes.ShowDialog();
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)

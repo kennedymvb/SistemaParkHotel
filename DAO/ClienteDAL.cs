@@ -144,6 +144,43 @@ namespace Metadata
             }
         }
 
+        public List<Cliente> lerClientesDisponiveis()
+        {
+            string stringConexao = StringConexao.GetStringConexao();
+
+            SqlConnection connection = new SqlConnection(stringConexao);
+            SqlCommand command = new SqlCommand();
+            command.CommandText =
+            @" SELECT * FROM CLIENTES C WHERE C.ID NOT IN
+            (SELECT C.ID FROM CLIENTES C
+			INNER JOIN CHECKINS CH
+			ON CH.CLIENTE_ID=C.ID
+            WHERE CH.PENDENTE_CHECKOUT=1)";
+            
+
+
+            command.Connection = connection;
+            List<Cliente> list = new List<Cliente>();
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(instanciarcliente(reader));
+                }
+                return list;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("erro no acesso ao banco: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         private Cliente instanciarcliente(SqlDataReader reader)
         {
             Cliente cliente = new Cliente();

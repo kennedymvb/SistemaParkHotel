@@ -21,6 +21,7 @@ namespace WFPresentationLayer
         CheckinBLL checkinBLL = new CheckinBLL();
         QuartoBLL quartoBLL = new QuartoBLL();
         ClienteBLL clienteBLL = new ClienteBLL();
+        ReservaBLL reservaBLL = new ReservaBLL();
 
         private void btnFazerCheckin_Click(object sender, EventArgs e)
         {
@@ -28,12 +29,22 @@ namespace WFPresentationLayer
             {
                 Checkin checkin = InstanciarCheckin();
                 checkinBLL.inserir(checkin);
+                tratarReserva(checkin);
                 MessageBox.Show("Checkin efetuado com sucesso");
+                atualizarDataGridClientes();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void tratarReserva(Checkin checkin)
+        {
+            Reserva r=reservaBLL.LerPorID(checkin.idReserva);
+            r.pendenteCheckout = false;
+            reservaBLL.Atualizar(r);
+            
         }
 
         private void btnPendenciasCheckout_Click(object sender, EventArgs e)
@@ -66,8 +77,7 @@ namespace WFPresentationLayer
         {
             try
             {
-                dataGridViewClientesCheckin.Show();
-                dataGridViewClientesCheckin.DataSource = clienteBLL.LerTodos();
+                atualizarDataGridClientes();
             }
             catch (Exception ex)
             {
@@ -125,5 +135,61 @@ namespace WFPresentationLayer
             txtQuartoCheckin.Enabled = false;
         }
 
+        private void lblAgora_CheckedChanged(object sender, EventArgs e)
+        {
+            if (lblAgora.Checked)
+            {
+                dateTimeCheckinDataentrada.Enabled = false;
+                txtQuartoCheckin.Enabled = false;
+            }
+            else
+            {
+                dateTimeCheckinDataentrada.Enabled = true;
+                txtQuartoCheckin.Enabled = true;
+            }
+        }
+
+        private void atualizarDataGridClientes()
+        {
+            try
+            {
+                dataGridViewClientesCheckin.DataSource = clienteBLL.lerClientesDisponiveis();
+                dataGridViewClientesCheckin.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro na solicitação");
+            }
+            
+        }
+
+        private void btnPesquisarReserva_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                atualizarDataReserva();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro no acesso ao banco: " + ex.Message);
+            }
+        }
+
+        private void atualizarDataReserva()
+        {
+            dataGridReservas.DataSource = reservaBLL.lerReservasPendentes();
+        }
+
+        private void dataGridReservas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtNumReserva.Text=dataGridReservas.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtQuartoCheckin.Text= dataGridReservas.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtNumReserva.Enabled = false;
+            txtQuartoCheckin.Enabled = false;
+            BtnPesquisarCliente.Enabled = false;
+            txtNumCliente.Text = reservaBLL.LerPorID(int.Parse(txtNumReserva.Text)).idCliente.ToString();
+            txtNumCliente.Enabled = false;
+
+        }
     }
 }

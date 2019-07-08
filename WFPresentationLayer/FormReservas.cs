@@ -23,16 +23,31 @@ namespace WFPresentationLayer
 
         private void btncadastrarReservas_Click(object sender, EventArgs e)
         {
-            Reserva reserva = InstanciarReserva();
-            MessageBox.Show(reservaBLL.inserir(reserva));
-            VisualizarDataGrid();
+            try
+            {
+                Reserva reserva = InstanciarReserva();
+                MessageBox.Show(reservaBLL.inserir(reserva));
+                VisualizarDataGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro : " + ex.Message);
+            }
+            
         }
 
         private void VisualizarDataGrid()
         {
+            try
+            {
+                dataGridViewReservas.DataSource = reservaBLL.LerTodos();
+                this.dataGridViewReservas.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erro no acesso ao banco: "+ex.Message);
+            }
             
-            dataGridViewReservas.DataSource = reservaBLL.LerTodos();
-            this.dataGridViewReservas.Show();
         }
 
         private void btnConsultarReservas_Click(object sender, EventArgs e)
@@ -62,16 +77,7 @@ namespace WFPresentationLayer
             Reserva reserva = new Reserva(idCliente, idUsuario, dataPrevistaChegada, dataPrevistaSaida, idQuarto);
             return reserva;
         }
-        /*
-         * private void btncadastrarReservas_Click(object sender, EventArgs e)
-        {
-        }
 
-        
-        private void btnConsultarReservas_Click(object sender, EventArgs e)
-        {
-            
-        }
-         */
+ 
     }
 }

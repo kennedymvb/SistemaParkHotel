@@ -19,7 +19,7 @@ namespace BLL
         EntradaProdutosDAL entradaDal = new EntradaProdutosDAL();
         
 
-        public int inserir(EntradaProdutos entrada)
+        public void inserir(EntradaProdutos entrada)
         {
             if (this.Validar(entrada))
             {
@@ -27,32 +27,44 @@ namespace BLL
                 {
                     try
                     {
-                        entrada.id=entradaDal.Inserir(entrada);
-                        entradaDal.InserirItens(entrada);
-                        foreach (ItensEntrada item in entrada.itens)
+                        if (entrada.itens.Count > 0)
                         {
-                            Produto p = produtoBLL.LerPorID(item.idProduto);
-                            int quantidadeAntiga = p.qtdEstoque;
-                            double valorAntigo = p.preco;
-                            p.qtdEstoque -= item.quantidade;
-                            p.preco = (valorAntigo * quantidadeAntiga) + (item.quantidade * item.valorUnitario) / (quantidadeAntiga+item.quantidade);
-                            produtoBLL.Atualizar(p);
+                            entrada.id = entradaDal.Inserir(entrada);
+                            entradaDal.InserirItens(entrada);
+                            foreach (ItensEntrada item in entrada.itens)
+                            {
+                                Produto p = produtoBLL.LerPorID(item.idProduto);
+                                int quantidadeAntiga = p.qtdEstoque;
+                                double valorAntigo = p.preco;
+                                p.qtdEstoque -= item.quantidade;
+                                p.preco = (valorAntigo * quantidadeAntiga) + (item.quantidade * item.valorUnitario) / (quantidadeAntiga + item.quantidade);
+                                produtoBLL.Atualizar(p);
+                            }
+                            scope.Complete();
                         }
-                        scope.Complete();
+                        else
+                        {
+                            throw new Exception("Insira algum item, por favor");
+                        }
                     }
                     catch (Exception ex)
                     {
                         throw new Exception("Erro na transação: "+ex.Message);
                     }
+                    
                 }
 
             }
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < erros.Count(); i++)
+            if (erros.Count > 0)
             {
-                sb.Append(erros[i]);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < erros.Count(); i++)
+                {
+                    sb.Append(erros[i]);
+                }
+                throw new Exception(sb.ToString());
             }
-            throw new Exception(sb.ToString());
+            
         }
 
         public bool Validar(EntradaProdutos entrada)

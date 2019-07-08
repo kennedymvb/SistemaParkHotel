@@ -1,1 +1,0 @@
-﻿alter table checkouts add VALOR_TOTAL float null 

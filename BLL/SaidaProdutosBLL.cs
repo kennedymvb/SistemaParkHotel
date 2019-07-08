@@ -33,6 +33,7 @@ namespace BLL
             {
                 try
                 {
+                    tratarEstoque(saida.itens);
                     saida.id = saidaDal.Inserir(saida);
                     saidaDal.InserirItens(saida);
                     atualizarValorProdutos(saida);
@@ -43,6 +44,20 @@ namespace BLL
                 catch (Exception ex)
                 {
                     throw new Exception("Erro na transação: " + ex.Message);
+                }
+            }
+        }
+
+        private void tratarEstoque(List<ItensSaida> itens)
+        {
+            foreach (ItensSaida item in itens)
+            {
+                Produto p = produtoBLL.LerPorID(item.idProduto);
+                if (p.qtdEstoque < item.quantidade)
+                {
+                    itens.Remove(item);
+                    throw new Exception("Quantidade do produto "+p.nome+" é insuficiente no estoque\n" +
+                        "preencha novamente");
                 }
             }
         }

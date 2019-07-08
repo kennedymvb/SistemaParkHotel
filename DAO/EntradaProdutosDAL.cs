@@ -19,10 +19,10 @@ namespace DAL
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
 
-            command.CommandText = "INSERT INTO ENTRADAPRODUTOS (USUARIO_ID, DATA_ENTRADA, VALORTOTAL) VALUES (@USUARIO_ID, @DATA_ENTRADA, @VALORTOTAL); select scope_identity() 'id'";
+            command.CommandText = "INSERT INTO ENTRADAPRODUTOS (USUARIO_ID, DATA_ENTRADA, VALOR_TOTAL) VALUES (@USUARIO_ID, @DATA_ENTRADA, @VALOR_TOTAL); select scope_identity() 'id'";
             command.Parameters.AddWithValue("@USUARIO_ID", entradaProdutos.usuarioId);
             command.Parameters.AddWithValue("@DATA_ENTRADA", entradaProdutos.dataEntrada);
-            command.Parameters.AddWithValue("@VALORTOTAL", entradaProdutos.valorTotal);
+            command.Parameters.AddWithValue("@VALOR_TOTAL", entradaProdutos.valorTotal);
             try
             {
                 connection.Open();
@@ -54,7 +54,7 @@ namespace DAL
                 commands[i].CommandText = "INSERT INTO ENTRADAPRODUTOSDETALHES (ENTRADAPRODUTO_ID, PRODUTO_ID, FORNECEDOR_ID, QUANTIDADE, VALOR_UNITARIO) VALUES (@ENTRADAPRODUTO_ID, @PRODUTO_ID, @FORNECEDOR_ID, @QUANTIDADE, @VALOR_UNITARIO)";
                 commands[i].Parameters.AddWithValue("@ENTRADAPRODUTO_ID", entrada.id);
                 commands[i].Parameters.AddWithValue("@PRODUTO_ID", entrada.itens[i].idProduto);
-                commands[i].Parameters.AddWithValue("@FORNECEDOR_ID", entrada.itens[i].idCliente);
+                commands[i].Parameters.AddWithValue("@FORNECEDOR_ID", entrada.itens[i].idFornecedor);
                 commands[i].Parameters.AddWithValue("@QUANTIDADE", entrada.itens[i].quantidade);
                 commands[i].Parameters.AddWithValue("@VALOR_UNITARIO", entrada.itens[i].valorUnitario);
 

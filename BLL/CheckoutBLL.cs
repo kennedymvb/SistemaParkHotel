@@ -15,7 +15,7 @@ namespace BLL
         List<string> erros = new List<string>();
         CheckinBLL checkinBLL = new CheckinBLL();
         QuartoBLL quartoBLL = new QuartoBLL();
-        
+        SaidaProdutosBLL saidaProdutosBLL = new SaidaProdutosBLL();
 
         public void inserir(Checkout checkout)
         {
@@ -27,8 +27,8 @@ namespace BLL
                     {
                         checkoutDal.Inserir(checkout);
                         Checkin checkin = checkinBLL.LerPorID(checkout.idCheckin);
-                        quartoBLL.Desocupar(checkin.quartoId);
                         checkinBLL.AtualizarPendenciaCheckout(checkin.id);
+                        quartoBLL.Desocupar(checkin.quartoId);
                         scope.Complete();
                     }
                 }
@@ -59,6 +59,46 @@ namespace BLL
                 throw new Exception(ex.Message);
             }
         }
+
+        public double calcularValorTotal(Checkin checkinCorrespondente, Checkout checkout)
+        {
+            return getValorDiarias(checkinCorrespondente, checkout) + getValorCompras(checkinCorrespondente);
+        }
+
+        private double getValorDiarias(Checkin checkin, Checkout checkout)
+        {
+            return getTotalDias(checkout) * getvalorDiario(checkin);
+        }
+
+        private double getvalorDiario(Checkin checkin)
+        {
+            return quartoBLL.LerPorID(checkin.quartoId).valorDiaria;
+        }
+
+        private double getTotalDias(Checkout checkout)
+        {
+            DateTime dataEntrada = checkout.dataEntrada;
+            DateTime dataSaida = checkout.dataSaida;
+            TimeSpan diferenca = dataSaida.Subtract(dataEntrada);
+            double totalDias = Math.Ceiling(diferenca.TotalDays);
+            if (totalDias == 0)
+            {
+                totalDias = 1;
+            }
+            return totalDias;//se fez checkin, já tem que pagar a diária
+        }
+
+        private double getValorCompras(Checkin checkin)
+        {
+            double somaTotal = 0;
+            List<double> ListaTotalCompras = saidaProdutosBLL.LerPorCheckinId(checkin.id);
+            foreach (double item in ListaTotalCompras)
+            {
+                somaTotal += item;
+            }
+            return somaTotal;
+        }
+
         public List<Checkout> LerTodos()
         {
             try
@@ -81,12 +121,12 @@ namespace BLL
             TratarIntegridadeReferencial(checkout);
             TimeSpan diferenca = checkout.dataSaida.Subtract(checkout.dataEntrada);
             
-            if (diferenca.TotalMilliseconds<=0)
+            if (diferenca.TotalMinutes<=0)
             {
                 erros.Add("data saida tem que ser maior que a data de entrada");
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
 
         private void TratarIntegridadeReferencial(Checkout checkout)
